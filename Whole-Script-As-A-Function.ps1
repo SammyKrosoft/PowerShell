@@ -1,7 +1,3 @@
-param ([string]$Name,[string]$Extension = "txt")
-$name = $name + "." + $extension
-$name
-
 <#
 .SYNOPSIS
 
@@ -51,3 +47,6 @@ http://www.fabrikam.com/extension.html
 Set-Item
 #>
 
+param ([string]$Name,[string]$Extension = "txt")
+$name = $name + "." + $extension
+$name
