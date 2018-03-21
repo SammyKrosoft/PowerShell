@@ -9,7 +9,9 @@ $ErrorPreference = "SilentlyContinue"
 #Script Version
 $ScriptVersion = "1.0"
 # Log or report file definition
-$FilePathForReport = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+$FilePathOrReportFile = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+# Other Option
+$LogFile = "$((Get-Location).Path)\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# /SCRIPT_HEADER #>
 
 <#----------------------------------------------------------[Declarations]----------------------------------------------------------#>
