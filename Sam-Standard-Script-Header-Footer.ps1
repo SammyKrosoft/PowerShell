@@ -9,9 +9,9 @@ $ErrorPreference = "SilentlyContinue"
 #Script Version
 $ScriptVersion = "1.0"
 # Log or report file definition
-$FilePathOrReportFile = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
-# Other Option
-$LogFile = "$((Get-Location).Path)\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
+$LogOrReportFile1 = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+# Other Option for Log or report file definition (use one of these)
+$LogOrReportFile2 = "$((Get-Location).Path)\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# /SCRIPT_HEADER #>
 
 <#----------------------------------------------------------[Declarations]----------------------------------------------------------#>
@@ -19,14 +19,14 @@ $LogFile = "$((Get-Location).Path)\PowerShellScriptExecuted-$(Get-Date -Format '
 $Message = "Hello world !"
 
 <#----------------------------------------------------------[Functions]----------------------------------------------------------#>
-function _Progress{
-    param($PercentComplete,$Status)
-    Write-Progress -id 1 -activity "Working !" -CurrentOperation "Treating object $CurrentCounter of $TotalNumberOfObjects" -status $Status -percentComplete ($PercentComplete)
-}
+function Function1{
+    param($FirstName="John",$LastName="Doe")
+    Write-Host "Your full name is $FirstName $LastName ... can I call you $FirstName ?"
+ }
 
 <#----------------------------------------------------------[Execution]----------------------------------------------------------#>
 Write-Debug $Message
-
+Function1
 
 
 <# SCRIPT_FOOTER #>
