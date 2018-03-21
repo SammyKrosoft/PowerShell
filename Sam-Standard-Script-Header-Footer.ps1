@@ -9,7 +9,7 @@ $ErrorPreference = "SilentlyContinue"
 #Script Version
 $ScriptVersion = "1.0"
 # Log or report file definition
-$FilePathForReport = "C$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+$FilePathForReport = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 <# /SCRIPT_HEADER #>
 
 <#----------------------------------------------------------[Declarations]----------------------------------------------------------#>
