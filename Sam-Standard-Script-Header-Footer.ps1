@@ -15,8 +15,7 @@ $ScriptVersion = "1.0"
 $Message = "Hello world !"
 
 <#----------------------------------------------------------[Functions]----------------------------------------------------------#>
-function _Progress
-{
+function _Progress{
     param($PercentComplete,$Status)
     Write-Progress -id 1 -activity "Working !" -status $Status -percentComplete ($PercentComplete)
 }
