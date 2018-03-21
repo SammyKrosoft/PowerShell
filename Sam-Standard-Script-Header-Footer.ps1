@@ -14,11 +14,16 @@ $LogOrReportFile1 = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-m
 $LogOrReportFile2 = "$((Get-Location).Path)\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 
+
+
 <# DECLARATIONS #>
 #Your message
 $Message = "Hello world !"
 
+
 <# /DECLARATIONS #>
+
+
 
 <# FUNCTIONS #>
 function Function1{
@@ -27,6 +32,9 @@ function Function1{
  }
 
  <# /FUNCTIONS #>
+
+
+
 
 <# EXECUTIONS #>
 Write-Debug $Message
