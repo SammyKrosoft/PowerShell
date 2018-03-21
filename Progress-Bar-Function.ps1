@@ -1,5 +1,16 @@
-#Re-using a function from my good Serkan Varoglu >> http:\\Mshowto.org >> http:\\Get-Mailbox.org
+<# 
+.SYNOPSIS
+Simple progress bar function using Write-Progress but simplify a bit the call
+   
+.DESCRIPTION
+Re-using a function from my good Serkan Varoglu >> http:\\Mshowto.org >> http:\\Get-Mailbox.org
  
+.NOTES
+To report % progress, use a $Counter variable that you increment at each loop iteration, divide by the Total number 
+of items of the collection you're looping in, multiplied by 100:
+
+$PercentComplete = $Counter/$TotalItems*100
+#>
 function _Progress
 {
     param($PercentComplete,$Status)
