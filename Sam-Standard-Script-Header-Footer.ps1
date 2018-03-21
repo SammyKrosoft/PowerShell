@@ -17,7 +17,7 @@ $Message = "Hello world !"
 <#----------------------------------------------------------[Functions]----------------------------------------------------------#>
 function _Progress{
     param($PercentComplete,$Status)
-    Write-Progress -id 1 -activity "Working !" -CurrentOperation "Treating object $CurrentCounter of $($Objects.Total)" -status $Status -percentComplete ($PercentComplete)
+    Write-Progress -id 1 -activity "Working !" -CurrentOperation "Treating object $CurrentCounter of $TotalNumberOfObjects" -status $Status -percentComplete ($PercentComplete)
 }
 
 <#----------------------------------------------------------[Execution]----------------------------------------------------------#>
