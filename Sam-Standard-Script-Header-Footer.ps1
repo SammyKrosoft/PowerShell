@@ -4,9 +4,20 @@ $stopwatch =  [system.diagnostics.stopwatch]::StartNew()
 #Using Write-Debug and playing with $DebugPreference -> "Continue" will output whatever you put on Write-Debug "Your text/values"
 # and "SilentlyContinue" will output nothing on Write-Debug "Your text/values"
 $DebugPreference = "Continue"
+# Set Error Action to your needs
+$ErrorPreference = "SilentlyContinue"
+#Script Version
+$ScriptVersion = "1.0"
 <# /SCRIPT_HEADER #>
 
+<#----------------------------------------------------------[Declarations]----------------------------------------------------------#>
+#Your message
 $Message = "Hello world !"
+
+<#----------------------------------------------------------[Functions]----------------------------------------------------------#>
+
+
+<#----------------------------------------------------------[Execution]----------------------------------------------------------#>
 Write-Debug $Message
 
 
