@@ -1,4 +1,4 @@
-$LogFile = "$((Get-Location).Path)\SBADMigration-$(Get-Date -Format 'dd MMMM yyyy hh-mm-ss tt').txt"
+$LogFile = "$((Get-Location).Path)\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 
 
 function Write-Log {
