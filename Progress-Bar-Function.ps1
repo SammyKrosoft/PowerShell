@@ -8,11 +8,20 @@ Re-using a function from my good Serkan Varoglu >> http:\\Mshowto.org >> http:\\
 .NOTES
 To report % progress, use a $Counter variable that you increment at each loop iteration, divide by the Total number 
 of items of the collection you're looping in, multiplied by 100:
-
 $PercentComplete = $Counter/$TotalItems*100
+
+.LINK
+http:\\Mshowto.org
+
+.LINK
+http:\\Get-Mailbox.org
+
 #>
+
+param($PercentComplete, $Status="In Progress...")
+
 function _Progress
 {
     param($PercentComplete,$Status)
-    Write-Progress -id 1 -activity "Report for Mailboxes" -status $Status -percentComplete ($PercentComplete)
+    Write-Progress -id 1 -activity "Working !" -status $Status -percentComplete ($PercentComplete)
 }
