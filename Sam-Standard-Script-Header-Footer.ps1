@@ -1,4 +1,4 @@
-<# ---------------------------- SCRIPT_HEADER (Nothing above this point) ---------------------------- #>
+<# ----------------- SCRIPT_HEADER (Nothing above this point) ------------- #>
 #Initializing a $Stopwatch variable to use to measure script execution
 $stopwatch =  [system.diagnostics.stopwatch]::StartNew()
 #Using Write-Debug and playing with $DebugPreference -> "Continue" will output whatever you put on Write-Debug "Your text/values"
@@ -46,4 +46,4 @@ Function1
 #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...
 $stopwatch.Stop()
 Write-Host "The script took $($StopWatch.Elapsed.TotalSeconds) seconds to execute..."
-<# ---------------------------- /SCRIPT_FOOTER (NOTHING BEYOND THIS POINT) ---------------------------- #>
+<# ---------------- /SCRIPT_FOOTER (NOTHING BEYOND THIS POINT) ----------- #>
