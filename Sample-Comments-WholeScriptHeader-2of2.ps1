@@ -47,7 +47,7 @@ param ([string]$FirstName="Merlin", [string]$LastName="the Wizard")
 
 function Print-FullName ([string]$FName, [string]$LName) { 
   $FullName = $FName + " " + $LName
-  Write-Host "Your Full Name is $LName"
+  Write-Host "Your Full Name is $FullName"
 }
 
 Print-FullName $FirstNAme $LastName
