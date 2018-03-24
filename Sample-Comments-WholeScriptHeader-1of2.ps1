@@ -26,8 +26,8 @@ name.
 
 .EXAMPLE
 
-C:\PS> .\Full-Name.ps1 -FirstName "John" -LastName "Doe"
-Your full name is John Doe
+C:\PS> .\Full-Name.ps1
+Your full name is Merlin the Wizard
 
 .EXAMPLE
 
