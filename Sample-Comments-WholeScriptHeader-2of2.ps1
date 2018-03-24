@@ -43,9 +43,9 @@ C:\PS> .\Your-Script.ps1 "Jane" "Doe"
 Your full name is Jane Doe
 #>
 
-param ([string]$FirstName, [string]$LastName)
+param ([string]$FirstName="Merlin", [string]$LastName="the Wizard")
 
-function Print-FullName ([string]$FName="Merlin", [string]$LName="the Wizard) { 
+function Print-FullName ([string]$FName, [string]$LName) { 
   $FullName = $FName + " " + $LName
   Write-Host "Your Full Name is $LName"
 }
