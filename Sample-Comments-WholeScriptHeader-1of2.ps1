@@ -49,5 +49,5 @@ Set-Item
 #>
 
 param ([string]$FirstName="Merlin",[string]$LastName = "the Wizard")
-$name = $name + " " + $LastName
+$name = $FirstName + " " + $LastName
 Write-host "Your full name is $name"
