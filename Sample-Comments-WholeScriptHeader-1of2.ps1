@@ -2,6 +2,7 @@
 .SYNOPSIS
 
 Adds a file name extension to a supplied name.
+Get this help from header by typing Get-Help .\YourScript.ps1 -Full
 
 .DESCRIPTION
 
