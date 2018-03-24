@@ -48,6 +48,6 @@ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/abo
 Set-Item
 #>
 
-param ([string]$Name,[string]$Extension = "txt")
-$name = $name + "." + $extension
-$name
+param ([string]$FirstName="Merlin",[string]$LastName = "the Wizard")
+$name = $name + " " + $LastName
+Write-host "Your full name is $name"
