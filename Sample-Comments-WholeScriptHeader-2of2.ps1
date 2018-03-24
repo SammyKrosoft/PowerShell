@@ -1,46 +1,53 @@
 <#
 .SYNOPSIS
 
-Performs monthly data updates.
-Get this help from header by typing Get-Help .\YourScript.ps1 -Full
+Prints your first name and last name.
+Get this help from header by typing Get-Help .\Your-Script.ps1 -Full
 
 .DESCRIPTION
 
-The Update-Month.ps1 script updates the registry with new data generated
-during the past month and generates a report.
+The Your-Script.ps1 script prints your first name and last name
+from parameters when calling the script. It's a demo-purposed script
+that's why you'll see parameters taken from the script, then a function
+that concatenates 2 strings and prints "Your full name is John Doe", which
+I call using the parameters value taken from the script. It's definitely
+overkill but that's to demo Comments defined at the script level and then
+using function to use the parameters defined at the script level ...
 
-.PARAMETER InputPath
-Specifies the path to the CSV-based input file.
+.PARAMETER FirstName
+Specifies the First Name. "Merlin" is the default.
 
-.PARAMETER OutputPath
-Specifies the name and path for the CSV-based output file. By default,
-MonthlyUpdates.ps1 generates a name from the date and time it runs, and
-saves the output in the local directory.
+.PARAMETER LastName
+Specifies the First Name. "the Wizard" is the default.
 
 .INPUTS
 
-None. You cannot pipe objects to Update-Month.ps1.
+None. You cannot pipe objects to Your-Script.ps1.
 
 .OUTPUTS
 
-None. Update-Month.ps1 does not generate any output.
+None. Your-Script.ps1 does not generate any output.
 
 .EXAMPLE
 
-C:\PS> .\Update-Month.ps1
+C:\PS> .\Your-Script.ps1
 
 .EXAMPLE
 
-C:\PS> .\Update-Month.ps1 -inputpath C:\Data\January.csv
+C:\PS> .\Your-Script.ps1 -FirstName "Jane" -LastName "Doe"
+Your full name is Jane Doe
 
 .EXAMPLE
 
-C:\PS> .\Update-Month.ps1 -inputpath C:\Data\January.csv -outputPath `
-C:\Reports\2009\January.csv
+C:\PS> .\Your-Script.ps1 "Jane" "Doe"
+Your full name is Jane Doe
 #>
 
-param ([string]$InputPath, [string]$OutPutPath)
+param ([string]$FirstName, [string]$LastName)
 
-function Get-Data { 
-  #Your Code here
+function Print-FullName ([string]$FName="Merlin", [string]$LName="the Wizard) { 
+  $FullName = $FName + " " + $LName
+  Write-Host "Your Full Name is $LName"
 }
+
+Print-FullName $FirstNAme $LastName
