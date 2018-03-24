@@ -2,6 +2,7 @@
 .SYNOPSIS
 
 Performs monthly data updates.
+Get this help from header by typing Get-Help .\YourScript.ps1 -Full
 
 .DESCRIPTION
 
