@@ -22,6 +22,7 @@ function Write-Log
 		$DateTime = Get-Date -Format ‘MM-dd-yy HH:mm:ss’
 		$Invocation = "$($MyInvocation.MyCommand.Source | Split-Path -Leaf):$($MyInvocation.ScriptLineNumber)"
 		Add-Content -Value "$DateTime - $Invocation - $Message" -Path "$([environment]::GetEnvironmentVariable('TEMP', 'Machine'))\ScriptLog.log"
+		Write-Host $Message
 	}
 	catch
 	{
