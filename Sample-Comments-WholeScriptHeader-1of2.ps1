@@ -1,43 +1,43 @@
 <#
 .SYNOPSIS
 
-Adds a file name extension to a supplied name.
+Prints your first name and last name.
 Get this help from header by typing Get-Help .\YourScript.ps1 -Full
 
 .DESCRIPTION
 
-Adds a file name extension to a supplied name.
-Takes any strings for the file name or extension.
+Just a dummy script that prints your first name and last name.
+Takes any strings for first name and last name.
 
-.PARAMETER Name
-Specifies the file name.
+.PARAMETER FirstName
+Specifies the First Name. "Merlin" is the default.
 
-.PARAMETER Extension
-Specifies the extension. "Txt" is the default.
+.PARAMETER LastName
+Specifies the last name. "the Wizard" is the default.
 
 .INPUTS
 
-None. You cannot pipe objects to Add-Extension.
+None. You cannot pipe objects to that script.
 
 .OUTPUTS
 
-System.String. Add-Extension returns a string with the extension
-or file name.
+System.String. The script (Full-Name.ps1 or whatever you name it) returns a string with the full
+name.
 
 .EXAMPLE
 
-C:\PS> extension -name "File"
-File.txt
+C:\PS> .\Full-Name.ps1 -FirstName "John" -LastName "Doe"
+Your full name is John Doe
 
 .EXAMPLE
 
-C:\PS> extension -name "File" -extension "doc"
-File.doc
+C:\PS> .\Full-Name.ps1 -FirstName "Jane" -LastName "Doe"
+Your full name is Jane Doe
 
 .EXAMPLE
 
-C:\PS> extension "File" "doc"
-File.doc
+C:\PS> .\Full-Name.ps1 "Jane" "Doe"
+Your full name is Jane Doe
 
 .LINK
 
