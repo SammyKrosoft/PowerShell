@@ -1,3 +1,8 @@
+
+function _Progress
+{
+    param($PercentComplete=100,$Status="In Progress...")
+
 <# 
 .SYNOPSIS
 Simple progress bar function using Write-Progress but simplify a bit the call
@@ -18,10 +23,5 @@ http:\\Get-Mailbox.org
 
 #>
 
-param($PercentComplete, $Status="In Progress...")
-
-function _Progress
-{
-    param($PercentComplete,$Status)
-    Write-Progress -id 1 -activity "Working !" -status $Status -percentComplete ($PercentComplete)
+Write-Progress -id 1 -activity "Working !" -status $Status -percentComplete ($PercentComplete)
 }
