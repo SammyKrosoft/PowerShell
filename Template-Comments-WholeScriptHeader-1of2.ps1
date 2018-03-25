@@ -45,7 +45,7 @@ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/abo
 
 .LINK
 
-Set-Item
+https://github.com/SammyKrosoft
 #>
 
 param ([string]$FirstName="Merlin",[string]$LastName = "the Wizard")
