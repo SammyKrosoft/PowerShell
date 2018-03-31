@@ -13,13 +13,13 @@ $ScriptVersion = "1.0"
 $CSVReportFile = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 $ScriptExecutionLogReportFile = "$((Get-Location).Path)\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
-<# DECLARATIONS #>
+<# -----------------------------DECLARATIONS -------------------------------#>
 #Your message
 $Message = "Hello world !"
 <# /DECLARATIONS #>
-<# FUNCTIONS #>
+<# -----------------------------FUNCTIONS ----------------------------------#>
 <# /FUNCTIONS #>
-<# EXECUTIONS #>
+<# -----------------------------EXECUTIONS ---------------------------------#>
 Write-Debug $Message
 <# /EXECUTIONS #>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
