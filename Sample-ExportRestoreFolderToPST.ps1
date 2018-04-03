@@ -16,9 +16,19 @@ of the machine where you export the PST)
 
 [PS] C:\Users\super-ssc-sm\Documents>.\Export-RestoreFolderToPST.ps1
 
-Will export the folder that you hard coded on the variable $FolderToRestore
+Will export the folder that you hard coded on the variable $FolderToExport
 from the mailbox that is specified in the variable $MailboxToExport
 and it will put it on the UNC path specified in the variable $UNCFilePathToExportThePST
+The Request will be able to be retrieved using Get-MailboxExportRequest with the "-Name" parameter
+and the name provided in the $ExportRequestName variable.
+
+.EXAMPLE
+
+[PS] C:\Users\super-ssc-sm\Documents>.\Export-RestoreFolderToPST.ps1 -ExportRequestName "MyExportRequest01"
+
+Will create an Export request to dump a mailbox inside a PST file, and the Export request job will be called "MyExportRequest01".
+The mailbox it will search in will be the one hard coded in the $MailboxToExport, the UNC Path specified on the $UNCFilePathToExportThePST,
+and the folder specified on the $FolderToExport variable.
 
 .LINK
 https://blogs.technet.microsoft.com/samdrey/2011/02/16/exchange-2010-rbac-issue-mailbox-import-export-new-mailboximportrequest-and-other-management-role-entries-are-missing-not-available/
@@ -26,10 +36,10 @@ https://blogs.technet.microsoft.com/samdrey/2011/02/16/exchange-2010-rbac-issue-
 
 #>
 param(
-    [string]$FolderToExport = "Restore/Restore - Chagnon, André - mar16_2018/Inbox/*",
-    [string]$MailboxToExport = "SSC - Mail and Messaging Services, Services de courrier et messagerie - SPC",
-    [string]$UNCFilePathToExportThePST = "\\YourExchangeExportServer\C$\temp\Restored.pst",
-    [string]$ExportRequestName = "ShawnExportRequest"
+    [string]$FolderToExport = "Restore/Restore - My Mailbox/Inbox/*",
+    [string]$MailboxToExport = "My Mailbox Name",
+    [string]$UNCFilePathToExportThePST = "\\YourExchangeExportServer\C$\temp\Restored-$(get-date -f yyyy-MM-dd-hh-mm-ss).pst",
+    [string]$ExportRequestName = "MyExportRequest"
     )
 
 #Removing previous Mailbox Export request that had the same name as the name provided
