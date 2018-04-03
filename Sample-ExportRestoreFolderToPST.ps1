@@ -33,11 +33,11 @@ param(
     )
 
 #Removing previous Mailbox Export request that had the same name as the name provided
-#Note: we can develop a simple routing that checks for existing $ExportRequestName, and if it exists, exit the script with instruction to specify another name...
+#Note for the future: we can develop a simple routing that checks for existing $ExportRequestName, and if it exists, exit the script with instruction to specify another name...
 Remove-MailboxExportRequest $ExportRequestName
     
 #Write-Host "Checking if Exchange can find $MAilboxToExport ..." 
-#Note: we can test if the mailbox targetted exists, and if it doesn't, exit the script...
+#Note for the future: we can test if the mailbox targetted exists, and if it doesn't, exit the script...
 #Get-mailbox $MailboxToExport
 
 Write-Host "Trying to export data from $MailboxToExport and targetting folder $FolderToRestore ..."
