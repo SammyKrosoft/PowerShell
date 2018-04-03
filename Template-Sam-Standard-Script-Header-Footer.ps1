@@ -1,4 +1,4 @@
-<# ------- SCRIPT_HEADER (Only Get-Help comments above this point) ------- #>
+<# -------------------------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) -------------------------- #>
 #Initializing a $Stopwatch variable to use to measure script execution
 $stopwatch =  [system.diagnostics.stopwatch]::StartNew()
 #Using Write-Debug and playing with $DebugPreference -> "Continue" will output whatever you put on Write-Debug "Your text/values"
@@ -12,18 +12,18 @@ $ScriptVersion = "1.0"
 # or just use one (delete the unused)
 $CSVReportFile = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 $ScriptExecutionLogReportFile = "$((Get-Location).Path)\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
-<# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
-<# -----------------------------DECLARATIONS -------------------------------#>
+<# -------------------------- /SCRIPT_HEADER -------------------------- #>
+<# -------------------------- DECLARATIONS --------------------------
 #Your message
 $Message = "Hello world !"
 <# /DECLARATIONS #>
-<# -----------------------------FUNCTIONS ----------------------------------#>
+<# -------------------------- FUNCTIONS -------------------------- #>
 <# /FUNCTIONS #>
-<# -----------------------------EXECUTIONS ---------------------------------#>
+<# -------------------------- EXECUTIONS -------------------------- #>
 Write-Debug $Message
 <# /EXECUTIONS #>
-<# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
+<# -------------------------- SCRIPT_FOOTER -------------------------- #>
 #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...
 $stopwatch.Stop()
 Write-Host "`n`nThe script took $($StopWatch.Elapsed.TotalSeconds) seconds to execute..."
-<# ---------------- /SCRIPT_FOOTER (NOTHING BEYOND THIS POINT) ----------- #>
+<# -------------------------- /SCRIPT_FOOTER (NOTHING BEYOND THIS POINT) -------------------------- #>
