@@ -69,29 +69,12 @@ $LogOrReportFile2 = "$((Get-Location).Path)\PowerShellScriptExecuted-$(Get-Date 
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 
 <# -------------------------- DECLARATIONS -------------------------- #>
-#Your message
-$Message = "Hello world !"
-
 
 <# /DECLARATIONS #>
-
-
-
 <# -------------------------- FUNCTIONS -------------------------- #>
-function Function1
-{
-    param($FirstName = "John", $LastName = "Doe")
-    Write-Host "Your full name is $FirstName $LastName ... can I call you $FirstName ?"
-}
 
 <# /FUNCTIONS #>
-
-
-
-
 <# -------------------------- EXECUTIONS -------------------------- #>
-Write-Debug $Message
-Function1
 
 <# /EXECUTIONS #>
 
