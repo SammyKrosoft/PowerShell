@@ -12,8 +12,8 @@ Simple or more complex functions that I find useful and that can pick when I nee
 ## How-To-*
 Simple scripts with a lot of comments, intended to help you understanding some concepts of PowerShell that are useful in a day-to-day life of a PowerShell scripter_
 Example, the first one created on this site is a "How-To-User-ProgressBar.ps1" super-commented script to drill down the required steps to create a PowerShell progress bar... _
-## VNext
-To be defined_
+## Sample-*
+Scripts that I used for customers onsite
 ## Other
 See some PowerShell examples buried on my messaging oriented Microsoft TechNet Blog : http://aka.ms/sammy
 
