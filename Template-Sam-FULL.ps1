@@ -47,7 +47,12 @@ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/abo
 
 https://github.com/SammyKrosoft
 #>
-<# ------- SCRIPT_HEADER (Only Get-Help comments above this point) ------- #>
+Param(
+    [String]$FirstName,
+    [String]$LastName
+)
+
+<# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
 #Initializing a $Stopwatch variable to use to measure script execution
 $stopwatch = [system.diagnostics.stopwatch]::StartNew()
 #Using Write-Debug and playing with $DebugPreference -> "Continue" will output whatever you put on Write-Debug "Your text/values"
@@ -63,12 +68,7 @@ $LogOrReportFile1 = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-m
 $LogOrReportFile2 = "$((Get-Location).Path)\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 
-# Parameter help description
-[Parameter(Mandatory = $false)]
-[string]
-$String
-
-<# DECLARATIONS #>
+<# -------------------------- DECLARATIONS -------------------------- #>
 #Your message
 $Message = "Hello world !"
 
@@ -77,7 +77,7 @@ $Message = "Hello world !"
 
 
 
-<# FUNCTIONS #>
+<# -------------------------- FUNCTIONS -------------------------- #>
 function Function1
 {
     param($FirstName = "John", $LastName = "Doe")
@@ -89,7 +89,7 @@ function Function1
 
 
 
-<# EXECUTIONS #>
+<# -------------------------- EXECUTIONS -------------------------- #>
 Write-Debug $Message
 Function1
 
