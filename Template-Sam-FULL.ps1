@@ -38,8 +38,17 @@ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/abo
 .LINK
 https://github.com/SammyKrosoft
 #>
+<<<<<<< HEAD
 param($Coucou, $CommentVa)
 
+=======
+Param(
+    [String]$FirstName,
+    [String]$LastName
+)
+
+<# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
+>>>>>>> a454ab6d450493e7c896a4d1a6820cbba500bc5d
 #Initializing a $Stopwatch variable to use to measure script execution
 $stopwatch = [system.diagnostics.stopwatch]::StartNew()
 #Using Write-Debug and playing with $DebugPreference -> "Continue" will output whatever you put on Write-Debug "Your text/values"
@@ -55,6 +64,7 @@ $LogOrReportFile1 = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-m
 $LogOrReportFile2 = "$((Get-Location).Path)\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 
+<<<<<<< HEAD
 
 <# DECLARATIONS #>
 #Your message
@@ -71,6 +81,16 @@ function Function1
 <# EXECUTIONS #>
 Write-Debug $Message
 Function1
+=======
+<# -------------------------- DECLARATIONS -------------------------- #>
+
+<# /DECLARATIONS #>
+<# -------------------------- FUNCTIONS -------------------------- #>
+
+<# /FUNCTIONS #>
+<# -------------------------- EXECUTIONS -------------------------- #>
+
+>>>>>>> a454ab6d450493e7c896a4d1a6820cbba500bc5d
 <# /EXECUTIONS #>
 
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
