@@ -1,28 +1,21 @@
 <#
 .SYNOPSIS
-
-Prints your first name and last name.
-Get this help from header by typing Get-Help .\YourScript.ps1 -Full
+Quick description of this script
 
 .DESCRIPTION
-
-Just a dummy script that prints your first name and last name.
-Takes any strings for first name and last name.
+Longer description of what this script does
 
 .PARAMETER FirstName
-Specifies the First Name. "Merlin" is the default.
+This parameter does blablabla
 
 .PARAMETER LastName
-Specifies the last name. "the Wizard" is the default.
+This parameter does blablabla
 
 .INPUTS
-
 None. You cannot pipe objects to that script.
 
 .OUTPUTS
-
-System.String. The script (Full-Name.ps1 or whatever you name it) returns a string with the full
-name.
+None for now
 
 .EXAMPLE
 
@@ -40,14 +33,13 @@ C:\PS> .\Full-Name.ps1 "Jane" "Doe"
 Your full name is Jane Doe
 
 .LINK
-
 https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6
 
 .LINK
-
 https://github.com/SammyKrosoft
 #>
-<# ------- SCRIPT_HEADER (Only Get-Help comments above this point) ------- #>
+param($Coucou, $CommentVa)
+
 #Initializing a $Stopwatch variable to use to measure script execution
 $stopwatch = [system.diagnostics.stopwatch]::StartNew()
 #Using Write-Debug and playing with $DebugPreference -> "Continue" will output whatever you put on Write-Debug "Your text/values"
@@ -63,36 +55,22 @@ $LogOrReportFile1 = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-m
 $LogOrReportFile2 = "$((Get-Location).Path)\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 
-# Parameter help description
-[Parameter(Mandatory = $false)]
-[string]
-$String
 
 <# DECLARATIONS #>
 #Your message
 $Message = "Hello world !"
 
-
 <# /DECLARATIONS #>
-
-
-
 <# FUNCTIONS #>
 function Function1
 {
     param($FirstName = "John", $LastName = "Doe")
     Write-Host "Your full name is $FirstName $LastName ... can I call you $FirstName ?"
 }
-
 <# /FUNCTIONS #>
-
-
-
-
 <# EXECUTIONS #>
 Write-Debug $Message
 Function1
-
 <# /EXECUTIONS #>
 
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
