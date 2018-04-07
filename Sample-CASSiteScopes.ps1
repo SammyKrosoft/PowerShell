@@ -34,19 +34,19 @@ Output description to be completed...
 
 .EXAMPLE
 
-C:\PS> .\CASSiteScopes.ps1
+C:\PS> .\Sample-CASSiteScopes.ps1
 Sets the AD sites from default CSV file (if exists) to the CAS servers
 
 
 .EXAMPLE
 
-C:\PS> .\CASSiteScopes.ps1 -CSVFileName "C:\temp\AutreCSVFile.csv"
+C:\PS> .\Sample-CASSiteScopes.ps1 -CSVFileName "C:\temp\AutreCSVFile.csv"
 
 Display the command that will sets the AD sites from CSV file specified C:\temp\AutreCSVFile.csv (if exists) to the CAS servers
 
 .EXAMPLE
 
-C:\PS> .\CASSiteScopes.ps1 -Execute
+C:\PS> .\Sample-CASSiteScopes.ps1 -Execute
 
 Will not only display the command that will set the AD sites from default CSV file (note : no -CSVFileName parameter used, then
 will take the default C:\temp\Classeur1.csv file if it exists (otherwise if Classeur1.csv doesn't exist, will output an error message),
@@ -55,7 +55,7 @@ file
 
 .EXAMPLE
 
-C:\PS> .\CASSiteScopes.ps1 -CSVFileName "C:\temp\AutreCSVFile.csv" -Execute
+C:\PS> .\Sample-CASSiteScopes.ps1 -CSVFileName "C:\temp\AutreCSVFile.csv" -Execute
 
 Same as the above example, will execute the command but this time with the file specified with the -CSVFileName...
 
