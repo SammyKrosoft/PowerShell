@@ -25,6 +25,13 @@ there must be a simpler method to get the AD site name of each CAS server => Res
 .PARAMETER MyFile
 The path of the CSV file containing each CAS server hostname and which has a list of AD sites as values under headers
 
+.PARAMETER Execute
+Switch to actually execute the AutoDiscover Scope setting instead of just showing what we would do
+
+.PARAMETER UseSampleCASServers
+Use this switch, without the -EXECUTE parameter to test the script on sample "CAS1, CAS2, CAS3 and CAS4" server names.
+NOTE: this requires a CSV file (default or specified by -MYFILE parameter) with CAS1, CAS2, CAS3, CAS4 as headers...
+
 
 .INPUTS
 None. You cannot pipe objects to that script.
@@ -69,7 +76,8 @@ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/abo
 https://github.com/SammyKrosoft
 #>
 Param(
-    [String]$MyFile = "C:\temp\Classeur1.csv",
+    [String]$MyFile = "$((Get-Location).Path)\Sample-CASwithSites.csv",
+    [switch]$UseSampleCASServers,
     [switch]$Execute
 )
 
@@ -84,13 +92,15 @@ $ErrorPreference = "SilentlyContinue"
 #Script Version
 $ScriptVersion = "1.0"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
-
 <# -------------------------- DECLARATIONS -------------------------- #>
-#Get your CAS servers using Get-ClientAccessServer and put these in $MyCASServers
-#$MyCASServers = Get-ClientAccessServer | Select Name
-#Putting these manually for the demo
-$MyCASServers = "CAS1", "CAS2", "CAS3", "CAS4"
-
+#Doing Conditional declarations here ... if specifying -GetRealCASServers, get the real servers
+If ($UseSampleCASServers) {
+        #Putting these manually for the demo
+        $MyCASServers = "CAS1", "CAS2", "CAS3", "CAS4"
+} else {
+        #Get your CAS servers using Get-ClientAccessServer and put these in $MyCASServers
+        $MyCASServers = Get-ClientAccessServer | Select Name
+}
 
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
