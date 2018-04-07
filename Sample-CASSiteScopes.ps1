@@ -100,6 +100,7 @@ If ($UseSampleCASServers) {
 } else {
         #Get your CAS servers using Get-ClientAccessServer and put these in $MyCASServers
         $MyCASServers = Get-ClientAccessServer | Select Name
+        $MyCASServers = $MyCASServers | Foreach {$_.Name}
 }
 
 <# /DECLARATIONS #>
