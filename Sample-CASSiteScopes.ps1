@@ -157,7 +157,8 @@ while ($Answer -ne "Y" -AND $Answer -ne "N") {
     Write-Host "Execute the AutoDiscoverSiteScope                         : $Execute"  -BackgroundColor Blue -ForegroundColor Yellow
     Write-Host "`nContinue (Y/N) ?" -BackgroundColor Red -ForegroundColor Blue
     $Answer = Read-host
-    If ($Answer -eq "Y"){$StopWatch.Reset();$StopWatch.start()} else {exit}
+    If ($Answer -eq "Y"){$StopWatch.Reset();$StopWatch.start()} 
+    IF ($Answer -eq "N"){exit}
 }
 
 Foreach ($CAS in $MyCASServers) {
