@@ -59,24 +59,6 @@ $LogOrReportFile1 = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-m
 $LogOrReportFile2 = "$((Get-Location).Path)\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 
-<<<<<<< HEAD
-
-<# DECLARATIONS #>
-#Your message
-$Message = "Hello world !"
-
-<# /DECLARATIONS #>
-<# FUNCTIONS #>
-function Function1
-{
-    param($FirstName = "John", $LastName = "Doe")
-    Write-Host "Your full name is $FirstName $LastName ... can I call you $FirstName ?"
-}
-<# /FUNCTIONS #>
-<# EXECUTIONS #>
-Write-Debug $Message
-Function1
-=======
 <# -------------------------- DECLARATIONS -------------------------- #>
 
 <# /DECLARATIONS #>
@@ -85,7 +67,6 @@ Function1
 <# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
 
->>>>>>> a454ab6d450493e7c896a4d1a6820cbba500bc5d
 <# /EXECUTIONS #>
 
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
