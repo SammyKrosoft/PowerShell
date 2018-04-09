@@ -11,7 +11,6 @@ of items of the collection you're looping in, multiplied by 100:
 $PercentComplete = $Counter/$TotalItems*100
 
 .LINK
-
 http:\\Mshowto.org
 
 .LINK

@@ -13,8 +13,7 @@ of the machine where you export the PST)
 
 
 .EXAMPLE
-
-[PS] C:\Users\super-ssc-sm\Documents>.\Export-RestoreFolderToPST.ps1
+[PS] C:\Users\super-ssc-sm\Documents>.\Export-FolderToPST.ps1
 
 Will export the folder that you hard coded on the variable $FolderToExport
 from the mailbox that is specified in the variable $MailboxToExport
@@ -23,8 +22,7 @@ The Request will be able to be retrieved using Get-MailboxExportRequest with the
 and the name provided in the $ExportRequestName variable.
 
 .EXAMPLE
-
-[PS] C:\Users\super-ssc-sm\Documents>.\Export-RestoreFolderToPST.ps1 -ExportRequestName "MyExportRequest01"
+[PS] C:\Users\super-ssc-sm\Documents>.\Export-FolderToPST.ps1 -ExportRequestName "MyExportRequest01"
 
 Will create an Export request to dump a mailbox inside a PST file, and the Export request job will be called "MyExportRequest01".
 The mailbox it will search in will be the one hard coded in the $MailboxToExport, the UNC Path specified on the $UNCFilePathToExportThePST,
