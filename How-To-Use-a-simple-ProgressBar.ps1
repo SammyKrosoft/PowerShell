@@ -27,7 +27,7 @@ Foreach ($Item in $MyListOfObjectsToProcess) {
     #  STATUS is to show on screen which element it is currently processing (Processing item #2 of #20000)
     #  PERCENTCOMPLETE is the progress bar itself and it has to be a percentage (hence the $($Counter / $TotalRecipients * 100) as we calculate the percentage on the fly...
 
-    Write-Progress -Activity "Processing Items" -Status "Item $Counter of $TotalItems" -PercentComplete $($Counter / $TotalItems * 100)
+    Write-Progress -Activity "Processing Items" -Status "Item $Item" -PercentComplete $($Counter / $TotalItems * 100)
 
   
 #YOUR ROUTINE - Here whatever you want to process on each $Item - that doesn't change anything to the Write-Progress, apart from the time it takes for the progress bar to go to the next % done...
