@@ -48,7 +48,7 @@ Remove-MailboxExportRequest $ExportRequestName
 #Note for the future: we can test if the mailbox targetted exists, and if it doesn't, exit the script...
 #Get-mailbox $MailboxToExport
 
-Write-Host "Trying to export data from $MailboxToExport and targetting folder $FolderToRestore ..."
+Write-Host "Trying to export data from $MailboxToExport and targetting folder $FolderToExport ..."
 New-MailboxExportRequest -Name $ExportRequestName -IncludeFolders $FolderToExport -Mailbox $MailboxToExport -Filepath $UNCFilePathToExportThePST
 
 #Getting the status of the newly created Export Request...
