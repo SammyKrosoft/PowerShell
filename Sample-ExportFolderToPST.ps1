@@ -11,6 +11,19 @@ NOTE: If such a Role Group does NOT exist, see Sam's blog post on the LINK secti
 only when you export on Exchange servers (Exchange Trusted Subsystem account seems to be needed as local admin
 of the machine where you export the PST)
 
+.PARAMETER FolderToExport
+<FolderName>/*: Use this syntax to denote a personal folder under the folder specified in the SourceRootFolder parameter, for example, "MyProjects" or "MyProjects/FY2010".
+#<FolderName>#/*: Use this syntax to denote a well-known folder regardless of the folder's name in another language. For example, #Inbox# denotes the Inbox folder even if the Inbox is localized in Turkish, which is Gelen Kutusu. 
+
+.PARAMETER MailboxToExport
+Mailbox name to export from ...
+
+.PARAMETER UNCFilePathToExportThePST
+Network path to the target PST ... must be a server where Exchange Trusted Subsystem has read/write permissions.
+
+.PARAMETER ExportRequestName
+Export requests must have a name ... 
+
 
 .EXAMPLE
 [PS] C:\Users\super-ssc-sm\Documents>.\Export-FolderToPST.ps1
