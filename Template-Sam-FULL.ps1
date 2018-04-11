@@ -61,7 +61,7 @@ $LogOrReportFile2 = "$((Get-Location).Path)\PowerShellScriptExecuted-$(Get-Date 
 
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
-Function Addition ([int]$a, [int$b]) {
+Function Addition ([int]$a, [int]$b) {
     return $a + $b
 }
 <# /FUNCTIONS #>
