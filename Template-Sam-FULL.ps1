@@ -1,14 +1,15 @@
 <#
 .SYNOPSIS
+
 Quick description of this script
 
 .DESCRIPTION
 Longer description of what this script does
 
-.PARAMETER FirstName
+.PARAMETER FirstNumber
 This parameter does blablabla
 
-.PARAMETER LastName
+.PARAMETER SecondNumber
 This parameter does blablabla
 
 .INPUTS
@@ -18,17 +19,14 @@ None. You cannot pipe objects to that script.
 None for now
 
 .EXAMPLE
-
 C:\PS> .\Full-Name.ps1
 Your full name is Merlin the Wizard
 
 .EXAMPLE
-
 C:\PS> .\Full-Name.ps1 -FirstName "Jane" -LastName "Doe"
 Your full name is Jane Doe
 
 .EXAMPLE
-
 C:\PS> .\Full-Name.ps1 "Jane" "Doe"
 Your full name is Jane Doe
 
@@ -39,8 +37,8 @@ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/abo
 https://github.com/SammyKrosoft
 #>
 Param(
-    [String]$FirstName,
-    [String]$LastName
+    [Parameter(Mandatory=$False,Position=1)] $FirstNumber,
+    [Parameter(Mandatory=$False,Position=2)] $SecondNumber
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
@@ -63,10 +61,12 @@ $LogOrReportFile2 = "$((Get-Location).Path)\PowerShellScriptExecuted-$(Get-Date 
 
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
-
+Function Addition ([int]$a, [int$b]) {
+    return $a + $b
+}
 <# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
-
+Addition $FirstNumber $SecondNumber
 <# /EXECUTIONS #>
 
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>

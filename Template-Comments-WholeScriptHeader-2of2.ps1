@@ -21,11 +21,9 @@ Specifies the First Name. "Merlin" is the default.
 Specifies the First Name. "the Wizard" is the default.
 
 .INPUTS
-
 None. You cannot pipe objects to Your-Script.ps1.
 
 .OUTPUTS
-
 None. Your-Script.ps1 does not generate any output.
 
 .EXAMPLE

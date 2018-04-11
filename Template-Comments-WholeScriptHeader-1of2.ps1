@@ -47,7 +47,6 @@ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/abo
 
 https://github.com/SammyKrosoft
 #>
-
 param ([string]$FirstName="Merlin",[string]$LastName = "the Wizard")
 $name = $FirstName + " " + $LastName
 Write-host "Your full name is $name"
