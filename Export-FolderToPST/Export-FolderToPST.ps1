@@ -1,6 +1,5 @@
 <#
-
-.Description
+.DESCRIPTION
 PREREQUISITES :
 
 1- the account with which you launch the below export script MUST be a member of a role group
@@ -24,7 +23,6 @@ Network path to the target PST ... must be a server where Exchange Trusted Subsy
 .PARAMETER ExportRequestName
 Export requests must have a name ... 
 
-
 .EXAMPLE
 [PS] C:\Users\super-ssc-sm\Documents>.\Export-FolderToPST.ps1
 
@@ -44,11 +42,10 @@ and the folder specified on the $FolderToExport variable.
 .LINK
 https://blogs.technet.microsoft.com/samdrey/2011/02/16/exchange-2010-rbac-issue-mailbox-import-export-new-mailboximportrequest-and-other-management-role-entries-are-missing-not-available/
 
-
 #>
 param(
-    [string]$FolderToExport = "Restore/Restore - My Mailbox/Inbox/*",
-    [string]$MailboxToExport = "My Mailbox Name",
+    [string]$FolderToExport = "Archive/April 2018/Inbox/*",
+    [string]$MailboxToExport = "Test User 1",
     [string]$UNCFilePathToExportThePST = "\\YourExchangeExportServer\C$\temp\Restored-$(get-date -f yyyy-MM-dd-hh-mm-ss).pst",
     [string]$ExportRequestName = "MyExportRequest"
     )
