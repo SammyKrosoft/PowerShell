@@ -1,44 +1,40 @@
 <#
 .SYNOPSIS
-
-Quick description of this script
+    Quick description of this script
 
 .DESCRIPTION
-Longer description of what this script does
+    Longer description of what this script does
 
 .PARAMETER FirstNumber
-This parameter does blablabla
+    This parameter does blablabla
 
 .PARAMETER SecondNumber
-This parameter does blablabla
+    This parameter does blablabla
 
 .INPUTS
-None. You cannot pipe objects to that script.
+    None. You cannot pipe objects to that script.
 
 .OUTPUTS
-None for now
+    None for now
 
 .EXAMPLE
-
-Add default numbers 1 + 2
-
+    Add default numbers 1 + 2
 C:\PS> .\Add-Numbers.ps1
-
 3
 
 .EXAMPLE
-
-Add 14 with 23
-
+    Add 14 with 23
 C:\PS> .\Add-Numbers.ps1 -FirstNumber 14 -SecondNumber 23
-
 37
 
-.LINK
-https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6
+.NOTES
+    None
 
 .LINK
-https://github.com/SammyKrosoft
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6
+
+.LINK
+    https://github.com/SammyKrosoft
 #>
 Param(
     [Parameter(Mandatory=$False,Position=1)] $FirstNumber=1,
