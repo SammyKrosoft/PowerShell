@@ -28,7 +28,7 @@ C:\PS> .\Add-Numbers.ps1 -FirstNumber 14 -SecondNumber 23
 37
 
 .NOTES
-    None
+None
 
 .LINK
     https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6
