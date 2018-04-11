@@ -19,16 +19,20 @@ None. You cannot pipe objects to that script.
 None for now
 
 .EXAMPLE
-C:\PS> .\Full-Name.ps1
-Your full name is Merlin the Wizard
+
+Add default numbers 1 + 2
+
+C:\PS> .\Add-Numbers.ps1
+
+3
 
 .EXAMPLE
-C:\PS> .\Full-Name.ps1 -FirstName "Jane" -LastName "Doe"
-Your full name is Jane Doe
 
-.EXAMPLE
-C:\PS> .\Full-Name.ps1 "Jane" "Doe"
-Your full name is Jane Doe
+Add 14 with 23
+
+C:\PS> .\Add-Numbers.ps1 -FirstNumber 14 -SecondNumber 23
+
+37
 
 .LINK
 https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6
@@ -37,8 +41,8 @@ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/abo
 https://github.com/SammyKrosoft
 #>
 Param(
-    [Parameter(Mandatory=$False,Position=1)] $FirstNumber,
-    [Parameter(Mandatory=$False,Position=2)] $SecondNumber
+    [Parameter(Mandatory=$False,Position=1)] $FirstNumber=1,
+    [Parameter(Mandatory=$False,Position=2)] $SecondNumber=2
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
