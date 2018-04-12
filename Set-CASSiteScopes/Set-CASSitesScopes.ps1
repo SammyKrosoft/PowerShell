@@ -45,26 +45,26 @@ Output description to be completed...
 
 .EXAMPLE
 
-C:\PS> .\Set-CASSiteScopes.ps1 -UseSampleCASServers
+C:\PS> .\Set-CASSitesScopes.ps1 -UseSampleCASServers
 Will generate a sample CSV file from within the script with CAS1, CAS2, CAS3 and CAS4, and fake AD Site names, just to show you how the script work a little bit.
 The Sample-AutoDiscoverSiteScope.csv will be located on the same directory where you are executing the script, and will show you how your CSV file for your real server must be configured.
 
 .EXAMPLE
 
-C:\PS> .\Set-CASSiteScopes.ps1
+C:\PS> .\Set-CASSitesScopes.ps1
 This will launch the script against your production servers using the default <Script Directory>\Classeur.csv file containing your CAS servers (as file header) and your AD sites for each CAS server (under each CAS server header)
 This will NOT execute the AD Site scope setting because we don't specify the -EXECUTE parameter -> that's to test if we' re good before executing the changes.
 If Classeur.CSV doesn't exist, the script will tell you and exit.
 
 .EXAMPLE
 
-C:\PS> .\Set-CASSiteScopes.ps1 -Execute
+C:\PS> .\Set-CASSitesScopes.ps1 -Execute
 Same as the above example, but this time it will execute the commands and assign the sites to the CAS servers, as defined in the default CLASSEUR.CSV.
 If Classeur.CSV does not exist, the script will tell you and exit.
 
 .EXAMPLE
 
-C:\PS> .\Set-CASSiteScopes.ps1 -CSVFileName "C:\temp\AutreCSVFile.csv" -Execute
+C:\PS> .\Set-CASSitesScopes.ps1 -CSVFileName "C:\temp\AutreCSVFile.csv" -Execute
 Will not only display the command that will set the AD sites from default CSV file (note : no -CSVFileName parameter used, then
 will take the default C:\temp\Classeur1.csv file if it exists (otherwise if Classeur1.csv doesn't exist, will output an error message),
 but will also Execute the actual command to set the CAS AutodiscoverSiteScope (aka Site Affinity) as per the map defined in the file defined
