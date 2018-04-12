@@ -74,5 +74,5 @@ Addition $FirstNumber $SecondNumber
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
 #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...
 $stopwatch.Stop()
-Write-Host "The script took $($StopWatch.Elapsed.TotalSeconds) seconds to execute..."
+Write-Host "`n`nThe script took $($StopWatch.Elapsed.TotalSeconds) seconds to execute..."
 <# ---------------- /SCRIPT_FOOTER (NOTHING BEYOND THIS POINT) ----------- #>
