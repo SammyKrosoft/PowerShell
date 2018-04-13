@@ -3,22 +3,38 @@
     Get specific events from any computer, local or remote, or computer list.
 
 .DESCRIPTION
-    This script gathers events from a filter defined in a Hash Table stored in the $FilterHashProperties variable, and prints it out to the screen.
+    This script gathers events from a filter defined in a Hash Table stored in 
+    the $FilterHashProperties variable, and prints it out to the screen.
 
-.PARAMETER FirstNumber
-    This parameter does blablabla
+.PARAMETER Computers
+    By default, the script will search for events in the local computer (defined as 127.0.0.1).
+    You can specify a remote computer (NOTE: you must have the Administrative rights in the remote machine), or
+    you can also specify a list of computers, in the form of strings separated by commas like:
+    -Computers "Server1", "Server2", "Server3", "Server4"
 
-.PARAMETER SecondNumber
-    This parameter does blablabla
+.PARAMETER EventLogName
+    This parameter can be a string like Application, or an array of strings like ('Application', 'System') for example.
+    By default, the EventLogName parameter is set to ('Application', 'System'), but you can specify "Application" to
+    search on the Application Log only, or "System" to search in the System Log only, or "Security", etc...
+
+.PARAMETER EventIDToCheck
+    This parameter determines which Event number to check. It can be a single number, or an array of numbers.
+    For a single number just type the event ID you're looking for, and for an array of numbers, type the numbers
+    you want the script to search, separated by commas.
+
+.PARAMETER NumberOfLastEventsToGet
+    Indicates how many events you want the script to dump. 
+    By default the script outputs the 30 last events that you searched for.
 
 .INPUTS
-    None. You cannot pipe objects to that script.
+    The name of the Event Log you want to search in (see EventLogName parameter) and the ID of the event you're looking
+    for (see EventToCheck parameter)
 
 .OUTPUTS
-    None for now
+    Shows the events found on the console...
 
 .EXAMPLE
-    Add default numbers 1 + 2
+    Search for 
 C:\PS> .\Add-Numbers.ps1
 3
 
@@ -37,8 +53,10 @@ None
     https://github.com/SammyKrosoft
 #>
 Param(
-    [Parameter(Mandatory = $False, Position = 1)] $EventLogName = {'Application', 'System'},
-    [Parameter(Mandatory = $False, Position = 2)] $EventToCheck
+    [Parameter(Mandatory = $False, Position = 1)] $Computers = "127.0.0.1"
+    [Parameter(Mandatory = $False, Position = 2)] $EventLogName = ('Application', 'System'),
+    [Parameter(Mandatory = $False, Position = 3)] $EventIDToCheck,
+    [Parameter(Mandatory = $False, Position = 4)]$NumberOfLastEventsToGet = 30
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
@@ -60,31 +78,28 @@ $ScriptVersion = "1.0"
 <# -------------------------- DECLARATIONS -------------------------- #>
 $computers = @()
 $FilterHashProperties = $null
-$computer = $null
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
 
 <# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
 cls
-Write-Host "Starting script..."
+Write-Debug "Starting script..."
 
 #$Computers = Get-ExchangeServer
 #$Computers = "Server-01", "Server-02", "Server-03", "Server-04"
 #$COmputers = Get-Content C:\temp\MyServersList.txt
-$Computers = "127.0.0.1"
+#$Computers = "127.0.0.1"
 
-If ($EventToCheck -eq "None" -or $EventToCheck -eq "" -or $EventToCheck -eq $Null)
+If ($EventIDToCheck -eq "None" -or $EventIDToCheck -eq "" -or $EventIDToCheck -eq $Null)
 {
-    $EventToCheck = Read-Host "Which eventID are you looking for ? "
+    $EventIDToCheck = Read-Host "Which eventID are you looking for ? "
 }
 
 
 $FilterHashProperties = @{
     LogName = $EventLogName;
-    #LogName = 'Application', 'System';
-    #LogName = 'system';
-    ID      = $EventToCheck;
+    ID      = $EventIDToCheck;
 }
 
 Foreach ($computer in $computers)
@@ -97,8 +112,8 @@ Foreach ($computer in $computers)
         Try
         {
             $Events = Get-WinEvent -FilterHashtable $FilterHashProperties -MaxEvents 80 -Computer $Computer -ErrorAction Stop | select MachineName, LogName, TimeCreated, LevelDisplayName, ID, Message, ProviderName
-            Write-host "Found at least $($Events.count) events ! Here are the 80 last ones :"
-            $Events | Select -first 80 | ft -a
+            Write-host "Found at least $($Events.count) events ! Here are the $NumberOfLastEventsToGet last ones :"
+            $Events | Select -first $NumberOfLastEventsToGet | ft -a
         }
         Catch
         {
