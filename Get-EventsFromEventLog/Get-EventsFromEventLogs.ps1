@@ -1,10 +1,15 @@
 <#
 .SYNOPSIS
-    Get specific events from any computer, local or remote, or computer list.
+    Get specific events from any computer, local or remote, or from a computer list.
 
 .DESCRIPTION
-    This script gathers events from a filter defined in a Hash Table stored in 
-    the $FilterHashProperties variable, and prints it out to the screen.
+    This script gathers events from a computer or a list of computers, from
+    the Application, System or Security or all of these Event logs types.
+    You just have to specify which event ID or IDs (e.g. 105, 1020, 67 or just 105
+    or any number), and spit the events list on the screen.
+    
+    By default, if no computers are specified, the script will search on the local
+    computer.
 
 .PARAMETER Computers
     By default, the script will search for events in the local computer (defined as 127.0.0.1).
@@ -21,6 +26,8 @@
     This parameter determines which Event number to check. It can be a single number, or an array of numbers.
     For a single number just type the event ID you're looking for, and for an array of numbers, type the numbers
     you want the script to search, separated by commas.
+    Example: Get-EventsFromEventLogs.ps1 -EventIDToCheck 2121
+    or Get-EventsFromEventLogs.ps1 -EventIDToCheck 2121, 2242, 2080
 
 .PARAMETER NumberOfLastEventsToGet
     Indicates how many events you want the script to dump. 
@@ -56,7 +63,7 @@ Param(
     [Parameter(Mandatory = $False, Position = 1)] $Computers = "127.0.0.1",
     [Parameter(Mandatory = $False, Position = 2)] $EventLogName = ('Application', 'System'),
     [Parameter(Mandatory = $False, Position = 3)] $EventIDToCheck,
-    [Parameter(Mandatory = $False, Position = 4)] $NumberOfLastEventsToGet = 80
+    [Parameter(Mandatory = $False, Position = 4)] $NumberOfLastEventsToGet = 30
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
@@ -91,12 +98,12 @@ Write-Host "Starting script..."
 #$COmputers = Get-Content C:\temp\MyServersList.txt
 #$Computers = "127.0.0.1"
 
-If ($EventIDToCheck -eq "None" -or $EventIDToCheck -eq "" -or $EventIDToCheck -eq $Null)
+While ($EventIDToCheck -eq "None" -or $EventIDToCheck -eq "" -or $EventIDToCheck -eq $Null -or $EventIDToCheck -eq 0)
 {
     $EventIDToCheck = Read-Host "Which eventID are you looking for ? "
+    If ($EventIDToCheck -eq "None" -or $EventIDToCheck -eq "" -or $EventIDToCheck -eq $Null -or $EventIDToCheck -eq 0)
+        {Write-Host "Invalid value - please enter an integer or a list of integers comma separated like 2121, 2242, 2080..." -BackgroundColor Blue -ForegroundColor Yellow}
 }
-
-
 
 while ($Answer -ne "Y" -AND $Answer -ne "N") {
     cls
