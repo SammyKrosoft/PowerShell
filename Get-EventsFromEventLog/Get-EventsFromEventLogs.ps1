@@ -202,7 +202,7 @@ Foreach ($computer in $computers)
         Write-host "Event logs on $computer goes as far as $($LastEvent.TimeCreated)"
         Try
         {
-            $Events = Get-WinEvent -FilterHashtable $FilterHashProperties -MaxEvents $NumberOfLastEventsToGet -Computer $Computer -ErrorAction Stop | select MachineName, LogName, TimeCreated, LevelDisplayName, ID, Message, ProviderName
+            $Events = Get-WinEvent -FilterHashtable $FilterHashProperties -MaxEvents $NumberOfLastEventsToGet -Computer $Computer -ErrorAction Stop | select MachineName, LogName, TimeCreated, LevelDisplayName, ProviderName, ID, Message
             Foreach ($Event in $Events) {
                 $Event.Message = $Event.Message.Replace("`r","#")
             }
