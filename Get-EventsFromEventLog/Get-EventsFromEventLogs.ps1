@@ -49,7 +49,7 @@
     for (see EventToCheck parameter)
 
 .OUTPUTS
-    Shows the events found on the console...
+    Shows the events found on the console and/or exported on a file.
 
 .EXAMPLE
 .\Get-EventsFromEventLogs.ps1
