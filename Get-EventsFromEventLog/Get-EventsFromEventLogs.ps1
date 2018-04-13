@@ -56,7 +56,7 @@ Param(
     [Parameter(Mandatory = $False, Position = 1)] $Computers = "127.0.0.1",
     [Parameter(Mandatory = $False, Position = 2)] $EventLogName = ('Application', 'System'),
     [Parameter(Mandatory = $False, Position = 3)] $EventIDToCheck,
-    [Parameter(Mandatory = $False, Position = 4)] $NumberOfLastEventsToGet = 30
+    [Parameter(Mandatory = $False, Position = 4)] $NumberOfLastEventsToGet = 80
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
