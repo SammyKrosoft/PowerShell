@@ -18,6 +18,7 @@
     -Computers "Server1", "Server2", "Server3", "Server4"
 
 .PARAMETER EventLogName
+    Which Event Log to look at => default will look on Application and System logs.
     This parameter can be a string like Application, or an array of strings like ('Application', 'System') for example.
     By default, the EventLogName parameter is set to ('Application', 'System'), but you can specify "Application" to
     search on the Application Log only, or "System" to search in the System Log only, or "Security", etc...
@@ -32,7 +33,17 @@
 .PARAMETER NumberOfLastEventsToGet
     Indicates how many events you want the script to dump. 
     By default the script outputs the 30 last events that you searched for.
+    If there are less than 30 events (or the number you specified), it will dump all the existing events, 
+    which can be less than 30 (or the number you specified)
 
+.PARAMETER ExportToFile
+    This is a SWITCH that, if specified, will store the results in a CSV file.
+    This file will be placed on the directory where the script is located, and named :
+        "GetEventsFromEventLogs_EventID1-EventID2-XXXXX_Year-MONTH-DAY-Hour-Minute-Second.csv"
+    Example:
+        "GetEventsFromEventLogs_916-105_2018-04-13-09-52-08.csv"
+    AND it will be opened automatically in notepad once the script finishes.
+    
 .INPUTS
     The name of the Event Log you want to search in (see EventLogName parameter) and the ID of the event you're looking
     for (see EventToCheck parameter)
@@ -41,17 +52,28 @@
     Shows the events found on the console...
 
 .EXAMPLE
-    Search for 
-C:\PS> .\Add-Numbers.ps1
-3
+    - Search for the 10 last events (-NumberOfLastEventsToGet 10) 
+    - Search for event IDs 916 and 105
+    - As no Event Log name (Application, System, Security, etc...) were specified, 
+    the script will look inside the Application AND System logs by default.
+    - We asked the script to look for Event IDs 916 and 105 (-EventIDTocheck 916, 105)
+
+    C:\PS> .\Get-EventsFromEventLogs.ps1 -NumberOfLastEventsToGet 10 -EventIDToCheck 916,105 -ExportToFile
+    
+    The exported file will be named GetEventsFromEventLogs_916-105_2018-04-13-10-01-55.csv
+    as I ran the script on 13th April 2018 at 10h01 and 55 seconds in the morning.
+
 
 .EXAMPLE
-    Add 14 with 23
-C:\PS> .\Add-Numbers.ps1 -FirstNumber 14 -SecondNumber 23
-37
+    - Search for the last 30 events (-NumberOfLastEventsToGet 30)
+    - Search for Event ID 26 only
+    - Search in the Application Log only
+    - We don't output any file, just print the results on the screen
+    C:\PS> .\Get-EventsFromEventLogs.ps1 -NumberOfLastEventsToGet 30 -EventIDToCheck 26 -EventLogName Application
+
 
 .NOTES
-None
+    More examples to be documented as the script gain experience over the usage...
 
 .LINK
     https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6
@@ -60,7 +82,7 @@ None
     https://github.com/SammyKrosoft
 #>
 Param(
-    [Parameter(Mandatory = $False, Position = 1)] $Computers = ("127.0.0.1", "127.0.0.1"),
+    [Parameter(Mandatory = $False, Position = 1)] $Computers = ("127.0.0.1"),
     [Parameter(Mandatory = $False, Position = 2)] $EventLogName = ('Application', 'System'),
     [Parameter(Mandatory = $False, Position = 3)] $EventIDToCheck,
     [Parameter(Mandatory = $False, Position = 4)] [int]$NumberOfLastEventsToGet = 30,
@@ -78,7 +100,7 @@ $ErrorPreference = "SilentlyContinue"
 #Script Version
 $ScriptVersion = "1.0"
 # Log or report file definition
-$EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+# $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
 #$LogOrReportFile2 = "$PSScriptRoot\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
@@ -113,6 +135,11 @@ while ($Answer -ne "Y" -AND $Answer -ne "N") {
     Write-Host "Computers               :   $Computers"
     Write-Host "Event ID to check       :   $EventIDToCheck"
     Write-Host "Number of events to get :   $NumberOfLastEventsToGet"
+If($ExportToFile){
+    Write-Host "Write into a file       :   YES" -ForegroundColor yellow
+    } Else {
+    Write-Host "Write into a file       :   NO" -ForegroundColor yellow
+    }
     Write-Host "`nContinue (Y/N) ?" -BackgroundColor Red -ForegroundColor Blue
     $Answer = Read-host
     If ($Answer -eq "Y"){$StopWatch.Reset();$StopWatch.start()} 
@@ -156,9 +183,12 @@ Foreach ($computer in $computers)
     }
 }
 
-$EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$($EventIDToCheck -join "-")_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
-$Events4all | Export-Csv -NoTypeInformation $EventsReport
-notepad $EventsReport
+If ($ExportToFile){
+    $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$($EventIDToCheck -join "-")_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+    $Events4all | Export-Csv -NoTypeInformation $EventsReport
+    notepad $EventsReport
+}
+
 <# /EXECUTIONS #>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
 #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...)
