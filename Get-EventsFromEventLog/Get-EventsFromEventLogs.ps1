@@ -53,10 +53,10 @@ None
     https://github.com/SammyKrosoft
 #>
 Param(
-    [Parameter(Mandatory = $False, Position = 1)] $Computers = "127.0.0.1"
+    [Parameter(Mandatory = $False, Position = 1)] $Computers = "127.0.0.1",
     [Parameter(Mandatory = $False, Position = 2)] $EventLogName = ('Application', 'System'),
     [Parameter(Mandatory = $False, Position = 3)] $EventIDToCheck,
-    [Parameter(Mandatory = $False, Position = 4)]$NumberOfLastEventsToGet = 30
+    [Parameter(Mandatory = $False, Position = 4)] $NumberOfLastEventsToGet = 30
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
@@ -111,7 +111,7 @@ Foreach ($computer in $computers)
         Write-host "Event logs on $computer goes as far as $($LastEvent.TimeCreated)"
         Try
         {
-            $Events = Get-WinEvent -FilterHashtable $FilterHashProperties -MaxEvents 80 -Computer $Computer -ErrorAction Stop | select MachineName, LogName, TimeCreated, LevelDisplayName, ID, Message, ProviderName
+            $Events = Get-WinEvent -FilterHashtable $FilterHashProperties -MaxEvents $NumberOfLastEventsToGet -Computer $Computer -ErrorAction Stop | select MachineName, LogName, TimeCreated, LevelDisplayName, ID, Message, ProviderName
             Write-host "Found at least $($Events.count) events ! Here are the $NumberOfLastEventsToGet last ones :"
             $Events | Select -first $NumberOfLastEventsToGet | ft -a
         }
