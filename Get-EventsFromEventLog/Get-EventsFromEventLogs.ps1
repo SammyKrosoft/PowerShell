@@ -52,33 +52,30 @@
     Shows the events found on the console...
 
 .EXAMPLE
+.\Get-EventsFromEventLogs.ps1
     Launching the script without options will :
     - Ask you which event(s) you wish to search for (separated by commas if you want multiple event IDs to search)
     - Search the local computer
     - Search the Application and System logs
     - Get 30 events of the type specified
 
-    C:\PS> .\Get-EventsFromEventLogs.ps1
-
 .EXAMPLE
+.\Get-EventsFromEventLogs.ps1 -NumberOfLastEventsToGet 10 -EventIDToCheck 916,105 -ExportToFile
     - Search for the 10 last events (-NumberOfLastEventsToGet 10) 
     - Search for event IDs 916 and 105
     - As no Event Log name (Application, System, Security, etc...) were specified, 
     the script will look inside the Application AND System logs by default.
     - We asked the script to look for Event IDs 916 and 105 (-EventIDTocheck 916, 105)
-
-    C:\PS> .\Get-EventsFromEventLogs.ps1 -NumberOfLastEventsToGet 10 -EventIDToCheck 916,105 -ExportToFile
     
     The exported file will be named GetEventsFromEventLogs_916-105_2018-04-13-10-01-55.csv
     as I ran the script on 13th April 2018 at 10h01 and 55 seconds in the morning.
 
 .EXAMPLE
+.\Get-EventsFromEventLogs.ps1 -NumberOfLastEventsToGet 30 -EventIDToCheck 26 -EventLogName Application
     - Search for the last 30 events (-NumberOfLastEventsToGet 30)
     - Search for Event ID 26 only
     - Search in the Application Log only
     - We don't output any file, just print the results on the screen
-
-    C:\PS> .\Get-EventsFromEventLogs.ps1 -NumberOfLastEventsToGet 30 -EventIDToCheck 26 -EventLogName Application
 
 .NOTES
     More examples to be documented as the script gain experience over the usage...
