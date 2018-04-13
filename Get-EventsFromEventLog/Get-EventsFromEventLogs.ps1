@@ -60,7 +60,7 @@ None
     https://github.com/SammyKrosoft
 #>
 Param(
-    [Parameter(Mandatory = $False, Position = 1)] $Computers = "127.0.0.1",
+    [Parameter(Mandatory = $False, Position = 1)] $Computers = ("127.0.0.1", "127.0.0.1"),
     [Parameter(Mandatory = $False, Position = 2)] $EventLogName = ('Application', 'System'),
     [Parameter(Mandatory = $False, Position = 3)] $EventIDToCheck,
     [Parameter(Mandatory = $False, Position = 4)] [int]$NumberOfLastEventsToGet = 30,
@@ -78,7 +78,7 @@ $ErrorPreference = "SilentlyContinue"
 #Script Version
 $ScriptVersion = "1.0"
 # Log or report file definition
-#$LogOrReportFile1 = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+$EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
 #$LogOrReportFile2 = "$PSScriptRoot\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
@@ -86,6 +86,7 @@ $ScriptVersion = "1.0"
 <# -------------------------- DECLARATIONS -------------------------- #>
 $FilterHashProperties = $null
 $Answer = ""
+$Events4All = @()
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
 
@@ -133,8 +134,12 @@ Foreach ($computer in $computers)
         Try
         {
             $Events = Get-WinEvent -FilterHashtable $FilterHashProperties -MaxEvents $NumberOfLastEventsToGet -Computer $Computer -ErrorAction Stop | select MachineName, LogName, TimeCreated, LevelDisplayName, ID, Message, ProviderName
+            Foreach ($Event in $Events) {
+                $Event.Message = $Event.Message.Replace("`r","#")
+            }
             Write-host "Found at least $($Events.count) events ! Here are the $NumberOfLastEventsToGet last ones :"
             $Events | Select -first $NumberOfLastEventsToGet | ft -a
+            $Events4All += $Events
         }
         Catch
         {
@@ -151,6 +156,9 @@ Foreach ($computer in $computers)
     }
 }
 
+$EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$($EventIDToCheck -join "-")_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+$Events4all | Export-Csv -NoTypeInformation $EventsReport
+notepad $EventsReport
 <# /EXECUTIONS #>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
 #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...)
