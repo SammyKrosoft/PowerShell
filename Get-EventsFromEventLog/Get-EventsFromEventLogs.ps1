@@ -76,15 +76,15 @@ $ScriptVersion = "1.0"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 
 <# -------------------------- DECLARATIONS -------------------------- #>
-$computers = @()
 $FilterHashProperties = $null
+$Answer = ""
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
 
 <# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
-cls
-Write-Debug "Starting script..."
+#cls
+Write-Host "Starting script..."
 
 #$Computers = Get-ExchangeServer
 #$Computers = "Server-01", "Server-02", "Server-03", "Server-04"
@@ -96,6 +96,19 @@ If ($EventIDToCheck -eq "None" -or $EventIDToCheck -eq "" -or $EventIDToCheck -e
     $EventIDToCheck = Read-Host "Which eventID are you looking for ? "
 }
 
+
+
+while ($Answer -ne "Y" -AND $Answer -ne "N") {
+    cls
+    Write-Host "Event log names        :   $EventLogName"
+    Write-Host "Computers              :   $Computers"
+    Write-Host "Event ID to check      :   $EventIDToCheck"
+    Write-Host "Number of events to get :   $NumberOfLastEventsToGet"
+    Write-Host "`nContinue (Y/N) ?" -BackgroundColor Red -ForegroundColor Blue
+    $Answer = Read-host
+    If ($Answer -eq "Y"){$StopWatch.Reset();$StopWatch.start()} 
+    IF ($Answer -eq "N"){exit}
+}
 
 $FilterHashProperties = @{
     LogName = $EventLogName;
