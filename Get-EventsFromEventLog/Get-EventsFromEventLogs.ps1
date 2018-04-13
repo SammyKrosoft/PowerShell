@@ -63,7 +63,8 @@ Param(
     [Parameter(Mandatory = $False, Position = 1)] $Computers = "127.0.0.1",
     [Parameter(Mandatory = $False, Position = 2)] $EventLogName = ('Application', 'System'),
     [Parameter(Mandatory = $False, Position = 3)] $EventIDToCheck,
-    [Parameter(Mandatory = $False, Position = 4)] $NumberOfLastEventsToGet = 30
+    [Parameter(Mandatory = $False, Position = 4)] [int]$NumberOfLastEventsToGet = 30,
+    [Parameter(Mandatory = $False, Position = 4)] [Switch]$ExportToFile
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
@@ -107,9 +108,9 @@ While ($EventIDToCheck -eq "None" -or $EventIDToCheck -eq "" -or $EventIDToCheck
 
 while ($Answer -ne "Y" -AND $Answer -ne "N") {
     cls
-    Write-Host "Event log names        :   $EventLogName"
-    Write-Host "Computers              :   $Computers"
-    Write-Host "Event ID to check      :   $EventIDToCheck"
+    Write-Host "Event log names         :   $EventLogName"
+    Write-Host "Computers               :   $Computers"
+    Write-Host "Event ID to check       :   $EventIDToCheck"
     Write-Host "Number of events to get :   $NumberOfLastEventsToGet"
     Write-Host "`nContinue (Y/N) ?" -BackgroundColor Red -ForegroundColor Blue
     $Answer = Read-host
