@@ -22,7 +22,7 @@
 
     See the Related Links section for the URL to the PowerShell prompt built-in function, or to open directly the Microsoft
     documentation about the Prompt, just type
-    
+
         Get-Help .\This-Script -Online
 
     
@@ -34,11 +34,13 @@
 
 .EXAMPLE
     Function Prompt {"PS>"}
+    
     This will just set the user prompt to "PS>"
 
 
 .EXAMPLE
     Function prompt {$Host.UI.RawUI.WindowTitle = $(Get-Location);"PS>"}
+
     This will set the Window title to the current location ($(Get-Location)) and will also set the user prompt to "PS>".
     Note the 2 commands inside the curly brackets, separated by a ";"
     
