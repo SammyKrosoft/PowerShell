@@ -1,0 +1,3109 @@
+"MachineName","LogName","TimeCreated","LevelDisplayName","ProviderName","Id","Message"
+"akasammy-PC","Application","4/14/2018 4:22:57 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/14/2018 4:22:56 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/14/2018 4:22:55 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/14/2018 4:22:51 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 63
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 46
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","4/13/2018 8:21:03 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/13/2018 8:21:02 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/13/2018 7:58:07 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/13/2018 7:58:05 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/13/2018 7:57:50 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/13/2018 7:19:50 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/13/2018 6:53:52 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/13/2018 6:53:08 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/13/2018 5:17:54 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst. Statistiques?: Added: 0, Deleted: 0, Modified: 0, Compared: 19, Queries: 0, Results: 0, Version: 16.0.9126.2109."
+"akasammy-PC","Application","4/13/2018 5:17:53 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","4/13/2018 3:57:28 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/13/2018 11:57:06 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/13/2018 7:57:00 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/13/2018 7:56:59 AM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/13/2018 7:56:55 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 62
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 78
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 32
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 62
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 16
+"
+"akasammy-PC","Application","4/13/2018 7:56:53 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/12/2018 4:45:20 PM","Error","Outlook","62","D?sol?... Nous n?avons pas pu instancier le module d?extraction de texte des policy nudges - code d?erreur 0x80040154."
+"akasammy-PC","Application","4/12/2018 4:31:56 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/12/2018 4:31:55 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/12/2018 4:31:46 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 62
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","4/12/2018 4:31:45 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/11/2018 7:34:09 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst. Statistiques?: Added: 0, Deleted: 0, Modified: 0, Compared: 8399, Queries: 0, Results: 0, Version: 16.0.9126.2109."
+"akasammy-PC","Application","4/11/2018 7:34:01 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","4/11/2018 7:33:45 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost. Statistiques?: Added: 0, Deleted: 0, Modified: 16, Compared: 26261, Queries: 0, Results: 0, Version: 16.0.9126.2109."
+"akasammy-PC","Application","4/11/2018 7:32:53 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","4/11/2018 7:20:50 PM","Information","Outlook","26","La connexion ? Microsoft Exchange a ?t? r?tablie."
+"akasammy-PC","Application","4/11/2018 7:20:15 PM","Information","Outlook","26","La connexion ? Microsoft Exchange a ?t? perdue. Outlook r?tablira la connexion d?s que possible."
+"akasammy-PC","Application","4/11/2018 7:15:40 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/11/2018 7:15:36 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/11/2018 7:13:37 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/11/2018 7:12:50 PM","Information","Outlook","63","D?sol?... Nous n?avons pas pu proc?der ? la demande de service web Exchange GetAppManifests. Le code d?erreur est 0.</1d> </0w>
+Code de r?ponse HTTP :2147954402</0d>
+
+Message d?erreur suppl?mentaire?: 
+Une erreur interne inconnue s?est produite. Le code d?erreur est80004005</0x>"
+"akasammy-PC","Application","4/11/2018 7:12:10 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/11/2018 7:12:06 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/11/2018 7:12:04 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","4/11/2018 10:36:01 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/11/2018 10:36:01 AM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/11/2018 10:35:55 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 78
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 15
+"
+"akasammy-PC","Application","4/11/2018 10:35:54 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/10/2018 7:10:20 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/10/2018 7:10:20 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 32
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 32
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 15
+"
+"akasammy-PC","Application","4/10/2018 6:42:20 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/10/2018 6:42:19 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/10/2018 5:48:52 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst. Statistiques?: Added: 0, Deleted: 0, Modified: 0, Compared: 19, Queries: 0, Results: 0, Version: 16.0.9126.2109."
+"akasammy-PC","Application","4/10/2018 5:48:50 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","4/10/2018 5:40:33 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/10/2018 5:40:30 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/10/2018 5:40:30 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/10/2018 5:40:26 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/10/2018 5:40:23 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/10/2018 5:40:22 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/10/2018 5:40:21 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 32
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 16
+"
+"akasammy-PC","Application","4/9/2018 7:56:59 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/9/2018 7:56:57 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/9/2018 7:56:48 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/9/2018 7:56:33 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 110
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","4/9/2018 4:51:51 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/9/2018 4:46:07 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/9/2018 4:45:41 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/9/2018 3:41:29 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 32
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 46
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 63
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 63
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 15
+"
+"akasammy-PC","Application","4/9/2018 3:41:29 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/9/2018 3:41:28 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/9/2018 3:41:28 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/8/2018 6:39:28 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/8/2018 6:39:27 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/8/2018 4:56:15 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/8/2018 4:42:55 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/8/2018 4:42:02 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/8/2018 4:07:15 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst. Statistiques?: Added: 0, Deleted: 0, Modified: 0, Compared: 8135, Queries: 0, Results: 0, Version: 16.0.9126.2109."
+"akasammy-PC","Application","4/8/2018 4:06:50 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost. Statistiques?: Added: 0, Deleted: 0, Modified: 13, Compared: 25922, Queries: 0, Results: 0, Version: 16.0.9126.2109."
+"akasammy-PC","Application","4/8/2018 4:05:58 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","4/8/2018 4:05:58 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","4/8/2018 3:06:22 PM","Error","Outlook","62","D?sol?... Nous n?avons pas pu instancier le module d?extraction de texte des policy nudges - code d?erreur 0x80040154."
+"akasammy-PC","Application","4/8/2018 2:39:25 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/8/2018 2:39:24 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/8/2018 2:39:20 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/8/2018 2:39:18 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 62
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 16
+"
+"akasammy-PC","Application","4/7/2018 6:45:53 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/7/2018 6:45:33 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/7/2018 6:39:08 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/7/2018 5:25:57 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/7/2018 5:25:49 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/7/2018 4:50:34 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/7/2018 4:50:09 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/7/2018 4:49:50 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/7/2018 2:45:40 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/7/2018 2:38:55 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/7/2018 2:38:46 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/7/2018 2:38:17 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst. Statistiques?: Added: 0, Deleted: 0, Modified: 0, Compared: 19, Queries: 0, Results: 0, Version: 16.0.9126.2109."
+"akasammy-PC","Application","4/7/2018 2:38:16 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","4/7/2018 10:45:17 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/7/2018 10:45:17 AM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/7/2018 10:45:16 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 32
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 15
+"
+"akasammy-PC","Application","4/6/2018 9:30:23 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","4/6/2018 9:30:20 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/6/2018 9:16:45 PM","Error","Outlook","62","D?sol?... Nous n?avons pas pu instancier le module d?extraction de texte des policy nudges - code d?erreur 0x80040154."
+"akasammy-PC","Application","4/6/2018 9:14:13 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/6/2018 9:14:11 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/6/2018 6:18:05 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/6/2018 5:14:12 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/6/2018 5:14:08 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/6/2018 4:42:30 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/6/2018 4:42:30 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/6/2018 1:14:03 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/6/2018 1:13:54 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/6/2018 9:13:56 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/6/2018 9:13:49 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 32
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 62
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 63
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 15
+"
+"akasammy-PC","Application","4/6/2018 9:13:48 AM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/5/2018 5:48:47 PM","Information","Outlook","26","La connexion ? Microsoft Exchange a ?t? r?tablie."
+"akasammy-PC","Application","4/5/2018 5:47:34 PM","Information","Outlook","26","La connexion ? Microsoft Exchange a ?t? perdue. Outlook r?tablira la connexion d?s que possible."
+"akasammy-PC","Application","4/5/2018 4:49:34 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost. Statistiques?: Added: 7592, Deleted: 0, Modified: 22, Compared: 26445, Queries: 0, Results: 0, Version: 16.0.9126.2109."
+"akasammy-PC","Application","4/5/2018 4:48:46 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst. Statistiques?: Added: 51, Deleted: 0, Modified: 0, Compared: 7960, Queries: 0, Results: 0, Version: 16.0.9126.2109."
+"akasammy-PC","Application","4/5/2018 4:48:27 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/5/2018 4:48:26 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/5/2018 4:48:16 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 219
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 46
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","4/5/2018 4:48:15 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/5/2018 4:43:02 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","4/5/2018 4:42:18 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","System","4/4/2018 7:53:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR2 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:53:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR2 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:53:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR2 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:53:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR2 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:53:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR2 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:53:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR2 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:53:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR2 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:53:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR2 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:53:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR2 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:53:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR2 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:45:34 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR1 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:45:34 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR1 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:45:34 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR1 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:45:34 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR1 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:45:34 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR1 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:45:34 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR1 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:45:34 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR1 during a paging operation."
+"akasammy-PC","System","4/4/2018 7:45:34 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR1 during a paging operation."
+"akasammy-PC","Application","4/4/2018 6:59:47 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/4/2018 5:58:07 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/4/2018 5:58:06 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/4/2018 5:57:55 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/4/2018 5:33:57 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/4/2018 5:21:34 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/4/2018 2:33:23 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst. Statistiques?: Added: 0, Deleted: 0, Modified: 0, Compared: 19, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","4/4/2018 2:33:17 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost. Statistiques?: Added: 0, Deleted: 0, Modified: 16, Compared: 26220, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","4/4/2018 2:32:25 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","4/4/2018 2:32:25 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","4/4/2018 1:58:01 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst. Statistiques?: Added: 23, Deleted: 0, Modified: 2, Compared: 7842, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","4/4/2018 1:57:47 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","4/4/2018 1:57:46 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/4/2018 1:52:33 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","4/3/2018 6:46:07 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/3/2018 6:46:07 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/3/2018 6:46:03 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/3/2018 6:46:03 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/3/2018 6:46:03 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 16
+"
+"akasammy-PC","Application","4/2/2018 7:43:39 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/2/2018 7:43:37 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/2/2018 7:43:14 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/2/2018 3:43:03 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/2/2018 3:43:00 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/2/2018 3:00:09 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/2/2018 2:58:34 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/2/2018 2:58:33 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/2/2018 11:45:32 AM","Error","Outlook","62","D?sol?... Nous n?avons pas pu instancier le module d?extraction de texte des policy nudges - code d?erreur 0x80040154."
+"akasammy-PC","Application","4/2/2018 11:42:58 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/2/2018 11:42:57 AM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/2/2018 11:42:52 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/2/2018 11:42:48 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","4/2/2018 9:22:41 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/2/2018 9:22:39 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 62
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","4/1/2018 2:03:39 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/1/2018 2:03:39 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/1/2018 2:03:37 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/1/2018 2:03:37 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","4/1/2018 2:03:32 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","4/1/2018 12:02:22 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst. Statistiques?: Added: 0, Deleted: 0, Modified: 0, Compared: 7657, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","4/1/2018 12:02:14 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","4/1/2018 12:02:06 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst. Statistiques?: Added: 0, Deleted: 0, Modified: 0, Compared: 19, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","4/1/2018 12:02:04 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","4/1/2018 12:01:56 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost. Statistiques?: Added: 0, Deleted: 0, Modified: 27, Compared: 26123, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","4/1/2018 12:01:04 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","4/1/2018 11:15:13 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","4/1/2018 11:15:11 AM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","4/1/2018 11:15:10 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 63
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","3/31/2018 7:24:41 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/31/2018 7:24:41 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/31/2018 7:24:40 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/31/2018 7:24:37 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 15
+"
+"akasammy-PC","Application","3/31/2018 6:27:30 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/31/2018 6:27:26 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","3/31/2018 6:00:37 PM","Information","Outlook","26","La connexion ? Microsoft Exchange a ?t? perdue. Outlook r?tablira la connexion d?s que possible."
+"akasammy-PC","Application","3/31/2018 4:32:02 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/31/2018 4:31:54 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 16
+"
+"akasammy-PC","Application","3/31/2018 1:38:44 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/31/2018 1:38:41 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/31/2018 1:38:41 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/31/2018 11:41:40 AM","Error","Outlook","62","D?sol?... Nous n?avons pas pu instancier le module d?extraction de texte des policy nudges - code d?erreur 0x80040154."
+"akasammy-PC","Application","3/31/2018 10:38:54 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/31/2018 10:38:54 AM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/31/2018 10:38:47 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/31/2018 10:38:46 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 63
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 63
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 15
+"
+"akasammy-PC","Application","3/30/2018 8:43:02 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/30/2018 8:43:02 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/30/2018 8:42:59 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/30/2018 8:42:56 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 63
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 16
+"
+"akasammy-PC","Application","3/30/2018 1:08:36 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 62
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 78
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 110
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 109
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 31
+"
+"akasammy-PC","Application","3/30/2018 1:08:31 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/30/2018 1:08:31 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/30/2018 1:08:18 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/30/2018 11:05:16 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/30/2018 11:05:11 AM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/30/2018 8:11:37 AM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/30/2018 8:11:32 AM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/30/2018 8:11:26 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/30/2018 8:11:26 AM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/30/2018 8:11:23 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/30/2018 8:11:22 AM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/30/2018 8:11:22 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 62
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 15
+"
+"akasammy-PC","Application","3/29/2018 3:32:05 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/29/2018 3:32:04 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/29/2018 3:31:52 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/29/2018 3:31:49 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 32
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 63
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 16
+"
+"akasammy-PC","Application","3/29/2018 12:45:20 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst. Statistiques?: Added: 0, Deleted: 0, Modified: 0, Compared: 19, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","3/29/2018 12:45:19 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","3/29/2018 12:44:38 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst. Statistiques?: Added: 0, Deleted: 0, Modified: 0, Compared: 7579, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","3/29/2018 12:44:28 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","3/29/2018 12:34:11 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/29/2018 12:34:05 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/29/2018 12:34:02 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost. Statistiques?: Added: 8068, Deleted: 572, Modified: 153, Compared: 26731, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","3/29/2018 12:32:29 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/29/2018 12:31:06 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/29/2018 12:31:01 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/29/2018 8:32:23 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/29/2018 8:32:22 AM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/29/2018 8:32:22 AM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/29/2018 8:32:18 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/29/2018 8:32:18 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 79
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 62
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 15
+"
+"akasammy-PC","Application","3/29/2018 8:32:07 AM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/28/2018 8:09:52 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/28/2018 7:14:39 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/26/2018 5:49:58 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/26/2018 5:49:49 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/26/2018 5:49:47 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/26/2018 5:49:45 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 15
+"
+"akasammy-PC","Application","3/26/2018 5:49:45 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/25/2018 5:11:54 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/25/2018 5:11:51 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 15
+"
+"akasammy-PC","Application","3/25/2018 12:06:48 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/25/2018 8:06:36 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/25/2018 8:06:34 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","3/24/2018 4:43:43 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/24/2018 4:43:41 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 15
+"
+"akasammy-PC","Application","3/24/2018 4:05:10 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/24/2018 4:05:09 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 63
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 16
+"
+"akasammy-PC","Application","3/24/2018 4:05:08 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/24/2018 4:05:08 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/24/2018 4:05:07 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/24/2018 12:04:19 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/24/2018 8:17:32 AM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost. Statistiques?: Added: 46, Deleted: 0, Modified: 56, Compared: 25686, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","3/24/2018 8:17:05 AM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst. Statistiques?: Added: 0, Deleted: 0, Modified: 0, Compared: 7149, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","3/24/2018 8:16:40 AM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst. Statistiques?: Added: 0, Deleted: 0, Modified: 0, Compared: 19, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","3/24/2018 8:04:09 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/24/2018 8:04:09 AM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/24/2018 8:04:04 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/24/2018 8:04:04 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 62
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 62
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 16
+"
+"akasammy-PC","Application","3/24/2018 8:03:51 AM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/24/2018 8:03:51 AM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/24/2018 8:03:29 AM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/23/2018 7:44:32 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/23/2018 7:44:26 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/23/2018 4:20:34 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/23/2018 4:20:18 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/23/2018 12:19:45 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/23/2018 12:19:45 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/23/2018 12:19:31 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/23/2018 10:56:49 AM","Error","Outlook","62","D?sol?... Nous n?avons pas pu instancier le module d?extraction de texte des policy nudges - code d?erreur 0x80040154."
+"akasammy-PC","Application","3/23/2018 8:19:23 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/23/2018 8:19:22 AM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/23/2018 8:19:19 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/23/2018 8:19:17 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 63
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 93
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 32
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 93
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 16
+"
+"akasammy-PC","Application","3/22/2018 9:00:11 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/22/2018 8:59:43 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/22/2018 7:54:46 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/22/2018 7:54:45 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/22/2018 6:06:32 PM","Error","Outlook","62","D?sol?... Nous n?avons pas pu instancier le module d?extraction de texte des policy nudges - code d?erreur 0x80040154."
+"akasammy-PC","Application","3/22/2018 4:59:41 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/22/2018 4:59:41 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/22/2018 4:59:33 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/22/2018 4:59:33 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/22/2018 4:59:32 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/22/2018 4:59:28 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/22/2018 4:59:27 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 16
+"
+"akasammy-PC","Application","3/22/2018 2:44:49 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/22/2018 12:36:31 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/22/2018 12:36:30 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/22/2018 10:44:34 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/22/2018 10:44:33 AM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/22/2018 10:44:30 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/22/2018 10:44:29 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 63
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","3/21/2018 8:16:44 PM","Error","Outlook","62","D?sol?... Nous n?avons pas pu instancier le module d?extraction de texte des policy nudges - code d?erreur 0x80040154."
+"akasammy-PC","Application","3/21/2018 7:37:19 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst. Statistiques?: Added: 0, Deleted: 0, Modified: 0, Compared: 6672, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","3/21/2018 7:36:29 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst. Statistiques?: Added: 0, Deleted: 0, Modified: 0, Compared: 19, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","3/21/2018 7:36:28 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","3/21/2018 7:36:12 PM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost. Statistiques?: Added: 0, Deleted: 0, Modified: 6, Compared: 25926, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","3/21/2018 7:35:18 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","3/21/2018 7:35:18 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","3/21/2018 7:20:49 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/21/2018 7:20:48 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/21/2018 7:20:31 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/21/2018 7:20:21 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/21/2018 7:20:18 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/21/2018 7:20:17 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","3/21/2018 7:20:16 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/18/2018 2:12:16 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/18/2018 2:12:15 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/18/2018 2:11:58 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/18/2018 10:11:48 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/18/2018 10:11:48 AM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/18/2018 10:11:45 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/18/2018 10:11:42 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 63
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 16
+"
+"akasammy-PC","System","3/17/2018 5:51:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR4 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:51:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR4 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:51:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR4 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:51:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR4 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:51:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR4 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:51:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR4 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:51:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR4 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:51:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR4 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:51:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR4 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:51:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR4 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:51:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR4 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:51:16 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR4 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:36:12 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR3 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:36:12 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR3 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:36:12 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR3 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:36:12 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR3 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:36:12 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR3 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:36:12 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR3 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:36:12 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR3 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:36:12 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR3 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:36:12 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR3 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:36:12 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR3 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:35:31 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk2\DR2 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:35:31 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk2\DR2 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:35:31 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk2\DR2 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:35:31 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk2\DR2 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:35:31 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk2\DR2 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:35:31 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk2\DR2 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:26:46 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR1 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:26:46 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR1 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:26:46 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR1 during a paging operation."
+"akasammy-PC","System","3/17/2018 5:26:46 PM","Warning","Disk","51","An error was detected on device \Device\Harddisk1\DR1 during a paging operation."
+"akasammy-PC","Application","3/17/2018 4:41:41 PM","Information","Outlook","26","La connexion ? Microsoft Exchange a ?t? r?tablie."
+"akasammy-PC","Application","3/17/2018 4:40:10 PM","Information","Outlook","26","La connexion ? Microsoft Exchange a ?t? perdue. Outlook r?tablira la connexion d?s que possible."
+"akasammy-PC","Application","3/17/2018 4:36:21 PM","Information","Outlook","26","La connexion ? Microsoft Exchange a ?t? r?tablie."
+"akasammy-PC","Application","3/17/2018 4:35:29 PM","Information","Outlook","26","La connexion ? Microsoft Exchange a ?t? perdue. Outlook r?tablira la connexion d?s que possible."
+"akasammy-PC","Application","3/17/2018 4:09:10 PM","Error","Outlook","62","D?sol?... Nous n?avons pas pu instancier le module d?extraction de texte des policy nudges - code d?erreur 0x80040154."
+"akasammy-PC","Application","3/17/2018 4:00:04 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/17/2018 4:00:02 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/17/2018 3:59:36 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/17/2018 11:46:57 AM","Information","Outlook","26","La connexion ? Microsoft Exchange a ?t? r?tablie."
+"akasammy-PC","Application","3/17/2018 11:46:09 AM","Information","Outlook","26","La connexion ? Microsoft Exchange a ?t? perdue. Outlook r?tablira la connexion d?s que possible."
+"akasammy-PC","Application","3/17/2018 11:40:31 AM","Information","Outlook","26","La connexion ? Microsoft Exchange a ?t? r?tablie."
+"akasammy-PC","Application","3/17/2018 11:39:56 AM","Information","Outlook","26","La connexion ? Microsoft Exchange a ?t? perdue. Outlook r?tablira la connexion d?s que possible."
+"akasammy-PC","Application","3/17/2018 10:54:29 AM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst. Statistiques?: Added: 4056, Deleted: 0, Modified: 0, Compared: 6592, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","3/17/2018 10:54:16 AM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","3/17/2018 10:53:47 AM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst. Statistiques?: Added: 0, Deleted: 0, Modified: 0, Compared: 19, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","3/17/2018 10:53:40 AM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost. Statistiques?: Added: 0, Deleted: 0, Modified: 10, Compared: 25498, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","3/17/2018 10:52:51 AM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","3/17/2018 10:52:51 AM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","3/17/2018 10:33:09 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/17/2018 10:33:09 AM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/17/2018 10:33:01 AM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/17/2018 10:33:01 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/17/2018 10:32:58 AM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/17/2018 10:32:58 AM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/17/2018 10:32:57 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 16
+"
+"akasammy-PC","Application","3/16/2018 12:58:10 PM","Error","Outlook","62","D?sol?... Nous n?avons pas pu instancier le module d?extraction de texte des policy nudges - code d?erreur 0x80040154."
+"akasammy-PC","Application","3/16/2018 12:42:29 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/16/2018 12:42:28 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 62
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 16
+"
+"akasammy-PC","Application","3/15/2018 5:45:00 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/15/2018 5:44:57 PM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/15/2018 5:44:38 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/15/2018 5:44:37 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/15/2018 5:44:36 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/15/2018 5:44:34 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 63
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 63
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 16
+"
+"akasammy-PC","Application","3/15/2018 5:44:34 PM","Information","Outlook","32","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? un point de contr?le."
+"akasammy-PC","Application","3/14/2018 6:23:10 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/14/2018 2:23:06 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 63
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 125
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 140
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 32
+"
+"akasammy-PC","Application","3/14/2018 2:22:59 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/14/2018 11:10:16 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 78
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 110
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 125
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 15
+"
+"akasammy-PC","Application","3/14/2018 11:10:07 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/14/2018 8:19:45 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 31
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft Azure Information Protection
+Description?: Microsoft Azure Information Protection
+ProgID?: MSIP.OutlookAddin
+GUID?: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 407
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 15
+"
+"akasammy-PC","Application","3/14/2018 8:19:42 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/13/2018 1:20:23 PM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/13/2018 1:20:13 PM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 0
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 15
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 16
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","3/13/2018 11:34:59 AM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst. Statistiques?: Added: 4486, Deleted: 0, Modified: 0, Compared: 4567, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","3/13/2018 11:34:45 AM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","3/13/2018 11:34:38 AM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst. Statistiques?: Added: 6, Deleted: 0, Modified: 0, Compared: 19, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","3/13/2018 11:34:38 AM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","3/13/2018 11:34:32 AM","Information","Outlook","38","Rapprochement termin? pour le magasin suivant?: C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost. Statistiques?: Added: 25242, Deleted: 0, Modified: 14, Compared: 25863, Queries: 0, Results: 0, Version: 16.0.9029.2167."
+"akasammy-PC","Application","3/13/2018 11:33:40 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/13/2018 11:33:38 AM","Information","Outlook","63","Outlook a d?tect? une notification de modification pour vos applications et va tenter de les mettre ? jour."
+"akasammy-PC","Application","3/13/2018 11:33:20 AM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: Automatic Reconciliation."
+"akasammy-PC","Application","3/13/2018 11:33:04 AM","Information","Outlook","63","La demande de service web Exchange GetAppManifestssucc?de ?.</0w>"
+"akasammy-PC","Application","3/13/2018 11:33:02 AM","Information","Outlook","29","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst est resoumis ? l'indexeur pour la raison suivante?: Index reset (or catalog signature changed), re-push entire store."
+"akasammy-PC","Application","3/13/2018 11:33:02 AM","Information","Outlook","31","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\Listes SharePoint.pst a d?tect? une r?g?n?ration de catalogue."
+"akasammy-PC","Application","3/13/2018 11:32:54 AM","Information","Outlook","29","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost est resoumis ? l'indexeur pour la raison suivante?: Index reset (or catalog signature changed), re-push entire store."
+"akasammy-PC","Application","3/13/2018 11:32:54 AM","Information","Outlook","29","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst est resoumis ? l'indexeur pour la raison suivante?: Index reset (or catalog signature changed), re-push entire store."
+"akasammy-PC","Application","3/13/2018 11:32:54 AM","Information","Outlook","31","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost a d?tect? une r?g?n?ration de catalogue."
+"akasammy-PC","Application","3/13/2018 11:32:54 AM","Information","Outlook","31","Le magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst a d?tect? une r?g?n?ration de catalogue."
+"akasammy-PC","Application","3/13/2018 11:32:50 AM","Information","Outlook","45","Outlook a charg? le(s) compl?ment(s) suivant(s)?:
+
+
+Nom?: Microsoft Exchange Add-in
+Description?: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID?: UmOutlookAddin.FormRegionAddin
+GUID?: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Temps de d?marrage (millisecondes)?: 47
+
+Nom?: Skype Meeting Add-in for Microsoft Office 2016
+Description?: Skype Meeting Add-in for Microsoft Office 2016
+ProgID?: UCAddin.LyncAddin.1
+GUID?: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Temps de d?marrage (millisecondes)?: 78
+
+Nom?: Outlook Social Connector 2016
+Description?: Connects to social networking sites and provides people, activity, and status information.
+ProgID?: OscAddin.Connect
+GUID?: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Temps de d?marrage (millisecondes)?: 62
+
+Nom?: OneNote Notes about Outlook Items
+Description?: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID?: OneNote.OutlookAddin
+GUID?: {93E5752E-B889-47C5-8545-654EE2533C64}
+Comportement au chargement?: 3
+HKLM?: 1
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Temps de d?marrage (millisecondes)?: 32
+
+Nom?: Microsoft SharePoint Server Colleague Import Add-in
+Description?: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID?: ColleagueImport.ColleagueImportAddin
+GUID?: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Comportement au chargement?: 3
+HKLM?: 0
+Emplacement?: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Temps de d?marrage (millisecondes)?: 0
+"
+"akasammy-PC","Application","3/11/2018 12:39:36 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/9/2018 1:57:38 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/9/2018 11:11:31 AM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/8/2018 2:08:39 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/7/2018 6:06:40 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/7/2018 4:30:03 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/7/2018 4:29:53 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/7/2018 2:39:42 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/7/2018 2:39:34 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/7/2018 1:07:01 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/7/2018 1:06:56 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/6/2018 7:33:36 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/6/2018 7:33:08 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/6/2018 5:13:28 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/6/2018 5:13:17 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/5/2018 7:03:09 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/5/2018 7:03:01 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/5/2018 5:42:57 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.nst pour la raison suivante?: The store was last opened on a different machine."
+"akasammy-PC","Application","3/5/2018 5:41:58 PM","Information","Outlook","30","Lancement du rapprochement du magasin C:\Users\akasammy\AppData\Local\Microsoft\Outlook\samdrey@microsoft.com.ost pour la raison suivante?: The store was last opened on a different machine."

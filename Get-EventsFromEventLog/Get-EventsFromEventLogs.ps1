@@ -101,12 +101,12 @@
     - Search the last 30 events of type "Outlook" - if there are less, it will just print less
     - We don't output any file because I didn't specify the -ExportToFile parameter
 
-MachineName LogName     TimeCreated           LevelDisplayName Id Message
------------ -------     -----------           ---------------- -- -------
-12345678901 Application 4/13/2018 11:57:06 AM Information      63 La demande de service web Exchange GetAppManifestssuccède à.</0w>
-12345678901 Application 4/13/2018 7:57:00 AM  Information      63 La demande de service web Exchange GetAppManifestssuccède à.</0w>
-12345678901 Application 4/13/2018 7:56:59 AM  Information      63 Outlook a détecté une notification de modification pour vos applications et va t...
-12345678901 Application 4/13/2018 7:56:55 AM  Information      45 Outlook a chargé le(s) complément(s) suivant(s) :...
+MachineName     LogName         TimeCreated             LevelDisplayName    Id      Message
+-----------     -------         -----------             ----------------    --      -------
+12345678901     Application     4/13/2018 11:57:06 AM   Information          63     La demande de service web Exchange GetAppManifestssuccède à.</0w>
+12345678901     Application     4/13/2018 7:57:00 AM    Information          63     La demande de service web Exchange GetAppManifestssuccède à.</0w>
+12345678901     Application     4/13/2018 7:56:59 AM    Information          63     Outlook a détecté une notification de modification pour vos applications et va t...
+12345678901     Application     4/13/2018 7:56:55 AM    Information          45     Outlook a chargé le(s) complément(s) suivant(s) :...
 
 .EXAMPLE
 .\Get-EventsFromEventLogs.ps1 -EventSource "disk","Outlook" -EventLevel Warning -NumberOfLastEventsToGet 1000
@@ -115,6 +115,13 @@ MachineName LogName     TimeCreated           LevelDisplayName Id Message
     - All Event IDs of these (because I didn't specify any ID to filter)
     - Get the 1000 last events of the above criteria
     - didn't specify the -ExportToFile so will just display to screen
+
+.EXAMPLE
+.\Get-EventsFromEventLogs.ps1 -EventSource "disk" -NumberOfLastEventsToGet 1000 -EventLevel Critical,Warning,Error -ExportToFile
+    - Search all events about the "disk"
+    - Search only Critical, Warning and Error events
+    - Search the 1000 last events about the above criteria
+    - Export into a file (like GetEventsFromEventLogs_None_2018-04-14-04-34-27.csv)
 
 .NOTES
     More examples to be documented as the script gain experience over the usage...
@@ -286,7 +293,11 @@ $Events4All | Group-Object LevelDisplayName | ft @{Label="Event Level";Expressio
 
 
 If ($ExportToFile){
-    $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$($EventID -join "-")_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+    If (IsEmpty $EventSource){ #EventSource empty
+            $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$($EventID -join "-")_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+    } Else { #EventSource not empty whether we have EventIDs or not we export with name of Source filters
+            $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$($EventSource -join "-")_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+    }
     $Events4all | Export-Csv -NoTypeInformation $EventsReport
     notepad $EventsReport
 }
@@ -297,6 +308,3 @@ If ($ExportToFile){
 $stopwatch.Stop()
 Write-Host "The script took $($StopWatch.Elapsed.TotalSeconds) seconds to execute..."
 <# ---------------- /SCRIPT_FOOTER (NOTHING BEYOND THIS POINT) ----------- #>
-
-
-
