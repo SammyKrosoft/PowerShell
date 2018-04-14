@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Get specific events from any computer, local or remote, or from a computer list.
+    Searches and Get specific events from any computer, local or remote, or from a computer list.
 
 .DESCRIPTION
     This script gathers events from a computer or a list of computers, from
@@ -33,6 +33,10 @@
 .PARAMETER EventSource
     This parameter determine which Event source to search for. This is optional. To search for all events of type
     "Outlook" for example on your workstation, type -EventSource "Outlook"
+
+.PARAMETER EventLevel
+    With this additionnal parameter, you can filter your search on Event Logs on the Level of events:
+
 
 .PARAMETER NumberOfLastEventsToGet
     Indicates how many events you want the script to dump. 
@@ -98,15 +102,22 @@ MachineName LogName     TimeCreated           LevelDisplayName Id Message
 .NOTES
     More examples to be documented as the script gain experience over the usage...
 
+.COMPONENT
+    Get-WinEvent cmdlet
+
 .LINK
-    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent
+
+.LINK
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help
 
 .LINK
     https://github.com/SammyKrosoft
+
 #>
 Param(
     [Parameter(Mandatory = $False, Position = 1)] $Computers = ("127.0.0.1"),
-    [Parameter(Mandatory = $False, Position = 2)][ValidateSet("Application","System","Security")] $EventLogName = ('Application', 'System'),
+    [Parameter(Mandatory = $False, Position = 2)][ValidateSet("Application","System","Security")] [array]$EventLogName = ('Application', 'System'),
     [Parameter(Mandatory = $False, Position = 3)] $EventID="None",
     [Parameter(Mandatory = $False, Position = 4)] $EventSource="None",
     [Parameter(Mandatory = $False, Position = 5)][ValidateSet("None","Information","Warning","Error","Critical", "Verbose")] [array]$EventLevel="None",

@@ -1,0 +1,1 @@
+function prompt {$Host.UI.RawUI.WindowTitle = $(Get-Location);"PS>"}
