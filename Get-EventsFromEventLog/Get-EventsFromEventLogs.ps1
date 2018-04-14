@@ -36,6 +36,15 @@
 
 .PARAMETER EventLevel
     With this additionnal parameter, you can filter your search on Event Logs on the Level of events:
+    
+    Name                           Value                                           
+    ----                           -----                                          
+    Verbose                        5                                              
+    Informational                  4                                              
+    Warning                        3                                              
+    Error                          2                                              
+    Critical                       1                                              
+    LogAlways                      0        
 
 
 .PARAMETER NumberOfLastEventsToGet
@@ -134,7 +143,8 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "1.1"
+$ScriptVersion = "1.2"
+#New in this version :Ability to filter on Event Level + added Parameter Validation
 # Log or report file definition
 # $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
