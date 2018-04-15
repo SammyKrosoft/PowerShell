@@ -142,8 +142,8 @@ MachineName     LogName         TimeCreated             LevelDisplayName    Id  
 Param(
     [Parameter(Mandatory = $False, Position = 1)] $Computers = ("127.0.0.1"),
     [Parameter(Mandatory = $False, Position = 2)][ValidateSet("Application","System","Security")] [array]$EventLogName = ('Application', 'System'),
-    [Parameter(Mandatory = $False, Position = 3)] $EventID="None",
-    [Parameter(Mandatory = $False, Position = 4)] $EventSource="None",
+    [Parameter(Mandatory = $False, Position = 3)] [array]$EventID="None",
+    [Parameter(Mandatory = $False, Position = 4)] [array]$EventSource="None",
     [Parameter(Mandatory = $False, Position = 5)][ValidateSet("None","Information","Warning","Error","Critical", "Verbose")] [array]$EventLevel="None",
     [Parameter(Mandatory = $False, Position = 6)] [int]$NumberOfLastEventsToGet = 30,
     [Parameter(Mandatory = $False, Position = 7)] [Switch]$ExportToFile
@@ -264,7 +264,7 @@ Foreach ($computer in $computers)
         Write-host "Event logs on $computer goes as far as $($LastEvent.TimeCreated)"
         Try
         {
-            $Events = Get-WinEvent -FilterHashtable $FilterHashProperties -MaxEvents $NumberOfLastEventsToGet -Computer $Computer -ErrorAction Stop | select MachineName, LogName, TimeCreated, LevelDisplayName, ProviderName, ID, Message
+            $Events = Get-WinEvent -FilterHashtable $FilterHashProperties -MaxEvents $NumberOfLastEventsToGet -Computer $Computer -ErrorAction SilentlyContinue | select MachineName, LogName, TimeCreated, LevelDisplayName, ProviderName, ID, Message
             Foreach ($Event in $Events) {
                 $Event.Message = $Event.Message.Replace("`r","#")
             }
@@ -294,9 +294,9 @@ $Events4All | Group-Object LevelDisplayName | ft @{Label="Event Level";Expressio
 
 If ($ExportToFile){
     If (IsEmpty $EventSource){ #EventSource empty
-            $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$($EventID -join "-")_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+            $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$($EventID[0])_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
     } Else { #EventSource not empty whether we have EventIDs or not we export with name of Source filters
-            $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$($EventSource -join "-")_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+            $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$($EventSource[0])_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
     }
     $Events4all | Export-Csv -NoTypeInformation $EventsReport
     notepad $EventsReport
