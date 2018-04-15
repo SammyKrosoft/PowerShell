@@ -159,7 +159,7 @@ $DebugPreference = "Continue"
 $ErrorPreference = "SilentlyContinue"
 #Script Version
 $ScriptVersion = "1.2"
-#New in this version :Ability to filter on Event Level + added Parameter Validation
+# New in this version :Ability to filter on Event Level + added Parameter Validation
 # Log or report file definition
 # $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
@@ -200,11 +200,11 @@ If (IsEmpty $EventSource){
 
 while ($Answer -ne "Y" -AND $Answer -ne "N") {
     cls
-    Write-Host "Event log names         :   $EventLogName"
-    Write-Host "Computers               :   $Computers"
-    Write-Host "Event ID to check       :   $EventID"
-    Write-Host "Event Source to check   :   $EventSource"
-    Write-Host "Event Level to check    :   $EventLevel"
+    Write-Host "Event log names         :   $($EventLogName -join ", ")"
+    Write-Host "Computers               :   $($Computers -join ", ")"
+    Write-Host "Event ID to check       :   $($EventID -join ", ")"
+    Write-Host "Event Source to check   :   $($EventSource -join ", ")"
+    Write-Host "Event Level to check    :   $($EventLevel -join ", ")"
     Write-Host "Number of events to get :   $NumberOfLastEventsToGet"
 If($ExportToFile){
     Write-Host "Write into a file       :   YES" -ForegroundColor yellow
