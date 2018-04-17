@@ -231,28 +231,6 @@ If (!(IsEmpty $EventID)){
     $FilterHashProperties.Add("ID",$EventID)
 }
 
-
-# Old code to change the FilterHash when specifying or not EventID/EventSource
-# If (IsEmpty $EventSource) {
-#     $FilterHashProperties = @{
-#         LogName = $EventLogName;
-#         ID      = $EventID;
-#     }
-# } Else {
-#     If (IsEmpty $EventID){
-#         $FilterHashProperties = @{
-#             LogName = $EventLogName;
-#             ProviderName = $EventSource;
-#         }
-#     } else {
-#             $FilterHashProperties = @{
-#                 LogName = $EventLogName;
-#                 ID      =   $EventID;
-#                 ProviderName = $EventSource;
-#             }
-#         }
-# }
-
 If (!(IsEmpty $EventLevel)){
     for ($i=0;$i -lt $($EventLevel.count);$i++){
         $EventLevel[$i] = switch ($EventLevel[$i]) {
@@ -282,7 +260,7 @@ Foreach ($computer in $computers)
         Write-host "Event logs on $computer goes as far as $($LastEvent.TimeCreated)"
         Try
         {
-            $Events = Get-WinEvent -FilterHashtable $FilterHashProperties -MaxEvents $NumberOfLastEventsToGet -Computer $Computer -ErrorAction SilentlyContinue | select MachineName, LogName, TimeCreated, LevelDisplayName, ProviderName, ID, Message
+            $Events = Get-WinEvent -FilterHashtable $FilterHashProperties -MaxEvents $NumberOfLastEventsToGet -Computer $Computer -ErrorAction stop | select MachineName, LogName, TimeCreated, LevelDisplayName, ProviderName, ID, Message
             Foreach ($Event in $Events) {
                 $Event.Message = $Event.Message.Replace("`r","#")
             }
