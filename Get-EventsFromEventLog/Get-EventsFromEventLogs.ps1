@@ -160,10 +160,12 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "1.4"
+$ScriptVersion = "1.4.1"
 <# Version changes :
+1.4 -> 1.4.1
+Fixed file name generation when not supplying any EventID and no EventSource -> putting "Last_X_" inside the csv name
 1.3 -> 1.4
-oddly, had some events with description = $null on my test machine => I had a stop error on replace carriage with # sign
+Oddly, had some events with description = $null on my test machine => I had a stop error on replace carriage with # sign
 and then added the condition $Event.Message -eq $null to not replace anything to fix this error
 1.2.1 -> 1.3
 simplified the script requirements : if no parameters specified, search and dump all events !
