@@ -158,8 +158,10 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "1.2.1"
+$ScriptVersion = "1.3"
 <# Version changes :
+1.2.1 -> 1.3
+simplified the script requirements : if no parameters specified, search and dump all events !
 1.2 -> 1.2.1
 replaced "None" with "All" when we don't specify a filter parameter (because when $EventSouce = nothing, we basically
 search for all event sources)
@@ -174,6 +176,7 @@ search for all event sources)
 $FilterHashProperties = $null
 $Answer = ""
 $Events4All = @()
+[boolean]$WannaDebug = $false
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
 function IsEmpty($Param){
@@ -193,17 +196,12 @@ Write-Host "Starting script..."
 #$COmputers = Get-Content C:\temp\MyServersList.txt
 #$Computers = "127.0.0.1"
 
-If (IsEmpty $EventSource){
-    While (IsEmpty $EventID)
-    {
-        $EventID = Read-Host "Which eventID are you looking for ? "
-        If (IsEmpty $EventID)
-            {Write-Host "Invalid value - please enter an integer or a list of integers comma separated like 2121, 2242, 2080..." -BackgroundColor Blue -ForegroundColor Yellow}
-    }
-}
 
 while ($Answer -ne "Y" -AND $Answer -ne "N") {
     cls
+    If (IsEmpty $EventSource -and IsEmpty $EventID -and IsEmpty $EventLevel){
+    Write-host "No Event ID, Event Source or Event Level specified, we will search for all the last $NumberOfLastEventsToGet events on each machine`nor the local machine if you didn't specify the -Computers parameter" -BackgroundColor yellow -ForegroundColor blue
+    }
     Write-Host "Event log names         :   $($EventLogName -join ", ")"
     Write-Host "Computers               :   $($Computers -join ", ")"
     Write-Host "Event ID to check       :   $($EventID -join ", ")"
@@ -221,26 +219,39 @@ If($ExportToFile){
     IF ($Answer -eq "N"){exit}
 }
 
-
-If (IsEmpty $EventSource) {
-    $FilterHashProperties = @{
-        LogName = $EventLogName;
-        ID      = $EventID;
-    }
-} Else {
-    If (IsEmpty $EventID){
-        $FilterHashProperties = @{
-            LogName = $EventLogName;
-            ProviderName = $EventSource;
-        }
-    } else {
-            $FilterHashProperties = @{
-                LogName = $EventLogName;
-                ID      =   $EventID;
-                ProviderName = $EventSource;
-            }
-        }
+$FilterHashProperties = @{
+    LogName = $EventLogName
 }
+
+If (!(IsEmpty $EventSource)){
+    $FilterHashProperties.Add('ProviderName',$EventSource)
+}
+
+If (!(IsEmpty $EventID)){
+    $FilterHashProperties.Add("ID",$EventID)
+}
+
+
+# Old code to change the FilterHash when specifying or not EventID/EventSource
+# If (IsEmpty $EventSource) {
+#     $FilterHashProperties = @{
+#         LogName = $EventLogName;
+#         ID      = $EventID;
+#     }
+# } Else {
+#     If (IsEmpty $EventID){
+#         $FilterHashProperties = @{
+#             LogName = $EventLogName;
+#             ProviderName = $EventSource;
+#         }
+#     } else {
+#             $FilterHashProperties = @{
+#                 LogName = $EventLogName;
+#                 ID      =   $EventID;
+#                 ProviderName = $EventSource;
+#             }
+#         }
+# }
 
 If (!(IsEmpty $EventLevel)){
     for ($i=0;$i -lt $($EventLevel.count);$i++){
@@ -256,8 +267,11 @@ If (!(IsEmpty $EventLevel)){
     $FilterHashProperties.Add('Level',$EventLevel)
 }
 
-#$FilterHashProperties
-#exit
+#Just adding a debug hard coded switch to check my filter...
+if ($WannaDebug){
+    $FilterHashProperties
+    exit
+}
 
 Foreach ($computer in $computers)
 {
