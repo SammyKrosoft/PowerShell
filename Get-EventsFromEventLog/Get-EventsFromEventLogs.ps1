@@ -146,7 +146,9 @@ Param(
     [Parameter(Mandatory = $False, Position = 4)] [array]$EventSource="All",
     [Parameter(Mandatory = $False, Position = 5)][ValidateSet("All","Information","Warning","Error","Critical", "Verbose")] [array]$EventLevel="All",
     [Parameter(Mandatory = $False, Position = 6)] [int]$NumberOfLastEventsToGet = 30,
-    [Parameter(Mandatory = $False, Position = 7)] [Switch]$ExportToFile
+    [Parameter(Mandatory = $False, Position = 7)] [Switch]$ExportToFile,
+    [Parameter(Mandatory = $False, Position = 8)] [Boolean]$Confirm = $true,
+    [Parameter(Mandatory = $False, Position = 9)] [switch]$DebugScript
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
@@ -158,8 +160,11 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "1.3"
+$ScriptVersion = "1.4"
 <# Version changes :
+1.3 -> 1.4
+oddly, had some events with description = $null on my test machine => I had a stop error on replace carriage with # sign
+and then added the condition $Event.Message -eq $null to not replace anything to fix this error
 1.2.1 -> 1.3
 simplified the script requirements : if no parameters specified, search and dump all events !
 1.2 -> 1.2.1
@@ -176,7 +181,6 @@ search for all event sources)
 $FilterHashProperties = $null
 $Answer = ""
 $Events4All = @()
-[boolean]$WannaDebug = $false
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
 function IsEmpty($Param){
@@ -213,11 +217,26 @@ If($ExportToFile){
 } Else {
     Write-Host "Write into a file       :   NO" -ForegroundColor yellow
     }
-    Write-Host "`nContinue (Y/N) ?" -BackgroundColor Red -ForegroundColor Blue
-    $Answer = Read-host
+    If ($Confirm){
+        Write-Host "`nContinue (Y/N) ?" -BackgroundColor Red -ForegroundColor Blue
+        $Answer = Read-host
+    } Else {
+        $Answer = "Y"
+    }
     If ($Answer -eq "Y"){$StopWatch.Reset();$StopWatch.start()} 
     IF ($Answer -eq "N"){exit}
 }
+
+# Note for remember - sample of Hash table definition:
+# $Hash= @{LogName='application'; ProviderName='outlook';Level = 2,4}
+# Which gives:
+# Name                           Value
+# ----                           -----
+# ProviderName                   outlook
+# Level                          {2, 4}
+# LogName                        application
+#
+# Then calling Get-WinEvent -FilterHash $Hash
 
 $FilterHashProperties = @{
     LogName = $EventLogName
@@ -246,8 +265,17 @@ If (!(IsEmpty $EventLevel)){
 }
 
 #Just adding a debug hard coded switch to check my filter...
-if ($WannaDebug){
+if ($DebugScript){
     $FilterHashProperties
+    $Computer = "127.0.0.1"
+    $Events = Get-WinEvent -FilterHashtable $FilterHashProperties -MaxEvents $NumberOfLastEventsToGet -Computer $Computer -ErrorAction stop | select MachineName, LogName, TimeCreated, LevelDisplayName, ProviderName, ID, Message
+    Foreach ($Event in $Events) {
+        If ($Event.Message -ne $null){
+            $Event.Message = $Event.Message.Replace("`r","#")
+        }
+    }
+    Write-host "Found at least $($Events.count) events ! Here are the $NumberOfLastEventsToGet last ones :"
+    $Events | Select -first $NumberOfLastEventsToGet | ft -a
     exit
 }
 
@@ -262,7 +290,9 @@ Foreach ($computer in $computers)
         {
             $Events = Get-WinEvent -FilterHashtable $FilterHashProperties -MaxEvents $NumberOfLastEventsToGet -Computer $Computer -ErrorAction stop | select MachineName, LogName, TimeCreated, LevelDisplayName, ProviderName, ID, Message
             Foreach ($Event in $Events) {
-                $Event.Message = $Event.Message.Replace("`r","#")
+                If ($Event.Message -ne $null){
+                    $Event.Message = $Event.Message.Replace("`r","#")
+                }
             }
             Write-host "Found at least $($Events.count) events ! Here are the $NumberOfLastEventsToGet last ones :"
             $Events | Select -first $NumberOfLastEventsToGet | ft -a
