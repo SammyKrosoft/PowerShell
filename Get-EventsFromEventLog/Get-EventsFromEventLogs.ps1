@@ -142,9 +142,9 @@ MachineName     LogName         TimeCreated             LevelDisplayName    Id  
 Param(
     [Parameter(Mandatory = $False, Position = 1)] $Computers = ("127.0.0.1"),
     [Parameter(Mandatory = $False, Position = 2)][ValidateSet("Application","System","Security")] [array]$EventLogName = ('Application', 'System'),
-    [Parameter(Mandatory = $False, Position = 3)] [array]$EventID="None",
-    [Parameter(Mandatory = $False, Position = 4)] [array]$EventSource="None",
-    [Parameter(Mandatory = $False, Position = 5)][ValidateSet("None","Information","Warning","Error","Critical", "Verbose")] [array]$EventLevel="None",
+    [Parameter(Mandatory = $False, Position = 3)] [array]$EventID="All",
+    [Parameter(Mandatory = $False, Position = 4)] [array]$EventSource="All",
+    [Parameter(Mandatory = $False, Position = 5)][ValidateSet("All","Information","Warning","Error","Critical", "Verbose")] [array]$EventLevel="All",
     [Parameter(Mandatory = $False, Position = 6)] [int]$NumberOfLastEventsToGet = 30,
     [Parameter(Mandatory = $False, Position = 7)] [Switch]$ExportToFile
 )
@@ -173,7 +173,7 @@ $Events4All = @()
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
 function IsEmpty($Param){
-    If ($Param -eq "None" -or $Param -eq "" -or $Param -eq $Null -or $Param -eq 0) {
+    If ($Param -eq "All" -or $Param -eq "" -or $Param -eq $Null -or $Param -eq 0) {
         Return $True
     } Else {
         Return $False
