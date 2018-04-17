@@ -319,15 +319,18 @@ $Events4All | Group-Object LevelDisplayName | ft @{Label="Event Level";Expressio
 
 
 If ($ExportToFile){
-    If (IsEmpty $EventSource){ #EventSource empty
-            $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$($EventID[0])_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
-    } Else { #EventSource not empty whether we have EventIDs or not we export with name of Source filters
+    If (!(IsEmpty $EventID)){
+        $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$($EventID[0])_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+    } Else { 
+        If (!(IsEmpty $EventSource)){
             $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$($EventSource[0])_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+        } Else {
+        $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_Last_$($NumberOfLastEventsToGet)_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+        }
     }
     $Events4all | Export-Csv -NoTypeInformation $EventsReport
     notepad $EventsReport
 }
-
 <# /EXECUTIONS #>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
 #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...)
