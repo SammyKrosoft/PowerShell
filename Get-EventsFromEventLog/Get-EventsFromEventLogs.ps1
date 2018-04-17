@@ -158,8 +158,12 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "1.2"
-# New in this version :Ability to filter on Event Level + added Parameter Validation
+$ScriptVersion = "1.2.1"
+<# Version changes :
+1.2 -> 1.2.1
+replaced "None" with "All" when we don't specify a filter parameter (because when $EventSouce = nothing, we basically
+search for all event sources)
+#>
 # Log or report file definition
 # $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
