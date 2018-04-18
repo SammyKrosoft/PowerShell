@@ -11,6 +11,10 @@
 	This parameter tells the script not to export to a file. The results will just be
 	dumped to the screen.
 
+.PARAMETER CheckVersion
+	This parameter dumps the current script version - the script stops processing after displaying the
+	version if this parameter is specified, no matter what other parameter is also specified.
+
 .INPUTS
     None.
 
@@ -32,7 +36,8 @@ None
     https://github.com/SammyKrosoft
 #>
 Param(
-    [Parameter(Mandatory = $False, Position = 1)] [switch]$DoNotExport
+	[Parameter(Mandatory = $False, Position = 1)] [switch]$DoNotExport,
+	[Parameter(Mandatory = $False, Position = 2, ParameterSetName = "checkversion")] [Switch] $CheckVersion
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
@@ -56,6 +61,7 @@ Added -DoNoExport switch, to not export to a file...
 # $LogOrReportFile1 = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
 # $LogOrReportFile2 = "$PSScriptRoot\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
+If ($CheckVersion) {Write-Host "SCript Version v$ScriptVersion";exit}
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 <# -------------------------- DECLARATIONS -------------------------- #>
 <# /DECLARATIONS #>
@@ -150,7 +156,7 @@ foreach( $Server in $Servers)
 		$report | Export-csv -notypeinformation -encoding Unicode $CSVFilename
 		Notepad $CSVFilename
 	} Else {
-		Write-Host "Won't create a file - use the -ExportToFile switch parameter when calling the script to generate a file" -ForegroundColor Yellow -BackgroundColor Blue
+		Write-Host "Won't create a file because you specified the -DoNotExport parameter" -ForegroundColor Yellow -BackgroundColor Blue
 		Write-Host "Just dumping to the screen this time ..." -ForegroundColor DarkBlue -BackgroundColor red
 		$Report
 	}
