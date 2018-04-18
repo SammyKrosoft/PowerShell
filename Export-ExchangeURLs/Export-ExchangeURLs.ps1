@@ -37,7 +37,7 @@ None
     https://github.com/SammyKrosoft
 #>
 Param(
-    [Parameter(Mandatory = $False, Position = 1)] [switch]$ExportToFile
+    [Parameter(Mandatory = $False, Position = 1)] [switch]$DoNotExport
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
@@ -145,7 +145,7 @@ foreach( $Server in $Servers)
     }
 	
 	
-	If ($ExportToFile){
+	If (!($DoNotExport)){
 		#Building the file name string using date, time, seconds ...
 		$DateAppend = Get-Date -Format "ddd-dd-MM-yyyy-\T\i\m\e-HH-mm-ss"
 		$CSVFilename=$PSScriptRoot+"\ExchangeURLs_"+$DateAppend+".csv"
