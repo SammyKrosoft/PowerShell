@@ -3,35 +3,30 @@
     This script dumps the URLs of all your Exchange servers in a CSV file
 
 .DESCRIPTION
-    Longer description of what this script does
+	This script exports the URLs of all the Exchange servers in a CSV file by default,
+	or dumps the info to the screen (you can then redirect to a file if you wish) if you
+	use the -DoNotExport switch with the script.
 
-.PARAMETER Parameter1
-    This parameter does blablabla
-
-.PARAMETER Parameter2
-    This parameter does blablabla
+.PARAMETER DoNotExport
+	This parameter tells the script not to export to a file. The results will just be
+	dumped to the screen.
 
 .INPUTS
     None.
 
 .OUTPUTS
-    Exports a CSV file.
+    Exports a CSV file, or the screen.
 
 .EXAMPLE
-    Add default numbers 1 + 2
-C:\PS> .\Add-Numbers.ps1
-3
+.\Export-ExchangeURLsv2.ps1
+Will export all URLs for all Exchange servers' virtual directories into a file named ExchangeURLs_Day_Date_Time.csv
 
 .EXAMPLE
-    Add 14 with 23
-C:\PS> .\Add-Numbers.ps1 -FirstNumber 14 -SecondNumber 23
-37
+.\Export-ExchangeURLsv2.ps1 -DoNotExport
+Will just print the results into the PowerShell console.
 
 .NOTES
 None
-
-.LINK
-    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6
 
 .LINK
     https://github.com/SammyKrosoft
@@ -49,10 +44,12 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorActionPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "1.1"
+$ScriptVersion = "2"
 <# Version History
-1.0 -> 1.1
+v1.0 -> v2
 Added export of Outlook Anywhere with External Hostname (E2010, E2013, E2016) and Internal Hostname (not existing in E2010)
+Fixed output file name
+Added -DoNoExport switch, to not export to a file...
 #> 
 # Log or report file definition
 # NOTE: use #PSScriptRoot in Powershell 3.0 and later or use $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition in Powershell 2.0
