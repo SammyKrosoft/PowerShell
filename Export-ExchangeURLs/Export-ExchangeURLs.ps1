@@ -37,8 +37,7 @@ None
     https://github.com/SammyKrosoft
 #>
 Param(
-    [Parameter(Mandatory = $False, Position = 1)] $FirstNumber = 1,
-    [Parameter(Mandatory = $False, Position = 2)] $SecondNumber = 2
+    [Parameter(Mandatory = $False, Position = 1)] [switch]$ExportToFile
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
@@ -50,12 +49,16 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorActionPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "1.0"
+$ScriptVersion = "1.1"
+<# Version History
+1.0 -> 1.1
+Added export of Outlook Anywhere with External Hostname (E2010, E2013, E2016) and Internal Hostname (not existing in E2010)
+#> 
 # Log or report file definition
 # NOTE: use #PSScriptRoot in Powershell 3.0 and later or use $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition in Powershell 2.0
-$LogOrReportFile1 = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+# $LogOrReportFile1 = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
-$LogOrReportFile2 = "$PSScriptRoot\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
+# $LogOrReportFile2 = "$PSScriptRoot\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 <# -------------------------- DECLARATIONS -------------------------- #>
 <# /DECLARATIONS #>
@@ -98,7 +101,7 @@ foreach( $Server in $Servers)
 	$ECP = Get-EcpVirtualDirectory -Server $Server -ADPropertiesOnly | Select Name,InternalURL,externalURL
 	$AutoDisc = get-ClientAccessServer $Server | Select name,identity,AutodiscoverServiceInternalUri
 	$EWS = Get-WebServicesVirtualDirectory -Server $Server -ADPropertiesOnly | Select NAme,identity,internalURL,externalURL
-    $OA = Get-OutlookAnywhere $Server -ADPropertiesOnly | Select Name,InternalHostName, ExternalHostName
+    $OA = Get-OutlookAnywhere -Server $Server -ADPropertiesOnly | Select Name,InternalHostName, ExternalHostName
     #If you want to dump more things, use the below line as a sample:
 	#$ServiceToDump = Get-Whatever -Server $Server | Select Property1, property2, ....   <- don't need the "Select property", you can omit this, it will just get all attributes...
 
@@ -141,12 +144,19 @@ foreach( $Server in $Servers)
         $Counter++
     }
 	
-	#Building the file name string using date, time, seconds ...
-	$DateAppend = Get-Date -Format "ddd-dd-MM-yyyy-\T\i\m\e-HH-mm-ss"
-    $CSVFilename=$ScriptPath+"\ExchangeURLs_"+$DateAppend+".csv"
 	
-	#Exporting the final result into the output file (see just above for the file string building...
-    $report | Export-csv -notypeinformation -encoding Unicode $CSVFilename
+	If ($ExportToFile){
+		#Building the file name string using date, time, seconds ...
+		$DateAppend = Get-Date -Format "ddd-dd-MM-yyyy-\T\i\m\e-HH-mm-ss"
+		$CSVFilename=$PSScriptRoot+"\ExchangeURLs_"+$DateAppend+".csv"
+		#Exporting the final result into the output file (see just above for the file string building...
+		$report | Export-csv -notypeinformation -encoding Unicode $CSVFilename
+		Notepad $CSVFilename
+	} Else {
+		Write-Host "Won't create a file - use the -ExportToFile switch parameter when calling the script to generate a file" -ForegroundColor Yellow -BackgroundColor Blue
+		Write-Host "Just dumping to the screen this time ..." -ForegroundColor Yellow -BackgroundColor Blue
+		$Report
+	}
 
 <# /EXECUTIONS #>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
