@@ -5,7 +5,7 @@ $stopwatch =  [system.diagnostics.stopwatch]::StartNew()
 # and "SilentlyContinue" will output nothing on Write-Debug "Your text/values"
 $DebugPreference = "Continue"
 # Set Error Action to your needs
-$ErrorPreference = "SilentlyContinue"
+$ErrorActionPreference = "SilentlyContinue"
 #Script Version
 $ScriptVersion = "1.0"
 # Log or report file definition - dumping 2 examples, use both if you need to output a report AND a script execution Log
