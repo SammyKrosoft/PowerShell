@@ -154,7 +154,7 @@ foreach( $Server in $Servers)
 		Notepad $CSVFilename
 	} Else {
 		Write-Host "Won't create a file - use the -ExportToFile switch parameter when calling the script to generate a file" -ForegroundColor Yellow -BackgroundColor Blue
-		Write-Host "Just dumping to the screen this time ..." -ForegroundColor Yellow -BackgroundColor Blue
+		Write-Host "Just dumping to the screen this time ..." -ForegroundColor DarkBlue -BackgroundColor red
 		$Report
 	}
 
