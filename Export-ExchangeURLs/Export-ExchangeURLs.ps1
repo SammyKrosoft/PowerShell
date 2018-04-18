@@ -143,7 +143,7 @@ foreach( $Server in $Servers)
 	
 	#Building the file name string using date, time, seconds ...
 	$DateAppend = Get-Date -Format "ddd-dd-MM-yyyy-\T\i\m\e-HH-mm-ss"
-    $CSVFilename=$ScriptPath+"\EASInformation"+$DateAppend+".csv"
+    $CSVFilename=$ScriptPath+"\ExchangeURLs_"+$DateAppend+".csv"
 	
 	#Exporting the final result into the output file (see just above for the file string building...
     $report | Export-csv -notypeinformation -encoding Unicode $CSVFilename
