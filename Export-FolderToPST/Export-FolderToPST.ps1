@@ -24,7 +24,7 @@ Network path to the target PST ... must be a server where Exchange Trusted Subsy
 Export requests must have a name ... 
 
 .EXAMPLE
-[PS] C:\Users\super-ssc-sm\Documents>.\Export-FolderToPST.ps1
+.\Export-FolderToPST.ps1
 
 Will export the folder that you hard coded on the variable $FolderToExport
 from the mailbox that is specified in the variable $MailboxToExport
@@ -33,7 +33,7 @@ The Request will be able to be retrieved using Get-MailboxExportRequest with the
 and the name provided in the $ExportRequestName variable.
 
 .EXAMPLE
-[PS] C:\Users\super-ssc-sm\Documents>.\Export-FolderToPST.ps1 -ExportRequestName "MyExportRequest01"
+.\Export-FolderToPST.ps1 -ExportRequestName "MyExportRequest01"
 
 Will create an Export request to dump a mailbox inside a PST file, and the Export request job will be called "MyExportRequest01".
 The mailbox it will search in will be the one hard coded in the $MailboxToExport, the UNC Path specified on the $UNCFilePathToExportThePST,
@@ -43,12 +43,17 @@ and the folder specified on the $FolderToExport variable.
 https://blogs.technet.microsoft.com/samdrey/2011/02/16/exchange-2010-rbac-issue-mailbox-import-export-new-mailboximportrequest-and-other-management-role-entries-are-missing-not-available/
 
 #>
+[CmdletBinding(DefaultParameterSetName = "NormalRun")]
 param(
-    [string]$FolderToExport = "Archive/April 2018/Inbox/*",
-    [string]$MailboxToExport = "Test User 1",
-    [string]$UNCFilePathToExportThePST = "\\YourExchangeExportServer\C$\temp\Restored-$(get-date -f yyyy-MM-dd-hh-mm-ss).pst",
-    [string]$ExportRequestName = "MyExportRequest"
-    )
+    [parameter(Mandatory = $false, Position = 1, ParameterSetName = "NormalRun")][string]$FolderToExport = "Archive/April 2018/Inbox/*",
+    [Parameter(Mandatory = $false, Position = 2, ParameterSetName = "NormalRun")][string]$MailboxToExport = "Test User 1",
+    [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "NormalRun")][string]$UNCFilePathToExportThePST = "\\YourExchangeExportServer\C$\temp\Restored-$(get-date -f yyyy-MM-dd-hh-mm-ss).pst",
+    [Parameter(Mandatory = $false, Position = 4, ParameterSetName = "NormalRun")][string]$ExportRequestName = "MyExportRequest",
+    [Parameter(Mandatory = $false, Position = 5, ParameterSetName = "CheckVersion")][switch]$CheckVersion
+)
+
+$ScriptVersion = "0.5"
+If ($CheckVersion) {Write-Host "SCript Version v$ScriptVersion";exit}
 
 #Removing previous Mailbox Export request that had the same name as the name provided
 #Note for the future: we can develop a simple routing that checks for existing $ExportRequestName, and if it exists, exit the script with instruction to specify another name...
