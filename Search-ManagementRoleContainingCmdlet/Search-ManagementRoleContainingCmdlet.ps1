@@ -8,7 +8,6 @@
 .PARAMETER CmdLet
     Put the CMDLet name as an input of this script
 
-
 .INPUTS
     The cmdlet you want to know in where Management Role it is...
 
@@ -57,7 +56,7 @@ If ($CheckVersion) {Write-Host "Script Version v$ScriptVersion";exit}
 #$LogOrReportFile2 = "$PSScriptRoot\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 $Perms = Get-ManagementRole -Cmdlet $Cmdlet
-$Perms | Select-Object Name | Foreach {Get-ManagementRoleAssignment -Role $_.Name -Delegating $false } | Ft Role,RoleAssigneeType, RoleAssigneeName
+$Perms | Select-Object Name | ForEach-Object {Get-ManagementRoleAssignment -Role $_.Name -Delegating $false } | Format-Table Role,RoleAssigneeType, RoleAssigneeName
 
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
 #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...
