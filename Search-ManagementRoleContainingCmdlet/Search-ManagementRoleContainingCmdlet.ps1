@@ -34,26 +34,32 @@ https://docs.microsoft.com/en-us/powershell/exchange/exchange-server/find-exchan
 
 https://github.com/SammyKrosoft
 #>
+[CmdletBinding(DefaultParameterSetName = "NormalRun")]
 Param(
-    [string]$Cmdlet = "Add-ADPermission"
+    [Parameter(Mandatory = $false, Position = 1, ParameterSetName = "NormalRun")][string]$Cmdlet = "Add-ADPermission",
+    [Parameter(Mandatory = $false, Position = 2, ParameterSetName = "CheckOnly")][switch]$CheckVersion
 )
 
-<# ------- SCRIPT_HEADER (Only Get-Help comments above this point) ------- #>
+<# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
 #Initializing a $Stopwatch variable to use to measure script execution
 $stopwatch = [system.diagnostics.stopwatch]::StartNew()
 #Using Write-Debug and playing with $DebugPreference -> "Continue" will output whatever you put on Write-Debug "Your text/values"
 # and "SilentlyContinue" will output nothing on Write-Debug "Your text/values"
 $DebugPreference = "Continue"
 # Set Error Action to your needs
-$ErrorPreference = "SilentlyContinue"
+$ErrorActionPreference = "SilentlyContinue"
 #Script Version
 $ScriptVersion = "1.0"
+<# Version changes
+-> v1.0
+#>
+If ($CheckVersion) {Write-Host "Script Version v$ScriptVersion";exit}
 # Log or report file definition
+# NOTE: use #PSScriptRoot in Powershell 3.0 and later or use $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition in Powershell 2.0
 #$LogOrReportFile1 = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
-#$LogOrReportFile2 = "$((Get-Location).Path)\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
+#$LogOrReportFile2 = "$PSScriptRoot\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
-
 $Perms = Get-ManagementRole -Cmdlet $Cmdlet
 $Perms | Select Name | Foreach {Get-ManagementRoleAssignment -Role $_.Name -Delegating $false } | Ft Role,RoleAssigneeType, RoleAssigneeName
 
