@@ -35,8 +35,9 @@ None
 .LINK
     https://github.com/SammyKrosoft
 #>
+[CmdletBinding(DefaultParameterSetName="NormalRun")]
 Param(
-	[Parameter(Mandatory = $False, Position = 1)] [switch]$DoNotExport,
+	[Parameter(Mandatory = $False, Position = 1, ParameterSetName = "NormalRun")] [switch]$DoNotExport,
 	[Parameter(Mandatory = $False, Position = 2, ParameterSetName = "checkversion")] [Switch] $CheckVersion
 )
 
