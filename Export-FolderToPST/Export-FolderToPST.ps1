@@ -56,13 +56,27 @@ param(
     [Parameter(Mandatory = $false, Position = 4, ParameterSetName = "NormalRun")][string]$ExportRequestName = "MyExportRequest",
     [Parameter(Mandatory = $false, Position = 5, ParameterSetName = "CheckVersion")][switch]$CheckVersion
 )
-
+<# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
+#Initializing a $Stopwatch variable to use to measure script execution
+$stopwatch = [system.diagnostics.stopwatch]::StartNew()
+#Using Write-Debug and playing with $DebugPreference -> "Continue" will output whatever you put on Write-Debug "Your text/values"
+# and "SilentlyContinue" will output nothing on Write-Debug "Your text/values"
+$DebugPreference = "Continue"
+# Set Error Action to your needs
+$ErrorActionPreference = "SilentlyContinue"
+#Script Version
 $ScriptVersion = "0.5"
 <# Version changes
 -> v0.5
 formatted Parameters with CmdletBinding and added -CheckVersion switch
 #>
-If ($CheckVersion) {Write-Host "SCript Version v$ScriptVersion";exit}
+If ($CheckVersion) {Write-Host "Script Version v$ScriptVersion";exit}
+# Log or report file definition
+# NOTE: use #PSScriptRoot in Powershell 3.0 and later or use $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition in Powershell 2.0
+#$LogOrReportFile1 = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+# Other Option for Log or report file definition (use one of these)
+#$LogOrReportFile2 = "$PSScriptRoot\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
+<# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 
 #Removing previous Mailbox Export request that had the same name as the name provided
 #Note for the future: we can develop a simple routing that checks for existing $ExportRequestName, and if it exists, exit the script with instruction to specify another name...
@@ -77,3 +91,9 @@ New-MailboxExportRequest -Name $ExportRequestName -IncludeFolders $FolderToExpor
 
 #Getting the status of the newly created Export Request...
 Get-MailboxExportRequest -name $ExportRequestName 
+
+<# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
+#Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...
+$stopwatch.Stop()
+Write-Host "`n`nThe script took $($StopWatch.Elapsed.TotalSeconds) seconds to execute..."
+<# ---------------- /SCRIPT_FOOTER (NOTHING BEYOND THIS POINT) ----------- #>

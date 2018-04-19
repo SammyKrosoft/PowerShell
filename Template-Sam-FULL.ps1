@@ -62,7 +62,6 @@ If ($CheckVersion) {Write-Host "Script Version v$ScriptVersion";exit}
 $LogOrReportFile1 = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
 $LogOrReportFile2 = "$PSScriptRoot\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
-
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 
 <# -------------------------- DECLARATIONS -------------------------- #>
