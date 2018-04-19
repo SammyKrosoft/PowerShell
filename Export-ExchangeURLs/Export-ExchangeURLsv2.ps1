@@ -62,7 +62,7 @@ Added -DoNoExport switch, to not export to a file...
 # $LogOrReportFile1 = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
 # $LogOrReportFile2 = "$PSScriptRoot\PowerShellScriptExecuted-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
-If ($CheckVersion) {Write-Host "SCript Version v$ScriptVersion";exit}
+If ($CheckVersion) {Write-Host "Script Version v$ScriptVersion";exit}
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 <# -------------------------- DECLARATIONS -------------------------- #>
 <# /DECLARATIONS #>
