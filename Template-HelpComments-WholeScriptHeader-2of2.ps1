@@ -27,17 +27,14 @@ None. You cannot pipe objects to Your-Script.ps1.
 None. Your-Script.ps1 does not generate any output.
 
 .EXAMPLE
-
-C:\PS> .\Your-Script.ps1
+.\Your-Script.ps1
 
 .EXAMPLE
-
-C:\PS> .\Your-Script.ps1 -FirstName "Jane" -LastName "Doe"
+.\Your-Script.ps1 -FirstName "Jane" -LastName "Doe"
 Your full name is Jane Doe
 
 .EXAMPLE
-
-C:\PS> .\Your-Script.ps1 "Jane" "Doe"
+.\Your-Script.ps1 "Jane" "Doe"
 Your full name is Jane Doe
 #>
 

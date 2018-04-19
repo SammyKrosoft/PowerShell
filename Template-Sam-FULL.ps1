@@ -36,9 +36,11 @@ None
 .LINK
     https://github.com/SammyKrosoft
 #>
+[CmdLetBinding(DefaultParameterSetName = "NormalRun")]
 Param(
-    [Parameter(Mandatory = $False, Position = 1)] $FirstNumber = 1,
-    [Parameter(Mandatory = $False, Position = 2)] $SecondNumber = 2
+    [Parameter(Mandatory = $False, Position = 1, ParameterSetName = "NormalRun")][int]$FirstNumber = 1,
+    [Parameter(Mandatory = $False, Position = 2, ParameterSetName = "NormalRun")][int]$SecondNumber = 2,
+    [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "CheckOnly")][switch]$CheckVersion
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
@@ -51,6 +53,10 @@ $DebugPreference = "Continue"
 $ErrorActionPreference = "SilentlyContinue"
 #Script Version
 $ScriptVersion = "1.0"
+<# Version changes
+-> v1.0
+#>
+If ($CheckVersion) {Write-Host "Script Version v$ScriptVersion";exit}
 # Log or report file definition
 # NOTE: use #PSScriptRoot in Powershell 3.0 and later or use $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition in Powershell 2.0
 $LogOrReportFile1 = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
