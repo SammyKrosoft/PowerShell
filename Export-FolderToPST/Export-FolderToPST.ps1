@@ -1,4 +1,9 @@
 <#
+.SYNOPSIS
+
+    This script wraps around a New-MailboxExportRequest command to export a mailbox to a
+    network location (Exchange 2010/2013 require a UNC path with New-MailboxExportRequest)
+
 .DESCRIPTION
 PREREQUISITES :
 
@@ -53,6 +58,10 @@ param(
 )
 
 $ScriptVersion = "0.5"
+<# Version changes
+-> v0.5
+formatted Parameters with CmdletBinding and added -CheckVersion switch
+#>
 If ($CheckVersion) {Write-Host "SCript Version v$ScriptVersion";exit}
 
 #Removing previous Mailbox Export request that had the same name as the name provided

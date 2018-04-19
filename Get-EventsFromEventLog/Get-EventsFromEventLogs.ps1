@@ -139,16 +139,18 @@ MachineName     LogName         TimeCreated             LevelDisplayName    Id  
     https://github.com/SammyKrosoft
 
 #>
+[CmdLetBinding(DefaultParameterSetName = "NormalRun")]
 Param(
-    [Parameter(Mandatory = $False, Position = 1)] $Computers = ("127.0.0.1"),
-    [Parameter(Mandatory = $False, Position = 2)][ValidateSet("Application","System","Security")] [array]$EventLogName = ('Application', 'System'),
-    [Parameter(Mandatory = $False, Position = 3)] [array]$EventID="All",
-    [Parameter(Mandatory = $False, Position = 4)] [array]$EventSource="All",
-    [Parameter(Mandatory = $False, Position = 5)][ValidateSet("All","Information","Warning","Error","Critical", "Verbose")] [array]$EventLevel="All",
-    [Parameter(Mandatory = $False, Position = 6)] [int]$NumberOfLastEventsToGet = 30,
-    [Parameter(Mandatory = $False, Position = 7)] [Switch]$ExportToFile,
-    [Parameter(Mandatory = $False, Position = 8)] [Boolean]$Confirm = $true,
-    [Parameter(Mandatory = $False, Position = 9)] [switch]$DebugScript
+    [Parameter(Mandatory = $False, Position = 1, ParameterSetName = "NormalRun")] $Computers = ("127.0.0.1"),
+    [Parameter(Mandatory = $False, Position = 2, ParameterSetName = "NormalRun")][ValidateSet("Application","System","Security")] [array]$EventLogName = ('Application', 'System'),
+    [Parameter(Mandatory = $False, Position = 3, ParameterSetName = "NormalRun")] [array]$EventID="All",
+    [Parameter(Mandatory = $False, Position = 4, ParameterSetName = "NormalRun")] [array]$EventSource="All",
+    [Parameter(Mandatory = $False, Position = 5, ParameterSetName = "NormalRun")][ValidateSet("All","Information","Warning","Error","Critical", "Verbose")] [array]$EventLevel="All",
+    [Parameter(Mandatory = $False, Position = 6, ParameterSetName = "NormalRun")] [int]$NumberOfLastEventsToGet = 30,
+    [Parameter(Mandatory = $False, Position = 7, ParameterSetName = "NormalRun")] [Switch]$ExportToFile,
+    [Parameter(Mandatory = $False, Position = 8, ParameterSetName = "NormalRun")] [Boolean]$Confirm = $true,
+    [Parameter(Mandatory = $False, Position = 9, ParameterSetName = "NormalRun")] [switch]$DebugScript,
+    [Parameter(Mandatory = $false, Position = 10, ParameterSetName = "CheckVersionOnly")][Switch]$CheckVersion
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
@@ -158,10 +160,12 @@ $stopwatch = [system.diagnostics.stopwatch]::StartNew()
 # and "SilentlyContinue" will output nothing on Write-Debug "Your text/values"
 $DebugPreference = "Continue"
 # Set Error Action to your needs
-$ErrorPreference = "SilentlyContinue"
+$ErrorActionPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "1.4.1"
+$ScriptVersion = "1.4.2"
 <# Version changes :
+1.4.1 -> 1.4.2
+Added the CheckVersion switch
 1.4 -> 1.4.1
 Fixed file name generation when not supplying any EventID and no EventSource -> putting "Last_X_" inside the csv name
 1.3 -> 1.4
@@ -173,6 +177,7 @@ simplified the script requirements : if no parameters specified, search and dump
 replaced "None" with "All" when we don't specify a filter parameter (because when $EventSouce = nothing, we basically
 search for all event sources)
 #>
+If ($CheckVersion) {Write-Host "Script Version v$ScriptVersion";exit}
 # Log or report file definition
 # $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)

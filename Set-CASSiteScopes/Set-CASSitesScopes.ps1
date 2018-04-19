@@ -50,21 +50,18 @@ Will generate a sample CSV file from within the script with CAS1, CAS2, CAS3 and
 The Sample-AutoDiscoverSiteScope.csv will be located on the same directory where you are executing the script, and will show you how your CSV file for your real server must be configured.
 
 .EXAMPLE
-
-C:\PS> .\Set-CASSitesScopes.ps1
+.\Set-CASSitesScopes.ps1
 This will launch the script against your production servers using the default <Script Directory>\Classeur.csv file containing your CAS servers (as file header) and your AD sites for each CAS server (under each CAS server header)
 This will NOT execute the AD Site scope setting because we don't specify the -EXECUTE parameter -> that's to test if we' re good before executing the changes.
 If Classeur.CSV doesn't exist, the script will tell you and exit.
 
 .EXAMPLE
-
-C:\PS> .\Set-CASSitesScopes.ps1 -Execute
+.\Set-CASSitesScopes.ps1 -Execute
 Same as the above example, but this time it will execute the commands and assign the sites to the CAS servers, as defined in the default CLASSEUR.CSV.
 If Classeur.CSV does not exist, the script will tell you and exit.
 
 .EXAMPLE
-
-C:\PS> .\Set-CASSitesScopes.ps1 -CSVFileName "C:\temp\AutreCSVFile.csv" -Execute
+.\Set-CASSitesScopes.ps1 -CSVFileName "C:\temp\AutreCSVFile.csv" -Execute
 Will not only display the command that will set the AD sites from default CSV file (note : no -CSVFileName parameter used, then
 will take the default C:\temp\Classeur1.csv file if it exists (otherwise if Classeur1.csv doesn't exist, will output an error message),
 but will also Execute the actual command to set the CAS AutodiscoverSiteScope (aka Site Affinity) as per the map defined in the file defined
@@ -78,11 +75,13 @@ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/abo
 
 https://github.com/SammyKrosoft
 #>
+[CmdLetBinding(DefaultParameterSetName = "NormalRun")]
 Param(
-    [String]$MyFile = "$($PSScriptroot)Classeur.csv",
-    [switch]$UseSampleCASServers,
-    [switch]$Execute,
-    [string]$SiteScopeConfigBeforeExecuting = "$($PSScriptroot)AutoDiscoverSiteScope_Config_Dump_$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').csv"
+    [Parameter(Mandatory = $false, Position = 1, ParameterSetName = "NormalRun")][String]$MyFile = "$($PSScriptroot)Classeur.csv",
+    [Parameter(Mandatory = $False, Position = 2, ParameterSetName = "NormalRun")][switch]$UseSampleCASServers,
+    [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "NormalRun")][switch]$Execute,
+    [Parameter(Mandatory = $false, Position = 4, ParameterSetName = "NormalRun")][string]$SiteScopeConfigBeforeExecuting = "$($PSScriptroot)AutoDiscoverSiteScope_Config_Dump_$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').csv",
+    [Parameter(Mandatory = $false, Position = 5, ParameterSetName = "CheckOnly")][switch]$CheckVersion
 )
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
 #Initializing a $Stopwatch variable to use to measure script execution
@@ -91,9 +90,10 @@ $stopwatch = [system.diagnostics.stopwatch]::StartNew()
 # and "SilentlyContinue" will output nothing on Write-Debug "Your text/values"
 $DebugPreference = "Continue"
 # Set Error Action to your needs
-$ErrorPreference = "SilentlyContinue"
+$ErrorActionPreference = "SilentlyContinue"
 #Script Version
 $ScriptVersion = "1.0"
+If ($CheckVersion) {Write-Host "Script Version v$ScriptVersion";exit}
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 <# -------------------------- DECLARATIONS -------------------------- #>
 $Answer = ""
