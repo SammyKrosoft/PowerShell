@@ -53,3 +53,8 @@
 
 
 function prompt {$Host.UI.RawUI.WindowTitle = $(Get-Location);"PS>"}
+# Now switching to preferred path
+$PreferredPath = "$env:userprofile\documents\Github\Powershell"
+Write-Host "Switching to \$(($PreferredPath.Split("\"))[($PreferredPath.Split("\")).Length-1]) folder..." -backgroundcolor yellow -foregroundcolor blue
+cd $PreferredPath
+
