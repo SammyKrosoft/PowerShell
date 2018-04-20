@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Just prints the permissions needed to run the designed cmdlet
+    Dumps the permissions needed to run the designed cmdlet
 
 .DESCRIPTION
     This script dumps the permissions necessary to run the deisgned cmdlet. Just put the cmdlet name as a parameter, and check the Role needed for this.

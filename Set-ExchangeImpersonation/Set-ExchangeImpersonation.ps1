@@ -4,6 +4,9 @@ $stopwatch = [system.diagnostics.stopwatch]::StartNew()
 # if $DebugPreference = "SilentlyContinue", then Write-Debug will not output anything on the screen...
 # Below we put $DebugPreference = "Continue"
 $DebugPreference = "Continue"
+
+
+
 $UserToAddOnPermissions = "ServiceAccount"
 #NOTE: we are in Powershell 2.0 and we want to get the script path directory so that we can store our files in the Script's directory
 $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition
