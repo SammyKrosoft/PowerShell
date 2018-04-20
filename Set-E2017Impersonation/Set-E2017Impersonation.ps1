@@ -32,13 +32,13 @@
     None.
 
 .EXAMPLE
-.\Set-ExchangeImpersonation.ps1
+.\Set-E2017Impersonation.ps1
 
 This will enable the default "ServiceAccount" user to impersonate the mailboxes listed 
 in the default path .\MailboxesToImpersonate.txt.
 
 .EXAMPLE
-.\Set-ExchangeImpersonation.ps1 -UserToAddOnPermissions "BES-Service-Account" -UsersToChangeFilePath "C:\temp\MailboxesToImpersonate.txt"
+.\Set-E2017Impersonation.ps1 -UserToAddOnPermissions "BES-Service-Account" -UsersToChangeFilePath "C:\temp\MailboxesToImpersonate.txt"
 
 This will enable the "Bes-Service-Account" to impersonate the mailboxes listed in the "C:\temp\MailboxesToImpersonate.txt" file.
 
@@ -159,6 +159,11 @@ If (!(Test-ExchTools)) {
 
 if (Test-Path $UsersToChangeFilePath)
 {
+    Write-Host "Found file with users to impersonate : $UsersToChangeFilePath" -ForegroundColor Green
+    
+    Write-Debug "Assigning Impersonation permission at the CAS level (necessary to then add the Impersonation permission to mailboxes)" -ForegroundColor Green
+    Get-ExchangeServer | Where-Object {$_.IsClientAccessServer -eq $TRUE} | ForEach-Object {Add-ADPermission -Identity $_.distinguishedname -User (Get-User -Identity $MailboxDisplayName | select-object).identity -extendedRight ms-Exch-EPI-Impersonation}
+    
     $AllMailboxesToChange = Get-Content $UsersToChangeFilePath
     ForEach ($MailboxToImpersonate in $AllMailboxesToChange)
     {
@@ -180,7 +185,6 @@ if (Test-Path $UsersToChangeFilePath)
             add-MailboxPermission -Identity $MailboxDisplayName -User $UserToAddOnPermissions -AccessRights "FullAccess" -ErrorAction Stop
                         
             Log "#SUCCESS#Mailbox #$MailboxToImpersonate# successfully processed"
-                        
         }
         Catch
         {
