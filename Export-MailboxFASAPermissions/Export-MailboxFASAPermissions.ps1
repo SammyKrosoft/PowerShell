@@ -183,6 +183,7 @@ function Write-Log {
 <# -------------------------- EXECUTIONS -------------------------- #>
 #for EXPORTING Full mailbox permission:
 Get-Mailbox -OrganizationalUnit “<OU path>” | Get-MailboxPermission | where { ($_.AccessRights -eq “FullAccess”) -and ($_.IsInherited -eq $false) -and -not ($_.User -like “NT AUTHORITY\SELF”) } | Export-Csv -path C:\TEMP\exch.csv –NoTypeInformation
+
 #for EXPORTING send as permission:
 Get-Mailbox -OrganizationalUnit “<OU path>” -ResultSize unlimited | Get-ADPermission | Where {$_.ExtendedRights -like “Send-As” -and $_.User -notlike “NT AUTHORITY\SELF” -and $_.Deny -eq $false} | Export-Csv -path C:\TEMP\sendas.csv –NoTypeInformation
 <# /EXECUTIONS #>
