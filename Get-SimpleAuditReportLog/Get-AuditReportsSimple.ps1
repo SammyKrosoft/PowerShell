@@ -1,25 +1,32 @@
 <#
 .SYNOPSIS
-    This scripts searches the audit logs and output them in a simple form using my colleague's matbyrd@microsoft.com script,
-    or display these in their native form like Search-AdminAudiLog does by default.
+    This scripts wraps around Search-AdminAuditLog Exchange Management Shell cmdlet, which searches the audit logs 
+    and output them in a simple form using my colleague's matbyrd@microsoft.com script, or display these in their
+    native form like Search-AdminAudiLog does by default.
 
 .DESCRIPTION
     This script searches the Admin audit logs, and optionnally with the use of matbyrd@microsoft.com's function, outputs the 
     results in a native Search-AdminAuditLog form or in the form simplified by matbyrd.
 
 .PARAMETER CmdLet
-    This parameter does blablabla
+    Filter the search on one or more specific cmdlets. Separate each cmdlet with a comma ","
 
-.PARAMETER NbDaysBack
-    Indicates how many days before today we wish to search logs from
+.PARAMETER NbDaysToLookBack
+    Indicates how many days from today we wish to search logs from the past (argh doesn't sound very english).
+    I am using this parameter to populate the -StartDate and -EndDate of the Search-AdminAuditLog Exchange Management
+    Shell cmdlet because I always mess with dates. In Canada we can write dates starting with the day first, like DD-MM-YYYY
+    and some also write dates with the month first like MM-DD-YYYY. Specifying a number of days from when we want to 
+    look for Audit Logs enables me to leverage (Get-Date).AddDays(-12) for example if I want the search to look at the
+    Admin Audit Logs from 12 days ago to today.
 
 .PARAMETER ResultSize
+    I change the default to 5000 - feel free to change it with the script or directly with Search-AdminAuditLog -ResultSize
 
-.PARAMETER Simple
-    This parameter does blablabla
+.PARAMETER DisableSimple
+    Bypasses matbyrd@microsoft.com function to display the raw output of Search-AdminAuditLog.
 
 .PARAMETER ExportToFile
-    Exports to a CSV file named after the script's name, in the script's directory by default
+    Exports to a CSV file named after the script's name, in the script's directory by default.
 
 .INPUTS
     None.
@@ -28,29 +35,37 @@
     Print results on screen or on a CSV file
 
 .EXAMPLE
-Get-AuditReportsSimple
+.\Get-AuditReportsSimple
 
 This will show the audit reports
 
 .EXAMPLE
-    Add 14 with 23
-C:\PS> .\Add-Numbers.ps1 -FirstNumber 14 -SecondNumber 23
-37
+.\Get-AuditReportSimple -CmdLet New-MoveRequest -NbDaysToLookBack 30 -ExportToFile
+
+This will search for all the admin audit log entries for Move Mailbox operations that took have been attempted
+in the last month (30 days) and store it in a CSV file
 
 .NOTES
-None
+This "wrapper" is directly using matbyrd@microsoft.com's function.
+See the Technet Gallery link in the "Related Links" part of this Get-Help comments section.
 
 .LINK
-    https://docs.microsoft.com/en-us/powershell/module/exchange/policy-and-compliance-audit/search-adminauditlog?view=exchange-ps
+https://docs.microsoft.com/en-us/powershell/module/exchange/policy-and-compliance-audit/search-adminauditlog?view=exchange-ps
 
 .LINK
-    https://github.com/SammyKrosoft
+https://gallery.technet.microsoft.com/scriptcenter/Get-SimpleAuditLogReport-19e9e51a
+
+.LINK
+https://github.com/SammyKrosoft
 #>
 [CmdLetBinding(DefaultParameterSetName = "NormalRun")]
 Param(
-    [Parameter(Mandatory = $False, Position = 1, ParameterSetName = "NormalRun")][int]$FirstNumber = 1,
-    [Parameter(Mandatory = $False, Position = 2, ParameterSetName = "NormalRun")][int]$SecondNumber = 2,
-    [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "CheckOnly")][switch]$CheckVersion
+    [Parameter(Mandatory = $False, Position = 1, ParameterSetName = "NormalRun")] $Cmdlet,
+    [Parameter(Mandatory = $False, Position = 2, ParameterSetName = "NormalRun")] [int]$NbDaysToLookBack = 30,
+    [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "NormalRun")] $ResultSize = 3000,
+    [Parameter(Mandatory = $false, Position = 4, ParameterSetName = "NormalRun")] [switch]$DisableSimple,
+    [Parameter(Mandatory = $false, Position = 5, ParameterSetName = "NormalRun")] [switch]$ExportToFile,
+    [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "CheckOnly")] [switch]$CheckVersion
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
@@ -67,18 +82,19 @@ $ScriptVersion = "0.1"
 v0.1 : first script version
 v0.1 -> v0.5 : 
 #>
-If ($CheckVersion) {Write-Host "Script Version v$ScriptVersion";exit}
+$ScriptName = $MyInvocation.MyCommand.Name
+If ($CheckVersion) {Write-Host "SCRIPT NAME :$ScriptName `nSCRIPT VERSION :$ScriptVersion";exit}
 # Log or report file definition
-# NOTE: use #PSScriptRoot in Powershell 3.0 and later or use $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition in Powershell 2.0
-$OutputReport = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+# NOTE: use $PSScriptRoot in Powershell 3.0 and later or use $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition in Powershell 2.0
+$OutputReport = "$PSScriptRoot\$ScriptName_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
-$ScriptLog = "$PSScriptRoot\$($MyInvocation.MyCommand.Name)-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
+$ScriptLog = "$PSScriptRoot\$ScriptName-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 <# -------------------------- DECLARATIONS -------------------------- #>
 
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
-Function Get-SimpleAuditLogReport (){
+Function Get-SimpleAuditLogReport {
     <# 
     .SYNOPSIS
     Parses the output of Search-AdminAuditlog to produce more readable results.
@@ -284,13 +300,68 @@ Function Get-SimpleAuditLogReport (){
         # Return the array set
         Return $ResultSet
     }
-                                        }
+}
+
+Function Test-ExchTools(){
+    Try
+    {
+        Get-command Get-mailbox -ErrorAction Stop
+        $ExchInstalledStatus = $true
+        $Message = "Exchange tools are present !"
+        Write-Host $Message -ForegroundColor Blue -BackgroundColor Red
+    }
+    Catch [System.SystemException]
+    {
+        $ExchInstalledStatus = $false
+        $Message = "Exchange Tools are not present !"
+        Write-Host $Message -ForegroundColor red -BackgroundColor Blue
+    }
+    Return $ExchInstalledStatus
+}
+
+function IsEmpty($Param){
+    If ($Param -eq "All" -or $Param -eq "" -or $Param -eq $Null -or $Param -eq 0) {
+        Return $True
+    } Else {
+        Return $False
+    }
+}
 <# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
+#If (!(Test-ExchTools)) {Exit}
+
+#Building the Search-AdminAuditLog with the parameters from the wrapper script...
+$StrCmdLetBase = "Search-AdminAuditLog"
+$StrCmdLet_CmdLet = $(If (IsEmpty $CmdLet){""}Else{" -CmdLet $Cmdlet"})
+$StrCmdLet_NbDaysToLookBack = $(If (IsEmpty $NbDaysToLookBack){""}Else{" -StartDate $((Get-Date).AddDays(-$NbDaysToLookBack)) -EndDate $(Get-Date)"})
+$StrCmdLet_ResultSize = " -ResultSize $ResultSize"
+
+#Full Command is a concatenation of the above
+$StrCmdLet = $StrCmdLetBase + $StrCmdLet_CmdLet + $StrCmdLet_NbDaysToLookBack + $StrCmdLet_ResultSize
+
+If ($DisableSimple) {
+    # If we choose to see the raw Audit Log Entry as opposed to the cmdlet re-built by matbyrd@microsoft.com, we select a few properties
+    # feel free to add more if you want to export more : PowerShell is very flexible !
+    $StrFinalCmd = $StrCmdLet + ' | Select RunDate, caller, cmdletname, ObjectModified, @{Name=''ModifiedProps'';Expression={[string]::join(";",($_.ModifiedProperties))}}'
+} Else {
+    $StrFinalCmd = $StrCmdLet + ' | Get-SimpleAuditLogReport -Agree'
+}
+
+If ($ExportToFile){$StrFinalCmd = $StrFinalCmd + " | Export-CSV $OutputReport"}
+
+Write-Host $StrFinalCmd
 
 <# /EXECUTIONS #>
+<# -------------------------- CLEANUP VARIABLES -------------------------- #>
+$StrCmdLetBase = $null
+$StrCmdLet_CmdLet = $null
+$StrCmdLet_NbDaysToLookBack = $null
+$StrCmdLet_ResultSize = $null
+$StrCmdLet = $null
+<# /CLEANUP VARIABLES#>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
 #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...
 $stopwatch.Stop()
 Write-Host "`n`nThe script took $($StopWatch.Elapsed.TotalSeconds) seconds to execute..."
+$StopWatch = $null
 <# ---------------- /SCRIPT_FOOTER (NOTHING BEYOND THIS POINT) ----------- #>

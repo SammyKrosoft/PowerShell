@@ -139,10 +139,14 @@ Function Test-ExchTools()
     {
         Get-command Get-mailbox -ErrorAction Stop
         $ExchInstalledStatus = $true
+        $Message = "Exchange tools are present !"
+        Write-Host $Message -ForegroundColor Blue -BackgroundColor Red
     }
     Catch [System.SystemException]
     {
         $ExchInstalledStatus = $false
+        $Message = "Exchange Tools are not present !"
+        Write-Host $Message -ForegroundColor red -BackgroundColor Blue
     }
     Return $ExchInstalledStatus
 }
