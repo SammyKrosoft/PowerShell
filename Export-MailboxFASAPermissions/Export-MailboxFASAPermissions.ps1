@@ -179,25 +179,39 @@ function Write-Log {
             Write-debug "Log: Missing -LogFile parameter or bad LogFile name. Will not save input string to log file.."
         }
     }
-<# /FUNCTIONS #>
+
+function _Progress {
+    param(
+        [parameter(position = 0)] $Id = 1,
+        [parameter(position = 1)] $PercentComplete=100,
+        [parameter(position = 2)] $Activity = "Working...",
+        [parameter(position = 3)] $Status="In Progress..."
+        )
+
+    Write-Progress -id 1 -activity $Activity -status $Status -PercentComplete ($PercentComplete)
+    }
+
+    <# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
-#for EXPORTING Full mailbox permission:
-Get-Mailbox -OrganizationalUnit “<OU path>” | Get-MailboxPermission | where { ($_.AccessRights -eq “FullAccess”) -and ($_.IsInherited -eq $false) -and -not ($_.User -like “NT AUTHORITY\SELF”) } | Export-Csv -path C:\TEMP\exch.csv –NoTypeInformation
-
-#for EXPORTING send as permission:
-Get-Mailbox -OrganizationalUnit “<OU path>” -ResultSize unlimited | Get-ADPermission | Where {$_.ExtendedRights -like “Send-As” -and $_.User -notlike “NT AUTHORITY\SELF” -and $_.Deny -eq $false} | Export-Csv -path C:\TEMP\sendas.csv –NoTypeInformation
-
-
-# List all Users Who Have Access to Other Exchange Mailboxes:Change the items below that are in bold to fit your needs.
-Get-Mailbox | Get-MailboxPermission | where {$_.user.tostring() -ne "NT AUTHORITY\SELF" -and $_.IsInherited -eq $false} | Select Identity,User,@{Name='Access Rights';Expression={[string]::join(', ', $_.AccessRights)}} | Export-Csv -NoTypeInformation C:\*location*\mailboxpermissionssource.csv
+$Databases = Get-MailboxDatabase
+$DBProgressCount = 0
+Foreach ($Database in $Databases){
+    $DBProgressCount++
+    _Progress ($DBProgressCount/$Databases.count*100) "Processing mailboxes database by database" "Current database : $($Database.name)"
+    Get-Mailbox -resultsize unlimited -database $Database
+}
 
 # Get mailbox forward to from mailboxes:Change the items below that are in bold to fit your needs.
-Get-Mailbox -Filter {ForwardingAddress -ne $Null} |Select Alias, ForwardingAddress | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesForwardTo.csv
+# Get-Mailbox -Filter {ForwardingAddress -ne $Null} |Select Alias, ForwardingAddress | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesForwardTo.csv
 
 # Get mailbox grant send on behalf to:Change the items below that are in bold to fit your needs.
-Get-Mailbox -Filter {GrantSendOnBehalfTo -ne $Null} |Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}} | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesSendOnBehalf.csv
+#Get-Mailbox -Filter {GrantSendOnBehalfTo -ne $Null} |Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}} | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesSendOnBehalf.csv
 
-# 
+# From other
+$SendAs=Get-ADPermission $mailbox.identity | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")} | Sort-Object name
+$FullAccess=Get-Mailbox $mailbox | Get-MailboxPermission | ?{($_.AccessRights -like "*fullaccess*") -and ($_.User -notlike "*nt authority\self*") -and ($_.User -notlike "*nt authority\system*") -and ($_.User -notlike "*Exchange Trusted Subsystem*") -and ($_.User -notlike "*Exchange Servers*") -and ($_.IsInherited -like "false")}
+$SendOnBehalf = Get-Mailbox $mailbox -Filter {GrantSendOnBehalfTo -ne $Null} |Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}}
+
 
 
 <# /EXECUTIONS #>
