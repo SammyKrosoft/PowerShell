@@ -68,9 +68,12 @@ $OutputReport = "$PSScriptRoot\$ScriptName_$(get-date -f yyyy-MM-dd-hh-mm-ss).cs
 $ScriptLog = "$PSScriptRoot\$ScriptName-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 <# -------------------------- DECLARATIONS -------------------------- #>
-
+[array]$report = @()
+$Databases = $null
+$DBProgressCount = $null
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
+#region Functions
 function Write-Log {
     <# 
      .SYNOPSIS
@@ -218,6 +221,7 @@ function IsEmpty($Param){
     }
 }
 <# /FUNCTIONS #>
+#endregion Functions
 <# -------------------------- EXECUTIONS -------------------------- #>
 Test-ExchTools
 
@@ -228,37 +232,52 @@ Foreach ($Database in $Databases){
     _Progress ($DBProgressCount/$Databases.count*100) "Processing mailboxes database by database" "Current database : $($Database.name)"
     $Mailboxes = Get-Mailbox -resultsize unlimited -database $Database
     Foreach ($Mailbox in $Mailboxes) {
-        $SendAs=Get-ADPermission $mailbox.identity | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")} | Sort-Object name
+        Write-Host "Working on mailbox $($Mailbox.DisplayName) which Primary SMTP is $($Mailbox.primarySMTPAddress.ToString())" -ForegroundColor Blue -BackgroundColor Yellow
+        $SendAs=Get-ADPermission $mailbox.identity | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")}
         $FullAccess=Get-Mailbox $mailbox | Get-MailboxPermission | ?{($_.AccessRights -like "*fullaccess*") -and ($_.User -notlike "*nt authority\self*") -and ($_.User -notlike "*nt authority\system*") -and ($_.User -notlike "*Exchange Trusted Subsystem*") -and ($_.User -notlike "*Exchange Servers*") -and ($_.IsInherited -like "false")}
         $SendOnBehalf = Get-Mailbox $mailbox | Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}}
 
+        #Initializing a new Powershell object to store our discovered properties
+        $Obj = New-Object PSObject
+        #Populating basic mailbox info to bind with SendAs / FullMailbox / SendOnBehalf permissions
+        $Obj | Add-Member -MemberType NoteProperty -Name "DisplayName" -Value $Mailbox.DisplayName
+        $obj | Add-Member -MemberType NoteProperty -Name "PrimarySMTPAddress" -Value $Mailbox.PrimarySMTPAddress.ToString()
+		
         If (IsEmpty $SendAs){
             Write-Host "No custom Send As permissions detected"
         } Else {
-            Write-Host "$SendAs"
+            Write-Host "Found one or more SendAs Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
+            [array]$UsersWithSendAs = @()
+            ForEach($SAright in $SendAs){$UsersWithSendAs += ($SARight.User.ToString())}
+            $Obj | Add-Member -MemberType NoteProperty -Name "SendAsPermissions" -Value $($UsersWithSendAs -join ";")
         }
 
         If (IsEmpty $FullAccess){
             Write-Host "No custom Full Access permissions detected"
         }  else {
-            Write-Host "$FullAccess"
+            Write-Host "Found one or more Full Access Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
+            [array]$UsersWithFullAccess = @()
+            ForEach ($FARight in $FullAccess) {$UsersWithFullAccess += ($FARight.User.ToString())}
+            $Obj | Add-Member -MemberType NoteProperty -Name "FullAccessPermissions" -Value $($UsersWithFullAccess -join ";")
         }
         
         If (IsEmpty ($SendOnBehalf.GrantSendOnBehalfTo)){
             Write-Host "No custom SendOnBehalf permissions detected"
         } else {
-            Write-Host $SendOnBehalf
+            Write-Host "Found one or more SendOnBehalf Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
+            $Obj | Add-Member -MemberType NoteProperty -Name "SendOnBehalfPermissions" -Value $SendOnBehalf
         }
 
+        #Appending the current object into the $report variable (it's an array, remember)
+        $report += $Obj
     }
 }
 
 # Get mailbox forward to from mailboxes:Change the items below that are in bold to fit your needs.
 # Get-Mailbox -Filter {ForwardingAddress -ne $Null} |Select Alias, ForwardingAddress | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesForwardTo.csv
-
 # Get mailbox grant send on behalf to:Change the items below that are in bold to fit your needs.
 #Get-Mailbox -Filter {GrantSendOnBehalfTo -ne $Null} |Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}} | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesSendOnBehalf.csv
-
+$Report | export-csv -NoTypeInformation $OutputReport
 <# /EXECUTIONS #>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
 #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...
