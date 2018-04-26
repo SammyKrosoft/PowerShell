@@ -183,8 +183,23 @@ function Write-Log {
 <# -------------------------- EXECUTIONS -------------------------- #>
 #for EXPORTING Full mailbox permission:
 Get-Mailbox -OrganizationalUnit “<OU path>” | Get-MailboxPermission | where { ($_.AccessRights -eq “FullAccess”) -and ($_.IsInherited -eq $false) -and -not ($_.User -like “NT AUTHORITY\SELF”) } | Export-Csv -path C:\TEMP\exch.csv –NoTypeInformation
+
 #for EXPORTING send as permission:
 Get-Mailbox -OrganizationalUnit “<OU path>” -ResultSize unlimited | Get-ADPermission | Where {$_.ExtendedRights -like “Send-As” -and $_.User -notlike “NT AUTHORITY\SELF” -and $_.Deny -eq $false} | Export-Csv -path C:\TEMP\sendas.csv –NoTypeInformation
+
+
+# List all Users Who Have Access to Other Exchange Mailboxes:Change the items below that are in bold to fit your needs.
+Get-Mailbox | Get-MailboxPermission | where {$_.user.tostring() -ne "NT AUTHORITY\SELF" -and $_.IsInherited -eq $false} | Select Identity,User,@{Name='Access Rights';Expression={[string]::join(', ', $_.AccessRights)}} | Export-Csv -NoTypeInformation C:\*location*\mailboxpermissionssource.csv
+
+# Get mailbox forward to from mailboxes:Change the items below that are in bold to fit your needs.
+Get-Mailbox -Filter {ForwardingAddress -ne $Null} |Select Alias, ForwardingAddress | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesForwardTo.csv
+
+# Get mailbox grant send on behalf to:Change the items below that are in bold to fit your needs.
+Get-Mailbox -Filter {GrantSendOnBehalfTo -ne $Null} |Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}} | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesSendOnBehalf.csv
+
+# 
+
+
 <# /EXECUTIONS #>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
 #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...
