@@ -55,16 +55,17 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorActionPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "0.1"
+$ScriptVersion = "0.1 Alpha"
 <# Version changes
 v0.1 - first script version
 #>
-If ($CheckVersion) {Write-Host "Script Version v$ScriptVersion";exit}
+$ScriptName = $MyInvocation.MyCommand.Name
+If ($CheckVersion) {Write-Host "SCRIPT NAME :$ScriptName `nSCRIPT VERSION :$ScriptVersion";exit}
 # Log or report file definition
 # NOTE: use #PSScriptRoot in Powershell 3.0 and later or use $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition in Powershell 2.0
-$OutputReport = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+$OutputReport = "$PSScriptRoot\$ScriptName_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
-$ScriptLog = "$PSScriptRoot\$($MyInvocation.MyCommand.Name)-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
+$ScriptLog = "$PSScriptRoot\$ScriptName-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 <# -------------------------- DECLARATIONS -------------------------- #>
 
@@ -188,17 +189,68 @@ function _Progress {
         [parameter(position = 3)] $Status="In Progress..."
         )
 
-    Write-Progress -id 1 -activity $Activity -status $Status -PercentComplete ($PercentComplete)
+    Write-Progress -id $Id -activity $Activity -status $Status -PercentComplete ($PercentComplete)
     }
 
-    <# /FUNCTIONS #>
+Function Test-ExchTools(){
+    Try
+    {
+        Get-command Get-mailbox -ErrorAction Stop
+        $ExchInstalledStatus = $true
+        $Message = "Exchange tools are present !"
+        Write-Host $Message -ForegroundColor Blue -BackgroundColor Red
+    }
+    Catch [System.SystemException]
+    {
+        $ExchInstalledStatus = $false
+        $Message = "Exchange Tools are not present !"
+        Write-Host $Message -ForegroundColor red -BackgroundColor Blue
+        Exit
+    }
+    Return $ExchInstalledStatus
+}
+    
+function IsEmpty($Param){
+    If ($Param -eq "All" -or $Param -eq "" -or $Param -eq $Null -or $Param -eq 0) {
+        Return $True
+    } Else {
+        Return $False
+    }
+}
+<# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
+Test-ExchTools
+
 $Databases = Get-MailboxDatabase
 $DBProgressCount = 0
 Foreach ($Database in $Databases){
     $DBProgressCount++
     _Progress ($DBProgressCount/$Databases.count*100) "Processing mailboxes database by database" "Current database : $($Database.name)"
-    Get-Mailbox -resultsize unlimited -database $Database
+    $Mailboxes = Get-Mailbox -resultsize unlimited -database $Database
+    Foreach ($Mailbox in $Mailboxes) {
+        $SendAs=Get-ADPermission $mailbox.identity | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")} | Sort-Object name
+        $FullAccess=Get-Mailbox $mailbox | Get-MailboxPermission | ?{($_.AccessRights -like "*fullaccess*") -and ($_.User -notlike "*nt authority\self*") -and ($_.User -notlike "*nt authority\system*") -and ($_.User -notlike "*Exchange Trusted Subsystem*") -and ($_.User -notlike "*Exchange Servers*") -and ($_.IsInherited -like "false")}
+        $SendOnBehalf = Get-Mailbox $mailbox | Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}}
+
+        If (IsEmpty $SendAs){
+            Write-Host "No custom Send As permissions detected"
+        } Else {
+            Write-Host "$SendAs"
+        }
+
+        If (IsEmpty $FullAccess){
+            Write-Host "No custom Full Access permissions detected"
+        }  else {
+            Write-Host "$FullAccess"
+        }
+        
+        If (IsEmpty $SendOnBehalf){
+            Write-Host "No custom Full Access permissions detected"
+        } else {
+            Write-Host $SendOnBehalf
+        }
+
+    }
 }
 
 # Get mailbox forward to from mailboxes:Change the items below that are in bold to fit your needs.
@@ -206,13 +258,6 @@ Foreach ($Database in $Databases){
 
 # Get mailbox grant send on behalf to:Change the items below that are in bold to fit your needs.
 #Get-Mailbox -Filter {GrantSendOnBehalfTo -ne $Null} |Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}} | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesSendOnBehalf.csv
-
-# From other
-$SendAs=Get-ADPermission $mailbox.identity | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")} | Sort-Object name
-$FullAccess=Get-Mailbox $mailbox | Get-MailboxPermission | ?{($_.AccessRights -like "*fullaccess*") -and ($_.User -notlike "*nt authority\self*") -and ($_.User -notlike "*nt authority\system*") -and ($_.User -notlike "*Exchange Trusted Subsystem*") -and ($_.User -notlike "*Exchange Servers*") -and ($_.IsInherited -like "false")}
-$SendOnBehalf = Get-Mailbox $mailbox -Filter {GrantSendOnBehalfTo -ne $Null} |Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}}
-
-
 
 <# /EXECUTIONS #>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
