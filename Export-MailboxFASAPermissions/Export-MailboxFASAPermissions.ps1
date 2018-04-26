@@ -249,6 +249,7 @@ Foreach ($Database in $Databases){
             Write-Host "Found one or more SendAs Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
             [array]$UsersWithSendAs = @()
             ForEach($SAright in $SendAs){$UsersWithSendAs += ($SARight.User.ToString())}
+            $UsersWithSendAs -join ";"
             $Obj | Add-Member -MemberType NoteProperty -Name "SendAsPermissions" -Value $($UsersWithSendAs -join ";")
         }
 
@@ -258,6 +259,7 @@ Foreach ($Database in $Databases){
             Write-Host "Found one or more Full Access Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
             [array]$UsersWithFullAccess = @()
             ForEach ($FARight in $FullAccess) {$UsersWithFullAccess += ($FARight.User.ToString())}
+            $UsersWithFullAccess -join ";"
             $Obj | Add-Member -MemberType NoteProperty -Name "FullAccessPermissions" -Value $($UsersWithFullAccess -join ";")
         }
         
