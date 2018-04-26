@@ -244,8 +244,8 @@ Foreach ($Database in $Databases){
             Write-Host "$FullAccess"
         }
         
-        If (IsEmpty $SendOnBehalf){
-            Write-Host "No custom Full Access permissions detected"
+        If (IsEmpty ($SendOnBehalf.GrantSendOnBehalfTo)){
+            Write-Host "No custom SendOnBehalf permissions detected"
         } else {
             Write-Host $SendOnBehalf
         }
