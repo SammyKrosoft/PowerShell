@@ -333,7 +333,7 @@ function IsEmpty($Param){
 #Building the Search-AdminAuditLog with the parameters from the wrapper script...
 $StrCmdLetBase = "Search-AdminAuditLog"
 $StrCmdLet_CmdLet = $(If (IsEmpty $CmdLet){""}Else{" -CmdLet $Cmdlet"})
-$StrCmdLet_NbDaysToLookBack = $(If (IsEmpty $NbDaysToLookBack){""}Else{" -StartDate $((Get-Date).AddDays(-$NbDaysToLookBack)) -EndDate $(Get-Date)"})
+$StrCmdLet_NbDaysToLookBack = $(If (IsEmpty $NbDaysToLookBack){""}Else{" -StartDate ""$((Get-Date).AddDays(-$NbDaysToLookBack))"" -EndDate ""$(Get-Date)"""})
 $StrCmdLet_ResultSize = " -ResultSize $ResultSize"
 
 #Full Command is a concatenation of the above
@@ -350,6 +350,7 @@ If ($DisableSimple) {
 If ($ExportToFile){$StrFinalCmd = $StrFinalCmd + " | Export-CSV $OutputReport"}
 
 Write-Host $StrFinalCmd
+Invoke-Expression $StrFinalCmd
 
 <# /EXECUTIONS #>
 <# -------------------------- CLEANUP VARIABLES -------------------------- #>
