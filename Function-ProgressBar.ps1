@@ -19,13 +19,12 @@ http:\\Get-Mailbox.org
 #>
 
 
-function _Progress
-{
+function _Progress {
     param(
-        [parameter(position=0)]
-        $PercentComplete=100,
-        $Status="In Progress..."
+        [parameter(position = 0)] $PercentComplete=100,
+        [parameter(position = 1)] $Activity = "Working...",
+        [parameter(position = 2)] $Status="In Progress..."
         )
 
-    Write-Progress -id 1 -activity "Working !" -status $Status -percentComplete ($PercentComplete)
-}
+    Write-Progress -id 1 -activity $Activity -status $Status -PercentComplete ($PercentComplete)
+    }

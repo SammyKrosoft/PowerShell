@@ -55,16 +55,17 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorActionPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "0.1"
+$ScriptVersion = "0.1 Alpha"
 <# Version changes
 v0.1 - first script version
 #>
-If ($CheckVersion) {Write-Host "Script Version v$ScriptVersion";exit}
+$ScriptName = $MyInvocation.MyCommand.Name
+If ($CheckVersion) {Write-Host "SCRIPT NAME :$ScriptName `nSCRIPT VERSION :$ScriptVersion";exit}
 # Log or report file definition
 # NOTE: use #PSScriptRoot in Powershell 3.0 and later or use $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition in Powershell 2.0
-$OutputReport = "$PSScriptRoot\ReportOrLogFile_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+$OutputReport = "$PSScriptRoot\$ScriptName_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
-$ScriptLog = "$PSScriptRoot\$($MyInvocation.MyCommand.Name)-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
+$ScriptLog = "$PSScriptRoot\$ScriptName-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 <# -------------------------- DECLARATIONS -------------------------- #>
 
@@ -179,26 +180,84 @@ function Write-Log {
             Write-debug "Log: Missing -LogFile parameter or bad LogFile name. Will not save input string to log file.."
         }
     }
+
+function _Progress {
+    param(
+        [parameter(position = 0)] $Id = 1,
+        [parameter(position = 1)] $PercentComplete=100,
+        [parameter(position = 2)] $Activity = "Working...",
+        [parameter(position = 3)] $Status="In Progress..."
+        )
+
+    Write-Progress -id $Id -activity $Activity -status $Status -PercentComplete ($PercentComplete)
+    }
+
+Function Test-ExchTools(){
+    Try
+    {
+        Get-command Get-mailbox -ErrorAction Stop
+        $ExchInstalledStatus = $true
+        $Message = "Exchange tools are present !"
+        Write-Host $Message -ForegroundColor Blue -BackgroundColor Red
+    }
+    Catch [System.SystemException]
+    {
+        $ExchInstalledStatus = $false
+        $Message = "Exchange Tools are not present !"
+        Write-Host $Message -ForegroundColor red -BackgroundColor Blue
+        Exit
+    }
+    Return $ExchInstalledStatus
+}
+    
+function IsEmpty($Param){
+    If ($Param -eq "All" -or $Param -eq "" -or $Param -eq $Null -or $Param -eq 0) {
+        Return $True
+    } Else {
+        Return $False
+    }
+}
 <# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
-#for EXPORTING Full mailbox permission:
-Get-Mailbox -OrganizationalUnit “<OU path>” | Get-MailboxPermission | where { ($_.AccessRights -eq “FullAccess”) -and ($_.IsInherited -eq $false) -and -not ($_.User -like “NT AUTHORITY\SELF”) } | Export-Csv -path C:\TEMP\exch.csv –NoTypeInformation
+Test-ExchTools
 
-#for EXPORTING send as permission:
-Get-Mailbox -OrganizationalUnit “<OU path>” -ResultSize unlimited | Get-ADPermission | Where {$_.ExtendedRights -like “Send-As” -and $_.User -notlike “NT AUTHORITY\SELF” -and $_.Deny -eq $false} | Export-Csv -path C:\TEMP\sendas.csv –NoTypeInformation
+$Databases = Get-MailboxDatabase
+$DBProgressCount = 0
+Foreach ($Database in $Databases){
+    $DBProgressCount++
+    _Progress ($DBProgressCount/$Databases.count*100) "Processing mailboxes database by database" "Current database : $($Database.name)"
+    $Mailboxes = Get-Mailbox -resultsize unlimited -database $Database
+    Foreach ($Mailbox in $Mailboxes) {
+        $SendAs=Get-ADPermission $mailbox.identity | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")} | Sort-Object name
+        $FullAccess=Get-Mailbox $mailbox | Get-MailboxPermission | ?{($_.AccessRights -like "*fullaccess*") -and ($_.User -notlike "*nt authority\self*") -and ($_.User -notlike "*nt authority\system*") -and ($_.User -notlike "*Exchange Trusted Subsystem*") -and ($_.User -notlike "*Exchange Servers*") -and ($_.IsInherited -like "false")}
+        $SendOnBehalf = Get-Mailbox $mailbox | Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}}
 
+        If (IsEmpty $SendAs){
+            Write-Host "No custom Send As permissions detected"
+        } Else {
+            Write-Host "$SendAs"
+        }
 
-# List all Users Who Have Access to Other Exchange Mailboxes:Change the items below that are in bold to fit your needs.
-Get-Mailbox | Get-MailboxPermission | where {$_.user.tostring() -ne "NT AUTHORITY\SELF" -and $_.IsInherited -eq $false} | Select Identity,User,@{Name='Access Rights';Expression={[string]::join(', ', $_.AccessRights)}} | Export-Csv -NoTypeInformation C:\*location*\mailboxpermissionssource.csv
+        If (IsEmpty $FullAccess){
+            Write-Host "No custom Full Access permissions detected"
+        }  else {
+            Write-Host "$FullAccess"
+        }
+        
+        If (IsEmpty ($SendOnBehalf.GrantSendOnBehalfTo)){
+            Write-Host "No custom SendOnBehalf permissions detected"
+        } else {
+            Write-Host $SendOnBehalf
+        }
+
+    }
+}
 
 # Get mailbox forward to from mailboxes:Change the items below that are in bold to fit your needs.
-Get-Mailbox -Filter {ForwardingAddress -ne $Null} |Select Alias, ForwardingAddress | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesForwardTo.csv
+# Get-Mailbox -Filter {ForwardingAddress -ne $Null} |Select Alias, ForwardingAddress | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesForwardTo.csv
 
 # Get mailbox grant send on behalf to:Change the items below that are in bold to fit your needs.
-Get-Mailbox -Filter {GrantSendOnBehalfTo -ne $Null} |Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}} | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesSendOnBehalf.csv
-
-# 
-
+#Get-Mailbox -Filter {GrantSendOnBehalfTo -ne $Null} |Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}} | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesSendOnBehalf.csv
 
 <# /EXECUTIONS #>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
