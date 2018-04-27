@@ -63,14 +63,16 @@ $ScriptName = $MyInvocation.MyCommand.Name
 If ($CheckVersion) {Write-Host "SCRIPT NAME :$ScriptName `nSCRIPT VERSION :$ScriptVersion";exit}
 # Log or report file definition
 # NOTE: use #PSScriptRoot in Powershell 3.0 and later or use $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition in Powershell 2.0
-$OutputReport = "$PSScriptRoot\$ScriptName_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+$scriptPath = split-path -parent $MyInvocation.MyCommand.Definition #<-- that's for Powershell 2.0
+$OutputReport = "$($ScriptPath)\$($ScriptName)_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
-$ScriptLog = "$PSScriptRoot\$ScriptName-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
+$ScriptLog = "$($ScriptPath)\$($ScriptName)-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 <# -------------------------- DECLARATIONS -------------------------- #>
 [array]$report = @()
 $Databases = $null
 $DBProgressCount = $null
+$Mailboxes = @()
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
 #region Functions
@@ -225,12 +227,17 @@ function IsEmpty($Param){
 <# -------------------------- EXECUTIONS -------------------------- #>
 Test-ExchTools
 
-$Databases = Get-MailboxDatabase
+#$Databases = Get-MailboxDatabase
+$Databases = "DB01" #, "DB02", "DB03", "DB04", "DB04", "DB06"
 $DBProgressCount = 0
 Foreach ($Database in $Databases){
     $DBProgressCount++
-    _Progress ($DBProgressCount/$Databases.count*100) "Processing mailboxes database by database" "Current database : $($Database.name)"
-    $Mailboxes = Get-Mailbox -resultsize unlimited -database $Database
+    _Progress ($DBProgressCount/$($Databases.count)*100) "Processing mailboxes database by database" "Current database : $($Database.name)"
+    #$Mailboxes = Get-Mailbox -resultsize unlimited -database $Database
+    $strMailboxes = "Discovery Search Mailbox","RoomTest1 Ottawa" #,"User10", "User1","Test Canada",  "Room 1 - 85 Sparks"
+    $Mailboxes = @()
+    $Mailboxes += $strMailboxes | Get-Mailbox
+
     Foreach ($Mailbox in $Mailboxes) {
         Write-Host "Working on mailbox $($Mailbox.DisplayName) which Primary SMTP is $($Mailbox.primarySMTPAddress.ToString())" -ForegroundColor Blue -BackgroundColor Yellow
         $SendAs=Get-ADPermission $mailbox.identity | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")}
@@ -245,29 +252,32 @@ Foreach ($Database in $Databases){
 		
         If (IsEmpty $SendAs){
             Write-Host "No custom Send As permissions detected"
+            $Obj | Add-Member -MemberType NoteProperty -Name "SendAsPermissions" -Value ""
         } Else {
             Write-Host "Found one or more SendAs Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
             [array]$UsersWithSendAs = @()
             ForEach($SAright in $SendAs){$UsersWithSendAs += ($SARight.User.ToString())}
-            $UsersWithSendAs -join ";"
-            $Obj | Add-Member -MemberType NoteProperty -Name "SendAsPermissions" -Value $($UsersWithSendAs -join ";")
+            $strUsersWithSendAs = $UsersWithSendAs -join ";"
+            $Obj | Add-Member -MemberType NoteProperty -Name "SendAsPermissions" -Value $strUsersWithSendAs
         }
 
         If (IsEmpty $FullAccess){
             Write-Host "No custom Full Access permissions detected"
+            $Obj | Add-Member -MemberType NoteProperty -Name "FullAccessPermissions" -Value ""
         }  else {
             Write-Host "Found one or more Full Access Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
             [array]$UsersWithFullAccess = @()
             ForEach ($FARight in $FullAccess) {$UsersWithFullAccess += ($FARight.User.ToString())}
-            $UsersWithFullAccess -join ";"
-            $Obj | Add-Member -MemberType NoteProperty -Name "FullAccessPermissions" -Value $($UsersWithFullAccess -join ";")
+            $strUsersWithFullAccess = $UsersWithFullAccess -join ";"
+            $Obj | Add-Member -MemberType NoteProperty -Name "FullAccessPermissions" -Value $strUsersWithFullAccess
         }
         
         If (IsEmpty ($SendOnBehalf.GrantSendOnBehalfTo)){
             Write-Host "No custom SendOnBehalf permissions detected"
+            $Obj | Add-Member -MemberType NoteProperty -Name "SendOnBehalfPermissions" -Value ""
         } else {
             Write-Host "Found one or more SendOnBehalf Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
-            $Obj | Add-Member -MemberType NoteProperty -Name "SendOnBehalfPermissions" -Value $SendOnBehalf
+            $Obj | Add-Member -MemberType NoteProperty -Name "SendOnBehalfPermissions" -Value $($SendOnBehalf.GrantSendOnBehalfTo)
         }
 
         #Appending the current object into the $report variable (it's an array, remember)
@@ -279,8 +289,14 @@ Foreach ($Database in $Databases){
 # Get-Mailbox -Filter {ForwardingAddress -ne $Null} |Select Alias, ForwardingAddress | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesForwardTo.csv
 # Get mailbox grant send on behalf to:Change the items below that are in bold to fit your needs.
 #Get-Mailbox -Filter {GrantSendOnBehalfTo -ne $Null} |Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}} | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesSendOnBehalf.csv
+Write-host "saving file in $OutputReport"
 $Report | export-csv -NoTypeInformation $OutputReport
+Notepad $OutputReport
+
 <# /EXECUTIONS #>
+<# -------------------------- CLEANUP VARIABLES -------------------------- #>
+$Report = $null
+<# /CLEANUP VARIABLES#>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
 #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...
 $stopwatch.Stop()
