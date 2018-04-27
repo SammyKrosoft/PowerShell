@@ -1,12 +1,13 @@
 <#
 .SYNOPSIS
-    ************ SCRIPT IN PROGRESS NOT TESTED ****************
-    Export Exchange Mailbox Full Access permissions in a CSV file in order to import them in another 
-    environment using the output CSV file.
+    Export Exchange Mailbox Full Access permissions in a CSV file 
+    in order to import them in another environment using the output
+    CSV file.
 
 .DESCRIPTION
-    Longer description of what this script does
-    SCRIPT IN PROGRESS NOT TESTED
+    Export Exchange Mailbox Full Access permissions in a CSV file in 
+    order to import them in another environment using the output CSV 
+    file.
 
 .PARAMETER FirstNumber
     This parameter does blablabla
@@ -41,9 +42,7 @@ SCRIPT IN PROGRESS NOT TESTED
 #>
 [CmdLetBinding(DefaultParameterSetName = "NormalRun")]
 Param(
-    [Parameter(Mandatory = $False, Position = 1, ParameterSetName = "NormalRun")][int]$FirstNumber = 1,
-    [Parameter(Mandatory = $False, Position = 2, ParameterSetName = "NormalRun")][int]$SecondNumber = 2,
-    [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "CheckOnly")][switch]$CheckVersion
+    [Parameter(Mandatory = $false, Position = 0, ParameterSetName = "CheckOnly")][switch]$CheckVersion
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
