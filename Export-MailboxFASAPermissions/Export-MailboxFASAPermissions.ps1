@@ -296,6 +296,17 @@ Notepad $OutputReport
 <# /EXECUTIONS #>
 <# -------------------------- CLEANUP VARIABLES -------------------------- #>
 $Report = $null
+$OutputReport = $null
+$obj = $null
+$strUsersWithSendAs = $null
+$strUsersWithFullAccess = $null
+$UsersWithSendAs = $null
+$UsersWithFullAccess = $null
+$SendOnBehalf = $null
+$FullAccess = $null
+$SendAs = $null
+$Mailboxes = $null
+$Databases = $Null
 <# /CLEANUP VARIABLES#>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
 #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...
