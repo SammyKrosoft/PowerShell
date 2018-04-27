@@ -46,16 +46,16 @@
     Script Log ...
 
 .EXAMPLE
-.\Import-MailboxFASAPermissions.ps1 -InputFile C:\temp\ContosoPermissionsMAP.csv
-Will parse the ContosoPermissionsMAP.csv file and apply the permissions defined
-in the file to the mailboxes defined in this input CSV file.
+    .\Import-MailboxFASAPermissions.ps1 -InputFile C:\temp\ContosoPermissionsMAP.csv
+    Will parse the ContosoPermissionsMAP.csv file and apply the permissions defined
+    in the file to the mailboxes defined in this input CSV file.
 
 .EXAMPLE
-.\Launch-YourScript.ps1 -CheckVersion
-Like in all my other scripts, this only dumps the script's version
+    .\Launch-YourScript.ps1 -CheckVersion
+    Like in all my other scripts, this only dumps the script's version
 
 .NOTES
-None
+    None
 
 .LINK
     Get-Mailbox
@@ -65,7 +65,7 @@ None
 #>
 [CmdLetBinding(DefaultParameterSetName = "NormalRun")]
 Param(
-    [Parameter(Mandatory = $True, Position = 1, ParameterSetName = "NormalRun")][int]$InputFile,
+    [Parameter(Mandatory = $True, Position = 1, ParameterSetName = "NormalRun")][int]$InputFile=".\sample.csv",
     [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "CheckOnly")][switch]$CheckVersion
 )
 
@@ -258,7 +258,6 @@ If (!(Test-Path $InputFile)){
     $PermissionsMAP = Import-CSV $InputFile
 }
 
-
 Foreach ($Item in $PermissionsMAP) {
     $PermissionsMAP.PrimarySMTPAddress
     $PermissionsMAP.SendAsPermissions
@@ -267,7 +266,7 @@ Foreach ($Item in $PermissionsMAP) {
 }
 <# /EXECUTIONS #>
 <# -------------------------- CLEANUP VARIABLES -------------------------- #>
-
+$PermissionsMAP = $null
 <# /CLEANUP VARIABLES#>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
 #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...
