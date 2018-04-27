@@ -1,0 +1,3 @@
+"DisplayName","PrimarySMTPAddress","SendAsPermissions","FullAccessPermissions","SendOnBehalfPermissions"
+"Discovery Search Mailbox","MsExchDiscoveryMailboxD919BA05-46A6-415f-80AD-7E09334BB852@E2010Domain.com","","E2010DOMAIN\Discovery Management",""
+"RoomTest1 Ottawa","RoomTest1.Ottawa@E2010Domain.com","E2010DOMAIN\Administrator;E2010DOMAIN\Test;E2010DOMAIN\User14","E2010DOMAIN\Test","E2010Domain.com/UserIds/OIC/l_beaupin;E2010Domain.com/Users/Test Canada"
