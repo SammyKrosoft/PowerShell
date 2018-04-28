@@ -6,7 +6,7 @@ Function ValidateHeadersFromCSV {
         [Parameter(Mandatory =$true, Position = 1, ParameterSetName = "NormalRun")][string[]]$CSVFilerequiredHeaders
     )
     $DuplicateHeader = $false
-    $MissingHeader = $true
+    $MissingHeader = $false
     If (!(Test-Path $FilePathAndName)){
         $MsgErrFileNotFound = "The file $InputFile is incorrect or doesn't exist ... please try again with another file or the correct path."
         Write-Host $MsgErrFileNotFound -BackgroundColor Yellow -ForegroundColor Red
@@ -14,15 +14,12 @@ Function ValidateHeadersFromCSV {
     } Else {
         #Get the first line of the CSV file => THIS is what we will validate
         [string[]]$HeadersFromFile = (Get-content -Path $FilePathAndName | Select -first 1).Split(",")
-        # Write-Host "Headers from file                       : $HeadersFromFile" -BackgroundColor red
-        # write-host "will be compared with headers from input: $CSVFilerequiredHeaders" -BackgroundColor Red
-        # WRite-host "before trimming"
-        # $HeadersFromFile[1].length
-        # write-host "after trimming"
-        # $HeadersFromFile[1] = $HeadersFromFile[1].Trim()
-        # $HeadersFromFile[1].Length
+        # $CSVFilerequiredHeaders
+        # $CSVFilerequiredHeaders.count
+        # $HeadersFromFile;
+        # $HeadersFromFile.count
+
         # exit
-        
         #Putting message in a variable to do localization in the future (French + English)
         $msgValidatingCSVHeader = "Validating the CSV headers..."
         Write-host $msgValidatingCSVHeader -BackgroundColor yellow -ForegroundColor blue
@@ -51,13 +48,15 @@ Function ValidateHeadersFromCSV {
         }
     }
     If ($Missingheader -or $DuplicateHeader){
+        write-host "MISSING HEADER   : $MissingHeader"
+        Write-host "Duplicate Header : $DuplicateHeader"
         If ($MissingHeader){
             $msgMissingHeader = "Missing Headers in file : $($MissingHeaderDetails -join ", "), please use a CSV file with proper headers"
-            Write-Host $msgMissingHeader -BackgroundColor red -ForegroundColor Blue
+            Write-Host $msgMissingHeader -BackgroundColor yellow -ForegroundColor red
         }
         If ($DuplicateHeader){
             $msgDuplicateHeader = "Duplicate Headers in file : $($DuplicateHeaderDetails -join ", "), please use a CSV file with proper headers"
-            Write-Host $msgDuplicateHeader -BackgroundColor red -ForegroundColor Blue
+            Write-Host $msgDuplicateHeader -BackgroundColor yellow -ForegroundColor red
         }
         return $False
     }Else{
