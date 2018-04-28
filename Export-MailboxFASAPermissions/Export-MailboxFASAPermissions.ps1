@@ -335,9 +335,9 @@ Foreach ($Database in $Databases){
 # Get-Mailbox -Filter {ForwardingAddress -ne $Null} |Select Alias, ForwardingAddress | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesForwardTo.csv
 # Get mailbox grant send on behalf to:Change the items below that are in bold to fit your needs.
 #Get-Mailbox -Filter {GrantSendOnBehalfTo -ne $Null} |Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}} | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesSendOnBehalf.csv
-Write-host "saving file in $OutputReport"
-$Report | export-csv -NoTypeInformation $OutputReport
-Notepad $OutputReport
+Write-host "saving file in $OutputFile"
+$Report | export-csv -NoTypeInformation $OutputFile
+Notepad $OutputFile
 
 <# /EXECUTIONS #>
 <# -------------------------- CLEANUP VARIABLES -------------------------- #>
