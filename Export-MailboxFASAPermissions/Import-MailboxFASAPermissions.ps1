@@ -32,9 +32,25 @@
 
 .PARAMETER InputFile
     Choose the CSV file form you want to import the permissions map from.
-    This CSV file must have the following headers:
+    For smooth use, use the CSV file that was generated with the Export-MailboxFASAPermissions.ps1.
+    If for some reason you want to manually create this CSV file must have the following headers:
 
     "DisplayName","PrimarySMTPAddress","SendAsPermissions","FullAccessPermissions","SendOnBehalfPermissions"
+
+    The mailboxes identified by the PrimarySMTPADdress values must exist in the environment where you 
+        wish to import the permissions.
+    The *SendAsPermissions* column must store one or more valid USERS in a Domain\alias format, and if we
+        have more than one value, these must be separated by semicolons ";"
+    The *FullAccessPermissions* column must use the same USERS format as the "SendAsPermissions" column.
+    The *SendOnBehalfPermissions* column is the trickiest as it must contain the Domain/OU path where the user
+        is located. It HAS to be mailbox-enabled or a mail-enabled user/security group !
+        From the docs.microsoft link:
+        "The sender you specify for this parameter must a mailbox, mail user or mail-enabled security group"
+
+.PARAMETER Execute
+    Without this parameter, the script just prints the command that the script
+    would execute to restore the permissions. This is also a good way to troubleshoot
+    if anything go wrong when we try to apply the changes.
 
 .PARAMETER CheckVersion
     This is just to check the script version.
@@ -55,7 +71,32 @@
     Like in all my other scripts, this only dumps the script's version
 
 .NOTES
-    None
+    "Sens As" permissions
+        . Stored in the form of "DOMAIN\Alias"
+        . Is set with Add-ADPermission
+        . https://docs.microsoft.com/en-us/powershell/module/exchange/active-directory/Add-ADPermission?view=exchange-ps
+
+    "Full Access" Permissions
+        . Stored in the form of "DOMAIN\Alias" as well
+        . Is set with Add-MailboxPermission
+        . https://docs.microsoft.com/en-us/powershell/module/exchange/mailboxes/Add-MailboxPermission?view=exchange-ps
+
+    "Send On Behalf Of" permissions
+        . Stored in the form of "Domain.com/OU_Name/Sub_OU/Name"
+        . Is set with Set-Mailbox
+        . https://docs.microsoft.com/en-us/powershell/module/exchange/mailboxes/Set-Mailbox?view=exchange-ps
+        . -GrantSendOnBehalfTo parameter accepts one or more values from the below :
+                Display name
+                Alias
+                Distinguished name (DN)
+                Canonical DN
+                <domain name>\<account name>
+                Email address
+                GUID
+                LegacyExchangeDN
+                SamAccountName
+                User ID or user principal name (UPN)
+
 
 .LINK
     Get-Mailbox
@@ -66,7 +107,9 @@
 [CmdLetBinding(DefaultParameterSetName = "NormalRun")]
 Param(
     [Parameter(Mandatory = $false, Position = 1, ParameterSetName = "NormalRun")][string]$InputFile=".\sample.csv",
-    [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "CheckOnly")][switch]$CheckVersion
+    [Parameter(Mandatory = $false, Position = 2, ParameterSetName = "NormalRun")][switch]$Execute,
+    [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "NormalRun")][string]$TargetDomain,
+    [Parameter(Mandatory = $false, Position = 4, ParameterSetName = "CheckOnly")][switch]$CheckVersion
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
@@ -331,32 +374,65 @@ If (!(Test-Path $InputFile)){
 }
 
 
-
+############################## Processing the MAP to re-add permissions the the target objects ##########################
 Foreach ($Item in $PermissionsMAP) {
+    #Retrieve each mailbox object and storing it in a temporary variable
     If(!(Isempty $Item.PrimarySMTPAddress)){
-        $strCmd1 = "$LoadCurrentMAilbox = Get-Mailbox  $item.PrimarySMTPAddress"
-        Write-Host $strCmd1
+        $strCmd1 = "$CurrentMailbox = Get-Mailbox  $($item.PrimarySMTPAddress)"
+        If(!$Execute){
+            Write-Host $strCmd1 -Green
+        } else {
+            Invoke-Command $strCmd1
+        }
     }
+    #Processing the list of Send As Permissions ...
+    #   . Stored in the form of "DOMAIN\Alias"
+    #   . Is set with Add-ADPermission
     If(!(Isempty $Item.SendAsPermissions)){
         $ListOfSendAsTemp = $Item.SendAsPermissions -split ";"
         $ListOfSendAsTemp
-        Foreach ($item in $ListOfSendAsTemp){
-            $strCmd2 = "Get-Mailbox $Item"
+        Foreach ($User in $ListOfSendAsTemp){
+            $User=$NewOrOldDomainUser
+            If (!(IsBlank $TargetDomain)){
+                $temp = $NewOrOldDomainUser -split "\"
+                $NewOrOldDomainUser = $TargetDomain + "\" + $Temp[1]
+            } Else {<#Else ... $TargetDomain is blank and then we import the permissions in the same domain defined in the permission entries as DOMAIN\Alias#>}
+            $strCmd2 = "Get-Mailbox $($Item.PrimarySMTPAddress) | Add-ADPermission -User $NewOrOldDomainUser -ExtendedRights ""Send As"""
+            If(!$Execute){
+                Write-Host $strCmd2 -ForegroundColor Green
+            } Else {
+                Invoke-Expression $strCmd2
+            }
         }
-        #
-        # Process permissions : for that mailbox (Get-Mailbox )
-        #
-
     }
+    #Processing the list of Full Access permissions ...
+    #   . Stored in the form of "DOMAIN\Alias" as well
+    #   . Is set with Add-MailboxPermission
     If(!(Isempty $Item.FullAccessPermissions)){
         $ListOfFullAccessTemp = $Item.FullAccessPermissions -split ";"
         $ListOfFullAccessTemp
+        Foreach ($User in $ListOfFullAccessTemp){
+            $User=$NewOrOldDomainUser
+            If (!(IsBlank $TargetDomain)){
+                $temp = $NewOrOldDomainUser -split "\"
+                $NewOrOldDomainUser = $TargetDomain + "\" + $Temp[1]
+            } Else {<#Else ... $TargetDomain is blank and then we import the permissions in the same domain defined in the permission entries as DOMAIN\Alias#>}
+            $strCmd3 = "Add-MailboxPermission -Identity $($Item.PrimarySMTPAddress) -User $NewOrOldDomainUser -AccessRights FullAccess"
+            #Add -AutoMapping $false if you want to disable automapping ...
+            If(!$Execute){
+                Write-Host $strCmd3 -ForegroundColor Green
+            } Else {
+                Invoke-Expression $strCmd3
+            }
+        }
     }
+    #Processing the list of Send On Behalf permissions...
+    #   . Stored in the form of "Domain.com/OU_Name/Sub_OU/Name"
+    #   . Is set with Set-Mailbox
     If(!(Isempty $Item.SendOnBehalfPermissions)){
         $ListOfSendOnBehalfTemp = $Item.SendOnBehalfPermissions -split ";"
         $ListOfSendOnBehalfTemp
     }
-
 }
 
 

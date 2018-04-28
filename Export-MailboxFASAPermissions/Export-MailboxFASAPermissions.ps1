@@ -19,20 +19,46 @@
     None. You cannot pipe objects to that script.
 
 .OUTPUTS
-    None for now
+    A CSV file with the name of the script, containing the users Display Names, primary SMTP addresses,
+    and the list of Send-As, Full Access and SendOnBehalfTo for each of these mailboxes.
+    If the Send-As, Full Access and SendOnBehalfTo are multi-values, they are stored in the columns
+    as semi-colon separated values, like Value1;value2;value3;...
+    => when processing each permissions set, just use something like $ImportedCSV.SendAsPermissions -split ";" 
+    or $ImportedCSV.SendAsPermissions.Split(";") ... 
 
 .EXAMPLE
-    Add default numbers 1 + 2
-C:\PS> .\Add-Numbers.ps1
-3
-
-.EXAMPLE
-    Add 14 with 23
-C:\PS> .\Add-Numbers.ps1 -FirstNumber 14 -SecondNumber 23
-37
+.\Export-MailboxFASAPermissions.ps1
+    Will run the script and export 
 
 .NOTES
-SCRIPT IN PROGRESS NOT TESTED
+    This script can be use alone to export a permissions map, but the output it is intended to be used 
+    with the Import-MailboxFASAPermissions.ps1 script.
+
+    "Sens As" permissions
+        . Stored in the form of "DOMAIN\Alias"
+        . Is set with Add-ADPermission
+        . https://docs.microsoft.com/en-us/powershell/module/exchange/active-directory/Add-ADPermission?view=exchange-ps
+
+    "Full Access" Permissions
+        . Stored in the form of "DOMAIN\Alias" as well
+        . Is set with Add-MailboxPermission
+        . https://docs.microsoft.com/en-us/powershell/module/exchange/mailboxes/Add-MailboxPermission?view=exchange-ps
+
+    "Send On Behalf Of" permissions
+        . Stored in the form of "Domain.com/OU_Name/Sub_OU/Name"
+        . Is set with Set-Mailbox
+        . https://docs.microsoft.com/en-us/powershell/module/exchange/mailboxes/Set-Mailbox?view=exchange-ps
+        . -GrantSendOnBehalfTo parameter accepts one or more values from the below :
+                Display name
+                Alias
+                Distinguished name (DN)
+                Canonical DN
+                <domain name>\<account name>
+                Email address
+                GUID
+                LegacyExchangeDN
+                SamAccountName
+                User ID or user principal name (UPN)
 
 .LINK
     https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6
@@ -242,7 +268,6 @@ Foreach ($Database in $Databases){
         $SendAs=Get-ADPermission $mailbox.identity | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")}
         $FullAccess=Get-Mailbox $mailbox | Get-MailboxPermission | ?{($_.AccessRights -like "*fullaccess*") -and ($_.User -notlike "*nt authority\self*") -and ($_.User -notlike "*nt authority\system*") -and ($_.User -notlike "*Exchange Trusted Subsystem*") -and ($_.User -notlike "*Exchange Servers*") -and ($_.IsInherited -like "false")}
         $SendOnBehalf = Get-Mailbox $mailbox | Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}}
-
         #Initializing a new Powershell object to store our discovered properties
         $Obj = New-Object PSObject
         #Populating basic mailbox info to bind with SendAs / FullMailbox / SendOnBehalf permissions
@@ -276,11 +301,30 @@ Foreach ($Database in $Databases){
             $Obj | Add-Member -MemberType NoteProperty -Name "SendOnBehalfPermissions" -Value ""
         } else {
             Write-Host "Found one or more SendOnBehalf Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
-            $Obj | Add-Member -MemberType NoteProperty -Name "SendOnBehalfPermissions" -Value $($SendOnBehalf.GrantSendOnBehalfTo)
+            $TableOfSendOnBehalfToConvert = $($SendOnBehalf.GrantSendOnBehalfTo) -Split (";")
+            $SMTPAddressesOfSendOnBehalf = @()
+            Foreach ($entry in $TableOfSendOnBehalfToConvert) {
+                #Since the GrantSendOnBehalfTo entries HAVE to be mailbox-enabled users or mail enabled user or groups,
+                #Getting primary SMTP address for each object, and storing these as a string separated by semicolon
+                #to replace the string of DOMAIN/OU1/OU2/Name separated by semicolon
+                $SMTPAddressesOfSendOnBehalf += (Get-Mailbox $Entry).primarySMTPAddress
+            }
+            $SendOnBehalfConverted = $SMTPAddressesOfSendOnBehalf -join ";"
+            $Obj | Add-Member -MemberType NoteProperty -Name "SendOnBehalfPermissions" -Value $SendOnBehalfConverted
         }
-
         #Appending the current object into the $report variable (it's an array, remember)
         $report += $Obj
+
+        #Cleaning the variables now before the next loop...
+        $SendOnBehalfConverted = $null
+        $obj = $Null
+        $SMTPAddressesOfSendOnBehalf = $null
+        $TableOfSendOnBehalfToConvert = $null
+        $SendOnBehalfConverted = $null
+        $SendAs = $null
+        $FullAccess = $null
+        $SendOnBehalf = $null
+        #... add more later
     }
 }
 
