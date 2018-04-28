@@ -34,8 +34,8 @@ Function ValidateHeadersFromCSV {
                 if($($FileHeader.Trim()) -eq $RequiredHeader -or $($FileHeader.Trim()) -eq """$RequiredHeader"""){$HeaderMatch++}
             }
             If ($HeaderMatch -eq 1){
-                $msgFound1Match = "Found 1 match in CSV Headers for $RequiredHeader => we're good for this one"
-                Write-Host $msgFound1Match
+                $msgFound1Match = "Ok"
+                Write-Host $msgFound1Match -BackgroundColor green -ForegroundColor black
             } ElseIf($headerMatch -eq 0) {
                 Write-Host "$RequiredHeader not found in file ! Please correct our CSV or select another CSV file. Exiting..."
                 $MissingHeader = $true
