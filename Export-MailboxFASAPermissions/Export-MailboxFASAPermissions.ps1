@@ -1,34 +1,61 @@
 <#
 .SYNOPSIS
-    Export Exchange Mailbox Full Access permissions in a CSV file 
-    in order to import them in another environment using the output
-    CSV file.
+    Export Exchange Mailbox Send As, Full Access, and Send On Behalf permissions
+    in a CSV file in order to later import them in another environment using the 
+    output CSV file.
 
 .DESCRIPTION
-    Export Exchange Mailbox Full Access permissions in a CSV file in 
-    order to import them in another environment using the output CSV 
-    file.
+    Export following Exchange Mailbox permissions in a CSV file 
+    - Send As
+    - Full Access
+    - Send On Behalf To
+    in order to be able to import them later in another environment using 
+    the output CSV file.
 
-.PARAMETER FirstNumber
-    This parameter does blablabla
+    To import back the permissions, use the associated Import-MailboxFASAPermissions.ps1 
+    script.
 
-.PARAMETER SecondNumber
-    This parameter does blablabla
+    Since the Send As and Full Access permissions can be granted to non-mailbox or
+    non-mail enabled users, these are stored in the CSV in the form of DOMAIN\Alias.
+    On the other hand, the Send On Behalf permission can be granted to mailbox-enabled users
+    or mail-enabled users or security groups only, but for some reason it is stored in the form of 
+    DOMAIN\OU1\Sub-OU1\Sub-OU2\Name - then, the script is designed to convert these to 
+    PrimarySMTPAddress of these users => that way :
+    > Not only we are sure that each entry represents a unique user
+    > But also it will be easier for the IMPORT script to import these permissions back.
+
+.PARAMETER OutputFile
+    Sets the file to which we want to store the results.
+    By default, the script will generate a CSV report with the name of the script, 
+    with the date and time appended to it.
+
+.PARAMETER CheckVersion
+    This parameter just dumps the script version.
 
 .INPUTS
-    None. You cannot pipe objects to that script.
+    The script will scan all the mailboxes, but database by database to avoid to use
+    all the RAM of the machine from which it's executed. 
 
 .OUTPUTS
-    A CSV file with the name of the script, containing the users Display Names, primary SMTP addresses,
+    A CSV file with either a name that you specify with the OutputFile parameter, or if not,
+    the name of the script, containing the users Display Names, primary SMTP addresses,
     and the list of Send-As, Full Access and SendOnBehalfTo for each of these mailboxes.
+    
     If the Send-As, Full Access and SendOnBehalfTo are multi-values, they are stored in the columns
     as semi-colon separated values, like Value1;value2;value3;...
+    
     => when processing each permissions set, just use something like $ImportedCSV.SendAsPermissions -split ";" 
     or $ImportedCSV.SendAsPermissions.Split(";") ... 
 
 .EXAMPLE
 .\Export-MailboxFASAPermissions.ps1
-    Will run the script and export 
+    Will run the script and export the mailbox Display Names, primary SMTP Addresses, and all the
+    Send As, Full Access and Send On Behalf To permissions on a CSV file.
+
+.EXAMPLE
+.\Export-MailboxFASAPermissions.ps1 -OutputFile C:\temp\EnvironmentPermissions.csv
+    Will run the script and export permissions for all mailboxes, in the file specified on the 
+    OutputFile parameter : C:\temp\EnvironmentPermissions.csv
 
 .NOTES
     This script can be use alone to export a permissions map, but the output it is intended to be used 
