@@ -1,6 +1,10 @@
-cls
 
-Function ValidateHeadersFromCSV {
+    <#
+    .EXAMPLE
+    ValidateHeadersFromCSV -FilePathAndName ".\sample.csv" -CSVFilerequiredHeaders "PrimarySMTPAddress", "SendAsPErmissions", "FullAccessPermissions", "SendOnBehalfPermissions"
+    #>
+
+  Function ValidateHeadersFromCSV {
     Param(
         [Parameter(Mandatory=$true, Position = 0, ParameterSetName = "NormalRun")][string]$FilePathAndName,
         [Parameter(Mandatory =$true, Position = 1, ParameterSetName = "NormalRun")][string[]]$CSVFilerequiredHeaders
@@ -14,6 +18,7 @@ Function ValidateHeadersFromCSV {
     } Else {
         #Get the first line of the CSV file => THIS is what we will validate
         [string[]]$HeadersFromFile = (Get-content -Path $FilePathAndName | Select -first 1).Split(",")
+        $HeadersFromFile = $HeadersFromFile.TrimStart()
         # $CSVFilerequiredHeaders
         # $CSVFilerequiredHeaders.count
         # $HeadersFromFile;
@@ -31,17 +36,19 @@ Function ValidateHeadersFromCSV {
             $HeaderMatch = 0
             #We compare each CSV required header with each header of the file -> 3 cases : 1 match (wanted), 0 matches (CSV file not valid) or more than 1 matches (duplicates in CSV headers, CSV File not valid) 
             Foreach ($FileHeader in $HeadersFromFile){
-                if($($FileHeader.Trim()) -eq $RequiredHeader -or $($FileHeader.Trim()) -eq """$RequiredHeader"""){$HeaderMatch++}
+                if($($FileHeader) -eq $RequiredHeader -or $($FileHeader) -eq """$RequiredHeader"""){$HeaderMatch++}
             }
             If ($HeaderMatch -eq 1){
                 $msgFound1Match = "Ok"
                 Write-Host $msgFound1Match -BackgroundColor green -ForegroundColor black
             } ElseIf($headerMatch -eq 0) {
-                Write-Host "$RequiredHeader not found in file ! Please correct our CSV or select another CSV file. Exiting..."
+                $msgErrMissingRequiredHeader = "$RequiredHeader not found in file or there are trailing space characters after $RequiredHeader! Please correct your CSV or select another CSV file."
+                Write-Host $msgErrMissingRequiredHeader -ForegroundColor Red
                 $MissingHeader = $true
                 [array]$MissingHeaderDetails += $RequiredHeader
             } Else {
-                Write-Host "Cannot have more than 1 header named $RequiredHeader - please correct your CSV or select another CSV. Exiting..."
+                $msgErrDuplicateRequiredHeader = "Cannot have more than 1 header named $RequiredHeader - please correct your CSV or select another CSV."
+                Write-Host  $msgErrDuplicateRequiredHeader -ForegroundColor Red
                 $DuplicateHeader = $true
                 [array]$DuplicateHeaderDetails += $RequiredHeader
             }
@@ -49,7 +56,7 @@ Function ValidateHeadersFromCSV {
     }
     If ($Missingheader -or $DuplicateHeader){
         If ($MissingHeader){
-            $msgMissingHeader = "Missing Headers in file : $($MissingHeaderDetails -join ", "), please use a CSV file with proper headers"
+            $msgMissingHeader = "Missing Headers in file or space characters after Headers in the file: $($MissingHeaderDetails -join ", "), please use a CSV file with proper headers"
             Write-Host $msgMissingHeader -BackgroundColor yellow -ForegroundColor red
         }
         If ($DuplicateHeader){
@@ -61,5 +68,6 @@ Function ValidateHeadersFromCSV {
         Return $True
     }
 }
+
 
 ValidateHeadersFromCSV -FilePathAndName ".\sample.csv" -CSVFilerequiredHeaders "PrimarySMTPAddress", "SendAsPErmissions", "FullAccessPermissions", "SendOnBehalfPermissions"
