@@ -48,8 +48,6 @@ Function ValidateHeadersFromCSV {
         }
     }
     If ($Missingheader -or $DuplicateHeader){
-        write-host "MISSING HEADER   : $MissingHeader"
-        Write-host "Duplicate Header : $DuplicateHeader"
         If ($MissingHeader){
             $msgMissingHeader = "Missing Headers in file : $($MissingHeaderDetails -join ", "), please use a CSV file with proper headers"
             Write-Host $msgMissingHeader -BackgroundColor yellow -ForegroundColor red
