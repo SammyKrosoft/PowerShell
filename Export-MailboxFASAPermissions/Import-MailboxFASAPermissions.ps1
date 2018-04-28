@@ -322,10 +322,14 @@ If (!(Test-Path $InputFile)){
 }
 
 Foreach ($Item in $PermissionsMAP) {
-    $PermissionsMAP.PrimarySMTPAddress
-    $PermissionsMAP.SendAsPermissions
-    $PermissionsMAP.FullAccessPermissions
-    $PermissionsMAP.SendOnBehalfPermissions
+    Write-host "SMTP address:" -BackgroundColor blue
+    write-host $PermissionsMAP.PrimarySMTPAddress
+    write-host "Send As permissions:" -BackgroundColor blue
+    write-host $PermissionsMAP.SendAsPermissions
+    write-host "Full Access permissions:" -BackgroundColor blue
+    write-host $PermissionsMAP.FullAccessPermissions
+    write-host "Send On Behalf permissions:" -BackgroundColor blue
+    write-host $PermissionsMAP.SendOnBehalfPermissions
 }
 <# /EXECUTIONS #>
 <# -------------------------- CLEANUP VARIABLES -------------------------- #>
