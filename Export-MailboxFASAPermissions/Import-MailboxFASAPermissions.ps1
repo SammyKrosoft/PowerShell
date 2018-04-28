@@ -333,14 +333,33 @@ If (!(Test-Path $InputFile)){
 
 
 Foreach ($Item in $PermissionsMAP) {
-    Write-host "SMTP address                : $($Item.PrimarySMTPAddress)" -BackgroundColor blue
-    write-host "Send As permissions         : $($Item.SendAsPermissions)" -BackgroundColor blue
-    write-host "Full Access permissions     : $($Item.FullAccessPermissions)" -BackgroundColor blue
-    write-host "Send On Behalf permissions  : $($Item.SendOnBehalfPermissions)" -BackgroundColor blue
-    Write-host
+    If(!(Isempty $Item.PrimarySMTPAddress)){
+        $strCmd1 = "$LoadCurrentMAilbox = Get-Mailbox  $item.PrimarySMTPAddress"
+        Write-Host $strCmd1
+    }
+    If(!(Isempty $Item.SendAsPermissions)){
+        $ListOfSendAsTemp = $Item.SendAsPermissions -split ";"
+        $ListOfSendAsTemp
+        Foreach ($item in $ListOfSendAsTemp){
+            $strCmd2 = "Get-Mailbox $Item"
+        }
+        #
+        # Process permissions : for that mailbox (Get-Mailbox )
+        #
+
+    }
+    If(!(Isempty $Item.FullAccessPermissions)){
+        $ListOfFullAccessTemp = $Item.FullAccessPermissions -split ";"
+        $ListOfFullAccessTemp
+    }
+    If(!(Isempty $Item.SendOnBehalfPermissions)){
+        $ListOfSendOnBehalfTemp = $Item.SendOnBehalfPermissions -split ";"
+        $ListOfSendOnBehalfTemp
+    }
+
 }
 
-$PermissionsMAP
+
 <# /EXECUTIONS #>
 <# -------------------------- CLEANUP VARIABLES -------------------------- #>
 $PermissionsMAP = $null
