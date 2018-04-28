@@ -68,7 +68,8 @@
 #>
 [CmdLetBinding(DefaultParameterSetName = "NormalRun")]
 Param(
-    [Parameter(Mandatory = $false, Position = 0, ParameterSetName = "CheckOnly")][switch]$CheckVersion
+    [Parameter(Mandatory = $false, Position = 0, ParameterSetName = "NormalRun")][string]$OutputFile,
+    [Parameter(Mandatory = $false, Position = 1, ParameterSetName = "CheckOnly")][switch]$CheckVersion
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
@@ -251,6 +252,8 @@ function IsEmpty($Param){
 #endregion Functions
 <# -------------------------- EXECUTIONS -------------------------- #>
 Test-ExchTools
+
+If (IsEmpty $OutputFile) {$OutputFile = $OutputReport}
 
 #$Databases = Get-MailboxDatabase
 $Databases = "DB01" #, "DB02", "DB03", "DB04", "DB04", "DB06"
