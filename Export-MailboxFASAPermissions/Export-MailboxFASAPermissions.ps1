@@ -67,6 +67,13 @@
     To export ALL mailboxes, just don't specify neither the SharedMailboxes
     nor the ResourceMailboxes parameter.
 
+.PARAMETER DistrutionGroupsOnly
+    This will make the script export Distribution Groups and Dynamic Distribution Groups
+    Send On Behalf Rights exports - this will not export Mailbox rights.
+
+    NOTE: Distribution Groups have only SendOnBehalf and Send As permissions
+    -> these have NOT "Full Access" rights : because these are not mailboxes
+
 .PARAMETER CheckVersion
     This parameter just dumps the script version.
 
@@ -361,11 +368,23 @@ If ($DistributionGroupsOnly){
     }
 
     Foreach ($DL in $DLs){
+        $SendAs = Get-ADPermission $DL.identity | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")}
         #Initializing a new Powershell object to store our discovered properties
         $Obj = New-Object PSObject
         #Populating basic mailbox info to bind with SendAs / FullMailbox / SendOnBehalf permissions
         $Obj | Add-Member -MemberType NoteProperty -Name "DisplayName" -Value $DL.DisplayName
         $obj | Add-Member -MemberType NoteProperty -Name "PrimarySMTPAddress" -Value $DL.PrimarySMTPAddress.ToString()
+
+        If (IsEmpty $SendAs){
+            Write-Host "No custom Send As permissions detected"
+            $Obj | Add-Member -MemberType NoteProperty -Name "SendAsPermissions" -Value ""
+        } Else {
+            Write-Host "Found one or more SendAs Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
+            [array]$UsersWithSendAs = @()
+            ForEach($SAright in $SendAs){$UsersWithSendAs += ($SARight.User.ToString())}
+            $strUsersWithSendAs = $UsersWithSendAs -join ";"
+            $Obj | Add-Member -MemberType NoteProperty -Name "SendAsPermissions" -Value $strUsersWithSendAs
+        }
 
         If (IsEmpty ($DL.GrantSendOnBehalfTo)){
             Write-Host "No custom SendOnBehalf permissions detected"
