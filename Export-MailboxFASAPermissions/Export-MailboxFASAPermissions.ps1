@@ -368,6 +368,8 @@ If ($DistributionGroupsOnly){
     }
 
     Foreach ($DL in $DLs){
+        $msgWorkingOnDistributionGroup = "Working on Distribution Group $($DL.DisplayName) which Primary SMTP is $($DL.primarySMTPAddress.ToString())"
+        Write-Host $msgWorkingOnDistributionGroup -ForegroundColor Blue -BackgroundColor Yellow
         $SendAs = Get-ADPermission $DL.identity | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")}
         #Initializing a new Powershell object to store our discovered properties
         $Obj = New-Object PSObject
