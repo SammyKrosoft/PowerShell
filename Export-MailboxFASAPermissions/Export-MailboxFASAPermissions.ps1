@@ -327,9 +327,8 @@ Test-ExchTools
 If (IsEmpty $OutputFile) {$OutputFile = $OutputReport}
 
 $Databases = Get-MailboxDatabase
-#Databases = "DB01"
-
 $DBProgressCount = 0
+
 Foreach ($Database in $Databases){
     $DBProgressCount++
     _Progress ($DBProgressCount/$($Databases.count)*100)
@@ -344,18 +343,17 @@ Foreach ($Database in $Databases){
         $MailboxesCommand += $combo
     }
     
-    $Mailboxescommand
-    exit
-    Invoke-expression $Mailboxescommand
- 
-    #$strMailboxes = "Discovery Search Mailbox","RoomTest1 Ottawa" #,"User10", "User1","Test Canada",  "Room 1 - 85 Sparks"
-    #$Mailboxes = @()
-    #$Mailboxes += $strMailboxes | Get-Mailbox
+    #Launch the command built with the above routine, based on the switches the admin chooses
+    $Mailboxes = Invoke-expression $Mailboxescommand
+    #If we don't "break" the current loop occurence with a "Continue" instruction, there will be an empty line in the CSV when there are no mailboxes in a given database
+    If (IsEmpty $Mailboxes){Continue}
 
+    #We cycle through each mailbox to get the permissions
+    #It's time consuming because of the AD queries...
     Foreach ($Mailbox in $Mailboxes) {
         Write-Host "Working on mailbox $($Mailbox.DisplayName) which Primary SMTP is $($Mailbox.primarySMTPAddress.ToString())" -ForegroundColor Blue -BackgroundColor Yellow
         $SendAs=Get-ADPermission $mailbox.identity | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")}
-        $FullAccess=Get-Mailbox $mailbox | Get-MailboxPermission | ?{($_.AccessRights -like "*fullaccess*") -and ($_.User -notlike "*nt authority\self*") -and ($_.User -notlike "*nt authority\system*") -and ($_.User -notlike "*Exchange Trusted Subsystem*") -and ($_.User -notlike "*Exchange Servers*") -and ($_.IsInherited -like "false")}
+        $FullAccess=Get-MailboxPermission $Mailbox | ?{($_.AccessRights -like "*fullaccess*") -and ($_.User -notlike "*nt authority\self*") -and ($_.User -notlike "*nt authority\system*") -and ($_.User -notlike "*Exchange Trusted Subsystem*") -and ($_.User -notlike "*Exchange Servers*") -and ($_.IsInherited -like "false")}
         $SendOnBehalf = Get-Mailbox $mailbox | Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}}
         #Initializing a new Powershell object to store our discovered properties
         $Obj = New-Object PSObject
