@@ -29,6 +29,11 @@
     By default, the script will generate a CSV report with the name of the script, 
     with the date and time appended to it.
 
+.PARAMETER SharedMailboxes
+    This indicates the script 
+
+.PARAMETER ResourceMailboxes
+
 .PARAMETER CheckVersion
     This parameter just dumps the script version.
 
@@ -95,8 +100,10 @@
 #>
 [CmdLetBinding(DefaultParameterSetName = "NormalRun")]
 Param(
-    [Parameter(Mandatory = $false, Position = 0, ParameterSetName = "NormalRun")][string]$OutputFile,
-    [Parameter(Mandatory = $false, Position = 1, ParameterSetName = "CheckOnly")][switch]$CheckVersion
+    [Parameter(Mandatory = $false, Position = 0, ParameterSetName = "NormalRun")][switch]$SharedMailboxes,
+    [Parameter(Mandatory = $false, Position = 1, ParameterSetName = "NormalRun")][switch]$ResourceMailboxes,
+    [Parameter(Mandatory = $false, Position = 2, ParameterSetName = "NormalRun")][string]$OutputFile,
+    [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "CheckOnly")][switch]$CheckVersion
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
@@ -240,14 +247,8 @@ function Write-Log {
     }
 
 function _Progress {
-    param(
-        [parameter(position = 0)] $Id = 1,
-        [parameter(position = 1)] $PercentComplete=100,
-        [parameter(position = 2)] $Activity = "Working...",
-        [parameter(position = 3)] $Status="In Progress..."
-        )
-
-    Write-Progress -id $Id -activity $Activity -status $Status -PercentComplete ($PercentComplete)
+    param([parameter(Mandatory = $false, Position = 1)] $PercentComplete = 100)
+    Write-Progress -id 1 -activity "Working..." -status "In progress..." -PercentComplete ($PercentComplete)
     }
 
 Function Test-ExchTools(){
@@ -282,16 +283,37 @@ Test-ExchTools
 
 If (IsEmpty $OutputFile) {$OutputFile = $OutputReport}
 
-#$Databases = Get-MailboxDatabase
-$Databases = "DB01" #, "DB02", "DB03", "DB04", "DB04", "DB06"
+$Databases = Get-MailboxDatabase
+#Databases = "DB01"
+
 $DBProgressCount = 0
 Foreach ($Database in $Databases){
     $DBProgressCount++
-    _Progress ($DBProgressCount/$($Databases.count)*100) "Processing mailboxes database by database" "Current database : $($Database.name)"
-    #$Mailboxes = Get-Mailbox -resultsize unlimited -database $Database
-    $strMailboxes = "Discovery Search Mailbox","RoomTest1 Ottawa" #,"User10", "User1","Test Canada",  "Room 1 - 85 Sparks"
-    $Mailboxes = @()
-    $Mailboxes += $strMailboxes | Get-Mailbox
+    _Progress ($DBProgressCount/$($Databases.count)*100)
+    
+    $Mailboxescommand = "Get-Mailbox -resultsize unlimited -database $Database"
+    If ($ResourceMailboxes -or $SharedMailboxes) {
+        $MailboxesCommand += " -RecipientTypeDetails "
+        $combo = @()
+        If ($ResourceMailboxes){$Combo += "ResourceMailbox"}
+        If ($SharedMailboxes){$Combo += "SharedMailbox"}
+        $combo = $Combo -join ","
+        $MailboxesCommand += $combo
+        $MailboxesCommand
+        exit
+    }
+    
+    
+    If ($ResourceMailboxes -and !$SharedMailboxes){
+        $Mailboxes = Get-Mailbox -resultsize unlimited -database $Database -RecipientTypeDetails RoomMailbox,EquipmentMailbox
+    } ElseIf ($SharedMailboxes){
+        $Mailboxes = Get-Mailbox -resultsize unlimited -database $Database -RecipientTypeDetails SharedMailbox
+    } Else {
+        $Mailboxes = Get-Mailbox -resultsize unlimited -database $Database
+    }
+    #$strMailboxes = "Discovery Search Mailbox","RoomTest1 Ottawa" #,"User10", "User1","Test Canada",  "Room 1 - 85 Sparks"
+    #$Mailboxes = @()
+    #$Mailboxes += $strMailboxes | Get-Mailbox
 
     Foreach ($Mailbox in $Mailboxes) {
         Write-Host "Working on mailbox $($Mailbox.DisplayName) which Primary SMTP is $($Mailbox.primarySMTPAddress.ToString())" -ForegroundColor Blue -BackgroundColor Yellow
