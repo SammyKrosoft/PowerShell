@@ -358,7 +358,7 @@ If ($DistributionGroupsOnly){
     Write-Host "Developping routine to export Send On Behalf of Distribution Lists"
     #We have 2 sorts of Distribution Groups : regular Distribution Groups (can be based on Distribution or Security Groups)
     #And Dynamic Distribution Groups
-    $DLs = Get-DistributionGroup | Select Alias, DisplayName, primarySMTPAddress, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}}
+    $DLs = Get-DistributionGroup | Select Identity,Alias, DisplayName, primarySMTPAddress, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}}
     If($IncludeDynamic){$DLs += Get-DynamicDistributionGroup | Select Alias, DisplayName, primarySMTPAddress, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}} }
 
     If (IsEmpty $DLs){
@@ -370,10 +370,10 @@ If ($DistributionGroupsOnly){
     Foreach ($DL in $DLs){
         $msgWorkingOnDistributionGroup = "Working on Distribution Group $($DL.DisplayName) which Primary SMTP is $($DL.primarySMTPAddress.ToString())"
         Write-Host $msgWorkingOnDistributionGroup -ForegroundColor Blue -BackgroundColor Yellow
-        $SendAs = Get-ADPermission $DL.identity | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")}
+        $SendAs = Get-ADPermission $($DL.identity) | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")}
         #Initializing a new Powershell object to store our discovered properties
         $Obj = New-Object PSObject
-        #Populating basic mailbox info to bind with SendAs / FullMailbox / SendOnBehalf permissions
+        #Populating basic DL info to bind with SendAs / SendOnBehalf permissions
         $Obj | Add-Member -MemberType NoteProperty -Name "DisplayName" -Value $DL.DisplayName
         $obj | Add-Member -MemberType NoteProperty -Name "PrimarySMTPAddress" -Value $DL.PrimarySMTPAddress.ToString()
 
