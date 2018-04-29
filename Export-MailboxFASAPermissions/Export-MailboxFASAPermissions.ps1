@@ -95,6 +95,18 @@
     Will run the script and export permissions for all mailboxes, in the file specified on the 
     OutputFile parameter : C:\temp\EnvironmentPermissions.csv
 
+.EXAMPLE
+.\Export-MailboxFASA.ps1 -SharedMailboxes
+    Will run the script and export the Shared Mailboxes permissions as well as the Room and
+    Equipment Mailboxes permissions, and store the result on the default CSV file named after
+    the script, appended with the date and time of the execution, on the script directory
+
+.EXAMPLE
+.\Export-MailboxFASA.ps1 -ResourceMailboxes c:\temp\ResourceMailboxPermissions.csv
+    Will run the script and export only the Room and Equipment Mailboxes permissions, and store
+    the results in a CSV file c:\temp\ResourceMailboxPermissions.csv
+
+
 .NOTES
     This script can be use alone to export a permissions map, but the output is designed so that it
     can be used with the Import-MailboxFASAPermissions.ps1 script to migrate permissions to another
@@ -158,8 +170,9 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorActionPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "0.1 Alpha"
+$ScriptVersion = "1"
 <# Version changes
+v1 - Completed the script.
 v0.1 - first script version
 #>
 $ScriptName = $MyInvocation.MyCommand.Name
