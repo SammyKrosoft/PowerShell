@@ -5,24 +5,43 @@
     output CSV file.
 
 .DESCRIPTION
-    Export following Exchange Mailbox permissions in a CSV file 
+    This script requires the Exchange tools to run.
+
+    It exports the following Exchange Mailbox permissions in a CSV file 
     - Send As
     - Full Access
     - Send On Behalf To
     in order to be able to import them later in another environment using 
     the output CSV file.
 
-    To import back the permissions, use the associated Import-MailboxFASAPermissions.ps1 
+    The Output CSV file will contain the following information for each mailbox permissions
+    information exported:
+    
+    Display Name, Primary SMTP Address, Full Access permissions, Send As permissions, Send On Behalf permissions
+
+    The permissions can have one or more entries, which will be separated by semicolons (";")
+
+    To import back the permissions if needed , you can use the associated Import-MailboxFASAPermissions.ps1 
     script.
 
     Since the Send As and Full Access permissions can be granted to non-mailbox or
     non-mail enabled users, these are stored in the CSV in the form of DOMAIN\Alias.
-    On the other hand, the Send On Behalf permission can be granted to mailbox-enabled users
-    or mail-enabled users or security groups only, but for some reason it is stored in the form of 
-    DOMAIN\OU1\Sub-OU1\Sub-OU2\Name - then, the script is designed to convert these to 
-    PrimarySMTPAddress of these users => that way :
-    > Not only we are sure that each entry represents a unique user
-    > But also it will be easier for the IMPORT script to import these permissions back.
+
+    On the other hand, the Send On Behalf permission can be granted only to mailbox-enabled users,
+    mail-enabled users and/or mail-enabled security groups only. For some reason, it is stored in 
+    the form of DOMAIN\OU1\Sub-OU1\...\Name - then, the script is designed to convert these - actually
+    the script resolve these using Get-Mailbox -Identity DOMAIN\OU\...\Name to get and store the
+    PrimarySMTPAddress of these users so that we have two advantages:
+        > Not only we are sure that each SMTP address represents a unique user
+        > Also it will be way easier for the IMPORT script to import these permissions back, wherever OU the
+        target user will be located !
+    
+    This is because the IMPORT script uses Set-Mailbox with the -SendOnBehalfTo, where we can
+    specify an SMTP address, which will be converted to the corresponding DOMAIN\OU\Name of the 
+    corresponding user in the target environment.
+    
+    In other words, the SMTP address will be the KEY to match the SendOnBehalfTo permission to the
+    right users and mailboxes on the target environments.
 
 .PARAMETER OutputFile
     Sets the file to which we want to store the results.
@@ -30,9 +49,23 @@
     with the date and time appended to it.
 
 .PARAMETER SharedMailboxes
-    This indicates the script 
+    This indicates the script to export the SharedMailboxes only
+    
+    When combined with the -ResourceMailboxes, the script will export
+    the Shared Mailboxes, and the Room and Equipment Mailboxes as well !
+
+    To export ALL mailboxes, just don't specify neither the SharedMailboxes
+    nor the ResourceMailboxes parameter.
 
 .PARAMETER ResourceMailboxes
+    This indicates the script to export the ResourceMailboxes only which
+    consist of the Room and the Equipment Mailboxes.
+
+    When combined with the -SharedMailboxes, the script will export the
+    Shared Mailboxes, the Room and the Equipment mailboxes as well !
+
+    To export ALL mailboxes, just don't specify neither the SharedMailboxes
+    nor the ResourceMailboxes parameter.
 
 .PARAMETER CheckVersion
     This parameter just dumps the script version.
@@ -63,8 +96,12 @@
     OutputFile parameter : C:\temp\EnvironmentPermissions.csv
 
 .NOTES
-    This script can be use alone to export a permissions map, but the output it is intended to be used 
-    with the Import-MailboxFASAPermissions.ps1 script.
+    This script can be use alone to export a permissions map, but the output is designed so that it
+    can be used with the Import-MailboxFASAPermissions.ps1 script to migrate permissions to another
+    environment such as a LAB or a brand new one with the same users (Inter-Forest migration for example
+    or move from an On-Prem to an outsourced environment such as Office 365)
+
+    Some simple facts about the permissions exported on this script:
 
     "Sens As" permissions
         . Stored in the form of "DOMAIN\Alias"
@@ -93,7 +130,13 @@
                 User ID or user principal name (UPN)
 
 .LINK
-    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6
+    https://technet.microsoft.com/en-ca/library/jj919240(v=exchg.150).aspx
+
+.LINK
+    https://docs.microsoft.com/en-us/powershell/module/exchange/active-directory/add-adpermission?view=exchange-ps
+
+.LINK
+    https://technet.microsoft.com/en-us/library/jj919240(v=exchg.150).aspx
 
 .LINK
     https://github.com/SammyKrosoft
@@ -295,22 +338,16 @@ Foreach ($Database in $Databases){
     If ($ResourceMailboxes -or $SharedMailboxes) {
         $MailboxesCommand += " -RecipientTypeDetails "
         $combo = @()
-        If ($ResourceMailboxes){$Combo += "ResourceMailbox"}
+        If ($ResourceMailboxes){$Combo += @("RoomMailbox", "EquipmentMailbox") }
         If ($SharedMailboxes){$Combo += "SharedMailbox"}
         $combo = $Combo -join ","
         $MailboxesCommand += $combo
-        $MailboxesCommand
-        exit
     }
     
-    
-    If ($ResourceMailboxes -and !$SharedMailboxes){
-        $Mailboxes = Get-Mailbox -resultsize unlimited -database $Database -RecipientTypeDetails RoomMailbox,EquipmentMailbox
-    } ElseIf ($SharedMailboxes){
-        $Mailboxes = Get-Mailbox -resultsize unlimited -database $Database -RecipientTypeDetails SharedMailbox
-    } Else {
-        $Mailboxes = Get-Mailbox -resultsize unlimited -database $Database
-    }
+    $Mailboxescommand
+    exit
+    Invoke-expression $Mailboxescommand
+ 
     #$strMailboxes = "Discovery Search Mailbox","RoomTest1 Ottawa" #,"User10", "User1","Test Canada",  "Room 1 - 85 Sparks"
     #$Mailboxes = @()
     #$Mailboxes += $strMailboxes | Get-Mailbox
