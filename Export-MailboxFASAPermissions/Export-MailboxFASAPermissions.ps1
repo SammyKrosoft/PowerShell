@@ -157,8 +157,10 @@
 Param(
     [Parameter(Mandatory = $false, Position = 0, ParameterSetName = "NormalRun")][switch]$SharedMailboxes,
     [Parameter(Mandatory = $false, Position = 1, ParameterSetName = "NormalRun")][switch]$ResourceMailboxes,
-    [Parameter(Mandatory = $false, Position = 2, ParameterSetName = "NormalRun")][string]$OutputFile,
-    [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "CheckOnly")][switch]$CheckVersion
+    [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "DLOnly")][Switch]$DistributionGroupsOnly,
+    [Parameter(Mandatory = $false, Position = 4, ParameterSetName = "DLOnly")][boolean]$IncludeDynamic=$true,
+    [Parameter(Mandatory = $false, Position = 5, ParameterSetName = "NormalRun")][string]$OutputFile,
+    [Parameter(Mandatory = $false, Position = 6, ParameterSetName = "CheckOnly")][switch]$CheckVersion
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
@@ -170,8 +172,13 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorActionPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "1"
+$ScriptVersion = "1.7"
 <# Version changes
+V1.7 - replaced Get-Mailbox with Get-Recipient to get primarySMTP Addresses of Grant
+Send On Behalf To entries
+Also added the ability to export GrantSendOnBehalfTo from Distribution Groups, 
+Including by default the Dynamic distribution groups - specify $false to the
+-IncludeDynamic parameter to exclude Dynamic DLs
 v1 - Completed the script.
 v0.1 - first script version
 #>
@@ -339,94 +346,137 @@ Test-ExchTools
 
 If (IsEmpty $OutputFile) {$OutputFile = $OutputReport}
 
-$Databases = Get-MailboxDatabase
-$DBProgressCount = 0
+If ($DistributionGroupsOnly){
+    #Process same as Mailboxes but replacing the mailbox objects with Get-DistributionList | Select Name,PrimarySMTPAddress, GrantSendOnBehalfTo
+    Write-Host "Developping routine to export Send On Behalf of Distribution Lists"
+    #We have 2 sorts of Distribution Groups : regular Distribution Groups (can be based on Distribution or Security Groups)
+    #And Dynamic Distribution Groups
+    $DLs = Get-DistributionGroup | Select Alias, DisplayName, primarySMTPAddress, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}}
+    If($IncludeDynamic){$DLs += Get-DynamicDistributionGroup | Select Alias, DisplayName, primarySMTPAddress, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}} }
 
-Foreach ($Database in $Databases){
-    $DBProgressCount++
-    _Progress ($DBProgressCount/$($Databases.count)*100)
-    
-    $Mailboxescommand = "Get-Mailbox -resultsize unlimited -database $Database"
-    If ($ResourceMailboxes -or $SharedMailboxes) {
-        $MailboxesCommand += " -RecipientTypeDetails "
-        $combo = @()
-        If ($ResourceMailboxes){$Combo += @("RoomMailbox", "EquipmentMailbox") }
-        If ($SharedMailboxes){$Combo += "SharedMailbox"}
-        $combo = $Combo -join ","
-        $MailboxesCommand += $combo
+    If (IsEmpty $DLs){
+        $msgNoDLsFound = "No Distribution Lists found"
+        Write-Host $msgNoDLsFound -ForegroundColor red
+        Exit
     }
-    
-    #Launch the command built with the above routine, based on the switches the admin chooses
-    $Mailboxes = Invoke-expression $Mailboxescommand
-    #If we don't "break" the current loop occurence with a "Continue" instruction, there will be an empty line in the CSV when there are no mailboxes in a given database
-    If (IsEmpty $Mailboxes){Continue}
 
-    #We cycle through each mailbox to get the permissions
-    #It's time consuming because of the AD queries...
-    Foreach ($Mailbox in $Mailboxes) {
-        Write-Host "Working on mailbox $($Mailbox.DisplayName) which Primary SMTP is $($Mailbox.primarySMTPAddress.ToString())" -ForegroundColor Blue -BackgroundColor Yellow
-        $SendAs=Get-ADPermission $mailbox.identity | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")}
-        $FullAccess=Get-MailboxPermission $Mailbox | ?{($_.AccessRights -like "*fullaccess*") -and ($_.User -notlike "*nt authority\self*") -and ($_.User -notlike "*nt authority\system*") -and ($_.User -notlike "*Exchange Trusted Subsystem*") -and ($_.User -notlike "*Exchange Servers*") -and ($_.IsInherited -like "false")}
-        $SendOnBehalf = Get-Mailbox $mailbox | Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}}
+    Foreach ($DL in $DLs){
         #Initializing a new Powershell object to store our discovered properties
         $Obj = New-Object PSObject
         #Populating basic mailbox info to bind with SendAs / FullMailbox / SendOnBehalf permissions
-        $Obj | Add-Member -MemberType NoteProperty -Name "DisplayName" -Value $Mailbox.DisplayName
-        $obj | Add-Member -MemberType NoteProperty -Name "PrimarySMTPAddress" -Value $Mailbox.PrimarySMTPAddress.ToString()
-		
-        If (IsEmpty $SendAs){
-            Write-Host "No custom Send As permissions detected"
-            $Obj | Add-Member -MemberType NoteProperty -Name "SendAsPermissions" -Value ""
-        } Else {
-            Write-Host "Found one or more SendAs Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
-            [array]$UsersWithSendAs = @()
-            ForEach($SAright in $SendAs){$UsersWithSendAs += ($SARight.User.ToString())}
-            $strUsersWithSendAs = $UsersWithSendAs -join ";"
-            $Obj | Add-Member -MemberType NoteProperty -Name "SendAsPermissions" -Value $strUsersWithSendAs
-        }
+        $Obj | Add-Member -MemberType NoteProperty -Name "DisplayName" -Value $DL.DisplayName
+        $obj | Add-Member -MemberType NoteProperty -Name "PrimarySMTPAddress" -Value $DL.PrimarySMTPAddress.ToString()
 
-        If (IsEmpty $FullAccess){
-            Write-Host "No custom Full Access permissions detected"
-            $Obj | Add-Member -MemberType NoteProperty -Name "FullAccessPermissions" -Value ""
-        }  else {
-            Write-Host "Found one or more Full Access Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
-            [array]$UsersWithFullAccess = @()
-            ForEach ($FARight in $FullAccess) {$UsersWithFullAccess += ($FARight.User.ToString())}
-            $strUsersWithFullAccess = $UsersWithFullAccess -join ";"
-            $Obj | Add-Member -MemberType NoteProperty -Name "FullAccessPermissions" -Value $strUsersWithFullAccess
-        }
-        
-        If (IsEmpty ($SendOnBehalf.GrantSendOnBehalfTo)){
+        If (IsEmpty ($DL.GrantSendOnBehalfTo)){
             Write-Host "No custom SendOnBehalf permissions detected"
             $Obj | Add-Member -MemberType NoteProperty -Name "SendOnBehalfPermissions" -Value ""
         } else {
             Write-Host "Found one or more SendOnBehalf Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
-            $TableOfSendOnBehalfToConvert = $($SendOnBehalf.GrantSendOnBehalfTo) -Split (";")
+            $TableOfSendOnBehalfToConvert = $($DL.GrantSendOnBehalfTo) -Split (";")
             $SMTPAddressesOfSendOnBehalf = @()
             Foreach ($entry in $TableOfSendOnBehalfToConvert) {
                 #Since the GrantSendOnBehalfTo entries HAVE to be mailbox-enabled users or mail enabled user or groups,
                 #Getting primary SMTP address for each object, and storing these as a string separated by semicolon
                 #to replace the string of DOMAIN/OU1/OU2/Name separated by semicolon
-                $SMTPAddressesOfSendOnBehalf += (Get-Mailbox $Entry).primarySMTPAddress
+                $SMTPAddressesOfSendOnBehalf += (Get-Recipient $Entry).primarySMTPAddress
             }
             $SendOnBehalfConverted = $SMTPAddressesOfSendOnBehalf -join ";"
             $Obj | Add-Member -MemberType NoteProperty -Name "SendOnBehalfPermissions" -Value $SendOnBehalfConverted
         }
-        #Appending the current object into the $report variable (it's an array, remember)
-        $report += $Obj
 
-        #Cleaning the variables now before the next loop...
-        $SendOnBehalfConverted = $null
-        $obj = $Null
-        $SMTPAddressesOfSendOnBehalf = $null
-        $TableOfSendOnBehalfToConvert = $null
-        $SendOnBehalfConverted = $null
-        $SendAs = $null
-        $FullAccess = $null
-        $SendOnBehalf = $null
-        #... add more later
+        $report += $Obj
+    }
+} Else {
+    $Databases = Get-MailboxDatabase
+    $DBProgressCount = 0
+
+    Foreach ($Database in $Databases){
+        $DBProgressCount++
+        _Progress ($DBProgressCount/$($Databases.count)*100)
+        
+        $Mailboxescommand = "Get-Mailbox -resultsize unlimited -database $Database"
+        If ($ResourceMailboxes -or $SharedMailboxes) {
+            $MailboxesCommand += " -RecipientTypeDetails "
+            $combo = @()
+            If ($ResourceMailboxes){$Combo += @("RoomMailbox", "EquipmentMailbox") }
+            If ($SharedMailboxes){$Combo += "SharedMailbox"}
+            $combo = $Combo -join ","
+            $MailboxesCommand += $combo
+        }
+        
+        #Launch the command built with the above routine, based on the switches the admin chooses
+        $Mailboxes = Invoke-expression $Mailboxescommand
+        #If we don't "break" the current loop occurence with a "Continue" instruction, there will be an empty line in the CSV when there are no mailboxes in a given database
+        If (IsEmpty $Mailboxes){Continue}
+
+        #We cycle through each mailbox to get the permissions
+        #It's time consuming because of the AD queries...
+        Foreach ($Mailbox in $Mailboxes) {
+            Write-Host "Working on mailbox $($Mailbox.DisplayName) which Primary SMTP is $($Mailbox.primarySMTPAddress.ToString())" -ForegroundColor Blue -BackgroundColor Yellow
+            $SendAs=Get-ADPermission $mailbox.identity | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")}
+            $FullAccess=Get-MailboxPermission $Mailbox | ?{($_.AccessRights -like "*fullaccess*") -and ($_.User -notlike "*nt authority\self*") -and ($_.User -notlike "*nt authority\system*") -and ($_.User -notlike "*Exchange Trusted Subsystem*") -and ($_.User -notlike "*Exchange Servers*") -and ($_.IsInherited -like "false")}
+            $SendOnBehalf = $mailbox | Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}}
+            #Initializing a new Powershell object to store our discovered properties
+            $Obj = New-Object PSObject
+            #Populating basic mailbox info to bind with SendAs / FullMailbox / SendOnBehalf permissions
+            $Obj | Add-Member -MemberType NoteProperty -Name "DisplayName" -Value $Mailbox.DisplayName
+            $obj | Add-Member -MemberType NoteProperty -Name "PrimarySMTPAddress" -Value $Mailbox.PrimarySMTPAddress.ToString()
+            
+            If (IsEmpty $SendAs){
+                Write-Host "No custom Send As permissions detected"
+                $Obj | Add-Member -MemberType NoteProperty -Name "SendAsPermissions" -Value ""
+            } Else {
+                Write-Host "Found one or more SendAs Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
+                [array]$UsersWithSendAs = @()
+                ForEach($SAright in $SendAs){$UsersWithSendAs += ($SARight.User.ToString())}
+                $strUsersWithSendAs = $UsersWithSendAs -join ";"
+                $Obj | Add-Member -MemberType NoteProperty -Name "SendAsPermissions" -Value $strUsersWithSendAs
+            }
+
+            If (IsEmpty $FullAccess){
+                Write-Host "No custom Full Access permissions detected"
+                $Obj | Add-Member -MemberType NoteProperty -Name "FullAccessPermissions" -Value ""
+            }  else {
+                Write-Host "Found one or more Full Access Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
+                [array]$UsersWithFullAccess = @()
+                ForEach ($FARight in $FullAccess) {$UsersWithFullAccess += ($FARight.User.ToString())}
+                $strUsersWithFullAccess = $UsersWithFullAccess -join ";"
+                $Obj | Add-Member -MemberType NoteProperty -Name "FullAccessPermissions" -Value $strUsersWithFullAccess
+            }
+            
+            If (IsEmpty ($SendOnBehalf.GrantSendOnBehalfTo)){
+                Write-Host "No custom SendOnBehalf permissions detected"
+                $Obj | Add-Member -MemberType NoteProperty -Name "SendOnBehalfPermissions" -Value ""
+            } else {
+                Write-Host "Found one or more SendOnBehalf Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
+                $TableOfSendOnBehalfToConvert = $($SendOnBehalf.GrantSendOnBehalfTo) -Split (";")
+                $SMTPAddressesOfSendOnBehalf = @()
+                Foreach ($entry in $TableOfSendOnBehalfToConvert) {
+                    #Since the GrantSendOnBehalfTo entries HAVE to be mailbox-enabled users or mail enabled user or groups,
+                    #Getting primary SMTP address for each object, and storing these as a string separated by semicolon
+                    #to replace the string of DOMAIN/OU1/OU2/Name separated by semicolon
+                    $SMTPAddressesOfSendOnBehalf += (Get-Recipient $Entry).primarySMTPAddress
+                }
+                $SendOnBehalfConverted = $SMTPAddressesOfSendOnBehalf -join ";"
+                $Obj | Add-Member -MemberType NoteProperty -Name "SendOnBehalfPermissions" -Value $SendOnBehalfConverted
+            }
+            #Appending the current object into the $report variable (it's an array, remember)
+            $report += $Obj
+
+            #Cleaning the variables now before the next loop...
+            $SendOnBehalfConverted = $null
+            $obj = $Null
+            $SMTPAddressesOfSendOnBehalf = $null
+            $TableOfSendOnBehalfToConvert = $null
+            $SendOnBehalfConverted = $null
+            $SendAs = $null
+            $FullAccess = $null
+            $SendOnBehalf = $null
+            #... add more later
+        }
     }
 }
+
 
 # Get mailbox forward to from mailboxes:Change the items below that are in bold to fit your needs.
 # Get-Mailbox -Filter {ForwardingAddress -ne $Null} |Select Alias, ForwardingAddress | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesForwardTo.csv
