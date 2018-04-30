@@ -115,7 +115,14 @@
 
 .EXAMPLE 
 .\Export-MailboxFASA.ps1 -DistributionGroupsOnly
-    Will run the script and export only the Distribugion Group permissions
+    Will run the script and export only the Distribugion Group permissions (Send As, GrantSendOnBehalfTo) in 
+    the default Output file format (Script_Name_Date_time.csv). This includes the Dynamic Distribution 
+    Groups.
+
+.EXAMPLE
+.\Export-MailboxFASA.ps1 -DistributionGroupsOnly -IncludeDynamic $false
+    Will run the script to export permissions of Distribution Groups, excluding the Dynamic Distribugion
+    Groups.
 
 
 .NOTES
@@ -183,8 +190,10 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorActionPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "1.7"
+$ScriptVersion = "1.8"
 <# Version changes
+v1.8 - fixed issue exporting Send As for Distribugion Groups (was trying to reference $DL.Identity but selected
+ALIAS, Send AS and Send On Behalf permissions only, forgot to add Identity in the Select)
 V1.7 - replaced Get-Mailbox with Get-Recipient to get primarySMTP Addresses of Grant
 Send On Behalf To entries
 Also added the ability to export GrantSendOnBehalfTo from Distribution Groups, 
