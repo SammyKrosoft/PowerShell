@@ -113,6 +113,10 @@
     Will run the script and export only the Room and Equipment Mailboxes permissions, and store
     the results in a CSV file c:\temp\ResourceMailboxPermissions.csv
 
+.EXAMPLE 
+.\Export-MailboxFASA.ps1 -DistributionGroupsOnly
+    Will run the script and export only the Distribugion Group permissions
+
 
 .NOTES
     This script can be use alone to export a permissions map, but the output is designed so that it
@@ -194,9 +198,9 @@ If ($CheckVersion) {Write-Host "SCRIPT NAME :$ScriptName `nSCRIPT VERSION :$Scri
 # Log or report file definition
 # NOTE: use #PSScriptRoot in Powershell 3.0 and later or use $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition in Powershell 2.0
 $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition #<-- that's for Powershell 2.0
-$OutputReport = "$($ScriptPath)\$($ScriptName)_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+$OutputReport = "$($ScriptPath)\$($ScriptName)_$(get-date -f yyyy-MM-dd-HH-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
-$ScriptLog = "$($ScriptPath)\$($ScriptName)-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
+$ScriptLog = "$($ScriptPath)\$($ScriptName)-$(Get-Date -Format 'dd-MMMM-yyyy-HH-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 <# -------------------------- DECLARATIONS -------------------------- #>
 [array]$report = @()
@@ -206,7 +210,7 @@ $Mailboxes = @()
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
 #region Functions
-function Write-Log {
+function Log {
     <# 
      .SYNOPSIS
       Function to log input string to file and display it to screen
@@ -349,27 +353,37 @@ function IsEmpty($Param){
 <# /FUNCTIONS #>
 #endregion Functions
 <# -------------------------- EXECUTIONS -------------------------- #>
+Log "********************** Beginning execution ***********************" Blue
+Log "Testing if Exchange tools are present" Blue
 Test-ExchTools
+Log "Exchange Tools present ! continuing to test if user specified Output file" Red
+If (IsEmpty $OutputFile) {
+    Log "Not Output file specified, using the script standard name $OutputReport" Yellow
+    $OutputFile = $OutputReport}
 
-If (IsEmpty $OutputFile) {$OutputFile = $OutputReport}
-
+Log "Checking if user specified -DistributionGroupsOnly switch..." Blue
 If ($DistributionGroupsOnly){
+    Log "User specified the -DistribugionGroupsOnly switch. Beginning Distribution Groups SendAs / GrantSendOnBehalfTo permissions dump..." Red
     #Process same as Mailboxes but replacing the mailbox objects with Get-DistributionList | Select Name,PrimarySMTPAddress, GrantSendOnBehalfTo
-    Write-Host "Developping routine to export Send On Behalf of Distribution Lists"
     #We have 2 sorts of Distribution Groups : regular Distribution Groups (can be based on Distribution or Security Groups)
     #And Dynamic Distribution Groups
+    Log "Getting all distribution Groups" Blue
     $DLs = Get-DistributionGroup | Select Identity,Alias, DisplayName, primarySMTPAddress, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}}
-    If($IncludeDynamic){$DLs += Get-DynamicDistributionGroup | Select Alias, DisplayName, primarySMTPAddress, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}} }
+    Log "Testing whether the user set the -IncludeDynamic boolean parameter to `$false (`$true by default)" Green
+    If($IncludeDynamic){
+        Log "User didn't specify the -IncludeDynamic or set -IncludeDynamic to `$false - including Dynamic DLs" White
+        $DLs += Get-DynamicDistributionGroup | Select Alias, DisplayName, primarySMTPAddress, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}}
+    }
 
     If (IsEmpty $DLs){
         $msgNoDLsFound = "No Distribution Lists found"
-        Write-Host $msgNoDLsFound -ForegroundColor red
+        Log $msgNoDLsFound Red
         Exit
     }
 
     Foreach ($DL in $DLs){
         $msgWorkingOnDistributionGroup = "Working on Distribution Group $($DL.DisplayName) which Primary SMTP is $($DL.primarySMTPAddress.ToString())"
-        Write-Host $msgWorkingOnDistributionGroup -ForegroundColor Blue -BackgroundColor Yellow
+        Log $msgWorkingOnDistributionGroup Blue
         $SendAs = Get-ADPermission $($DL.identity) | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")}
         #Initializing a new Powershell object to store our discovered properties
         $Obj = New-Object PSObject
@@ -378,10 +392,10 @@ If ($DistributionGroupsOnly){
         $obj | Add-Member -MemberType NoteProperty -Name "PrimarySMTPAddress" -Value $DL.PrimarySMTPAddress.ToString()
 
         If (IsEmpty $SendAs){
-            Write-Host "No custom Send As permissions detected"
+            Log "No custom Send As permissions detected"
             $Obj | Add-Member -MemberType NoteProperty -Name "SendAsPermissions" -Value ""
         } Else {
-            Write-Host "Found one or more SendAs Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
+            Log "Found one or more SendAs Permission ! Dumping ..." Red
             [array]$UsersWithSendAs = @()
             ForEach($SAright in $SendAs){$UsersWithSendAs += ($SARight.User.ToString())}
             $strUsersWithSendAs = $UsersWithSendAs -join ";"
@@ -389,10 +403,10 @@ If ($DistributionGroupsOnly){
         }
 
         If (IsEmpty ($DL.GrantSendOnBehalfTo)){
-            Write-Host "No custom SendOnBehalf permissions detected"
+            Log "No custom SendOnBehalf permissions detected"
             $Obj | Add-Member -MemberType NoteProperty -Name "SendOnBehalfPermissions" -Value ""
         } else {
-            Write-Host "Found one or more SendOnBehalf Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
+            Log "Found one or more SendOnBehalf Permission ! Dumping ..." Blue
             $TableOfSendOnBehalfToConvert = $($DL.GrantSendOnBehalfTo) -Split (";")
             $SMTPAddressesOfSendOnBehalf = @()
             Foreach ($entry in $TableOfSendOnBehalfToConvert) {
@@ -408,15 +422,20 @@ If ($DistributionGroupsOnly){
         $report += $Obj
     }
 } Else {
+    Log "Beginning routing to dump mailbox Send As, Full Access, and Send On Behalf permissions"
+    Log "Getting all databases"
     $Databases = Get-MailboxDatabase
     $DBProgressCount = 0
 
     Foreach ($Database in $Databases){
         $DBProgressCount++
+        Log "Processing Database $($Database.Name)"
         _Progress ($DBProgressCount/$($Databases.count)*100)
         
         $Mailboxescommand = "Get-Mailbox -resultsize unlimited -database $Database"
         If ($ResourceMailboxes -or $SharedMailboxes) {
+            Log "Specified Resource Mailboxes parameter ? $ResourceMailboxes"
+            Log "Specified SharedMailboxes parameter ? $SharedMailboxes"
             $MailboxesCommand += " -RecipientTypeDetails "
             $combo = @()
             If ($ResourceMailboxes){$Combo += @("RoomMailbox", "EquipmentMailbox") }
@@ -424,7 +443,8 @@ If ($DistributionGroupsOnly){
             $combo = $Combo -join ","
             $MailboxesCommand += $combo
         }
-        
+        Log "The full mailbox command launched is :"
+        Log $Mailboxescommand
         #Launch the command built with the above routine, based on the switches the admin chooses
         $Mailboxes = Invoke-expression $Mailboxescommand
         #If we don't "break" the current loop occurence with a "Continue" instruction, there will be an empty line in the CSV when there are no mailboxes in a given database
@@ -432,8 +452,9 @@ If ($DistributionGroupsOnly){
 
         #We cycle through each mailbox to get the permissions
         #It's time consuming because of the AD queries...
+        Log "Parsing $($Mailboxes.count) mailboxes..."
         Foreach ($Mailbox in $Mailboxes) {
-            Write-Host "Working on mailbox $($Mailbox.DisplayName) which Primary SMTP is $($Mailbox.primarySMTPAddress.ToString())" -ForegroundColor Blue -BackgroundColor Yellow
+            Log "Working on mailbox $($Mailbox.DisplayName) which Primary SMTP is $($Mailbox.primarySMTPAddress.ToString())" Blue
             $SendAs=Get-ADPermission $mailbox.identity | ?{($_.extendedrights -like "*send-as*") -and ($_.isinherited -like "false") -and ($_.User -notlike "NT Authority\self")}
             $FullAccess=Get-MailboxPermission $Mailbox | ?{($_.AccessRights -like "*fullaccess*") -and ($_.User -notlike "*nt authority\self*") -and ($_.User -notlike "*nt authority\system*") -and ($_.User -notlike "*Exchange Trusted Subsystem*") -and ($_.User -notlike "*Exchange Servers*") -and ($_.IsInherited -like "false")}
             $SendOnBehalf = $mailbox | Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}}
@@ -444,10 +465,10 @@ If ($DistributionGroupsOnly){
             $obj | Add-Member -MemberType NoteProperty -Name "PrimarySMTPAddress" -Value $Mailbox.PrimarySMTPAddress.ToString()
             
             If (IsEmpty $SendAs){
-                Write-Host "No custom Send As permissions detected"
+                Log "No custom Send As permissions detected"
                 $Obj | Add-Member -MemberType NoteProperty -Name "SendAsPermissions" -Value ""
             } Else {
-                Write-Host "Found one or more SendAs Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
+                Log "Found one or more SendAs Permission ! Dumping ..." Red
                 [array]$UsersWithSendAs = @()
                 ForEach($SAright in $SendAs){$UsersWithSendAs += ($SARight.User.ToString())}
                 $strUsersWithSendAs = $UsersWithSendAs -join ";"
@@ -455,10 +476,10 @@ If ($DistributionGroupsOnly){
             }
 
             If (IsEmpty $FullAccess){
-                Write-Host "No custom Full Access permissions detected"
+                Log "No custom Full Access permissions detected"
                 $Obj | Add-Member -MemberType NoteProperty -Name "FullAccessPermissions" -Value ""
             }  else {
-                Write-Host "Found one or more Full Access Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
+                Log "Found one or more Full Access Permission ! Dumping ..." Blue
                 [array]$UsersWithFullAccess = @()
                 ForEach ($FARight in $FullAccess) {$UsersWithFullAccess += ($FARight.User.ToString())}
                 $strUsersWithFullAccess = $UsersWithFullAccess -join ";"
@@ -466,10 +487,10 @@ If ($DistributionGroupsOnly){
             }
             
             If (IsEmpty ($SendOnBehalf.GrantSendOnBehalfTo)){
-                Write-Host "No custom SendOnBehalf permissions detected"
+                Log "No custom SendOnBehalf permissions detected"
                 $Obj | Add-Member -MemberType NoteProperty -Name "SendOnBehalfPermissions" -Value ""
             } else {
-                Write-Host "Found one or more SendOnBehalf Permission ! Dumping ..." -ForegroundColor Blue -BackgroundColor green
+                Log "Found one or more SendOnBehalf Permission ! Dumping ..." Blue
                 $TableOfSendOnBehalfToConvert = $($SendOnBehalf.GrantSendOnBehalfTo) -Split (";")
                 $SMTPAddressesOfSendOnBehalf = @()
                 Foreach ($entry in $TableOfSendOnBehalfToConvert) {
@@ -503,7 +524,7 @@ If ($DistributionGroupsOnly){
 # Get-Mailbox -Filter {ForwardingAddress -ne $Null} |Select Alias, ForwardingAddress | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesForwardTo.csv
 # Get mailbox grant send on behalf to:Change the items below that are in bold to fit your needs.
 #Get-Mailbox -Filter {GrantSendOnBehalfTo -ne $Null} |Select Alias, @{Name='GrantSendOnBehalfTo';Expression={[string]::join(";", ($_.GrantSendOnBehalfTo))}} | Export-Csv -NoType -encoding "unicode" C:\*location*\MailboxesSendOnBehalf.csv
-Write-host "saving file in $OutputFile"
+Log "saving file in $OutputFile"
 $Report | export-csv -NoTypeInformation $OutputFile
 Notepad $OutputFile
 
@@ -525,5 +546,5 @@ $Databases = $Null
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
 #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...
 $stopwatch.Stop()
-Write-Host "`n`nThe script took $($StopWatch.Elapsed.TotalSeconds) seconds to execute..."
+Log "`n`nThe script took $($StopWatch.Elapsed.TotalSeconds) seconds to execute..."
 <# ---------------- /SCRIPT_FOOTER (NOTHING BEYOND THIS POINT) ----------- #>
