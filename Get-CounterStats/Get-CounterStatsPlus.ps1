@@ -2,6 +2,7 @@
 .SYNOPSIS
 Script: Get-CounterStats
 Author: Prashanth and Praveen
+Modified by : Samuel Drey
 
 This script will collect the specific counters value from the multiple target machines/servers 
 which will be used to analayze the performance of target servers.
@@ -10,9 +11,24 @@ which will be used to analayze the performance of target servers.
 This script will collect the specific counters value from the multiple target machines/servers 
 which will be used to analayze the performance of target servers.
 
+The script will query a defined set of counters that you define there :
+
+$Counter = @"
+Processor(_total)\% processor time 
+\MSExchange RpcClientAccess\RPC Averaged Latency
+\MSExchange RpcClientAccess\RPC Requests
+Memory\Available MBytes 
+PhysicalDisk(*)\Avg. Disk sec/Transfer 
+Network Interface(*)\Bytes Total/sec
+"@ 
+
+
 .PARAMETER ServersTXTFile
     This parameter specified the file containing the list of servers to get Perfmon samples from.
     By default it will look for a "servers.txt" file in the same directory as the script.
+
+.PARAMETER NumberOfSamples
+    This parameter specifies how many counter samples we need to dump. Default is 5.
 
 .PARAMETER OutputFile
     This parameter specifies the Output file. If not specified, the output file name will be built
@@ -31,7 +47,14 @@ which will be used to analayze the performance of target servers.
 
 .EXAMPLE
 .\Get-CounterStatsPlus.ps1
-Will execute and dump the counters stats on a list of servers defined in the C:\Temp\Servers.txt file.
+Will execute and dump the counters stats for 5 default samples on a list of servers defined in the C:\Temp\Servers.txt file.
+The detault output file will be named after the script's file with the date and time appended, on the same directory where
+the script itself is located (Get-CounterStatsPlus.ps1_Date_Time.csv)
+
+.EXAMPLE
+.\Get-CounterStatsPlus.ps1 -ServersTXTfile C:\temp\Myservers.txt -NumberOfSamples 20 -OutputFile c:\ExportRequestISsue.csv
+Will execute the counters stats for servers list defined in the C:\temp\Myservers.txt, for 20 samples, and store the
+results in the output file specified here :C:\ExportRequestIssue.csv
 
 .NOTES
 None
@@ -45,7 +68,7 @@ None
 [CmdLetBinding(DefaultParameterSetName = "NormalRun")]
 Param(
     [Parameter(Mandatory = $False, Position = 1, ParameterSetName = "NormalRun")][string]$ServersTXTfile = ".\servers.txt",
-    [Parameter(Mandatory = $False, Position = 2, ParameterSetName = "NormalRun")][int]$NumberOfSamples = 2,
+    [Parameter(Mandatory = $False, Position = 2, ParameterSetName = "NormalRun")][int]$NumberOfSamples = 5,
     [Parameter(Mandatory = $False, Position = 3, ParameterSetName = "NormalRun")][string]$OutputFile,
     [Parameter(Mandatory = $false, Position = 4, ParameterSetName = "CheckOnly")][switch]$CheckVersion
 )
@@ -205,7 +228,7 @@ Processor(_total)\% processor time
 \MSExchange RpcClientAccess\RPC Averaged Latency
 \MSExchange RpcClientAccess\RPC Requests
 Memory\Available MBytes 
-PhysicalDisk(*)\Avg. Disk sec/Transfer 
+LogicalDisk(*)\Avg. Disk sec/Transfer 
 Network Interface(*)\Bytes Total/sec
 "@ 
 
