@@ -177,7 +177,7 @@ Param(
     [Parameter(Mandatory = $false, Position = 1, ParameterSetName = "NormalRun")][switch]$ResourceMailboxes,
     [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "DLOnly")][Switch]$DistributionGroupsOnly,
     [Parameter(Mandatory = $false, Position = 4, ParameterSetName = "DLOnly")][boolean]$IncludeDynamic=$true,
-    [Parameter(Mandatory = $false, Position = 5, ParameterSetName = "NormalRun")][string]$OutputFile,
+    [Parameter(Mandatory = $false, Position = 5, ParameterSetName = "NormalRun")][Parameter(ParameterSetName = "DLOnly")][string]$OutputFile,
     [Parameter(Mandatory = $false, Position = 6, ParameterSetName = "CheckOnly")][switch]$CheckVersion
 )
 
@@ -190,8 +190,9 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorActionPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "1.8"
+$ScriptVersion = "1.8.1"
 <# Version changes
+v1.8.1 - fixed OutputFile parameter to be included in both NormalRun and DLOnly parameters set
 v1.8 - fixed issue exporting Send As for Distribugion Groups (was trying to reference $DL.Identity but selected
 ALIAS, Send AS and Send On Behalf permissions only, forgot to add Identity in the Select)
 V1.7 - replaced Get-Mailbox with Get-Recipient to get primarySMTP Addresses of Grant
