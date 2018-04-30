@@ -61,9 +61,9 @@ $ScriptName = $MyInvocation.MyCommand.Name
 If ($CheckVersion) {Write-Host "SCRIPT NAME :$ScriptName `nSCRIPT VERSION :$ScriptVersion";exit}
 # Log or report file definition
 # NOTE: use $PSScriptRoot in Powershell 3.0 and later or use $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition in Powershell 2.0
-$OutputReport = "$PSScriptRoot\$ScriptName_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+$OutputReport = "$PSScriptRoot\$($ScriptName)_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
-$ScriptLog = "$PSScriptRoot\$ScriptName-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
+$ScriptLog = "$PSScriptRoot\$($ScriptName)-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 <# -------------------------- DECLARATIONS -------------------------- #>
 
