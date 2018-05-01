@@ -100,95 +100,6 @@ $OutputReport = "$ScriptPath\$($ScriptName)_$(get-date -f yyyy-MM-dd-hh-mm-ss).c
 <# -------------------------- FUNCTIONS -------------------------- #>
 #region Functions region
 #Function to have the customized output in CSV format
-function Export-CsvFile {
-    [CmdletBinding(DefaultParameterSetName='Delimiter', SupportsShouldProcess = $true, ConfirmImpact='Medium')]
-    param(
-        [Parameter(Mandatory=$true, ValueFromPipeline=$true, ValueFromPipelineByPropertyName=$true)][System.Management.Automation.PSObject]${InputObject},
-        [Parameter(Mandatory=$true, Position=0)][Alias('PSPath')][System.String]${Path},
-        [Switch]${Append},
-        [Switch]${Force},
-        [Switch]${NoClobber},
-        [ValidateSet('Unicode','UTF7','UTF8','ASCII','UTF32','BigEndianUnicode','Default','OEM')][System.String]${Encoding},
-        [Parameter(ParameterSetName='Delimiter', Position=1)][ValidateNotNull()][System.Char]${Delimiter},
-        [Parameter(ParameterSetName='UseCulture')][Switch]${UseCulture},
-        [Alias('NTI')][Switch]${NoTypeInformation}
-    )
-
-    begin
-    {
-        # This variable will tell us whether we actually need to append
-        # to existing file
-        $AppendMode = $false
-        try {
-            $outBuffer = $null
-            if ($PSBoundParameters.TryGetValue('OutBuffer', [ref]$outBuffer))
-                {$PSBoundParameters['OutBuffer'] = 1}
-            $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand('Export-Csv',[System.Management.Automation.CommandTypes]::Cmdlet)
-            #String variable to become the target command line
-            $scriptCmdPipeline = ''
-            # Add new parameter handling
-            #Process and remove the Append parameter if it is present
-            if ($Append) {
-                $PSBoundParameters.Remove('Append') | Out-Null
-                    if ($Path) {
-                        if (Test-Path $Path) {        
-                        # Need to construct new command line
-                        $AppendMode = $true
-                    if ($Encoding.Length -eq 0) {
-                        # ASCII is default encoding for Export-CSV
-                        $Encoding = 'ASCII'
-                    }
-
-            # For Append we use ConvertTo-CSV instead of Export
-            $scriptCmdPipeline += 'ConvertTo-Csv -NoTypeInformation '
-
-            # Inherit other CSV convertion parameters
-            if ( $UseCulture ) {$scriptCmdPipeline += ' -UseCulture ' }
-            if ( $Delimiter ) {$scriptCmdPipeline += " -Delimiter '$Delimiter' "} 
-
-            # Skip the first line (the one with the property names) 
-            $scriptCmdPipeline += ' | Foreach-Object {$start=$true}'
-            $scriptCmdPipeline += '{if ($start) {$start=$false} else {$_}} '
-
-            # Add file output
-            $scriptCmdPipeline += " | Out-File -FilePath '$Path' -Encoding '$Encoding' -Append "
-            
-            if ($Force) {$scriptCmdPipeline += ' -Force'}
-            if ($NoClobber) {$scriptCmdPipeline += ' -NoClobber'}   
-                        }
-                    }
-            } 
-    
-        $scriptCmd = {& $wrappedCmd @PSBoundParameters }
-
-        if ( $AppendMode ) {
-            # redefine command line
-            $scriptCmd = $ExecutionContext.InvokeCommand.NewScriptBlock($scriptCmdPipeline)
-        } else {
-            # execute Export-CSV as we got it because
-            # either -Append is missing or file does not exist
-            $scriptCmd = $ExecutionContext.InvokeCommand.NewScriptBlock([string]$scriptCmd)
-        }
-
-        # standard pipeline initialization
-        $steppablePipeline = $scriptCmd.GetSteppablePipeline($myInvocation.CommandOrigin)
-        $steppablePipeline.Begin($PSCmdlet)
-        } catch {throw}
-    }
-
-    process
-    {
-        try {
-            $steppablePipeline.Process($_)
-        } catch {throw}
-    }
-
-    end
-    {
-        try {$steppablePipeline.End()} catch {throw}
-    }
-
-}
 
 function Global:Convert-HString {
     [CmdletBinding()]
@@ -203,9 +114,7 @@ function Global:Convert-HString {
         $HString -split "`n" | ForEach-Object {
             $ComputerName = $_.trim()
             if ($ComputerName -notmatch "#")
-            {
-                $ComputerName
-            }    
+            {$ComputerName}    
         }
     }#Process
     End 
@@ -218,7 +127,7 @@ function Global:Convert-HString {
 #Performance counters declaration
 function Get-CounterStats { 
     param(
-        [String[]]$ComputerName = $ENV:ComputerName
+        [String[]]$ComputerName = $Env:ComputerName
     ) 
 
     $Object =@()
@@ -232,10 +141,8 @@ LogicalDisk(*)\Avg. Disk sec/Transfer
 Network Interface(*)\Bytes Total/sec
 "@ 
 
-
     (Get-Counter -ComputerName $ComputerName -Counter (Convert-HString -HString $Counter)).counterSamples | ForEach-Object {
         $path = $_.path
-
         $PropertyHash=@{
                 computerName=($Path -split "\\")[2];
                 WholeCounter = ($path  -split "\\")[-2,-1] -join "-";
@@ -244,19 +151,17 @@ Network Interface(*)\Bytes Total/sec
                 datetime=(Get-Date -format "yyyy-MM-d hh:mm:ss")
         }
 
-    If (($path  -split "\\")[3] -eq $null -or ($path  -split "\\")[3] -eq "") { 
-        $PropertyHash.Add('CounterCategory',$(($path  -split "\\")[4]))
-        $PropertyHash.Add('CounterName',$(($path  -split "\\")[5]))
-    } Else {
-        $PropertyHash.Add('CounterCategory',$(($path  -split "\\")[3]))
-        $PropertyHash.Add('CounterName',$(($path  -split "\\")[4]))
-    }
-
+        If (($path  -split "\\")[3] -eq $null -or ($path  -split "\\")[3] -eq "") { 
+            $PropertyHash.Add('CounterCategory',$(($path  -split "\\")[4]))
+            $PropertyHash.Add('CounterName',$(($path  -split "\\")[5]))
+        } Else {
+            $PropertyHash.Add('CounterCategory',$(($path  -split "\\")[3]))
+            $PropertyHash.Add('CounterName',$(($path  -split "\\")[4]))
+        }
 
 New-Object PSObject -Property $PropertyHash
-
     }
-} 
+}
 
 function IsEmpty($Param){
     If ($Param -eq "All" -or $Param -eq "" -or $Param -eq $Null -or $Param -eq 0) {
@@ -281,7 +186,6 @@ If (!(Test-Path $ServersTXTfile)){
 
 Write-Host "Gathering performance counters for $($Servers -Join ", ")"
 Write-Host "That's a total of $($Servers.count) servers"
-#exit
 
 #Collecting counter information for target servers
 #foreach($server in $Servers){
@@ -295,6 +199,7 @@ notepad $OutputFile
 
 <# /EXECUTIONS #>
 <# -------------------------- CLEANUP VARIABLES -------------------------- #>
+$OutputFile = $null
 
 <# /CLEANUP VARIABLES#>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
