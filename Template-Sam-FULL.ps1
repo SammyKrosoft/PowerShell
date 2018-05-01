@@ -8,8 +8,8 @@
 .PARAMETER FirstNumber
     This parameter does blablabla
 
-.PARAMETER SecondNumber
-    This parameter does blablabla
+.PARAMETER CheckVersion
+    This parameter will just dump the script current version.
 
 .INPUTS
     None. You cannot pipe objects to that script.
@@ -39,7 +39,6 @@ None
 [CmdLetBinding(DefaultParameterSetName = "NormalRun")]
 Param(
     [Parameter(Mandatory = $False, Position = 1, ParameterSetName = "NormalRun")][int]$FirstNumber = 1,
-    [Parameter(Mandatory = $False, Position = 2, ParameterSetName = "NormalRun")][int]$SecondNumber = 2,
     [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "CheckOnly")][switch]$CheckVersion
 )
 
