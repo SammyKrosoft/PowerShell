@@ -18,14 +18,14 @@
     None for now
 
 .EXAMPLE
-    Add default numbers 1 + 2
-C:\PS> .\Add-Numbers.ps1
-3
+.\Do-Something.ps1
+This will launch the script and do someting
 
 .EXAMPLE
-    Add 14 with 23
-C:\PS> .\Add-Numbers.ps1 -FirstNumber 14 -SecondNumber 23
-37
+.\Do-Something.ps1 -CheckVersion
+This will dump the script name and current version like :
+SCRIPT NAME : Do-Something.ps1
+VERSION : v1.0
 
 .NOTES
 None
@@ -57,12 +57,13 @@ v0.1 : first script version
 v0.1 -> v0.5 : 
 #>
 $ScriptName = $MyInvocation.MyCommand.Name
-If ($CheckVersion) {Write-Host "SCRIPT NAME :$ScriptName `nSCRIPT VERSION :$ScriptVersion";exit}
+If ($CheckVersion) {Write-Host "SCRIPT NAME     : $ScriptName `nSCRIPT VERSION  : $ScriptVersion";exit}
 # Log or report file definition
 # NOTE: use $PSScriptRoot in Powershell 3.0 and later or use $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition in Powershell 2.0
-$OutputReport = "$PSScriptRoot\$($ScriptName)_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+$scriptPath = split-path -parent $MyInvocation.MyCommand.Definition
+$OutputReport = "$ScriptPath\$($ScriptName)_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
-$ScriptLog = "$PSScriptRoot\$($ScriptName)-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
+$ScriptLog = "$ScriptPath\$($ScriptName)-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 <# -------------------------- DECLARATIONS -------------------------- #>
 
