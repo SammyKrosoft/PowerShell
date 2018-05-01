@@ -11,9 +11,9 @@
      
      The "DisplayName" header is optional, we just need to be able to idendify the 
      mailbox into which we need to assign Full Access and/or Send-As and/or Send On Behalf 
-     permissions. Usually the SMTP address is enough to uniquely identify a mailbox, but
+     permissions. Usually the SMTP address uniquely identify a mailbox in an organization, but
      since the script uses standard Exchange Management Shell cmdlets, we can also use any
-     other value that uniquely identifies a mailbox.
+     other value that Get-Mailbox understands and that uniquely identifies a mailbox.
 
      As per Get-Mailbox help, you can use any value that uniquely identifies the mailbox.
         For example:
@@ -127,7 +127,7 @@ v0.1 : first script version
 v0.1 -> v0.5 : 
 #>
 $ScriptName = $MyInvocation.MyCommand.Name
-If ($CheckVersion) {Write-Host "SCRIPT NAME :$ScriptName `nSCRIPT VERSION :$ScriptVersion";exit}
+If ($CheckVersion) {Write-Host "SCRIPT NAME     : $ScriptName `nSCRIPT VERSION  : $ScriptVersion";exit}
 # Log or report file definition
 # NOTE: use $PSScriptRoot in Powershell 3.0 and later or use $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition in Powershell 2.0
 $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition
