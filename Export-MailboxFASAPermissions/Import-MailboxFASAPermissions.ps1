@@ -392,7 +392,7 @@ Foreach ($Item in $PermissionsMAP) {
         $ListOfSendAsTemp = $Item.SendAsPermissions -split ";"
         $ListOfSendAsTemp
         Foreach ($User in $ListOfSendAsTemp){
-            $User=$NewOrOldDomainUser
+            $NewOrOldDomainUser = $User
             If (!(IsBlank $TargetDomain)){
                 $temp = $NewOrOldDomainUser -split "\"
                 $NewOrOldDomainUser = $TargetDomain + "\" + $Temp[1]
@@ -412,7 +412,7 @@ Foreach ($Item in $PermissionsMAP) {
         $ListOfFullAccessTemp = $Item.FullAccessPermissions -split ";"
         $ListOfFullAccessTemp
         Foreach ($User in $ListOfFullAccessTemp){
-            $User=$NewOrOldDomainUser
+            $NewOrOldDomainUser = $User
             If (!(IsBlank $TargetDomain)){
                 $temp = $NewOrOldDomainUser -split "\"
                 $NewOrOldDomainUser = $TargetDomain + "\" + $Temp[1]
