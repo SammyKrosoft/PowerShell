@@ -69,6 +69,20 @@
     Shows the events found on the console and/or exported on a file.
 
 .EXAMPLE
+.\Get-EventsFromEventLogs.ps1 -Computers SRV-EX-01,SRV-EX-02,SRV-EX-03 -EventsLevel Warning,Error,Critical -ExportToFile
+    This will collect the Warning, Error, Critical events on computers SRV-EX-01, 02 and 03. The results
+    will be dumped into a file labelled GetEventsFromEventLogs-Date-time.csv as we specified the
+    ExportToFile parameter.
+    Note that the computers list can come from a txt file as well (see next example)
+
+.EXAMPLE
+.\Get-EventsFromEventsLogs.ps1 -Computers $(Get-Content .\ServersList.txt) -EventsLevel Error,Critical -ExportToFile
+    This will collect Error and Critical events on computers list defined in the "ServersList.txt" file on the current 
+    directory from where you launched the script (.\ refers to the current user directory, NOT the directory where the
+    script is) and store it into a file.
+
+
+.EXAMPLE
 .\Get-EventsFromEventLogs.ps1
     Launching the script without options will :
     - Ask you which event(s) you wish to search for (separated by commas if you want multiple event IDs to search)
