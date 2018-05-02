@@ -133,9 +133,6 @@ MachineName     LogName         TimeCreated             LevelDisplayName    Id  
     https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent
 
 .LINK
-    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help
-
-.LINK
     https://github.com/SammyKrosoft
 
 #>
@@ -198,6 +195,26 @@ function IsEmpty($Param){
     } Else {
         Return $False
     }
+}
+
+Function IsPSV3 {
+    <#
+    .DESCRIPTION
+    Just printing Powershell version and returning "true" if powershell version
+    is Powershell v3 or more recent, and "false" if it's version 2.
+    .OUTPUTS
+    Returns $true or $false
+    .EXAMPLE
+    IsPSVersionV3
+    #>
+    $PowerShellMajorVersion = $PSVersionTable.PSVersion.Major
+    $msgPowershellMajorVersion = "You're running Powershell v$PowerShellMajorVersion"
+    Write-Host $msgPowershellMajorVersion -BackgroundColor blue -ForegroundColor yellow
+    If($PowerShellMajorVersion -le 2){
+        Return $false
+    } Else {
+        Return $true
+        }
 }
 <# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
@@ -329,12 +346,28 @@ $Events4All | Group-Object LevelDisplayName | ft @{Label="Event Level";Expressio
 
 If ($ExportToFile){
     If (!(IsEmpty $EventID)){
-        $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$($EventID[0])_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+        $FileEventLogFirstID = "GetEventsFromEventLogs_$($EventID[0])_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+        If (IsPSV3){
+            $EventsReport = "$PSScriptRoot\$FileEventLogFirstID"
+        } Else {
+            $EventsReport = "$(split-path -parent $MyInvocation.MyCommand.Definition)\$FileEventLogFirstID"
+        }
     } Else { 
         If (!(IsEmpty $EventSource)){
-            $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$($EventSource[0])_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+            $FileEventLogFirstSource = "GetEventsFromEventLogs_$($EventSource[0])_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+            If (IsPSV3){
+                $EventsReport = "$PSScriptRoot\$FileEventLogFirstSource"
+            } Else {
+                $EventsReport = "$(split-path -parent $MyInvocation.MyCommand.Definition)\$FileEventLogFirstSource"
+            }
+            
         } Else {
-        $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_Last_$($NumberOfLastEventsToGet)_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+            $FileNumberOfLastEvents = "GetEventsFromEventLogs_Last_$($NumberOfLastEventsToGet)_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
+            If(IsPSV3){
+                $EventsReport = "$PSScriptRoot\$FileNumberOfLastEvents"
+            } else {
+                $EventsReport = "$(split-path -parent $MyInvocation.MyCommand.Definition)\$FileNumberOfLastEvents"
+            }
         }
     }
     $Events4all | Export-Csv -NoTypeInformation $EventsReport
