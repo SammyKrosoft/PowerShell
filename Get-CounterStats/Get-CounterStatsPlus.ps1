@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-Script: Get-CounterStats
-Author: Prashanth and Praveen
-Modified by : Samuel Drey
+Script: Get-CounterStatsPlus
+Original Authors: Prashanth and Praveen
+Modified by : Samuel Drey aka SammyKrosoft
 
 This script will collect the specific counters value from the multiple target machines/servers 
 which will be used to analayze the performance of target servers.
