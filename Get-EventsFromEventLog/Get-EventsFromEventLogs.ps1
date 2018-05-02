@@ -162,8 +162,10 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorActionPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "1.4.2"
+$ScriptVersion = "1.4.3"
 <# Version changes :
+v1.4.3 -> added a test on Powershell version (using $PSVersionTable) to check whether we can use
+$PSSCriptRoot variable or $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition instead
 1.4.1 -> 1.4.2
 Added the CheckVersion switch
 1.4 -> 1.4.1
