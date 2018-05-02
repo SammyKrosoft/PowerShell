@@ -22,6 +22,17 @@ PhysicalDisk(*)\Avg. Disk sec/Transfer
 Network Interface(*)\Bytes Total/sec
 "@ 
 
+Hint : Chase counters definitions using Powershell ! 
+Example:
+Get-Counter -ListSet *Memory* | Select -ExpandProperty Counter | ? {$_ -like "*available*"}
+Will get you:
+\Memory\Available Bytes
+\Memory\Available KBytes
+\Memory\Available MBytes
+Then just copy and paste these on the $Counter = @() definition in the script ... cool eh !
+
+
+
 
 .PARAMETER ServersTXTFile
     This parameter specified the file containing the list of servers to get Perfmon samples from.
