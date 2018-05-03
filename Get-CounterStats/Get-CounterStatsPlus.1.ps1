@@ -107,6 +107,7 @@ $OutputReport = "$ScriptPath\$($ScriptName)_$(get-date -f yyyy-MM-dd-hh-mm-ss).c
 #$ScriptLog = "$PSScriptRoot\$($ScriptName)-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 <# -------------------------- DECLARATIONS -------------------------- #>
+$Answer = ""
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
 #region Functions region
@@ -132,7 +133,6 @@ function Global:Convert-HString {
     {
         # Nothing to do here.
     }
-
 }#Convert-HString
 
 #Performance counters declaration
@@ -145,10 +145,7 @@ function Get-CounterStats {
 
 $Counter = @"
 Processor(_total)\% processor time 
-\MSExchange RpcClientAccess\RPC Averaged Latency
-\MSExchange RpcClientAccess\RPC Requests
 Memory\Available MBytes 
-LogicalDisk(*)\Avg. Disk sec/Transfer 
 Network Interface(*)\Bytes Total/sec
 "@ 
 
@@ -188,9 +185,13 @@ function IsEmpty($Param){
 If (IsEmpty $OutputFile){$OutputFile = $OutputReport}
 
 If (!(Test-Path $ServersTXTfile)){
-    $MsgErrFileNotFound = "The file $ServersTXTfile is incorrect or doesn't exist ... please try again with another file or the correct path."
-    Write-Host $MsgErrFileNotFound -BackgroundColor Yellow -ForegroundColor Red
-    Exit
+    $MsgErrFileNotFound = "The file $ServersTXTfile is incorrect or doesn't exist ... Do you want to gather counters from the local machine ? (Y/N)"
+    while ($Answer -ne "Y" -AND $Answer -ne "N") {
+        cls
+        Write-Host $MsgErrFileNotFound -BackgroundColor Yellow -ForegroundColor Red
+        $Answer = Read-host
+        If($Answer -eq "N"){Exit} Else {$Servers = $($Env:COMPUTERNAME)}
+    }
 } Else {
     [string[]]$servers = get-content $ServersTXTFile
 }
