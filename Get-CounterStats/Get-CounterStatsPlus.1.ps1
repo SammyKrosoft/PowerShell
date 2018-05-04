@@ -141,8 +141,6 @@ function Get-CounterStats {
         [String[]]$ComputerName = $Env:ComputerName
     ) 
 
-    $Object =@()
-
 $Counter = @"
 Processor(_total)\% processor time 
 Memory\Available MBytes 
@@ -185,7 +183,7 @@ function IsEmpty($Param){
 If (IsEmpty $OutputFile){$OutputFile = $OutputReport}
 
 If (!(Test-Path $ServersTXTfile)){
-    $MsgErrFileNotFound = "The file $ServersTXTfile is incorrect or doesn't exist ... Do you want to gather counters from the local machine ? (Y/N)"
+    $MsgErrFileNotFound = "The file $ServersTXTfile is incorrect or doesn't exist ... `nDo you want to gather counters from the local machine ? (Y/N)"
     while ($Answer -ne "Y" -AND $Answer -ne "N") {
         cls
         Write-Host $MsgErrFileNotFound -BackgroundColor Yellow -ForegroundColor Red
