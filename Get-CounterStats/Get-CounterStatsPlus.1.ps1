@@ -201,7 +201,7 @@ Write-Host "That's a total of $($Servers.count) servers"
 #foreach($server in $Servers){
 For ($ReRun = 1;$ReRun -le $NumberOfSamples;$ReRun ++){
     Write-Progress -Id 1 -Activity "Gathering $NumberOfSamples counters" -Status "Sample $ReRun of $NumberOfSamples" -PercentComplete ($($rerun/$NumberOfSamples*100))
-    Get-CounterStats -ComputerName $Servers |Select-Object computerName,WholeCounter,CounterCategory,CounterName,Item,Value,datetime | Export-Csv -Path $OutputFile -Append -NoTypeInformation
+    Get-CounterStats -ComputerName $Servers |Select-Object computerName,datetime,CounterCategory,CounterName,Item,Value,WholeCounter | Export-Csv -Path $OutputFile -Append -NoTypeInformation
 }
 
 Write-Host "File exported : $outputFile"
