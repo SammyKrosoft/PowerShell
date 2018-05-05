@@ -198,7 +198,6 @@ Write-Host "Gathering performance counters for $($Servers -Join ", ")"
 Write-Host "That's a total of $($Servers.count) servers"
 
 #Collecting counter information for target servers
-#foreach($server in $Servers){
 For ($ReRun = 1;$ReRun -le $NumberOfSamples;$ReRun ++){
     Write-Progress -Id 1 -Activity "Gathering $NumberOfSamples counters" -Status "Sample $ReRun of $NumberOfSamples" -PercentComplete ($($rerun/$NumberOfSamples*100))
     Get-CounterStats -ComputerName $Servers |Select-Object computerName,datetime,CounterCategory,CounterName,Item,Value,WholeCounter | Export-Csv -Path $OutputFile -Append -NoTypeInformation
