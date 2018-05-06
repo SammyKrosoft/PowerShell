@@ -11,9 +11,6 @@ which will be used to analayze the performance of target servers.
 This script will collect the specific counters value from the multiple target machines/servers 
 which will be used to analayze the performance of target servers.
 
-We can specify the number of samples we want to collect (1 sample per second), the default it
-5 samples.
-
 The script will query a defined set of counters that you define there :
 
 $Counter = @"
@@ -110,6 +107,7 @@ $OutputReport = "$ScriptPath\$($ScriptName)_$(get-date -f yyyy-MM-dd-hh-mm-ss).c
 #$ScriptLog = "$PSScriptRoot\$($ScriptName)-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 <# -------------------------- DECLARATIONS -------------------------- #>
+$Answer = ""
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
 #region Functions region
@@ -135,7 +133,6 @@ function Global:Convert-HString {
     {
         # Nothing to do here.
     }
-
 }#Convert-HString
 
 #Performance counters declaration
@@ -144,14 +141,9 @@ function Get-CounterStats {
         [String[]]$ComputerName = $Env:ComputerName
     ) 
 
-    $Object =@()
-
 $Counter = @"
 Processor(_total)\% processor time 
-\MSExchange RpcClientAccess\RPC Averaged Latency
-\MSExchange RpcClientAccess\RPC Requests
 Memory\Available MBytes 
-LogicalDisk(*)\Avg. Disk sec/Transfer 
 Network Interface(*)\Bytes Total/sec
 "@ 
 
@@ -159,7 +151,7 @@ Network Interface(*)\Bytes Total/sec
         $path = $_.path
         $PropertyHash=@{
                 computerName=($Path -split "\\")[2];
-                WholeCounter = ($path -split "\\")[-2,-1] -join "-";
+                WholeCounter = ($path  -split "\\")[-2,-1] -join "-";
                 Item = $_.InstanceName ;
                 Value = [Math]::Round($_.CookedValue,2) 
                 datetime=(Get-Date -format "yyyy-MM-d hh:mm:ss")
@@ -191,9 +183,13 @@ function IsEmpty($Param){
 If (IsEmpty $OutputFile){$OutputFile = $OutputReport}
 
 If (!(Test-Path $ServersTXTfile)){
-    $MsgErrFileNotFound = "The file $ServersTXTfile is incorrect or doesn't exist ... please try again with another file or the correct path."
-    Write-Host $MsgErrFileNotFound -BackgroundColor Yellow -ForegroundColor Red
-    Exit
+    $MsgErrFileNotFound = "The file $ServersTXTfile is incorrect or doesn't exist ... `nDo you want to gather counters from the local machine ? (Y/N)"
+    while ($Answer -ne "Y" -AND $Answer -ne "N") {
+        cls
+        Write-Host $MsgErrFileNotFound -BackgroundColor Yellow -ForegroundColor Red
+        $Answer = Read-host
+        If($Answer -eq "N"){Exit} Else {$Servers = $($Env:COMPUTERNAME)}
+    }
 } Else {
     [string[]]$servers = get-content $ServersTXTFile
 }
@@ -202,10 +198,9 @@ Write-Host "Gathering performance counters for $($Servers -Join ", ")"
 Write-Host "That's a total of $($Servers.count) servers"
 
 #Collecting counter information for target servers
-#foreach($server in $Servers){
 For ($ReRun = 1;$ReRun -le $NumberOfSamples;$ReRun ++){
     Write-Progress -Id 1 -Activity "Gathering $NumberOfSamples counters" -Status "Sample $ReRun of $NumberOfSamples" -PercentComplete ($($rerun/$NumberOfSamples*100))
-    Get-CounterStats -ComputerName $Servers |Select-Object computerName,WholeCounter,CounterCategory,CounterName,Item,Value,datetime | Export-Csv -Path $OutputFile -Append -NoTypeInformation
+    Get-CounterStats -ComputerName $Servers |Select-Object computerName,datetime,CounterCategory,CounterName,Item,Value,WholeCounter | Export-Csv -Path $OutputFile -Append -NoTypeInformation
 }
 
 Write-Host "File exported : $outputFile"
