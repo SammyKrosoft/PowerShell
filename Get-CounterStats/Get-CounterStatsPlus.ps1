@@ -11,6 +11,9 @@ which will be used to analayze the performance of target servers.
 This script will collect the specific counters value from the multiple target machines/servers 
 which will be used to analayze the performance of target servers.
 
+We can specify the number of samples we want to collect (1 sample per second), the default it
+5 samples.
+
 The script will query a defined set of counters that you define there :
 
 $Counter = @"
@@ -156,7 +159,7 @@ Network Interface(*)\Bytes Total/sec
         $path = $_.path
         $PropertyHash=@{
                 computerName=($Path -split "\\")[2];
-                WholeCounter = ($path  -split "\\")[-2,-1] -join "-";
+                WholeCounter = ($path -split "\\")[-2,-1] -join "-";
                 Item = $_.InstanceName ;
                 Value = [Math]::Round($_.CookedValue,2) 
                 datetime=(Get-Date -format "yyyy-MM-d hh:mm:ss")
