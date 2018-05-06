@@ -143,7 +143,10 @@ function Get-CounterStats {
 
 $Counter = @"
 Processor(_total)\% processor time 
+\MSExchange RpcClientAccess\RPC Averaged Latency
+\MSExchange RpcClientAccess\RPC Requests
 Memory\Available MBytes 
+PhysicalDisk(*)\Avg. Disk sec/Transfer 
 Network Interface(*)\Bytes Total/sec
 "@ 
 
