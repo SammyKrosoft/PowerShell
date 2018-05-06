@@ -155,7 +155,7 @@ Network Interface(*)\Bytes Total/sec
         $PropertyHash=@{
                 computerName=($Path -split "\\")[2];
                 #WholeCounter = ($path  -split "\\")[-2,-1] -join "-";
-                Item = $_.InstanceName ;
+                Instance = $_.InstanceName ;
                 Value = [Math]::Round($_.CookedValue,2) 
                 datetime=(Get-Date -format "yyyy-MM-d hh:mm:ss")
         }
@@ -203,7 +203,7 @@ Write-Host "That's a total of $($Servers.count) servers"
 #Collecting counter information for target servers
 For ($ReRun = 1;$ReRun -le $NumberOfSamples;$ReRun ++){
     Write-Progress -Id 1 -Activity "Gathering $NumberOfSamples counters" -Status "Sample $ReRun of $NumberOfSamples" -PercentComplete ($($rerun/$NumberOfSamples*100))
-    Get-CounterStats -ComputerName $Servers |Select-Object computerName,datetime,CounterCategory,CounterName,Item,Value | Export-Csv -Path $OutputFile -Append -NoTypeInformation
+    Get-CounterStats -ComputerName $Servers |Select-Object computerName,datetime,CounterCategory,CounterName,Instance,Value | Export-Csv -Path $OutputFile -Append -NoTypeInformation
 }
 
 Write-Host "File exported : $outputFile"
