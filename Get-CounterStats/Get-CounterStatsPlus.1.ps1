@@ -196,6 +196,12 @@ If (!(Test-Path $ServersTXTfile)){
     }
 } Else {
     [string[]]$servers = get-content $ServersTXTFile
+    $Servers | Foreach (
+        If ($_ -notmatch "^\s*$"){
+            $FinServers += $_
+        }
+    $Server = $FinServers
+    )
 }
 
 Write-Host "Gathering performance counters for $($Servers -Join ", ")"
