@@ -93,8 +93,10 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorActionPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "1"
+$ScriptVersion = "1.1"
 <# Version changes
+v1.1 : added check to not treat blank lines of Servers.TXT files
+
 v1 : first script version
 #>
 $ScriptName = $MyInvocation.MyCommand.Name
@@ -154,11 +156,11 @@ Network Interface(*)\Bytes Total/sec
     (Get-Counter -ComputerName $ComputerName -Counter (Convert-HString -HString $Counter)).counterSamples | ForEach-Object {
         $path = $_.path
         $PropertyHash=@{
-                computerName=($Path -split "\\")[2];
-                #WholeCounter = ($path  -split "\\")[-2,-1] -join "-";
+                WholeCounter = $path;
+                ComputerName=($Path -split "\\")[2];
                 Instance = $_.InstanceName ;
                 Value = [Math]::Round($_.CookedValue,2) 
-                datetime=(Get-Date -format "yyyy-MM-d hh:mm:ss")
+                DateTime=(Get-Date -format "yyyy-MM-d hh:mm:ss")
         }
 
         If (($path  -split "\\")[3] -eq $null -or ($path  -split "\\")[3] -eq "") { 
@@ -196,12 +198,13 @@ If (!(Test-Path $ServersTXTfile)){
     }
 } Else {
     [string[]]$servers = get-content $ServersTXTFile
-    $Servers | Foreach (
+    $FinServers = @()
+    $Servers | Foreach {
         If ($_ -notmatch "^\s*$"){
-            $FinServers += $_
+            $FinServers += $_.trim()
         }
-    $Server = $FinServers
-    )
+    $Servers = $FinServers
+    }
 }
 
 Write-Host "Gathering performance counters for $($Servers -Join ", ")"
