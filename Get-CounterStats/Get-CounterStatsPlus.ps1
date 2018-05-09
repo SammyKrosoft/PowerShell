@@ -236,10 +236,10 @@ Write-Host "Gathering performance counters for $($Servers -Join ", ")"
 Write-Host "That's a total of $($Servers.count) servers"
 
 #Collecting counter information for target servers
-$Expression = "Get-CounterStats -ComputerName $Servers | Select-Object computerName,datetime,CounterCategory,CounterName,Instance,Value | Export-Csv -Path $OutputFile -Append -NoTypeInformation"
+$Expression = ("Get-CounterStats -ComputerName $Servers | Select-Object computerName,datetime,") + (If ($IncludeFullCounterPath) {"WholeCounter,"}Else{""}) + ("CounterCategory,CounterName,Instance,Value | Export-Csv -Path $OutputFile -Append -NoTypeInformation")
 For ($ReRun = 1;$ReRun -le $NumberOfSamples;$ReRun ++){
     Write-Progress -Id 1 -Activity "Gathering $NumberOfSamples counters" -Status "Sample $ReRun of $NumberOfSamples" -PercentComplete ($($rerun/$NumberOfSamples*100))
-    invoke-expression "Get-CounterStats -ComputerName $Servers | Select-Object computerName,datetime,CounterCategory,CounterName,Instance,Value | Export-Csv -Path $OutputFile -Append -NoTypeInformation"
+    invoke-expression $Expression
 }
 
 Write-Host "File exported : $outputFile"
