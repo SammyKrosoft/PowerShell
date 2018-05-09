@@ -1,8 +1,9 @@
 <#
 .SYNOPSIS
 Script: Get-CounterStatsPlus
-Original Authors: Prashanth and Praveen
-Modified by : Samuel Drey aka SammyKrosoft
+Original Authors: Prashanth, Praveen and Ben Wilkinson for the Convert-HString function.
+Modified by : Samuel Drey aka SammyKrosoft to treat the cases where counters have
+instances as well as no instances
 
 This script will collect the specific counters value from the multiple target machines/servers 
 which will be used to analayze the performance of target servers.
@@ -41,12 +42,30 @@ Then just copy and paste these on the $Counter = @() definition in the script ..
 .PARAMETER NumberOfSamples
     This parameter specifies how many counter samples we need to dump. Default is 5.
 
+    NOTE: each counter query tick depends on many parameters, the most obvious being
+    the network between the station where you query the counters from and the serverS 
+    that you're querying counters. Each Get-Counter tick is approximately 1 second, so
+    -NumberOfSamples 5 will query counters for roughly 5 seconds, 
+    and -NumberOfSamples 1000 will query counters for roughly ~17 minutes
+
 .PARAMETER OutputFile
     This parameter specifies the Output file. If not specified, the output file name will be built
     after the script's name, with the date and time appended, and will be stored on the same 
     directory where the script is located.
 
-.PARAMETER CheckVersion
+    NOTE: the size of the file will be approximately 100 bytes per counter value dump. If you get
+    1000 counter queries, on 50 performance counters value dump for each query, 
+    your target CSV file will have 1000 x 50  x 100 bytes = 5,000,000 bytes ~ 5MBytes
+
+.PARAMETER IncludeFullCounterPath
+    This parameter just includes an additional header in the CSV report, which is just the full
+    counter path - just in case you wish to include it. Note that it will make the CSV file
+    bigger, knowing that 1 ASCII character is 1 byte, if you have a long counter path, like 100
+    characters, that will be 100 bytes, times 10,000 counter samples (=10,000 lines in the CSV),
+    that is 10,000 x 100 = 1,000,000 bytes, that is almost 1 Megabyte, 100,000 counter samples is
+    100 Megabytes ...
+
+    .PARAMETER CheckVersion
     This parameter Checks the script's version.
 
 .INPUTS
@@ -81,6 +100,7 @@ Param(
     [Parameter(Mandatory = $False, Position = 1, ParameterSetName = "NormalRun")][string]$ServersTXTfile = ".\servers.txt",
     [Parameter(Mandatory = $False, Position = 2, ParameterSetName = "NormalRun")][int]$NumberOfSamples = 5,
     [Parameter(Mandatory = $False, Position = 3, ParameterSetName = "NormalRun")][string]$OutputFile,
+    [Parameter(Mandatory = $False, Position = 3, ParameterSetName = "NormalRun")][switch]$IncludeFullCounterPath,
     [Parameter(Mandatory = $false, Position = 4, ParameterSetName = "CheckOnly")][switch]$CheckVersion
 )
 
@@ -120,6 +140,8 @@ function Global:Convert-HString {
     Param (
         [Parameter(Mandatory=$false, ValueFromPipeline=$true, ValueFromPipelineByPropertyName=$true)] [String]$HString
         )
+
+    <#NOTE: This function is from Ben Wilkinson - https://gallery.technet.microsoft.com/scriptcenter/917c2357-2911-4c79-bd06-ab95714de2d4#>
 
     Begin 
     {Write-Verbose "Converting Here-String to Array"}
@@ -163,8 +185,11 @@ Network Interface(*)\Bytes Total/sec
                 DateTime=(Get-Date -format "yyyy-MM-d hh:mm:ss")
         }
 
-        If (($path  -split "\\")[3] -eq $null -or ($path  -split "\\")[3] -eq "") { 
-            $PropertyHash.Add('CounterCategory',$(($path  -split "\\")[4]))
+        # NOTE: Here we check if the counter is a counter that has instances like process(<process name>)\% Processor Used
+        #  or if the counter is just a single instance ocunter like Memory\Available MB.
+        # In the case of counters with instances, the PATH 
+        If (($path  -split "\\")[3] -eq $null -or ($path -split "\\")[3] -eq "") { 
+            $PropertyHash.Add('CounterCategory',$(($path -split "\\")[4]))
             $PropertyHash.Add('CounterName',$(($path  -split "\\")[5]))
         } Else {
             $PropertyHash.Add('CounterCategory',$(($path  -split "\\")[3]))
@@ -213,7 +238,7 @@ Write-Host "That's a total of $($Servers.count) servers"
 #Collecting counter information for target servers
 For ($ReRun = 1;$ReRun -le $NumberOfSamples;$ReRun ++){
     Write-Progress -Id 1 -Activity "Gathering $NumberOfSamples counters" -Status "Sample $ReRun of $NumberOfSamples" -PercentComplete ($($rerun/$NumberOfSamples*100))
-    Get-CounterStats -ComputerName $Servers |Select-Object computerName,datetime,CounterCategory,CounterName,Instance,Value | Export-Csv -Path $OutputFile -Append -NoTypeInformation
+    Get-CounterStats -ComputerName $Servers | Select-Object computerName,datetime,CounterCategory,CounterName,Instance,Value | Export-Csv -Path $OutputFile -Append -NoTypeInformation
 }
 
 Write-Host "File exported : $outputFile"
