@@ -17,8 +17,11 @@ Function Speak {
         $Object | Add-Member -MemberType NoteProperty -Name ID -Value $($_.VoiceInfo.ID)
         $InstalledVoices += $Object
     }
-    $Speak.Speak($Msg)
+    $InstalledVoices
+    #Select by hint like this ('Male/Female', 'NotSet/Child/Teen/Adult/Senior')
+    $Speak.SelectVoiceByHints('male','Senior',0,'en')
+        $Speak.Speak($Msg)
 }
 cls
 
-Speak "Hello world"
+Speak "Welcome to the Events Collection script !"
