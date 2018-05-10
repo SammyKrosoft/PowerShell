@@ -369,12 +369,7 @@ if ($DebugScript){
     exit
 }
 
-$msg = "About to collect events on $($Computers.count)"
-If ($($Computers.count) -gt 1){
-    $msg +=" machines"
-}Else{
-    $msg += " machine"
-}
+$msg = ("About to collect events on $($Computers.count)") + $(If ($($Computers.count) -gt 1){" machines"}Else{" machine"})
 Write-host $msg
 Say $msg
 
@@ -420,6 +415,8 @@ $Events4All | Group-Object LevelDisplayName | ft @{Label="Event Level";Expressio
 
 
 If ($ExportToFile){
+    $msg = "I'm done, exporting the results on a CSV file now."
+    Say $msg
     If (!(IsEmpty $EventID)){
         $FileEventLogFirstID = "GetEventsFromEventLogs_$($EventID[0])_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
         If (IsPSV3){
@@ -447,6 +444,9 @@ If ($ExportToFile){
     }
     $Events4all | Export-Csv -NoTypeInformation $EventsReport
     notepad $EventsReport
+} Else {
+    $msg = "I'm done. No file exported because you didn't specify the ExportToFile script parameter."
+    Say $msg
 }
 <# /EXECUTIONS #>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
