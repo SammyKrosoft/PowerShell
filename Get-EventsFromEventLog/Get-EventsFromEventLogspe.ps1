@@ -260,7 +260,7 @@ Function Say {
     #Uncomment the below line to list installed voices if needed
     #$InstalledVoices
     #Select by hint like this ('Male/Female', 'NotSet/Child/Teen/Adult/Senior')
-    $Speak.SelectVoiceByHints('male','Senior',0,'en')
+    $Speak.SelectVoiceByHints(0,0,0,'en')
         $Speak.Speak($Msg)
 }
 
@@ -300,7 +300,12 @@ If($ExportToFile){
     } Else {
         $Answer = "Y"
     }
-    If ($Answer -eq "Y"){$StopWatch.Reset();$StopWatch.start()} 
+    If ($Answer -eq "Y"){
+        $msg = "Please wait while starting to collect the events"
+        Say $msg
+        $StopWatch.Reset()
+        $StopWatch.start()
+        } 
     IF ($Answer -eq "N"){
         Write-host "Exiting..."
         $msg = "Bye, come back soon!"
