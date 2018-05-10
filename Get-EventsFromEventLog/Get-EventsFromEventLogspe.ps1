@@ -375,9 +375,9 @@ Say $msg
 
 Foreach ($computer in $computers)
 {
-    $msg = "Collecting events on $computer"
+    $msg = "Checking Computer $Computer"
+    Write-host $msg -BackgroundColor yellow -ForegroundColor Blue
     Say $msg
-    Write-host "Checking Computer $Computer" -BackgroundColor yellow -ForegroundColor Blue
     Try
     {
         $LastEvent = Get-WinEvent -ComputerName $Computer -Logname 'Application' -oldest -MaxEvents 1
@@ -405,18 +405,20 @@ Foreach ($computer in $computers)
     }
     Catch
     {
-        Write-Host "Error accessing Event Logs of $computer" -ForegroundColor Red
+        $msg = "Error accessing Event Logs of $computer"
+        Write-Host $msg -ForegroundColor Red
+        Say $msg
     }
 }
 
-Write-host "Found $($Events4all.count) Events in total ..." -BackgroundColor blue -ForegroundColor yellow
+$msg = "Found $($Events4all.count) Events in total ..."
+Write-host $msg -BackgroundColor blue -ForegroundColor yellow
+Say $msg
 Write-host "Here are the stats by Event Level :"
 $Events4All | Group-Object LevelDisplayName | ft @{Label="Event Level";Expression ={$_.Name}},@{Label = "Number of Events";Expression = {$_.Count}}
 
 
 If ($ExportToFile){
-    $msg = "I'm done, exporting the results on a CSV file now."
-    Say $msg
     If (!(IsEmpty $EventID)){
         $FileEventLogFirstID = "GetEventsFromEventLogs_$($EventID[0])_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
         If (IsPSV3){
@@ -443,9 +445,13 @@ If ($ExportToFile){
         }
     }
     $Events4all | Export-Csv -NoTypeInformation $EventsReport
+    $msg = "I'm done. I exported the results to a file located on the same directory as the Script"
+    Write-host $msg
+    Say $msg
     notepad $EventsReport
 } Else {
     $msg = "I'm done. No file exported because you didn't specify the ExportToFile script parameter."
+    Write-Host $msg
     Say $msg
 }
 <# /EXECUTIONS #>
