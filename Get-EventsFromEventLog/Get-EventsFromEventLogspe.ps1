@@ -266,7 +266,7 @@ Function Say {
 
 <# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
-#cls
+cls
 Write-Host "Starting script..."
 $msg = "Welcome to the Events Collection Script !"
 Say $msg
@@ -300,12 +300,15 @@ If($ExportToFile){
     } Else {
         $Answer = "Y"
     }
+    
     If ($Answer -eq "Y"){
         $msg = "Please wait while starting to collect the events"
+        write-host $msg
         Say $msg
+       
         $StopWatch.Reset()
         $StopWatch.start()
-        } 
+       }  
     IF ($Answer -eq "N"){
         Write-host "Exiting..."
         $msg = "Bye, come back soon!"
@@ -366,8 +369,19 @@ if ($DebugScript){
     exit
 }
 
+$msg = "About to collect events on $($Computers.count)"
+If ($($Computers.count) -gt 1){
+    $msg +=" machines"
+}Else{
+    $msg += " machine"
+}
+Write-host $msg
+Say $msg
+
 Foreach ($computer in $computers)
 {
+    $msg = "Collecting events on $computer"
+    Say $msg
     Write-host "Checking Computer $Computer" -BackgroundColor yellow -ForegroundColor Blue
     Try
     {
