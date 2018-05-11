@@ -21,6 +21,7 @@ Processor(_total)\% processor time
 Memory\Available MBytes 
 PhysicalDisk(*)\Avg. Disk sec/Transfer 
 Network Interface(*)\Bytes Total/sec
+\MSExchangeTransport Queues(*)\Submission Queue Length
 "@ 
 
 Hint : Chase counters definitions using Powershell ! 

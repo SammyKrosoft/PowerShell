@@ -16,4 +16,5 @@ Function Speak {
 }
 cls
 
-Speak "Welcome to the Events Collection script !"
+$msg = 'Hello world ! I love you !'
+Speak $msg
