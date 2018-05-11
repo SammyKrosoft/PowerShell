@@ -239,7 +239,7 @@ Function IsPSV3 {
 }
 
 
-Function Say {
+Function Speak {
     [CmdletBinding(DefaultParameterSetName = "NormalRun")]
     Param(
         [Parameter(Mandatory = $false, Position = 0, ParameterSetName = "NormalRun")]
@@ -248,19 +248,10 @@ Function Say {
     $InstalledVoices = @()
     Add-Type -AssemblyName System.Speech
     $Speak = New-Object system.Speech.Synthesis.SpeechSynthesizer
-    $Speak.GetInstalledVoices() | Foreach {
-        $Object = New-Object -TypeName PSObject
-        $Object | Add-Member -MemberType NoteProperty -Name AdditionalInfo -Value $($_.VoiceInfo.AdditionalInfo)
-        $Object | Add-Member -MemberType NoteProperty -Name Gender -Value $($_.VoiceInfo.Gender)
-        $Object | Add-Member -MemberType NoteProperty -Name Name -Value $($_.VoiceInfo.Name)
-        $Object | Add-Member -MemberType NoteProperty -Name Culture -Value $($_.VoiceInfo.Culture)
-        $Object | Add-Member -MemberType NoteProperty -Name ID -Value $($_.VoiceInfo.ID)
-        $InstalledVoices += $Object
-    }
-    #Uncomment the below line to list installed voices if needed
-    #$InstalledVoices
+    $InstalledVoices = $Speak.GetInstalledVoices().VoiceInfo
+    $InstalledVoices
     #Select by hint like this ('Male/Female', 'NotSet/Child/Teen/Adult/Senior')
-    $Speak.SelectVoiceByHints(0,0,0,'en')
+    $Speak.SelectVoiceByHints('male','Senior',0,'en')
         $Speak.Speak($Msg)
 }
 
@@ -415,7 +406,14 @@ $msg = "Found $($Events4all.count) Events in total ..."
 Write-host $msg -BackgroundColor blue -ForegroundColor yellow
 Say $msg
 Write-host "Here are the stats by Event Level :"
-$Events4All | Group-Object LevelDisplayName | ft @{Label="Event Level";Expression ={$_.Name}},@{Label = "Number of Events";Expression = {$_.Count}}
+$Summary = @()
+$Summary = $Events4All | Group-Object LevelDisplayName | select @{Label="Event Level";Expression ={$_.Name}},@{Label = "Number of Events";Expression = {$_.Count}}
+$Summary
+$msg = "we found"
+Say $msg
+$Summary | Foreach {
+    $msg = ($Summary."Number of Events") + (" events of type ") + ($Summary."Event Level")
+    Write-host $msg}
 
 
 If ($ExportToFile){
