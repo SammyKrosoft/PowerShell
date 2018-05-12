@@ -16,24 +16,23 @@ The script will query a defined set of counters that you define there :
 
 $Counter = @"
 Processor(_total)\% processor time 
-\MSExchange RpcClientAccess\RPC Averaged Latency
-\MSExchange RpcClientAccess\RPC Requests
+MSExchange RpcClientAccess\RPC Averaged Latency
+MSExchange RpcClientAccess\RPC Requests
 Memory\Available MBytes 
 PhysicalDisk(*)\Avg. Disk sec/Transfer 
 Network Interface(*)\Bytes Total/sec
-\MSExchangeTransport Queues(*)\Submission Queue Length
+MSExchangeTransport Queues(*)\Submission Queue Length
 "@ 
 
 Hint : Chase counters definitions using Powershell ! 
 Example:
 Get-Counter -ListSet *Memory* | Select -ExpandProperty Counter | ? {$_ -like "*available*"}
 Will get you:
-\Memory\Available Bytes
-\Memory\Available KBytes
-\Memory\Available MBytes
+Memory\Available Bytes
+Memory\Available KBytes
+Memory\Available MBytes
+
 Then just copy and paste these on the $Counter = @() definition in the script ... cool eh !
-
-
 
 
 .PARAMETER ServersTXTFile
