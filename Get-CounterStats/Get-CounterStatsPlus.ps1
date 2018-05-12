@@ -213,24 +213,36 @@ function IsEmpty($Param){
 <# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
 If (IsEmpty $OutputFile){$OutputFile = $OutputReport}
-IsEmpty $ServersTXTfile
 
+Write-host '(!(Test-Path $ServersTXTfile) -or (IsEmpty $ServersTXTfile))'
+If (!(Test-Path $ServersTXTfile) -or (IsEmpty $ServersTXTfile)){Write-host "file empty or non existent"}Else{write-host "file is there and valid"}
+write-host "Testing path :"
+Test-Path $ServersTXTfile
+write-host "Testing IsEmpty :"
+IsEmpty $ServersTXTfile
+exit
 
 If (!(Test-Path $ServersTXTfile) -or (IsEmpty $ServersTXTfile)){
+    write-host "Answer is : $Answer"
+    exit
+    
     If (IsEmpty $ServersTXTfile){
+        write-host "Empty !";exit
         $MsgErrInputFile = "No ServersTXTfile specified - collecting counters on local machine.`nCollect counters from the local machine ? (Y/N)"
     } Else {
+        write-host "Wrong file";exit
         $MsgErrInputFile = "The file $ServersTXTfile is incorrect or doesn't exist ... `nDo you want to gather counters from the local machine ? (Y/N)"
     }
-    $Answer
-    exit
+
     while ($Answer -ne "Y" -AND $Answer -ne "N") {
         cls
         Write-Host $MsgErrInputFile -BackgroundColor Yellow -ForegroundColor Red
         $Answer = Read-host
         If($Answer -eq "N"){Exit} Else {$Servers = $($Env:COMPUTERNAME)}
     }
-} Else {
+} Else { 
+    write-host "on the ELSE of the If serverTXTFile empty or not empty"
+    exit
     [string[]]$servers = get-content $ServersTXTFile
     $FinServers = @()
     $Servers | Foreach {
