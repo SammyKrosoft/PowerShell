@@ -97,7 +97,7 @@ None
 #>
 [CmdLetBinding(DefaultParameterSetName = "NormalRun")]
 Param(
-    [Parameter(Mandatory = $False, Position = 1, ParameterSetName = "NormalRun")][string]$ServersTXTfile = ".\servers.txt",
+    [Parameter(Mandatory = $False, Position = 1, ParameterSetName = "NormalRun")][string]$ServersTXTfile,
     [Parameter(Mandatory = $False, Position = 2, ParameterSetName = "NormalRun")][int]$NumberOfSamples = 5,
     [Parameter(Mandatory = $False, Position = 3, ParameterSetName = "NormalRun")][string]$OutputFile,
     [Parameter(Mandatory = $False, Position = 3, ParameterSetName = "NormalRun")][switch]$IncludeFullCounterPath,
@@ -213,12 +213,20 @@ function IsEmpty($Param){
 <# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
 If (IsEmpty $OutputFile){$OutputFile = $OutputReport}
+IsEmpty $ServersTXTfile
 
-If (!(Test-Path $ServersTXTfile)){
-    $MsgErrFileNotFound = "The file $ServersTXTfile is incorrect or doesn't exist ... `nDo you want to gather counters from the local machine ? (Y/N)"
+
+If (!(Test-Path $ServersTXTfile) -or (IsEmpty $ServersTXTfile)){
+    If (IsEmpty $ServersTXTfile){
+        $MsgErrInputFile = "No ServersTXTfile specified - collecting counters on local machine.`nCollect counters from the local machine ? (Y/N)"
+    } Else {
+        $MsgErrInputFile = "The file $ServersTXTfile is incorrect or doesn't exist ... `nDo you want to gather counters from the local machine ? (Y/N)"
+    }
+    $Answer
+    exit
     while ($Answer -ne "Y" -AND $Answer -ne "N") {
         cls
-        Write-Host $MsgErrFileNotFound -BackgroundColor Yellow -ForegroundColor Red
+        Write-Host $MsgErrInputFile -BackgroundColor Yellow -ForegroundColor Red
         $Answer = Read-host
         If($Answer -eq "N"){Exit} Else {$Servers = $($Env:COMPUTERNAME)}
     }
