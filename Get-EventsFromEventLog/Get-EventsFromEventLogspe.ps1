@@ -248,8 +248,8 @@ Function Say {
     $InstalledVoices = @()
     Add-Type -AssemblyName System.Speech
     $Speak = New-Object system.Speech.Synthesis.SpeechSynthesizer
-    $InstalledVoices = $Speak.GetInstalledVoices().VoiceInfo
-    $InstalledVoices
+    #$InstalledVoices = $Speak.GetInstalledVoices().VoiceInfo
+    #$InstalledVoices
     #Select by hint like this ('Male/Female', 'NotSet/Child/Teen/Adult/Senior')
     $Speak.SelectVoiceByHints(0,0,0,'en')
         $Speak.Speak($Msg)
