@@ -239,7 +239,7 @@ Function IsPSV3 {
 }
 
 
-Function Speak {
+Function Say {
     [CmdletBinding(DefaultParameterSetName = "NormalRun")]
     Param(
         [Parameter(Mandatory = $false, Position = 0, ParameterSetName = "NormalRun")]
@@ -251,7 +251,7 @@ Function Speak {
     $InstalledVoices = $Speak.GetInstalledVoices().VoiceInfo
     $InstalledVoices
     #Select by hint like this ('Male/Female', 'NotSet/Child/Teen/Adult/Senior')
-    $Speak.SelectVoiceByHints('male','Senior',0,'en')
+    $Speak.SelectVoiceByHints(0,0,0,'en')
         $Speak.Speak($Msg)
 }
 
