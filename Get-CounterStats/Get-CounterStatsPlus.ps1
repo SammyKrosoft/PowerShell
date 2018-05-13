@@ -285,7 +285,6 @@ Write-Host "That's a total of $($Servers.count) servers"
 $Expression = "Get-CounterStats -ComputerName `$Servers -Counter `$MyCounters | Select-Object ComputerName,DateTime,"
 If ($IncludeFullCounterPath) {$expression += "WholeCounter,"}
 $Expression += "CounterCategory,CounterName,Instance,Value | Export-Csv -Path `$OutputFile -Append -NoTypeInformation"
-Write-host $Expression
 
 #$Expression = "Get-CounterStats -ComputerName $Servers | Select-Object ComputerName,DateTime,CounterCategory,CounterName,Instance,Value | Export-Csv -Path $OutputFile -Append -NoTypeInformation"
 For ($ReRun = 1;$ReRun -le $NumberOfSamples;$ReRun ++){
