@@ -125,6 +125,7 @@ $ScriptVersion = "1.5"
 v1.5 : many things changed... added -IncludeFullCounterPath parameter, also if no
 Servers.txt files specified, will prompt to measure performance on local machine
 instead.
+Also added check on PSVersion -> stops if Powershell version lower than 3.
 v1.1 : added check to not treat blank lines of Servers.TXT files
 
 v1 : first script version
@@ -274,6 +275,8 @@ If (IsEmpty $ServersTXTfile){
     [string[]]$servers = get-content $ServersTXTFile
     $FinServers = @()
     $Servers | Foreach {
+        #Regular expression inside the IF to ignore Blank lines or
+        #lines with Spaces or TABs characters on beginning and/or on end 
         If ($_ -notmatch "^\s*$"){
             $FinServers += $_.trim()
         }
