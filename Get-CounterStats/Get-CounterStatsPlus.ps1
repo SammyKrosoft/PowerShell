@@ -5,6 +5,9 @@ Original Authors: Prashanth, Praveen and Ben Wilkinson for the Convert-HString f
 Modified by : Samuel Drey aka SammyKrosoft to treat the cases where counters have
 instances as well as no instances
 
+IMPORTANT : This script requires PowerShell v3 or later as it leverages Export-CSV with the
+-APPEND property, to progressively write in a CSV file.
+
 This script will collect the specific counters value from the multiple target machines/servers 
 which will be used to analayze the performance of target servers.
 
@@ -87,8 +90,9 @@ Will execute the counters stats for servers list defined in the C:\temp\Myserver
 results in the output file specified here :C:\ExportRequestIssue.csv
 
 .NOTES
-    This script works only with Powershell V3 and beyond. For Windows 2008 and Windows 2008R2, or
-    Windows 7, please install PowerShell V3 using the below link:
+    This script works only with Powershell V3 and beyond. For Windows 2008 (aka Windows 6.0) 
+    and Windows 2008R2 (aka Windows 6.1), or Windows 7, please install PowerShell V3, which
+    comes with the install of Windows Management Framework 3, using the below link:
     
     https://www.microsoft.com/en-us/download/details.aspx?id=34595
 
