@@ -17,14 +17,15 @@ which will be used to analayze the performance of target servers.
 
 The script will query a defined set of counters that you define there :
 
-$Counter = @"
-Processor(_total)\% processor time 
-MSExchange RpcClientAccess\RPC Averaged Latency
-MSExchange RpcClientAccess\RPC Requests
-Memory\Available MBytes 
-PhysicalDisk(*)\Avg. Disk sec/Transfer 
-Network Interface(*)\Bytes Total/sec
-MSExchangeTransport Queues(*)\Submission Queue Length
+$MyCounters = @"
+\Processor(_total)\% processor time 
+\MSExchange RpcClientAccess\RPC Averaged Latency
+\MSExchangeIS Store(*)\RPC Average Latency
+\MSExchange RpcClientAccess\RPC Requests
+\Memory\Available MBytes 
+\PhysicalDisk(*)\Avg. Disk sec/Transfer 
+\Network Interface(*)\Bytes Total/sec
+\MSExchangeTransport Queues(*)\Submission Queue Length
 "@ 
 
 Hint : Chase counters definitions using Powershell ! 
@@ -143,14 +144,8 @@ $OutputReport = "$ScriptPath\$($ScriptName)_$(get-date -f yyyy-MM-dd-hh-mm-ss).c
 $Answer = ""
 
 $MyCounters = @"
-Processor(_total)\% processor time 
-MSExchange RpcClientAccess\RPC Averaged Latency
-MSExchangeIS Store(*)\RPC Average Latency
-MSExchange RpcClientAccess\RPC Requests
-Memory\Available MBytes 
-PhysicalDisk(*)\Avg. Disk sec/Transfer 
-Network Interface(*)\Bytes Total/sec
-MSExchangeTransport Queues(*)\Submission Queue Length
+Memory\Available MBytes
+Memory\Available MBytes
 "@ 
 
 <# /DECLARATIONS #>
@@ -186,11 +181,10 @@ function Global:Convert-HString {
 #Performance counters declaration
 function Get-CounterStats { 
     param(
-        [String[]]$ComputerName = $Env:ComputerName,
-        [string]$counter
+        [String[]]$ComputerName = $Env:ComputerName
     ) 
 
-    (Get-Counter -ComputerName $ComputerName -Counter (Convert-HString -HString $Counter)).counterSamples | ForEach-Object {
+    (Get-Counter -ComputerName $ComputerName -Counter $(Convert-HString $MyCounters)).counterSamples | ForEach-Object {
         $path = $_.path
         $PropertyHash=@{
                 WholeCounter = $path;
@@ -284,13 +278,19 @@ If (IsEmpty $ServersTXTfile){
     }
 }
 
+Write-Host "Converting the `$MyCounters here-string and trimming backslashes and trailing -> remove if the case"
+
+
 Write-Host "Gathering performance counters for $($Servers -Join ", ")"
 Write-Host "That's a total of $($Servers.count) servers"
 
 #Collecting counter information for target servers
 $Expression = "Get-CounterStats -ComputerName `$Servers -Counter `$MyCounters | Select-Object ComputerName,DateTime,"
 If ($IncludeFullCounterPath) {$expression += "WholeCounter,"}
-$Expression += "CounterCategory,CounterName,Instance,Value | Export-Csv -Path `$OutputFile -Append -NoTypeInformation"
+#$Expression += "CounterCategory,CounterName,Instance,Value | Export-Csv -Path `$OutputFile -Append -NoTypeInformation"
+$Expression += "CounterCategory,CounterName,Instance,Value"
+write-host $Expression
+
 
 #$Expression = "Get-CounterStats -ComputerName $Servers | Select-Object ComputerName,DateTime,CounterCategory,CounterName,Instance,Value | Export-Csv -Path $OutputFile -Append -NoTypeInformation"
 For ($ReRun = 1;$ReRun -le $NumberOfSamples;$ReRun ++){
@@ -299,7 +299,7 @@ For ($ReRun = 1;$ReRun -le $NumberOfSamples;$ReRun ++){
 }
 
 Write-Host "File exported : $outputFile"
-notepad $OutputFile
+#notepad $OutputFile
 
 <# /EXECUTIONS #>
 <# -------------------------- CLEANUP VARIABLES -------------------------- #>
