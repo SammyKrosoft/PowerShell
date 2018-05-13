@@ -138,7 +138,7 @@ $OutputReport = "$ScriptPath\$($ScriptName)_$(get-date -f yyyy-MM-dd-hh-mm-ss).c
 <# -------------------------- DECLARATIONS -------------------------- #>
 $Answer = ""
 
-$Counter = @"
+$MyCounters = @"
 Processor(_total)\% processor time 
 MSExchange RpcClientAccess\RPC Averaged Latency
 MSExchangeIS Store(*)\RPC Average Latency
@@ -282,9 +282,10 @@ Write-Host "Gathering performance counters for $($Servers -Join ", ")"
 Write-Host "That's a total of $($Servers.count) servers"
 
 #Collecting counter information for target servers
-$Expression = "Get-CounterStats -ComputerName `$Servers | Select-Object ComputerName,DateTime,"
+$Expression = "Get-CounterStats -ComputerName `$Servers -Counter `$MyCounters | Select-Object ComputerName,DateTime,"
 If ($IncludeFullCounterPath) {$expression += "WholeCounter,"}
 $Expression += "CounterCategory,CounterName,Instance,Value | Export-Csv -Path `$OutputFile -Append -NoTypeInformation"
+Write-host $Expression
 
 #$Expression = "Get-CounterStats -ComputerName $Servers | Select-Object ComputerName,DateTime,CounterCategory,CounterName,Instance,Value | Export-Csv -Path $OutputFile -Append -NoTypeInformation"
 For ($ReRun = 1;$ReRun -le $NumberOfSamples;$ReRun ++){
