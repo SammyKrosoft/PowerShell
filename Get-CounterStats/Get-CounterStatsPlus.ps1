@@ -120,8 +120,11 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorActionPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "1.1"
+$ScriptVersion = "1.5"
 <# Version changes
+v1.5 : many things changed... added -IncludeFullCounterPath parameter, also if no
+Servers.txt files specified, will prompt to measure performance on local machine
+instead.
 v1.1 : added check to not treat blank lines of Servers.TXT files
 
 v1 : first script version
