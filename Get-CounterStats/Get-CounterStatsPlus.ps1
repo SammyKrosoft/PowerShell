@@ -213,9 +213,35 @@ function IsEmpty($Param){
     }
 }
 
+Function IsPSV3 {
+    <#
+    .DESCRIPTION
+    Just printing Powershell version and returning "true" if powershell version
+    is Powershell v3 or more recent, and "false" if it's version 2.
+    .OUTPUTS
+    Returns $true or $false
+    .EXAMPLE
+    IsPSVersionV3
+    #>
+    $PowerShellMajorVersion = $PSVersionTable.PSVersion.Major
+    $msgPowershellMajorVersion = "You're running Powershell v$PowerShellMajorVersion"
+    Write-Host $msgPowershellMajorVersion -BackgroundColor blue -ForegroundColor yellow
+    If($PowerShellMajorVersion -le 2){
+        Return $false
+    } Else {
+        Return $true
+        }
+}
+
 #endregion functions region
 <# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
+If (!(IsPSV3)){
+    $errMsg = "Sorry, you need PSV3 or more recent to run this script.`nBecause we use Export-CSV with the -APPEND property, which exist only starting Powershell V3."
+    Write-host $errMsg
+    exit
+}
+
 If (IsEmpty $OutputFile){$OutputFile = $OutputReport}
 
 If (IsEmpty $ServersTXTfile){
@@ -224,7 +250,7 @@ If (IsEmpty $ServersTXTfile){
         cls
         Write-Host $MsgErrInputFile -BackgroundColor Yellow -ForegroundColor Red
         $Answer = Read-host
-        If($Answer -eq "N"){Exit} Else {$Servers = $($Env:COMPUTERNAME)}
+        If($Answer -eq "N"){Exit} Else {[array]$Servers = $($Env:COMPUTERNAME)}
     }
 } Else {
     If (!(Test-Path -Path $ServersTXTfile)){
