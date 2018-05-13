@@ -65,7 +65,7 @@ Then just copy and paste these on the $Counter = @() definition in the script ..
     that is 10,000 x 100 = 1,000,000 bytes, that is almost 1 Megabyte, 100,000 counter samples is
     100 Megabytes ...
 
-    .PARAMETER CheckVersion
+.PARAMETER CheckVersion
     This parameter Checks the script's version.
 
 .INPUTS
@@ -87,7 +87,10 @@ Will execute the counters stats for servers list defined in the C:\temp\Myserver
 results in the output file specified here :C:\ExportRequestIssue.csv
 
 .NOTES
-None
+    This script works only with Powershell V3 and beyond. For Windows 2008 and Windows 2008R2, or
+    Windows 7, please install PowerShell V3 using the below link:
+    
+    https://www.microsoft.com/en-us/download/details.aspx?id=34595
 
 .LINK
     https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6
@@ -130,6 +133,18 @@ $OutputReport = "$ScriptPath\$($ScriptName)_$(get-date -f yyyy-MM-dd-hh-mm-ss).c
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 <# -------------------------- DECLARATIONS -------------------------- #>
 $Answer = ""
+
+$Counter = @"
+Processor(_total)\% processor time 
+MSExchange RpcClientAccess\RPC Averaged Latency
+MSExchangeIS Store(*)\RPC Average Latency
+MSExchange RpcClientAccess\RPC Requests
+Memory\Available MBytes 
+PhysicalDisk(*)\Avg. Disk sec/Transfer 
+Network Interface(*)\Bytes Total/sec
+MSExchangeTransport Queues(*)\Submission Queue Length
+"@ 
+
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
 #region Functions region
@@ -149,6 +164,7 @@ function Global:Convert-HString {
     {
         $HString -split "`n" | ForEach-Object {
             $ComputerName = $_.trim()
+            #NOTE: below is to enable the use of hashtag to comment aka ignore #lines in your txt file...
             if ($ComputerName -notmatch "#")
             {$ComputerName}    
         }
@@ -162,19 +178,9 @@ function Global:Convert-HString {
 #Performance counters declaration
 function Get-CounterStats { 
     param(
-        [String[]]$ComputerName = $Env:ComputerName
+        [String[]]$ComputerName = $Env:ComputerName,
+        [string]$counter
     ) 
-
-$Counter = @"
-Processor(_total)\% processor time 
-MSExchange RpcClientAccess\RPC Averaged Latency
-MSExchangeIS Store(*)\RPC Average Latency
-MSExchange RpcClientAccess\RPC Requests
-Memory\Available MBytes 
-PhysicalDisk(*)\Avg. Disk sec/Transfer 
-Network Interface(*)\Bytes Total/sec
-MSExchangeTransport Queues(*)\Submission Queue Length
-"@ 
 
     (Get-Counter -ComputerName $ComputerName -Counter (Convert-HString -HString $Counter)).counterSamples | ForEach-Object {
         $path = $_.path
