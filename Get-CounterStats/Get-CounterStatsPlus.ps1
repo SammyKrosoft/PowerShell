@@ -189,13 +189,17 @@ MSExchangeTransport Queues(*)\Submission Queue Length
         # NOTE: Here we check if the counter is a counter that has instances like process(<process name>)\% Processor Used
         #  or if the counter is just a single instance ocunter like Memory\Available MB.
         # In the case of counters with instances, the PATH 
-        If (($path  -split "\\")[3] -eq $null -or ($path -split "\\")[3] -eq "") { 
-            $PropertyHash.Add('CounterCategory',$(($path -split "\\")[4]))
-            $PropertyHash.Add('CounterName',$(($path  -split "\\")[5]))
-        } Else {
-            $PropertyHash.Add('CounterCategory',$(($path  -split "\\")[3]))
-            $PropertyHash.Add('CounterName',$(($path  -split "\\")[4]))
-        }
+
+        # If (($path -split "\\")[3] -eq $null -or ($path -split "\\")[3] -eq "") { 
+        #     $PropertyHash.Add('CounterCategory',$(($path -split "\\")[4]))
+        #     $PropertyHash.Add('CounterName',$(($path  -split "\\")[5]))
+        # } Else {
+        #     $PropertyHash.Add('CounterCategory',$(($path  -split "\\")[3]))
+        #     $PropertyHash.Add('CounterName',$(($path  -split "\\")[4]))
+        # }
+
+        $PropertyHash.Add('CounterCategory',$(($path  -split "\\")[3]))
+        $PropertyHash.Add('CounterName',$(($path  -split "\\")[4]))
 
 New-Object PSObject -Property $PropertyHash
     }
@@ -214,35 +218,20 @@ function IsEmpty($Param){
 <# -------------------------- EXECUTIONS -------------------------- #>
 If (IsEmpty $OutputFile){$OutputFile = $OutputReport}
 
-Write-host '(!(Test-Path $ServersTXTfile) -or (IsEmpty $ServersTXTfile))'
-If (!(Test-Path $ServersTXTfile) -or (IsEmpty $ServersTXTfile)){Write-host "file empty or non existent"}Else{write-host "file is there and valid"}
-write-host "Testing path :"
-Test-Path $ServersTXTfile
-write-host "Testing IsEmpty :"
-IsEmpty $ServersTXTfile
-exit
-
-If (!(Test-Path $ServersTXTfile) -or (IsEmpty $ServersTXTfile)){
-    write-host "Answer is : $Answer"
-    exit
-    
-    If (IsEmpty $ServersTXTfile){
-        write-host "Empty !";exit
-        $MsgErrInputFile = "No ServersTXTfile specified - collecting counters on local machine.`nCollect counters from the local machine ? (Y/N)"
-    } Else {
-        write-host "Wrong file";exit
-        $MsgErrInputFile = "The file $ServersTXTfile is incorrect or doesn't exist ... `nDo you want to gather counters from the local machine ? (Y/N)"
-    }
-
+If (IsEmpty $ServersTXTfile){
+    $MsgErrInputFile = "No ServersTXTfile specified - collecting counters on local machine.`nCollect counters from the local machine ? (Y/N)"
     while ($Answer -ne "Y" -AND $Answer -ne "N") {
         cls
         Write-Host $MsgErrInputFile -BackgroundColor Yellow -ForegroundColor Red
         $Answer = Read-host
         If($Answer -eq "N"){Exit} Else {$Servers = $($Env:COMPUTERNAME)}
     }
-} Else { 
-    write-host "on the ELSE of the If serverTXTFile empty or not empty"
-    exit
+} Else {
+    If (!(Test-Path -Path $ServersTXTfile)){
+        $MsgErrInputFile = "Input file with server names doesn't exist.`nPlease specify a valid file path and name with -ServersTXTfile parameter.`nOr don't specify the -ServersTXTfile parameter to collect counters on local machine."
+        Write-Host $MsgErrInputFile -BackgroundColor yellow -ForegroundColor red
+        exit
+    }
     [string[]]$servers = get-content $ServersTXTFile
     $FinServers = @()
     $Servers | Foreach {
@@ -257,8 +246,11 @@ Write-Host "Gathering performance counters for $($Servers -Join ", ")"
 Write-Host "That's a total of $($Servers.count) servers"
 
 #Collecting counter information for target servers
-#$Expression = ("Get-CounterStats -ComputerName $Servers | Select-Object computerName,datetime,") + $({If ($IncludeFullCounterPath) {"WholeCounter,"}Else{""}}) + ("CounterCategory,CounterName,Instance,Value | Export-Csv -Path $OutputFile -Append -NoTypeInformation")
-$Expression = "Get-CounterStats -ComputerName $Servers | Select-Object ComputerName,DateTime,CounterCategory,CounterName,Instance,Value | Export-Csv -Path $OutputFile -Append -NoTypeInformation"
+$Expression = "Get-CounterStats -ComputerName `$Servers | Select-Object ComputerName,DateTime,"
+If ($IncludeFullCounterPath) {$expression += "WholeCounter,"}
+$Expression += "CounterCategory,CounterName,Instance,Value | Export-Csv -Path `$OutputFile -Append -NoTypeInformation"
+
+#$Expression = "Get-CounterStats -ComputerName $Servers | Select-Object ComputerName,DateTime,CounterCategory,CounterName,Instance,Value | Export-Csv -Path $OutputFile -Append -NoTypeInformation"
 For ($ReRun = 1;$ReRun -le $NumberOfSamples;$ReRun ++){
     Write-Progress -Id 1 -Activity "Gathering $NumberOfSamples counters" -Status "Sample $ReRun of $NumberOfSamples" -PercentComplete ($($rerun/$NumberOfSamples*100))
     invoke-expression $Expression
