@@ -144,7 +144,7 @@ $OutputReport = "$ScriptPath\$($ScriptName)_$(get-date -f yyyy-MM-dd-hh-mm-ss).c
 $Answer = ""
 
 $MyCounters = @"
-Processor(_total)\% processor time 
+Processor(_total)\% processor time   
 Memory\Available MBytes
 "@ 
 
