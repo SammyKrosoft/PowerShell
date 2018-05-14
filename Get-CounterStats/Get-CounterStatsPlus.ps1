@@ -144,7 +144,7 @@ $OutputReport = "$ScriptPath\$($ScriptName)_$(get-date -f yyyy-MM-dd-hh-mm-ss).c
 $Answer = ""
 
 $MyCounters = @"
-Memory\Available MBytes
+Processor(_total)\% processor time 
 Memory\Available MBytes
 "@ 
 
@@ -166,10 +166,10 @@ function Global:Convert-HString {
     Process 
     {
         $HString -split "`n" | ForEach-Object {
-            $ComputerName = $_.trim()
+            $Item = $_.trim()
             #NOTE: below is to enable the use of hashtag to comment aka ignore #lines in your txt file...
-            if ($ComputerName -notmatch "#")
-            {$ComputerName}    
+            if ($Item -notmatch "#")
+            {$Item}    
         }
     }#Process
     End 
@@ -209,7 +209,7 @@ function Get-CounterStats {
         $PropertyHash.Add('CounterCategory',$(($path  -split "\\")[3]))
         $PropertyHash.Add('CounterName',$(($path  -split "\\")[4]))
 
-New-Object PSObject -Property $PropertyHash
+    New-Object PSObject -Property $PropertyHash
     }
 }
 
@@ -244,6 +244,10 @@ Function IsPSV3 {
 #endregion functions region
 <# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
+
+# write-host "$(Convert-HString $MyCounters)"
+# exit
+
 If (!(IsPSV3)){
     $errMsg = "Sorry, you need PSV3 or more recent to run this script.`nBecause we use Export-CSV with the -APPEND property, which exist only starting Powershell V3."
     Write-host $errMsg
@@ -278,28 +282,22 @@ If (IsEmpty $ServersTXTfile){
     }
 }
 
-Write-Host "Converting the `$MyCounters here-string and trimming backslashes and trailing -> remove if the case"
-
-
 Write-Host "Gathering performance counters for $($Servers -Join ", ")"
 Write-Host "That's a total of $($Servers.count) servers"
 
 #Collecting counter information for target servers
 $Expression = "Get-CounterStats -ComputerName `$Servers -Counter `$MyCounters | Select-Object ComputerName,DateTime,"
 If ($IncludeFullCounterPath) {$expression += "WholeCounter,"}
-#$Expression += "CounterCategory,CounterName,Instance,Value | Export-Csv -Path `$OutputFile -Append -NoTypeInformation"
-$Expression += "CounterCategory,CounterName,Instance,Value"
-write-host $Expression
+$Expression += "CounterCategory,CounterName,Instance,Value | Export-Csv -Path `$OutputFile -Append -NoTypeInformation"
+#$Expression += "CounterCategory,CounterName,Instance,Value"
 
-
-#$Expression = "Get-CounterStats -ComputerName $Servers | Select-Object ComputerName,DateTime,CounterCategory,CounterName,Instance,Value | Export-Csv -Path $OutputFile -Append -NoTypeInformation"
 For ($ReRun = 1;$ReRun -le $NumberOfSamples;$ReRun ++){
     Write-Progress -Id 1 -Activity "Gathering $NumberOfSamples counters" -Status "Sample $ReRun of $NumberOfSamples" -PercentComplete ($($rerun/$NumberOfSamples*100))
     invoke-expression $Expression
 }
 
 Write-Host "File exported : $outputFile"
-#notepad $OutputFile
+notepad $OutputFile
 
 <# /EXECUTIONS #>
 <# -------------------------- CLEANUP VARIABLES -------------------------- #>
