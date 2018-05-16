@@ -121,8 +121,9 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorActionPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "1.5"
+$ScriptVersion = "1.6"
 <# Version changes
+v1.6 : Tested with PowerBI template - packaging the whole as "Get-CounterStatsPlusv1.6.ZIP"
 v1.5 : many things changed... added -IncludeFullCounterPath parameter, also if no
 Servers.txt files specified, will prompt to measure performance on local machine
 instead.
@@ -249,7 +250,8 @@ Function IsPSV3 {
 # exit
 
 If (!(IsPSV3)){
-    $errMsg = "Sorry, you need PSV3 or more recent to run this script.`nBecause we use Export-CSV with the -APPEND property, which exist only starting Powershell V3."
+    $errMsg = "Sorry, you need PSV3 or more recent to run this script."
+    $errMsg += "`nBecause we use Export-CSV with the -APPEND property, which exist only starting Powershell V3."
     Write-host $errMsg
     exit
 }
@@ -266,7 +268,9 @@ If (IsEmpty $ServersTXTfile){
     }
 } Else {
     If (!(Test-Path -Path $ServersTXTfile)){
-        $MsgErrInputFile = "Input file with server names doesn't exist.`nPlease specify a valid file path and name with -ServersTXTfile parameter.`nOr don't specify the -ServersTXTfile parameter to collect counters on local machine."
+        $MsgErrInputFile = "Input file with server names doesn't exist.`n"
+        $MsgErrInputFile += "Please specify a valid file path and name with -ServersTXTfile parameter.`n"
+        $MsgErrInputFile += "Or don't specify the -ServersTXTfile parameter to collect counters on local machine."
         Write-Host $MsgErrInputFile -BackgroundColor yellow -ForegroundColor red
         exit
     }
@@ -279,6 +283,7 @@ If (IsEmpty $ServersTXTfile){
             $FinServers += $_.trim()
         }
     $Servers = $FinServers
+    $FinServers = $null # a little bit of variable cleanup cannot harm
     }
 }
 
@@ -292,7 +297,7 @@ $Expression += "CounterCategory,CounterName,Instance,Value | Export-Csv -Path `$
 #$Expression += "CounterCategory,CounterName,Instance,Value"
 
 For ($ReRun = 1;$ReRun -le $NumberOfSamples;$ReRun ++){
-    Write-Progress -Id 1 -Activity "Gathering $NumberOfSamples counters" -Status "Sample $ReRun of $NumberOfSamples" -PercentComplete ($($rerun/$NumberOfSamples*100))
+    Write-Progress -Id 1 -Activity "Writing into $Outputfile" -Status "Sample $ReRun of $NumberOfSamples" -PercentComplete ($($rerun/$NumberOfSamples*100))
     invoke-expression $Expression
 }
 
@@ -302,6 +307,7 @@ notepad $OutputFile
 <# /EXECUTIONS #>
 <# -------------------------- CLEANUP VARIABLES -------------------------- #>
 $OutputFile = $null
+$Expression = $null
 
 <# /CLEANUP VARIABLES#>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
