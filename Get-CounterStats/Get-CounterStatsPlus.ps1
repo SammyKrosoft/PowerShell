@@ -123,7 +123,7 @@ $ErrorActionPreference = "SilentlyContinue"
 #Script Version
 $ScriptVersion = "1.6"
 <# Version changes
-v1.6 : Tested with PowerBI template - packaging the whole as "Get-CounterStatsPlusv1.6.ZIP"
+v1.6 : Tested with PowerBI template - packaging the whole as "GetAndAnalyzePerfMonCountersv1.6.zip"
 v1.5 : many things changed... added -IncludeFullCounterPath parameter, also if no
 Servers.txt files specified, will prompt to measure performance on local machine
 instead.
