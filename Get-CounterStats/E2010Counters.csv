@@ -1,4 +1,4 @@
-"computerName","datetime","CounterCategory","CounterName","Instance","Value"
+"ComputerName","DateTime","CounterCategory","CounterName","Instance","Value"
 "e2016site1","2018-05-6 03:42:47","processor(_total)","% processor time","_total","1.93"
 "e2016site2","2018-05-6 03:42:47","processor(_total)","% processor time","_total","22.7"
 "e2016site1","2018-05-6 03:42:47","msexchange rpcclientaccess","rpc averaged latency",,"16"
