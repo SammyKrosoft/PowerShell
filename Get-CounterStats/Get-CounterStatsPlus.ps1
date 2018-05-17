@@ -125,7 +125,7 @@ $DebugPreference = "Continue"
 # Set Error Action to your needs
 $ErrorActionPreference = "SilentlyContinue"
 #Script Version
-$ScriptVersion = "1.6"
+$ScriptVersion = "1.9"
 <# Version changes
 v1.6 : Tested with PowerBI template - packaging the whole as "GetAndAnalyzePerfMonCountersv1.6.zip"
 v1.5 : many things changed... added -IncludeFullCounterPath parameter, also if no
