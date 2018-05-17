@@ -18,14 +18,18 @@ which will be used to analayze the performance of target servers.
 The script will query a defined set of counters that you define there :
 
 $MyCounters = @"
-\Processor(_total)\% processor time 
-\MSExchange RpcClientAccess\RPC Averaged Latency
-\MSExchangeIS Store(*)\RPC Average Latency
-\MSExchange RpcClientAccess\RPC Requests
-\Memory\Available MBytes 
-\PhysicalDisk(*)\Avg. Disk sec/Transfer 
-\Network Interface(*)\Bytes Total/sec
-\MSExchangeTransport Queues(*)\Submission Queue Length
+Processor(_total)\% processor time 
+MSExchange RpcClientAccess\RPC Averaged Latency
+MSExchangeIS Store(*)\RPC Average Latency
+MSExchange RpcClientAccess\RPC Requests
+Memory\Available MBytes 
+PhysicalDisk(*)\Avg. Disk sec/Transfer 
+Network Interface(*)\Bytes Total/sec
+MSExchangeTransport Queues(*)\Submission Queue Length
+MSExchange RpcClientAccess\Active User Count
+MSExchange RpcClientAccess\User Count
+MSExchangeIS\User Count
+MSExchangeIS\Active User Count
 "@ 
 
 Hint : Chase counters definitions using Powershell ! 
@@ -145,8 +149,18 @@ $OutputReport = "$ScriptPath\$($ScriptName)_$(get-date -f yyyy-MM-dd-hh-mm-ss).c
 $Answer = ""
 
 $MyCounters = @"
-Processor(_total)\% processor time   
-Memory\Available MBytes
+Processor(_total)\% processor time 
+MSExchange RpcClientAccess\RPC Averaged Latency
+MSExchangeIS Store(*)\RPC Average Latency
+MSExchange RpcClientAccess\RPC Requests
+Memory\Available MBytes 
+PhysicalDisk(*)\Avg. Disk sec/Transfer 
+Network Interface(*)\Bytes Total/sec
+MSExchangeTransport Queues(*)\Submission Queue Length
+MSExchange RpcClientAccess\Active User Count
+MSExchange RpcClientAccess\User Count
+MSExchangeIS\User Count
+MSExchangeIS\Active User Count
 "@ 
 
 <# /DECLARATIONS #>
