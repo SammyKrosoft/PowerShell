@@ -297,8 +297,8 @@ If (IsEmpty $ServersTXTfile){
             $FinServers += $_.trim()
         }
     $Servers = $FinServers
-    $FinServers = $null # a little bit of variable cleanup cannot harm
     }
+    $FinServers = $null # a little bit of variable cleanup cannot harm
 }
 
 Write-Host "Gathering performance counters for $($Servers -Join ", ")"
