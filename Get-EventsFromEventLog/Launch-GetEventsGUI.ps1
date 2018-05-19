@@ -1,65 +1,3 @@
-# Add in the frameworks so that we can create the WPF GUI
-Add-Type -AssemblyName presentationFramework, presentationCore
-
-# Create empty hashtable into which we will place the GUI objects
-$wpf = @{}
-
-# Grab the content of the visual studio xaml file as a string
-$inputXML = Get-content -path "C:\Users\Kamehameha\source\repos\Launch-GetEventsGUI\Launch-GetEventsGUI\MainWindow.xaml"
-
-Clear-Host
-$inputXML
-
-Clear-Host
-$firstItem = $inputXML | Select-Object -First 1
-$FirstItem.GetType().FullName
-
-#clean up xml there is syntax which Visual Studio 2015 creates which PoSH can't understand
-$inputXMLClean = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace 'x:Class=".*?"','' -replace 'd:DesignHeight="\d*?"','' -replace 'd:DesignWidth="\d*?"',''
-
-Clear-Host
-$inputXMLClean
-
-#change string variable into xml
-[xml]$xaml = $inputXMLClean
-
-Clear-Host
-$xaml.GetType().Fullname
-
-#read xml data into xaml node reader object
-$reader = New-Object System.Xml.XmlNodeReader $xaml
-
-#create System.Windows.Window object
-$tempform = [Windows.Markup.XamlReader]::Load($reader)
-$tempform.GetType().Fullname
-
-#select each named node using an Xpath expression.
-$namedNodes = $xaml.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Name')]]")
-
-#add all the named nodes as members to the $wpf variable, this also adds in the correct type for the objects.
-$namedNodes | ForEach-Object {
-	$wpf.Add($_.Name, $tempform.FindName($_.Name))
-}
-
-#show what's inside $wpf
-clear-Host
-$wpf
-
-Clear-Host
-$wpf.YouTubeButton.GetType().Fullname
-
-Clear-Host
-$wpf.YouTubeButton
-
-Clear-Host
-$wpf.YouTubeButton.Content
-
-Clear-Host
-$buttonEvents = $wpf.YouTubeButton | Get-Member | Where-Object {$_.MemberType -eq 'Event'}
-$buttonEvents.count
-
-$wpf.YouTubeWindow.ShowDialog() | Out-Null
-
 
 
 <# -------------------------- FUNCTIONS -------------------------- #>
@@ -470,3 +408,22 @@ Function Get-EventsFromEventLogs {
 }
 
 <# /FUNCTIONS #>
+
+
+# Load a WPF GUI from a XAML file build with Visual Studio
+Add-Type -AssemblyName presentationframework, presentationcore
+$wpf = @{ }
+# NOTE: Either load from a XAML file or paste the XAML file content in a "Here String"
+$inputXML = Get-Content -Path ".\MainWindow.xaml"
+# or $inputXML = @"Here-String pasted from XAML"@
+$inputXMLClean = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace 'x:Class=".*?"','' -replace 'd:DesignHeight="\d*?"','' -replace 'd:DesignWidth="\d*?"',''
+[xml]$xaml = $inputXMLClean
+$reader = New-Object System.Xml.XmlNodeReader $xaml
+$tempform = [Windows.Markup.XamlReader]::Load($reader)
+$namedNodes = $xaml.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Name')]]")
+$namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
+
+# Load the form:
+$wpf.GrabEventLogs.ShowDialog() | Out-Null
+
+
