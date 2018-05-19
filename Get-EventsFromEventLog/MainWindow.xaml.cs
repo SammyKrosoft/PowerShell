@@ -25,7 +25,15 @@ namespace WpfApp1
             InitializeComponent();
         }
 
-        private void Update_cmd()
+        private void Update_cmd(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Update_cmd(object sender, RoutedEventArgs e)
+        {                    }
+
+        private void Run_Cmd(object sender, RoutedEventArgs e)
         {
 
         }

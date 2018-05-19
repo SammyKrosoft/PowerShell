@@ -1,3 +1,11 @@
+<#
+.NOTES
+With the help of            :   Jim Moyle @jimmoyle
+How-To GUI From Jim Moyle   :   https://github.com/JimMoyle/GUIDemo
+
+    Version 0.0.1
+#>
+
 
 
 <# -------------------------- FUNCTIONS -------------------------- #>
@@ -407,9 +415,33 @@ Function Get-EventsFromEventLogs {
 
 }
 
+Function Say {
+    [CmdletBinding(DefaultParameterSetName = "NormalRun")]
+    Param(
+        [Parameter(Mandatory = $false, Position = 0, ParameterSetName = "NormalRun")]
+        [String]$Msg
+    )
+    If ($wpf.chkSpeech.IsChecked -eq $true) {
+        $InstalledVoices = @()
+        Add-Type -AssemblyName System.Speech
+        $Speak = New-Object system.Speech.Synthesis.SpeechSynthesizer
+        # $InstalledVoices = $Speak.GetInstalledVoices().VoiceInfo
+        # $InstalledVoices
+        # Select by hint like this ('Male/Female', 'NotSet/Child/Teen/Adult/Senior',[int32]'Position which voices are ordered','fr/en')
+        $Speak.SelectVoiceByHints(0,0,0,'en')
+        $Speak.Speak($Msg)
+    }
+}
+
+Function WritNSay ($msg) {
+    Write-Host $msg
+    Say $msg
+}
+
 Function Update_cmd{
     Write-host "Updating command line"
 }
+
 
 <# /FUNCTIONS #>
 
@@ -427,7 +459,7 @@ $inputXML = @"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="SearchAndCollect" Height="501.903" Width="800">
+        Title="SearchAndCollect" Height="501.903" Width="800" ShowActivated="False">
     <Grid Background="#FF1187AB" Margin="0,0,0,0">
         <CheckBox x:Name="chkAppLog" Content="Application Log" HorizontalAlignment="Left" Margin="371,28,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtCSVComputersList" HorizontalAlignment="Left" Height="147" Margin="10,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="317"/>
@@ -442,11 +474,15 @@ $inputXML = @"
         <TextBox x:Name="txtCommand" HorizontalAlignment="Left" Height="91" Margin="10,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="754" IsReadOnly="True"/>
         <Label Content="Function Command Line we'll launch" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top" Width="240"/>
         <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Height="30" Margin="166,407,0,0" VerticalAlignment="Top" Width="161"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="472,407,0,0" VerticalAlignment="Top" Width="160" Height="30"/>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="472,407,0,0" VerticalAlignment="Top" Width="160" Height="30"/>
+        <CheckBox x:Name="chkSpeech" Content="Speech" HorizontalAlignment="Left" Margin="660,171,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="lstBoxLanguage" HorizontalAlignment="Left" Height="47" Margin="616,204,0,0" VerticalAlignment="Top" Width="169">
+            <ListBoxItem Content="Français"/>
+            <ListBoxItem Content="English"/>
+        </ListBox>
 
     </Grid>
 </Window>
-
 "@
 $inputXMLClean = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace 'x:Class=".*?"','' -replace 'd:DesignHeight="\d*?"','' -replace 'd:DesignWidth="\d*?"',''
 [xml]$xaml = $inputXMLClean
@@ -454,6 +490,40 @@ $reader = New-Object System.Xml.XmlNodeReader $xaml
 $tempform = [Windows.Markup.XamlReader]::Load($reader)
 $namedNodes = $xaml.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Name')]]")
 $namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
+
+#========================================================
+#Your Code goes here
+#========================================================
+
+$wpf.btnRun.add_Click({
+    $msg = $wpf.txtCSVComputersList.Text
+    WritNSay $msg
+})
+
+$wpf.btnCancel.add_Click({
+    $msg = "Exiting..."
+    WritNSay $msg
+
+})
+
+$wpf.chkSpeech.add_Checked({
+    $wpf.lstBoxLanguage.ShowActivated = $true
+})
+
+# Things to load when the WPF form is rendered
+$wpf.EventCollectWindow.Add_ContentRendered({
+})
+
+# Thigs to load when the WPF form is loaded
+$wpf.EventCollectWindow.Add_Loaded({
+
+})
+
+
+#=======================================================
+#End of Your Code
+#=======================================================
+
 
 # Load the form:
 $wpf.EventCollectWindow.ShowDialog() | Out-Null
