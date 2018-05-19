@@ -17,10 +17,10 @@
         <CheckBox x:Name="chkLevelCritical" Content="Critical" HorizontalAlignment="Left" Margin="534,88,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtNumberOfEvents" HorizontalAlignment="Left" Height="35" Margin="385,171,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="104"/>
         <TextBlock HorizontalAlignment="Left" Margin="385,134,0,0" TextWrapping="Wrap" Text="Events to collect per computer" VerticalAlignment="Top" Width="104"/>
-        <TextBox x:Name="txtCommand" HorizontalAlignment="Left" Height="91" Margin="10,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="754"/>
-        <Label Content="Function Command Line we'll launch" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top" Width="202"/>
-        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Height="30" Margin="138,382,0,0" VerticalAlignment="Top" Width="161"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="456,382,0,0" VerticalAlignment="Top" Width="160" Height="30"/>
+        <TextBox x:Name="txtCommand" HorizontalAlignment="Left" Height="91" Margin="10,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="754" IsReadOnly="True"/>
+        <Label Content="Function Command Line we'll launch" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top" Width="240"/>
+        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Height="30" Margin="166,407,0,0" VerticalAlignment="Top" Width="161"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="472,407,0,0" VerticalAlignment="Top" Width="160" Height="30"/>
 
     </Grid>
 </Window>

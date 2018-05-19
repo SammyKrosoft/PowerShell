@@ -24,5 +24,10 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
+
+        private void Update_cmd()
+        {
+
+        }
     }
 }
