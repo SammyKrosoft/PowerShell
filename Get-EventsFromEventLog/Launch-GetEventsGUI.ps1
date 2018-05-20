@@ -465,7 +465,6 @@ Function Split-ListColon {
     Return $ListItems
 }
 
-
 Function Update-cmd{
     # [Parameter(Mandatory = $False, Position = 1, ParameterSetName = "NormalRun")] 
     # $Computers = ("127.0.0.1"),
@@ -482,11 +481,10 @@ Function Update-cmd{
     # [Parameter(Mandatory = $False, Position = 9, ParameterSetName = "NormalRun")] [switch]$DebugScript,
     # [Parameter(Mandatory = $false, Position = 10, ParameterSetName = "CheckVersionOnly")][Switch]$CheckVersion
 
-
-    $command = "Get-EventsFromEventLogs"
+    $command = ".\Get-EventsFromEventLogs"
     If ($($wpf.txtCSVComputersList.Text) -ne ""){
-        $ComputersList = Split-ListColon -StringToSplit $wpf.txtCSVComputersList.Text
-        $command += (" -Computers ") + ($ComputersList)
+        $TextBoxList = Split-ListColon -StringToSplit $wpf.txtCSVComputersList.Text
+        $command += (" -Computers ") + ($TextBoxList)
     }
 
     [string[]]$LogsToSearch = @()
@@ -508,10 +506,21 @@ Function Update-cmd{
         $command += (" -EventLevel ") + $EventLevelToSearch
     }
 
+    If ($($wpf.txtEventIDs.Text) -ne ""){
+        $TextBoxList = Split-ListColon -StringToSplit $wpf.txtEventIDs.Text
+        $command += (" -EventID ") + ($TextBoxList)
+    }
+
+    If ($($wpf.txtEventSources.Text) -ne ""){
+        $TextBoxList = Split-ListColon -StringToSplit $wpf.txtEventSources.Text
+        $command += (" -EventSource ") + ($TextBoxList)
+    }
+
     If (($($wpf.txtNumberOfEvents.Text) -ne "30") -and ($($wpf.txtNumberOfEvents.Text) -ne "")){
         $command += (" -NumberOfLastEventsToGet ") + ($wpf.txtNumberOfEvents.Text)
     }
 
+    $command += " -Confirm `$false"
     # Populate the cmdlet text box that it's gonna use...
     $wpf.txtCommand.text = $command
 }
@@ -532,6 +541,7 @@ $wpf = @{}
 # NOTE: Either load from a XAML file or paste the XAML file content in a "Here String"
 # $inputXML = Get-Content -Path "C:\Users\Kamehameha\Documents\GitHub\PowerShell\Get-EventsFromEventLog\VisualStudio2017WPFDesign\Launch-EventsCollector-WPF\Launch-EventsCollector-WPF\MainWindow.xaml"
 $inputXML = @"
+
 <Window x:Name="EventCollectWindow" x:Class="WpfApp1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -545,22 +555,26 @@ $inputXML = @"
         <TextBox x:Name="txtCSVComputersList" HorizontalAlignment="Left" Height="147" Margin="10,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="317"/>
         <CheckBox x:Name="chkSystemLog" Content="System Log" HorizontalAlignment="Left" Margin="371,48,0,0" VerticalAlignment="Top"/>
         <Label Content="Computers List (Comma Separated)" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Width="202"/>
-        <CheckBox x:Name="chkLevelInformation" Content="Information" HorizontalAlignment="Left" Margin="534,28,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chkLevelWarning" Content="Warning" HorizontalAlignment="Left" Margin="534,48,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chkLevelError" Content="Error" HorizontalAlignment="Left" Margin="534,68,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chkLevelCritical" Content="Critical" HorizontalAlignment="Left" Margin="534,88,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtNumberOfEvents" HorizontalAlignment="Left" Height="35" Margin="385,171,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="104"/>
-        <TextBlock HorizontalAlignment="Left" Margin="385,134,0,0" TextWrapping="Wrap" Text="Events to collect per computer" VerticalAlignment="Top" Width="104"/>
+        <CheckBox x:Name="chkLevelInformation" Content="Information" HorizontalAlignment="Left" Margin="498,28,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chkLevelWarning" Content="Warning" HorizontalAlignment="Left" Margin="498,48,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chkLevelError" Content="Error" HorizontalAlignment="Left" Margin="498,68,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chkLevelCritical" Content="Critical" HorizontalAlignment="Left" Margin="498,88,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNumberOfEvents" HorizontalAlignment="Left" Height="35" Margin="332,180,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="104"/>
+        <TextBlock HorizontalAlignment="Left" Margin="332,143,0,0" TextWrapping="Wrap" Text="Events to collect per computer" VerticalAlignment="Top" Width="104"/>
         <TextBox x:Name="txtCommand" HorizontalAlignment="Left" Height="91" Margin="10,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="754" IsReadOnly="True"/>
         <Label Content="Function Command Line we'll launch" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top" Width="240"/>
         <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Height="30" Margin="166,407,0,0" VerticalAlignment="Top" Width="161"/>
         <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="472,407,0,0" VerticalAlignment="Top" Width="160" Height="30"/>
-        <CheckBox x:Name="chkSpeech" Content="Speech" HorizontalAlignment="Left" Margin="660,171,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="lstBoxLanguage" HorizontalAlignment="Left" Height="47" Margin="660,191,0,0" VerticalAlignment="Top" Width="70" IsSynchronizedWithCurrentItem="False" IsEnabled="False" SelectedIndex="1">
+        <CheckBox x:Name="chkSpeech" Content="Speech" HorizontalAlignment="Left" Margin="681,28,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="lstBoxLanguage" HorizontalAlignment="Left" Height="47" Margin="681,48,0,0" VerticalAlignment="Top" Width="70" IsSynchronizedWithCurrentItem="False" IsEnabled="False" SelectedIndex="1">
             <ListBoxItem Content="Francais"/>
             <ListBoxItem Content="English"/>
         </ListBox>
         <CheckBox x:Name="chkSecurityLog" Content="Security Log" HorizontalAlignment="Left" Margin="371,68,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtEventIDs" HorizontalAlignment="Left" Height="32" Margin="483,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281"/>
+        <TextBox x:Name="txtEventSources" HorizontalAlignment="Left" Height="62" Margin="483,206,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281"/>
+        <Label Content="Event IDs to look for:" HorizontalAlignment="Left" Margin="483,117,0,0" VerticalAlignment="Top" Width="202"/>
+        <Label Content="Event Sources to look for:" HorizontalAlignment="Left" Margin="483,180,0,0" VerticalAlignment="Top" Width="202"/>
 
     </Grid>
 </Window>
@@ -582,9 +596,10 @@ $namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
 #region Events from the WPF form
 #========================================================
 
+#region Buttons
 $wpf.btnRun.add_Click({
     $msg = $wpf.txtCSVComputersList.Text
-    if (IsEmpty $msg) {$msg = "Bruh"}
+    if (IsEmpty $msg) {$msg = "And zats ouai we ahi"}
     WritNSay $msg
 })
 
@@ -592,7 +607,10 @@ $wpf.btnCancel.add_Click({
     $msg = "Exiting..."
     WritNSay $msg
 })
+# End of Buttons region
+#endregion
 
+#region Speech management region
 $wpf.chkSpeech.add_Checked({
     $wpf.lstBoxLanguage.Isenabled = $true
     If ($($wpf.lstBoxLanguage.SelectedItem.content) -eq "Francais") {
@@ -616,29 +634,44 @@ $wpf.lstBoxLanguage.add_SelectionChanged({
     }
     WritNsay $msg})
 
-# Thigs to load when the WPF form is loaded aka in memory
+# End of speech management region
+#endregion
+
+#region Load, Draw (render) and closing form events
+#Things to load when the WPF form is loaded aka in memory
 $wpf.EventCollectWindow.Add_Loaded({
 })
 
-# Things to load when the WPF form is rendered aka drawn on screen
+#Things to load when the WPF form is rendered aka drawn on screen
 $wpf.EventCollectWindow.Add_ContentRendered({
     Update-cmd
 })
-
 $wpf.EventCollectWindow.add_Closing({
     $msg = "bye bye !"
     WritNSay $msg
 })
+# End of load, draw and closing form events
+#endregion
 
+#region Text Changed events
 $wpf.txtCSVComputersList.add_TextChanged({
     Update-cmd
 })
-
 $wpf.txtNumberOfEvents.add_TextChanged({
+    Update-cmd
+})
+$wpf.txtEventIDs.add_TextChanged({
+    Update-cmd
+})
+$wpf.txtEventSources.add_TextChanged({
     Update-cmd
 })
 
 
+#End of Text Changed events
+#endregion
+
+#region Clicked on Checkboxes events
 $wpf.chkAppLog.add_Click({
     Update-cmd
 })
@@ -660,6 +693,8 @@ $wpf.chkLevelError.add_Click({
 $wpf.chkLevelCritical.add_Click({
     Update-cmd
 })
+# End of Clicked on Checkboxes events
+#endregion
 
 #=======================================================
 #End of Events from the WPF form
