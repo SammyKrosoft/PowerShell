@@ -471,11 +471,14 @@ Function Update-cmd{
         $ComputersList = Split-ListColon -StringToSplit $wpf.txtCSVComputersList.Text
         $command += (" -Computers ") + ($ComputersList)
     }
-    $SearchInLogs = ""
-    If($wpf.chkAppLog.IsChecked){$SearchInLogs += "Application"}
-    If($wpf.chkSystemLog.IsChecked) {If ($SearchInLogs = ""){$SearchInLogs += "System"}Else{$SearchInLogs += ";System"}}
-    If($wpf.chkSecurityLog.IsChecked) {If ($SearchInLogs = ""){$SearchInLogs += "Security"}Else{$SearchInLogs += ";Security"}}
-    $SearchInLogs = Split-ListColon $SearchInLogs
+    [string[]]$SearchInLogs = @()
+    If ($($wpf.chkAppLog.IsChecked) -or $($wpf.chkSystemLog.IsChecked) -or $($wpf.chkSecurityLog.IsChecked)){
+        If($wpf.chkAppLog.IsChecked){$SearchInLogs += "Application"}
+        If($wpf.chkSystemLog.IsChecked) {$SearchInLogs += "System"}
+        If($wpf.chkSecurityLog.IsChecked) {$SearchInLogs += "Security"}
+        $SearchInLogs = $SearchInLogs -join ","
+        $Command += (" -EventLog ") + $SearchInLogs
+    }
         $wpf.txtCommand.text = $command
 }
 
@@ -573,6 +576,7 @@ $wpf.EventCollectWindow.Add_Loaded({
 
 # Things to load when the WPF form is rendered aka drawn on screen
 $wpf.EventCollectWindow.Add_ContentRendered({
+    Update-cmd
 })
 
 $wpf.EventCollectWindow.add_Closing({
