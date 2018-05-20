@@ -486,9 +486,42 @@ Function Update-cmd{
 Add-Type -AssemblyName presentationframework, presentationcore
 $wpf = @{}
 # NOTE: Either load from a XAML file or paste the XAML file content in a "Here String"
-$inputXML = Get-Content -Path "C:\Users\Kamehameha\Documents\GitHub\PowerShell\Get-EventsFromEventLog\VisualStudio2017WPFDesign\Launch-EventsCollector-WPF\Launch-EventsCollector-WPF\MainWindow.xaml"
-# $inputXML = @"
-# "@
+# $inputXML = Get-Content -Path "C:\Users\Kamehameha\Documents\GitHub\PowerShell\Get-EventsFromEventLog\VisualStudio2017WPFDesign\Launch-EventsCollector-WPF\Launch-EventsCollector-WPF\MainWindow.xaml"
+$inputXML = @"
+<Window x:Name="EventCollectWindow" x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="SearchAndCollect" Height="501.903" Width="800" ShowActivated="False">
+    <Grid Background="#FF1187AB" Margin="0,0,0,0">
+        <CheckBox x:Name="chkAppLog" Content="Application Log" HorizontalAlignment="Left" Margin="371,28,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCSVComputersList" HorizontalAlignment="Left" Height="147" Margin="10,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="317"/>
+        <CheckBox x:Name="chkSystemLog" Content="System Log" HorizontalAlignment="Left" Margin="371,48,0,0" VerticalAlignment="Top"/>
+        <Label Content="Computers List (Comma Separated)" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Width="202"/>
+        <CheckBox x:Name="chkLevelInformation" Content="Information" HorizontalAlignment="Left" Margin="534,28,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chkLevelWarning" Content="Warning" HorizontalAlignment="Left" Margin="534,48,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chkLevelError" Content="Error" HorizontalAlignment="Left" Margin="534,68,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chkLevelCritical" Content="Critical" HorizontalAlignment="Left" Margin="534,88,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNumberOfEvents" HorizontalAlignment="Left" Height="35" Margin="385,171,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="104"/>
+        <TextBlock HorizontalAlignment="Left" Margin="385,134,0,0" TextWrapping="Wrap" Text="Events to collect per computer" VerticalAlignment="Top" Width="104"/>
+        <TextBox x:Name="txtCommand" HorizontalAlignment="Left" Height="91" Margin="10,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="754" IsReadOnly="True"/>
+        <Label Content="Function Command Line we'll launch" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top" Width="240"/>
+        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Height="30" Margin="166,407,0,0" VerticalAlignment="Top" Width="161"/>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="472,407,0,0" VerticalAlignment="Top" Width="160" Height="30"/>
+        <CheckBox x:Name="chkSpeech" Content="Speech" HorizontalAlignment="Left" Margin="660,171,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="lstBoxLanguage" HorizontalAlignment="Left" Height="47" Margin="660,191,0,0" VerticalAlignment="Top" Width="70" IsSynchronizedWithCurrentItem="False" IsEnabled="False" SelectedIndex="1">
+            <ListBoxItem Content="Francais"/>
+            <ListBoxItem Content="English"/>
+        </ListBox>
+        <CheckBox x:Name="chkSecurityLog" Content="Security Log" HorizontalAlignment="Left" Margin="371,68,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
+
+"@
 $inputXMLClean = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace 'x:Class=".*?"','' -replace 'd:DesignHeight="\d*?"','' -replace 'd:DesignWidth="\d*?"',''
 [xml]$xaml = $inputXMLClean
 $reader = New-Object System.Xml.XmlNodeReader $xaml
