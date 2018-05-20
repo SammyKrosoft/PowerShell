@@ -8,7 +8,9 @@ How-To GUI From Jim Moyle   :   https://github.com/JimMoyle/GUIDemo
 
 
 
-<# -------------------------- FUNCTIONS -------------------------- #>
+#========================================================
+#region Functions definitions (note the WPF form events)
+#========================================================
 
 Function Get-EventsFromEventLogs {
         <#
@@ -458,31 +460,61 @@ Function Split-ListColon {
     )
     $TargetSplit = $StringToSplit.Split(',')
     $ListItems = ""
-    For ($i = 0; $i -lt $TargetSplit.Count - 1; $i++) {$ListItems += ("""") + $TargetSplit[$i] + (""",")}
+    For ($i = 0; $i -lt $TargetSplit.Count - 1; $i++) {$ListItems += ("""") + $TargetSplit[$i] + (""", ")}
     $ListItems += ("""") + $TargetSplit[$TargetSplit.Count - 1] + ("""")
     Return $ListItems
 }
 
 
 Function Update-cmd{
+    # [Parameter(Mandatory = $False, Position = 1, ParameterSetName = "NormalRun")] 
+    # $Computers = ("127.0.0.1"),
+    # [Parameter(Mandatory = $False, Position = 2, ParameterSetName = "NormalRun")][ValidateSet("Application","System","Security")] 
+    # [array]$EventLogName = ('Application', 'System'),
+    # [Parameter(Mandatory = $False, Position = 3, ParameterSetName = "NormalRun")] 
+    # [array]$EventID="All",
+    # [Parameter(Mandatory = $False, Position = 4, ParameterSetName = "NormalRun")] [array]$EventSource="All",
+    # [Parameter(Mandatory = $False, Position = 5, ParameterSetName = "NormalRun")][ValidateSet("All","Information","Warning","Error","Critical", "Verbose")] 
+    # [array]$EventLevel="All",
+    # [Parameter(Mandatory = $False, Position = 6, ParameterSetName = "NormalRun")] [int]$NumberOfLastEventsToGet = 30,
+    # [Parameter(Mandatory = $False, Position = 7, ParameterSetName = "NormalRun")] [Switch]$ExportToFile,
+    # [Parameter(Mandatory = $False, Position = 8, ParameterSetName = "NormalRun")] [Boolean]$Confirm = $true,
+    # [Parameter(Mandatory = $False, Position = 9, ParameterSetName = "NormalRun")] [switch]$DebugScript,
+    # [Parameter(Mandatory = $false, Position = 10, ParameterSetName = "CheckVersionOnly")][Switch]$CheckVersion
+
+
     $command = "Get-EventsFromEventLogs"
     If ($($wpf.txtCSVComputersList.Text) -ne ""){
         $ComputersList = Split-ListColon -StringToSplit $wpf.txtCSVComputersList.Text
         $command += (" -Computers ") + ($ComputersList)
     }
+
     [string[]]$SearchInLogs = @()
     If ($($wpf.chkAppLog.IsChecked) -or $($wpf.chkSystemLog.IsChecked) -or $($wpf.chkSecurityLog.IsChecked)){
         If($wpf.chkAppLog.IsChecked){$SearchInLogs += "Application"}
         If($wpf.chkSystemLog.IsChecked) {$SearchInLogs += "System"}
         If($wpf.chkSecurityLog.IsChecked) {$SearchInLogs += "Security"}
-        $SearchInLogs = $SearchInLogs -join ","
-        $Command += (" -EventLog ") + $SearchInLogs
+        $SearchInLogs = $SearchInLogs -join ", "
+        $Command += (" -EventLogName ") + $SearchInLogs
     }
-        $wpf.txtCommand.text = $command
+
+    If (($($wpf.txtNumberOfEvents.Text) -ne "30") -and ($($wpf.txtNumberOfEvents.Text) -ne "")){
+        $command += (" -NumberOfLastEventsToGet ") + ($wpf.txtNumberOfEvents.Text)
+    }
+
+    # Populate the cmdlet text box that it's gonna use...
+    $wpf.txtCommand.text = $command
 }
 
 
-<# /FUNCTIONS #>
+#========================================================
+# End of Functions definitions (note the WPF form events)
+#endregion
+#========================================================
+
+#========================================================
+#region WPF form definition and load controls
+#========================================================
 
 # Load a WPF GUI from a XAML file build with Visual Studio
 Add-Type -AssemblyName presentationframework, presentationcore
@@ -532,7 +564,12 @@ $namedNodes = $xaml.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Nam
 $namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
 
 #========================================================
-#Your Code goes here
+#Events from the WPF form
+#endregion
+#========================================================
+
+#========================================================
+#region Events from the WPF form
 #========================================================
 
 $wpf.btnRun.add_Click({
@@ -587,6 +624,11 @@ $wpf.txtCSVComputersList.add_TextChanged({
     Update-cmd
 })
 
+$wpf.txtNumberOfEvents.add_TextChanged({
+    Update-cmd
+})
+
+
 $wpf.chkAppLog.add_Click({
     Update-cmd
 })
@@ -600,7 +642,8 @@ $wpf.chkSecurityLog.add_Click({
 })
 
 #=======================================================
-#End of Your Code
+#End of Events from the WPF form
+#endregion
 #=======================================================
 
 
