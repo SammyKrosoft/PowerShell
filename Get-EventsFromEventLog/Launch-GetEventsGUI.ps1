@@ -436,10 +436,17 @@ Function Say {
         # $InstalledVoices = $Speak.GetInstalledVoices().VoiceInfo
         # $InstalledVoices
         # Select by hint like this ('Male/Female', 'NotSet/Child/Teen/Adult/Senior',[int32]'Position which voices are ordered','fr/en')
-        If ($wpf.lstBoxLanguage.ListBoxItem.Content -eq "FR"){$language = 'fr'}
-        If ($wpf.lstBoxLanguage.ListBoxItem.Content -eq "EN"){$language = 'en'}
-        If (Isempty $($wpf.lstBoxLanguage.ListBoxItem.Content)){$language = 'en'}
-        Write-host $($wpf.lstBoxLanguage.ListBoxItem.Content)
+        switch ($wpf.lstBoxLanguage.SElectedItem.Content) {
+            "FR" {$Language = 'fr'}
+            "EN" {$Language = 'en'}
+            "" {$language = 'en'}
+            $null {$Language = 'en'}
+        }
+        write-host "Selection - inside SAY : $($wpf.lstBoxLanguage.SElectedItem.Content)"
+        # If ($wpf.lstBoxLanguage.ListBoxItem.Content -eq "FR"){$language = 'fr'}
+        # If ($wpf.lstBoxLanguage.ListBoxItem.Content -eq "EN"){$language = 'en'}
+        # If (Isempty $($wpf.lstBoxLanguage.ListBoxItem.Content)){$language = 'en'}
+        # $language = $wpf.lstBoxLanguage.SElectedItem.Content
         $Speak.SelectVoiceByHints(0,0,0,$language)
         $Speak.Speak($Msg)
     }
@@ -527,7 +534,8 @@ $wpf.chkSpeech.add_UnChecked({
 })
 
 $wpf.lstBoxLanguage.add_SelectionChanged({
-    write-host $($wpf.lstBoxLanguage.ListBoxItem.Content)
+    Write-host "Selected:"
+    Write-Host $($wpf.lstBoxLanguage.SElectedItem.Content)
 })
 
 # Things to load when the WPF form is rendered
@@ -536,9 +544,12 @@ $wpf.EventCollectWindow.Add_ContentRendered({
 
 # Thigs to load when the WPF form is loaded
 $wpf.EventCollectWindow.Add_Loaded({
-
 })
 
+$wpf.EventCollectWindow.add_Closing({
+    $msg = "bye bye !"
+    WritNSay $msg
+})
 
 #=======================================================
 #End of Your Code
