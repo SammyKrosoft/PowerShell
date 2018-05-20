@@ -489,13 +489,23 @@ Function Update-cmd{
         $command += (" -Computers ") + ($ComputersList)
     }
 
-    [string[]]$SearchInLogs = @()
+    [string[]]$LogsToSearch = @()
     If ($($wpf.chkAppLog.IsChecked) -or $($wpf.chkSystemLog.IsChecked) -or $($wpf.chkSecurityLog.IsChecked)){
-        If($wpf.chkAppLog.IsChecked){$SearchInLogs += "Application"}
-        If($wpf.chkSystemLog.IsChecked) {$SearchInLogs += "System"}
-        If($wpf.chkSecurityLog.IsChecked) {$SearchInLogs += "Security"}
-        $SearchInLogs = $SearchInLogs -join ", "
-        $Command += (" -EventLogName ") + $SearchInLogs
+        If($wpf.chkAppLog.IsChecked){$LogsToSearch += "Application"}
+        If($wpf.chkSystemLog.IsChecked) {$LogsToSearch += "System"}
+        If($wpf.chkSecurityLog.IsChecked) {$LogsToSearch += "Security"}
+        $LogsToSearch = $LogsToSearch -join ", "
+        $Command += (" -EventLogName ") + $LogsToSearch
+    }
+
+    [string[]]$EventLevelToSearch = @()
+    If ($($wpf.chkLevelInformation.IsChecked) -or $($wpf.chkLevelWarning.IsChecked) -or $($wpf.chkLevelError.IsChecked) -or $($wpf.chkLevelCritical.IsChecked)){
+        If ($wpf.chkLevelInformation.IsChecked){$EventLevelToSearch += "Information"}
+        If ($wpf.chkLevelWarning.IsChecked){$EventLevelToSearch += "Warning"}
+        If ($wpf.chkLevelError.IsChecked){$EventLevelToSearch += "Error"}
+        If ($wpf.chkLevelCritical.IsChecked){$EventLevelToSearch += "Critical"}
+        $EventLevelToSearch = $EventLevelToSearch -join ", "
+        $command += (" -EventLevel ") + $EventLevelToSearch
     }
 
     If (($($wpf.txtNumberOfEvents.Text) -ne "30") -and ($($wpf.txtNumberOfEvents.Text) -ne "")){
@@ -632,12 +642,22 @@ $wpf.txtNumberOfEvents.add_TextChanged({
 $wpf.chkAppLog.add_Click({
     Update-cmd
 })
-
 $wpf.chkSystemLog.add_Click({
     Update-cmd
 })
-
 $wpf.chkSecurityLog.add_Click({
+    Update-cmd
+})
+$wpf.chkLevelInformation.add_Click({
+    Update-cmd
+})
+$wpf.chkLevelWarning.add_Click({
+    Update-cmd
+})
+$wpf.chkLevelError.add_Click({
+    Update-cmd
+})
+$wpf.chkLevelCritical.add_Click({
     Update-cmd
 })
 
