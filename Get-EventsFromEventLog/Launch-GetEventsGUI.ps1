@@ -415,6 +415,14 @@ Function Get-EventsFromEventLogs {
 
 }
 
+function IsEmpty($Param){
+    If ($Param -eq "All" -or $Param -eq "" -or $Param -eq $Null -or $Param -eq 0) {
+        Return $True
+    } Else {
+        Return $False
+    }
+}
+
 Function Say {
     [CmdletBinding(DefaultParameterSetName = "NormalRun")]
     Param(
@@ -428,7 +436,11 @@ Function Say {
         # $InstalledVoices = $Speak.GetInstalledVoices().VoiceInfo
         # $InstalledVoices
         # Select by hint like this ('Male/Female', 'NotSet/Child/Teen/Adult/Senior',[int32]'Position which voices are ordered','fr/en')
-        $Speak.SelectVoiceByHints(0,0,0,'en')
+        If ($wpf.lstBoxLanguage.ListBoxItem.Content -eq "FR"){$language = 'fr'}
+        If ($wpf.lstBoxLanguage.ListBoxItem.Content -eq "EN"){$language = 'en'}
+        If (Isempty $($wpf.lstBoxLanguage.ListBoxItem.Content)){$language = 'en'}
+        Write-host $($wpf.lstBoxLanguage.ListBoxItem.Content)
+        $Speak.SelectVoiceByHints(0,0,0,$language)
         $Speak.Speak($Msg)
     }
 }
@@ -476,9 +488,9 @@ $inputXML = @"
         <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Height="30" Margin="166,407,0,0" VerticalAlignment="Top" Width="161"/>
         <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="472,407,0,0" VerticalAlignment="Top" Width="160" Height="30"/>
         <CheckBox x:Name="chkSpeech" Content="Speech" HorizontalAlignment="Left" Margin="660,171,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="lstBoxLanguage" HorizontalAlignment="Left" Height="47" Margin="616,204,0,0" VerticalAlignment="Top" Width="169">
-            <ListBoxItem Content="Français"/>
-            <ListBoxItem Content="English"/>
+        <ListBox x:Name="lstBoxLanguage" HorizontalAlignment="Left" Height="47" Margin="616,204,0,0" VerticalAlignment="Top" Width="169" IsSynchronizedWithCurrentItem="False" IsEnabled="False">
+            <ListBoxItem Content="FR"/>
+            <ListBoxItem Content="EN"/>
         </ListBox>
 
     </Grid>
@@ -497,6 +509,7 @@ $namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
 
 $wpf.btnRun.add_Click({
     $msg = $wpf.txtCSVComputersList.Text
+    if (IsEmpty $msg) {$msg = "Bruh"}
     WritNSay $msg
 })
 
@@ -507,8 +520,13 @@ $wpf.btnCancel.add_Click({
 })
 
 $wpf.chkSpeech.add_Checked({
-    $wpf.lstBoxLanguage.ShowActivated = $true
+    $wpf.lstBoxLanguage.Isenabled = $true
 })
+
+$wpf.chkSpeech.add_UnChecked({
+    $wpf.lstBoxLanguage.Isenabled = $false
+})
+
 
 # Things to load when the WPF form is rendered
 $wpf.EventCollectWindow.Add_ContentRendered({

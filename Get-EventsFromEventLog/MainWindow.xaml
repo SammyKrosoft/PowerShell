@@ -22,7 +22,7 @@
         <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Height="30" Margin="166,407,0,0" VerticalAlignment="Top" Width="161"/>
         <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="472,407,0,0" VerticalAlignment="Top" Width="160" Height="30"/>
         <CheckBox x:Name="chkSpeech" Content="Speech" HorizontalAlignment="Left" Margin="660,171,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="lstBoxLanguage" HorizontalAlignment="Left" Height="47" Margin="616,204,0,0" VerticalAlignment="Top" Width="169">
+        <ListBox x:Name="lstBoxLanguage" HorizontalAlignment="Left" Height="47" Margin="616,204,0,0" VerticalAlignment="Top" Width="169" IsSynchronizedWithCurrentItem="False" IsEnabled="False">
             <ListBoxItem Content="Français"/>
             <ListBoxItem Content="English"/>
         </ListBox>
