@@ -452,12 +452,12 @@ Function WritNSay ($msg) {
     Say $msg
 }
 
-Function Split-ListSemicolon
+Function Split-ListColon
 {
     param(
         [string]$StringToSplit
     )
-    $TargetSplit = $StringToSplit.Split(';')
+    $TargetSplit = $StringToSplit.Split(',')
     $ListItems = ""
     For ($i = 0; $i -lt $TargetSplit.Count - 1; $i++) {$ListItems += ("""") + $TargetSplit[$i] + (""",")}
     $ListItems += ("""") + $TargetSplit[$TargetSplit.Count - 1] + ("""")
@@ -468,14 +468,14 @@ Function Split-ListSemicolon
 Function Update-cmd{
     $command = "Get-EventsFromEventLogs"
     If ($($wpf.txtCSVComputersList.Text) -ne ""){
-        $ComputersList = Split-ListSemicolon -StringToSplit $wpf.txtCSVComputersList.Text
+        $ComputersList = Split-ListColon -StringToSplit $wpf.txtCSVComputersList.Text
         $command += (" -Computers ") + ($ComputersList)
     }
     $SearchInLogs = ""
     If($wpf.chkAppLog.IsChecked){$SearchInLogs += "Application"}
     If($wpf.chkSystemLog.IsChecked) {If ($SearchInLogs = ""){$SearchInLogs += "System"}Else{$SearchInLogs += ";System"}}
     If($wpf.chkSecurityLog.IsChecked) {If ($SearchInLogs = ""){$SearchInLogs += "Security"}Else{$SearchInLogs += ";Security"}}
-    $SearchInLogs = Split-ListSemicolon $SearchInLogs
+    $SearchInLogs = Split-ListColon $SearchInLogs
         $wpf.txtCommand.text = $command
 }
 
