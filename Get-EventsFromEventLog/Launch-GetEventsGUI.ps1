@@ -452,8 +452,31 @@ Function WritNSay ($msg) {
     Say $msg
 }
 
-Function Update_cmd{
-    Write-host "Updating command line"
+Function Split-ListSemicolon
+{
+    param(
+        [string]$StringToSplit
+    )
+    $TargetSplit = $StringToSplit.Split(';')
+    $ListItems = ""
+    For ($i = 0; $i -lt $TargetSplit.Count - 1; $i++) {$ListItems += ("""") + $TargetSplit[$i] + (""",")}
+    $ListItems += ("""") + $TargetSplit[$TargetSplit.Count - 1] + ("""")
+    Return $ListItems
+}
+
+
+Function Update-cmd{
+    $command = "Get-EventsFromEventLogs"
+    If ($($wpf.txtCSVComputersList.Text) -ne ""){
+        $ComputersList = Split-ListSemicolon -StringToSplit $wpf.txtCSVComputersList.Text
+        $command += (" -Computers ") + ($ComputersList)
+    }
+    $SearchInLogs = ""
+    If($wpf.chkAppLog.IsChecked){$SearchInLogs += "Application"}
+    If($wpf.chkSystemLog.IsChecked) {If ($SearchInLogs = ""){$SearchInLogs += "System"}Else{$SearchInLogs += ";System"}}
+    If($wpf.chkSecurityLog.IsChecked) {If ($SearchInLogs = ""){$SearchInLogs += "Security"}Else{$SearchInLogs += ";Security"}}
+    $SearchInLogs = Split-ListSemicolon $SearchInLogs
+        $wpf.txtCommand.text = $command
 }
 
 
@@ -511,33 +534,33 @@ $wpf.lstBoxLanguage.add_SelectionChanged({
     }
     WritNsay $msg})
 
-# Thigs to load when the WPF form is loaded
+# Thigs to load when the WPF form is loaded aka in memory
 $wpf.EventCollectWindow.Add_Loaded({
-    $wpf.chkSpeech.IsChecked = $true
-    If ($($wpf.lstBoxLanguage.SelectedItem.content) -eq "Francais") {
-        $msg = "Form chargée"
-    } Else {
-        $msg = "Form loaded"
-    }
-    WritNsay $msg
-    $wpf.chkSpeech.IsChecked = $false
 })
 
-# Things to load when the WPF form is rendered
+# Things to load when the WPF form is rendered aka drawn on screen
 $wpf.EventCollectWindow.Add_ContentRendered({
-    $wpf.chkSpeech.IsChecked = $true
-    If ($($wpf.lstBoxLanguage.SelectedItem.content) -eq "Francais") {
-        $msg = "Form générée"
-    } Else {
-        $msg = "Form rendered"
-    }
-    WritNsay $msg
-    # $wpf.chkSpeech.IsChecked = $false
 })
 
 $wpf.EventCollectWindow.add_Closing({
     $msg = "bye bye !"
     WritNSay $msg
+})
+
+$wpf.txtCSVComputersList.add_TextChanged({
+    Update-cmd
+})
+
+$wpf.chkAppLog.add_Click({
+    Update-cmd
+})
+
+$wpf.chkSystemLog.add_Click({
+    Update-cmd
+})
+
+$wpf.chkSecurityLog.add_Click({
+    Update-cmd
 })
 
 #=======================================================

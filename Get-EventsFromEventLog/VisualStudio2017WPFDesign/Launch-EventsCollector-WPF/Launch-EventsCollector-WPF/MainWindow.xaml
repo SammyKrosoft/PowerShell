@@ -26,6 +26,7 @@
             <ListBoxItem Content="Francais"/>
             <ListBoxItem Content="English"/>
         </ListBox>
+        <CheckBox x:Name="chkSecurityLog" Content="Security Log" HorizontalAlignment="Left" Margin="371,68,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
