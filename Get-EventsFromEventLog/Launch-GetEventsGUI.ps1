@@ -464,7 +464,6 @@ Function Update_cmd{
 
 <# /FUNCTIONS #>
 
-
 # Load a WPF GUI from a XAML file build with Visual Studio
 Add-Type -AssemblyName presentationframework, presentationcore
 $wpf = @{}
