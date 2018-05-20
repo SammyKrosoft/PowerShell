@@ -516,7 +516,6 @@ $wpf.btnRun.add_Click({
 $wpf.btnCancel.add_Click({
     $msg = "Exiting..."
     WritNSay $msg
-
 })
 
 $wpf.chkSpeech.add_Checked({
@@ -527,6 +526,9 @@ $wpf.chkSpeech.add_UnChecked({
     $wpf.lstBoxLanguage.Isenabled = $false
 })
 
+$wpf.lstBoxLanguage.add_SelectionChanged({
+    write-host $($wpf.lstBoxLanguage.ListBoxItem.Content)
+})
 
 # Things to load when the WPF form is rendered
 $wpf.EventCollectWindow.Add_ContentRendered({
