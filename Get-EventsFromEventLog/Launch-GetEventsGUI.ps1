@@ -550,7 +550,7 @@ $inputXML = @"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="SearchAndCollect" Height="501.903" Width="800" ShowActivated="False">
-    <Grid Background="#FF1187AB" Margin="0,0,0,0">
+    <Grid Margin="0,0,0,0" Background="Teal">
         <CheckBox x:Name="chkAppLog" Content="Application Log" HorizontalAlignment="Left" Margin="371,28,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtCSVComputersList" HorizontalAlignment="Left" Height="147" Margin="10,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="317"/>
         <CheckBox x:Name="chkSystemLog" Content="System Log" HorizontalAlignment="Left" Margin="371,48,0,0" VerticalAlignment="Top"/>
