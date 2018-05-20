@@ -452,8 +452,7 @@ Function WritNSay ($msg) {
     Say $msg
 }
 
-Function Split-ListColon
-{
+Function Split-ListColon {
     param(
         [string]$StringToSplit
     )
