@@ -511,12 +511,28 @@ $wpf.lstBoxLanguage.add_SelectionChanged({
     }
     WritNsay $msg})
 
-# Things to load when the WPF form is rendered
-$wpf.EventCollectWindow.Add_ContentRendered({
-})
-
 # Thigs to load when the WPF form is loaded
 $wpf.EventCollectWindow.Add_Loaded({
+    $wpf.chkSpeech.IsChecked = $true
+    If ($($wpf.lstBoxLanguage.SelectedItem.content) -eq "Francais") {
+        $msg = "Form chargée"
+    } Else {
+        $msg = "Form loaded"
+    }
+    WritNsay $msg
+    $wpf.chkSpeech.IsChecked = $false
+})
+
+# Things to load when the WPF form is rendered
+$wpf.EventCollectWindow.Add_ContentRendered({
+    $wpf.chkSpeech.IsChecked = $true
+    If ($($wpf.lstBoxLanguage.SelectedItem.content) -eq "Francais") {
+        $msg = "Form générée"
+    } Else {
+        $msg = "Form rendered"
+    }
+    WritNsay $msg
+    # $wpf.chkSpeech.IsChecked = $false
 })
 
 $wpf.EventCollectWindow.add_Closing({
