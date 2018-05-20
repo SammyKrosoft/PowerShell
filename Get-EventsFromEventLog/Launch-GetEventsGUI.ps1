@@ -1,4 +1,4 @@
-<#
+﻿<#
 .NOTES
 With the help of            :   Jim Moyle @jimmoyle
 How-To GUI From Jim Moyle   :   https://github.com/JimMoyle/GUIDemo
@@ -437,16 +437,11 @@ Function Say {
         # $InstalledVoices
         # Select by hint like this ('Male/Female', 'NotSet/Child/Teen/Adult/Senior',[int32]'Position which voices are ordered','fr/en')
         switch ($wpf.lstBoxLanguage.SElectedItem.Content) {
-            "FR" {$Language = 'fr'}
-            "EN" {$Language = 'en'}
+            "Francais" {$Language = 'fr'}
+            "English" {$Language = 'en'}
             "" {$language = 'en'}
             $null {$Language = 'en'}
         }
-        write-host "Selection - inside SAY : $($wpf.lstBoxLanguage.SElectedItem.Content)"
-        # If ($wpf.lstBoxLanguage.ListBoxItem.Content -eq "FR"){$language = 'fr'}
-        # If ($wpf.lstBoxLanguage.ListBoxItem.Content -eq "EN"){$language = 'en'}
-        # If (Isempty $($wpf.lstBoxLanguage.ListBoxItem.Content)){$language = 'en'}
-        # $language = $wpf.lstBoxLanguage.SElectedItem.Content
         $Speak.SelectVoiceByHints(0,0,0,$language)
         $Speak.Speak($Msg)
     }
@@ -468,40 +463,9 @@ Function Update_cmd{
 Add-Type -AssemblyName presentationframework, presentationcore
 $wpf = @{}
 # NOTE: Either load from a XAML file or paste the XAML file content in a "Here String"
-#$inputXML = Get-Content -Path ".\MainWindow.xaml"
-$inputXML = @"
-<Window x:Name="EventCollectWindow" x:Class="WpfApp1.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1"
-        mc:Ignorable="d"
-        Title="SearchAndCollect" Height="501.903" Width="800" ShowActivated="False">
-    <Grid Background="#FF1187AB" Margin="0,0,0,0">
-        <CheckBox x:Name="chkAppLog" Content="Application Log" HorizontalAlignment="Left" Margin="371,28,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtCSVComputersList" HorizontalAlignment="Left" Height="147" Margin="10,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="317"/>
-        <CheckBox x:Name="chkSystemLog" Content="System Log" HorizontalAlignment="Left" Margin="371,48,0,0" VerticalAlignment="Top"/>
-        <Label Content="Computers List (Comma Separated)" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Width="202"/>
-        <CheckBox x:Name="chkLevelInformation" Content="Information" HorizontalAlignment="Left" Margin="534,28,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chkLevelWarning" Content="Warning" HorizontalAlignment="Left" Margin="534,48,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chkLevelError" Content="Error" HorizontalAlignment="Left" Margin="534,68,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chkLevelCritical" Content="Critical" HorizontalAlignment="Left" Margin="534,88,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtNumberOfEvents" HorizontalAlignment="Left" Height="35" Margin="385,171,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="104"/>
-        <TextBlock HorizontalAlignment="Left" Margin="385,134,0,0" TextWrapping="Wrap" Text="Events to collect per computer" VerticalAlignment="Top" Width="104"/>
-        <TextBox x:Name="txtCommand" HorizontalAlignment="Left" Height="91" Margin="10,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="754" IsReadOnly="True"/>
-        <Label Content="Function Command Line we'll launch" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top" Width="240"/>
-        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Height="30" Margin="166,407,0,0" VerticalAlignment="Top" Width="161"/>
-        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="472,407,0,0" VerticalAlignment="Top" Width="160" Height="30"/>
-        <CheckBox x:Name="chkSpeech" Content="Speech" HorizontalAlignment="Left" Margin="660,171,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="lstBoxLanguage" HorizontalAlignment="Left" Height="47" Margin="616,204,0,0" VerticalAlignment="Top" Width="169" IsSynchronizedWithCurrentItem="False" IsEnabled="False">
-            <ListBoxItem Content="FR"/>
-            <ListBoxItem Content="EN"/>
-        </ListBox>
-
-    </Grid>
-</Window>
-"@
+$inputXML = Get-Content -Path "C:\Users\Kamehameha\Documents\GitHub\PowerShell\Get-EventsFromEventLog\VisualStudio2017WPFDesign\Launch-EventsCollector-WPF\Launch-EventsCollector-WPF\MainWindow.xaml"
+# $inputXML = @"
+# "@
 $inputXMLClean = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace 'x:Class=".*?"','' -replace 'd:DesignHeight="\d*?"','' -replace 'd:DesignWidth="\d*?"',''
 [xml]$xaml = $inputXMLClean
 $reader = New-Object System.Xml.XmlNodeReader $xaml
@@ -526,6 +490,12 @@ $wpf.btnCancel.add_Click({
 
 $wpf.chkSpeech.add_Checked({
     $wpf.lstBoxLanguage.Isenabled = $true
+    If ($($wpf.lstBoxLanguage.SelectedItem.content) -eq "Francais") {
+        $msg = "Narrateur activé - merci de m'enlever mon baillon !"
+    } Else {
+        $msg = "Narrator activated - thanks for unmuting me !"
+    }
+    WritNsay $msg
 })
 
 $wpf.chkSpeech.add_UnChecked({
@@ -533,9 +503,13 @@ $wpf.chkSpeech.add_UnChecked({
 })
 
 $wpf.lstBoxLanguage.add_SelectionChanged({
-    Write-host "Selected:"
-    Write-Host $($wpf.lstBoxLanguage.SElectedItem.Content)
-})
+    $msg = "Language = $($wpf.lstBoxLanguage.SelectedItem.content)"
+    If ($($wpf.lstBoxLanguage.SelectedItem.content) -eq "Francais") {
+        $msg = "Langue Francaise sélectionnée !"
+    } Else {
+        $msg = "English Language selected !"
+    }
+    WritNsay $msg})
 
 # Things to load when the WPF form is rendered
 $wpf.EventCollectWindow.Add_ContentRendered({
