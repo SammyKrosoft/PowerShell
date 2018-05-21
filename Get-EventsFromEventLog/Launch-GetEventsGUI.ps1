@@ -3,7 +3,6 @@
 With the help of            :   Jim Moyle @jimmoyle
 How-To GUI From Jim Moyle   :   https://github.com/JimMoyle/GUIDemo
 
-    Version 0.0.1
 #>
 
 
@@ -456,12 +455,18 @@ Function WritNSay ($msg) {
 
 Function Split-ListColon {
     param(
-        [string]$StringToSplit
+        [string]$StringToSplit,
+        [switch]$Noquotes
     )
     $TargetSplit = $StringToSplit.Split(',')
     $ListItems = ""
-    For ($i = 0; $i -lt $TargetSplit.Count - 1; $i++) {$ListItems += ("""") + $TargetSplit[$i] + (""", ")}
-    $ListItems += ("""") + $TargetSplit[$TargetSplit.Count - 1] + ("""")
+    If ($NoQuotes){
+        For ($i = 0; $i -lt $TargetSplit.Count - 1; $i++) {$ListItems += $TargetSplit[$i].trim() + (", ")}
+        $ListItems += $TargetSplit[$TargetSplit.Count - 1].trim()
+    } Else {
+        For ($i = 0; $i -lt $TargetSplit.Count - 1; $i++) {$ListItems += ("""") + $TargetSplit[$i].trim() + (""", ")}
+        $ListItems += ("""") + $TargetSplit[$TargetSplit.Count - 1].trim() + ("""")
+    }
     Return $ListItems
 }
 
@@ -507,7 +512,7 @@ Function Update-cmd{
     }
 
     If ($($wpf.txtEventIDs.Text) -ne ""){
-        $TextBoxList = Split-ListColon -StringToSplit $wpf.txtEventIDs.Text
+        $TextBoxList = Split-ListColon -StringToSplit $wpf.txtEventIDs.Text -NoQuotes
         $command += (" -EventID ") + ($TextBoxList)
     }
 
@@ -524,7 +529,6 @@ Function Update-cmd{
     # Populate the cmdlet text box that it's gonna use...
     $wpf.txtCommand.text = $command
 }
-
 
 #========================================================
 # End of Functions definitions (note the WPF form events)
@@ -588,7 +592,7 @@ $namedNodes = $xaml.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Nam
 $namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
 
 #========================================================
-#Events from the WPF form
+# WPF form definition and load controls
 #endregion
 #========================================================
 
@@ -598,14 +602,15 @@ $namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
 
 #region Buttons
 $wpf.btnRun.add_Click({
-    $msg = $wpf.txtCSVComputersList.Text
-    if (IsEmpty $msg) {$msg = "And zats ouai we ahi"}
+    $msg = "Running the command"
     WritNSay $msg
+    WritNsay $wpf.txtCommand.text
 })
 
 $wpf.btnCancel.add_Click({
     $msg = "Exiting..."
     WritNSay $msg
+    $wpf.EventCollectWindow.Close()
 })
 # End of Buttons region
 #endregion
@@ -704,5 +709,3 @@ $wpf.chkLevelCritical.add_Click({
 
 # Load the form:
 $wpf.EventCollectWindow.ShowDialog() | Out-Null
-
-
