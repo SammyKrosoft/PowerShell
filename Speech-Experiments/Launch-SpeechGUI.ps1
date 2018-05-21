@@ -99,7 +99,7 @@ Say "Bonjour Liam!"
 })
 $wpf.frmSpeechGUI.add_Closing({
     $msg = "Sssichering !"
-    Dsy $msg
+    Say $msg
 })
 # End of load, draw and closing form events
 #endregion
