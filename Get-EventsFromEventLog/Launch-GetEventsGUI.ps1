@@ -335,7 +335,7 @@ Function Get-EventsFromEventLogs {
             }
         }
         Write-host "Found at least $($Events.count) events ! Here are the $NumberOfLastEventsToGet last ones :"
-        Write-Host ($Events | Select -first $NumberOfLastEventsToGet | ft -a)
+        Write-Host ($Events | Select -first $NumberOfLastEventsToGet | ft -a | out-string)
         exit
     }
 
