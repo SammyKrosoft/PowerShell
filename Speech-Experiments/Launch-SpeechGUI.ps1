@@ -88,6 +88,21 @@ $wpf.lstBoxLanguage.add_SelectionChanged({
 
 # End of Language Selection box
 #endregion
+#region Load, Draw (render) and closing form events
+#Things to load when the WPF form is loaded aka in memory
+$wpf.frmSpeechGUI.Add_Loaded({
+})
+
+#Things to load when the WPF form is rendered aka drawn on screen
+$wpf.frmSpeechGUI.Add_ContentRendered({
+Say "Bonjour Liam!"
+})
+$wpf.frmSpeechGUI.add_Closing({
+    $msg = "Sssichering !"
+    Say $msg
+})
+# End of load, draw and closing form events
+#endregion
 
 #END OF EVENTS HANDLING
 #endregion
