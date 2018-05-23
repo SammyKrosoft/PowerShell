@@ -548,6 +548,7 @@ $wpf = @{}
 # NOTE: Either load from a XAML file or paste the XAML file content in a "Here String"
 # $inputXML = Get-Content -Path "C:\Users\Kamehameha\Documents\GitHub\PowerShell\Get-EventsFromEventLog\VisualStudio2017WPFDesign\Launch-EventsCollector-WPF\Launch-EventsCollector-WPF\MainWindow.xaml"
 $inputXML = @"
+
 <Window x:Name="EventCollectWindow" x:Class="WpfApp1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -560,7 +561,7 @@ $inputXML = @"
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FFC9D47E"/>
-                <GradientStop Color="#FFE32A2A" Offset="1"/>
+                <GradientStop Color="#FFEB5E5E" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
         <CheckBox x:Name="chkAppLog" Content="Application Log" HorizontalAlignment="Left" Margin="371,28,0,0" VerticalAlignment="Top"/>
@@ -593,7 +594,6 @@ $inputXML = @"
 
     </Grid>
 </Window>
-
 
 "@
 $inputXMLClean = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace 'x:Class=".*?"','' -replace 'd:DesignHeight="\d*?"','' -replace 'd:DesignWidth="\d*?"',''
