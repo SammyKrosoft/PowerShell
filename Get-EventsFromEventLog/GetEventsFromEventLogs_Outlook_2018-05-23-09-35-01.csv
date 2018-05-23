@@ -1,0 +1,147 @@
+"MachineName","LogName","TimeCreated","LevelDisplayName","ProviderName","Id","Message"
+"SFBKAMEHAMEHA","Application","5/23/2018 8:58:03 AM","Error","Outlook","62","Unable to create a Microsoft Classification Engine session for user: Samuel.Drey@microsoft.com - error code 0x80040206."
+"SFBKAMEHAMEHA","Application","5/23/2018 8:22:49 AM","Information","Outlook","63","The Exchange web service request GetAppManifests succeeded. "
+"SFBKAMEHAMEHA","Application","5/23/2018 8:22:48 AM","Information","Outlook","63","Outlook detected a change notification for your apps and will attempt to update them."
+"SFBKAMEHAMEHA","Application","5/23/2018 8:22:42 AM","Information","Outlook","63","The Exchange web service request GetAppManifests succeeded. "
+"SFBKAMEHAMEHA","Application","5/23/2018 8:22:31 AM","Information","Outlook","63","Outlook detected a change notification for your apps and will attempt to update them."
+"SFBKAMEHAMEHA","Application","5/23/2018 8:22:11 AM","Information","Outlook","38","Reconciliation completed for the following store: C:\Users\SammyKrosoft\AppData\Local\Microsoft\Outlook\Samuel.Drey@microsoft.com.nst. Stats: Added: 3, Deleted: 0, Modified: 0, Compared: 11101, Queries: 0, Results: 0, Version: 16.0.9226.2059."
+"SFBKAMEHAMEHA","Application","5/23/2018 8:22:01 AM","Information","Outlook","32","The store C:\Users\SammyKrosoft\AppData\Local\Microsoft\Outlook\Samuel.Drey@microsoft.com.nst has detected a catalog checkpoint."
+"SFBKAMEHAMEHA","Application","5/23/2018 8:21:52 AM","Information","Outlook","32","The store C:\Users\SammyKrosoft\AppData\Local\Microsoft\Outlook\SharePoint Lists.pst has detected a catalog checkpoint."
+"SFBKAMEHAMEHA","Application","5/23/2018 8:21:50 AM","Information","Outlook","38","Reconciliation completed for the following store: C:\Users\SammyKrosoft\AppData\Local\Microsoft\Outlook\Samuel.Drey@microsoft.com.ost. Stats: Added: 308, Deleted: 725, Modified: 41, Compared: 36832, Queries: 0, Results: 0, Version: 16.0.9226.2059."
+"SFBKAMEHAMEHA","Application","5/23/2018 8:20:49 AM","Information","Outlook","32","The store C:\Users\SammyKrosoft\AppData\Local\Microsoft\Outlook\Samuel.Drey@microsoft.com.ost has detected a catalog checkpoint."
+"SFBKAMEHAMEHA","Application","5/23/2018 8:20:47 AM","Information","Outlook","45","Outlook loaded the following add-in(s):
+
+
+Name: Microsoft Exchange Add-in
+Description: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID: UmOutlookAddin.FormRegionAddin
+GUID: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Load Behavior: 3
+HKLM: 1
+Location: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Boot Time (Milliseconds): 63
+
+Name: Skype Meeting Add-in for Microsoft Office 2016
+Description: Skype Meeting Add-in for Microsoft Office 2016
+ProgID: UCAddin.LyncAddin.1
+GUID: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Load Behavior: 3
+HKLM: 1
+Location: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Boot Time (Milliseconds): 78
+
+Name: Outlook Social Connector 2016
+Description: Connects to social networking sites and provides people, activity, and status information.
+ProgID: OscAddin.Connect
+GUID: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Load Behavior: 3
+HKLM: 1
+Location: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Boot Time (Milliseconds): 62
+
+Name: OneNote Notes about Outlook Items
+Description: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID: OneNote.OutlookAddin
+GUID: {93E5752E-B889-47C5-8545-654EE2533C64}
+Load Behavior: 3
+HKLM: 1
+Location: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Boot Time (Milliseconds): 47
+
+Name: Microsoft Azure Information Protection
+Description: Microsoft Azure Information Protection
+ProgID: MSIP.OutlookAddin
+GUID: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Load Behavior: 3
+HKLM: 1
+Location: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Boot Time (Milliseconds): 94
+
+Name: Microsoft SharePoint Server Colleague Import Add-in
+Description: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID: ColleagueImport.ColleagueImportAddin
+GUID: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Load Behavior: 3
+HKLM: 0
+Location: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Boot Time (Milliseconds): 31
+"
+"SFBKAMEHAMEHA","Application","5/23/2018 8:20:37 AM","Information","Outlook","63","The Exchange web service request GetAppManifests failed. The error code is 0. 
+HTTP Response Code: 2147954407
+
+Additional Error Message: 
+An unknown internal error occurred. The error code is 80004005"
+"SFBKAMEHAMEHA","Application","5/23/2018 8:20:35 AM","Information","Outlook","30","Starting reconciliation for the store C:\Users\SammyKrosoft\AppData\Local\Microsoft\Outlook\Samuel.Drey@microsoft.com.nst for the following reason: The store was last opened on a different machine."
+"SFBKAMEHAMEHA","Application","5/23/2018 8:20:34 AM","Information","Outlook","30","Starting reconciliation for the store C:\Users\SammyKrosoft\AppData\Local\Microsoft\Outlook\Samuel.Drey@microsoft.com.ost for the following reason: The store was last opened on a different machine."
+"SFBKAMEHAMEHA","Application","5/22/2018 8:35:10 PM","Information","Outlook","30","Starting reconciliation for the store C:\Users\SammyKrosoft\AppData\Local\Microsoft\Outlook\Samuel.Drey@microsoft.com.nst for the following reason: The store was last opened on a different machine."
+"SFBKAMEHAMEHA","Application","5/22/2018 8:34:46 PM","Information","Outlook","30","Starting reconciliation for the store C:\Users\SammyKrosoft\AppData\Local\Microsoft\Outlook\Samuel.Drey@microsoft.com.ost for the following reason: The store was last opened on a different machine."
+"SFBKAMEHAMEHA","Application","5/19/2018 6:33:40 PM","Information","Outlook","63","The Exchange web service request GetAppManifests succeeded. "
+"SFBKAMEHAMEHA","Application","5/19/2018 6:33:39 PM","Information","Outlook","63","Outlook detected a change notification for your apps and will attempt to update them."
+"SFBKAMEHAMEHA","Application","5/19/2018 6:33:27 PM","Information","Outlook","63","The Exchange web service request GetAppManifests succeeded. "
+"SFBKAMEHAMEHA","Application","5/19/2018 2:33:09 PM","Information","Outlook","63","The Exchange web service request GetAppManifests succeeded. "
+"SFBKAMEHAMEHA","Application","5/19/2018 10:33:30 AM","Information","Outlook","38","Reconciliation completed for the following store: C:\Users\SammyKrosoft\AppData\Local\Microsoft\Outlook\Samuel.Drey@microsoft.com.nst. Stats: Added: 0, Deleted: 0, Modified: 44, Compared: 11098, Queries: 0, Results: 0, Version: 16.0.9226.2059."
+"SFBKAMEHAMEHA","Application","5/19/2018 10:33:26 AM","Information","Outlook","38","Reconciliation completed for the following store: C:\Users\SammyKrosoft\AppData\Local\Microsoft\Outlook\SharePoint Lists.pst. Stats: Added: 0, Deleted: 0, Modified: 0, Compared: 19, Queries: 0, Results: 0, Version: 16.0.9226.2059."
+"SFBKAMEHAMEHA","Application","5/19/2018 10:33:04 AM","Information","Outlook","45","Outlook loaded the following add-in(s):
+
+
+Name: Microsoft Exchange Add-in
+Description: Exchange support for Unified Messaging, e-mail permission rules, and calendar availability.
+ProgID: UmOutlookAddin.FormRegionAddin
+GUID: {F959DBBB-3867-41F2-8E5F-3B8BEFAA81B3}
+Load Behavior: 3
+HKLM: 1
+Location: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\UmOutlookAddin.dll
+Boot Time (Milliseconds): 47
+
+Name: Skype Meeting Add-in for Microsoft Office 2016
+Description: Skype Meeting Add-in for Microsoft Office 2016
+ProgID: UCAddin.LyncAddin.1
+GUID: {A6A2383F-AD50-4D52-8110-3508275E77F7}
+Load Behavior: 3
+HKLM: 1
+Location: C:\Program Files (x86)\Microsoft Office\Root\Office16\UCAddin.dll
+Boot Time (Milliseconds): 63
+
+Name: Outlook Social Connector 2016
+Description: Connects to social networking sites and provides people, activity, and status information.
+ProgID: OscAddin.Connect
+GUID: {2163EB1F-3FD9-4212-A41F-81D1F933597F}
+Load Behavior: 3
+HKLM: 1
+Location: C:\Program Files (x86)\Microsoft Office\Root\Office16\SOCIALCONNECTOR.DLL
+Boot Time (Milliseconds): 218
+
+Name: OneNote Notes about Outlook Items
+Description: Adds Send to OneNote and Notes about this Item buttons to the command bar
+ProgID: OneNote.OutlookAddin
+GUID: {93E5752E-B889-47C5-8545-654EE2533C64}
+Load Behavior: 3
+HKLM: 1
+Location: C:\Program Files (x86)\Microsoft Office\Root\Office16\ONBttnOL.dll
+Boot Time (Milliseconds): 16
+
+Name: Microsoft Azure Information Protection
+Description: Microsoft Azure Information Protection
+ProgID: MSIP.OutlookAddin
+GUID: {BCEFD8A6-FA61-4038-9D6C-B2342F8AFE33}
+Load Behavior: 3
+HKLM: 1
+Location: C:\Program Files (x86)\Microsoft Azure Information Protection\adxloader.MSIP.Office.OutlookAddin.dll
+Boot Time (Milliseconds): 63
+
+Name: Microsoft SharePoint Server Colleague Import Add-in
+Description: The Add-in allows Microsoft SharePoint Server to import colleague suggestions based on your Outlook content
+ProgID: ColleagueImport.ColleagueImportAddin
+GUID: {EFEF7FDB-0CED-4FB6-B3BB-3C50D39F4120}
+Load Behavior: 3
+HKLM: 0
+Location: C:\Program Files (x86)\Microsoft Office\Root\Office16\ADDINS\ColleagueImport.dll
+Boot Time (Milliseconds): 15
+"
+"SFBKAMEHAMEHA","Application","5/19/2018 10:32:53 AM","Information","Outlook","63","The Exchange web service request GetAppManifests succeeded. "
+"SFBKAMEHAMEHA","Application","5/19/2018 10:32:46 AM","Information","Outlook","30","Starting reconciliation for the store C:\Users\SammyKrosoft\AppData\Local\Microsoft\Outlook\SharePoint Lists.pst for the following reason: The store was last opened on a different machine."
+"SFBKAMEHAMEHA","Application","5/18/2018 6:53:00 PM","Information","Outlook","30","Starting reconciliation for the store C:\Users\SammyKrosoft\AppData\Local\Microsoft\Outlook\Samuel.Drey@microsoft.com.nst for the following reason: The store was last opened on a different machine."
+"SFBKAMEHAMEHA","Application","5/18/2018 4:07:04 PM","Error","Outlook","62","Unable to create a Microsoft Classification Engine session for user: Samuel.Drey@microsoft.com - error code 0x80040206."
+"SFBKAMEHAMEHA","Application","5/18/2018 4:02:42 PM","Error","Outlook","62","Unable to create a Microsoft Classification Engine session for user: Samuel.Drey@microsoft.com - error code 0x80040206."
+"SFBKAMEHAMEHA","Application","5/18/2018 3:43:20 PM","Error","Outlook","62","Unable to create a Microsoft Classification Engine session for user: Samuel.Drey@microsoft.com - error code 0x80040206."
+"SFBKAMEHAMEHA","Application","5/18/2018 3:31:18 PM","Error","Outlook","62","Unable to create a Microsoft Classification Engine session for user: Samuel.Drey@microsoft.com - error code 0x80040206."

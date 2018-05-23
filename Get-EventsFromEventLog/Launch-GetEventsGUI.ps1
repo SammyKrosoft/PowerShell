@@ -101,7 +101,7 @@ Function Get-EventsFromEventLogs {
         ExportToFile parameter.
         Note that the computers list can come from a txt file as well (see next example)
 
-        .EXAMPLE
+    .EXAMPLE
     .\Get-EventsFromEventsLogs.ps1 -Computers $(Get-Content .\ServersList.txt) -EventLevel Error,Critical -ExportToFile
         This will collect Error and Critical events on computers list defined in the "ServersList.txt" file on the current 
         directory from where you launched the script (.\ refers to the current user directory, NOT the directory where the
@@ -190,8 +190,10 @@ Function Get-EventsFromEventLogs {
     # Set Error Action to your needs
     $ErrorActionPreference = "SilentlyContinue"
     #Script Version
-    $ScriptVersion = "1.4.4"
+    $ScriptVersion = "1.4.4.1"
     <# Version changes :
+    v1.4.4.1 -> update for the GUI version Get-Events function - added out-string to dump events on host
+    Write-Host ($Events | Select -first $NumberOfLastEventsToGet | ft -a | out-string)
     v1.4.4 -> corrected examples
     v1.4.3 -> added a test on Powershell version (using $PSVersionTable) to check whether we can use
     $PSSCriptRoot variable or $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition instead
@@ -333,7 +335,7 @@ Function Get-EventsFromEventLogs {
             }
         }
         Write-host "Found at least $($Events.count) events ! Here are the $NumberOfLastEventsToGet last ones :"
-        $Events | Select -first $NumberOfLastEventsToGet | ft -a
+        Write-Host ($Events | Select -first $NumberOfLastEventsToGet | ft -a)
         exit
     }
 
@@ -352,8 +354,8 @@ Function Get-EventsFromEventLogs {
                         $Event.Message = $Event.Message.Replace("`r","#")
                     }
                 }
-                Write-host "Found at least $($Events.count) events ! Here are the $NumberOfLastEventsToGet last ones :"
-                $Events | Select -first $NumberOfLastEventsToGet | ft -a
+                Write-host "BLBLFound at least $($Events.count) events ! Here are the $NumberOfLastEventsToGet last ones :"
+                Write-Host ($Events | Select -first $NumberOfLastEventsToGet | ft -a | out-string)
                 $Events4All += $Events
             }
             Catch
@@ -373,8 +375,7 @@ Function Get-EventsFromEventLogs {
 
     Write-host "Found $($Events4all.count) Events in total ..." -BackgroundColor blue -ForegroundColor yellow
     Write-host "Here are the stats by Event Level :"
-    $Events4All | Group-Object LevelDisplayName | ft @{Label="Event Level";Expression ={$_.Name}},@{Label = "Number of Events";Expression = {$_.Count}}
-
+    Write-host ($Events4All | Group-Object LevelDisplayName | ft @{Label="Event Level";Expression ={$_.Name}},@{Label = "Number of Events";Expression = {$_.Count}} | out-string)
 
     If ($ExportToFile){
         If (!(IsEmpty $EventID)){
@@ -484,7 +485,7 @@ Function Update-cmd{
     # [Parameter(Mandatory = $False, Position = 9, ParameterSetName = "NormalRun")] [switch]$DebugScript,
     # [Parameter(Mandatory = $false, Position = 10, ParameterSetName = "CheckVersionOnly")][Switch]$CheckVersion
 
-    $command = ".\Get-EventsFromEventLogs"
+    $command = "Get-EventsFromEventLogs"
     If ($($wpf.txtCSVComputersList.Text) -ne ""){
         $TextBoxList = Split-ListColon -StringToSplit $wpf.txtCSVComputersList.Text
         $command += (" -Computers ") + ($TextBoxList)
