@@ -354,7 +354,7 @@ Function Get-EventsFromEventLogs {
                         $Event.Message = $Event.Message.Replace("`r","#")
                     }
                 }
-                Write-host "BLBLFound at least $($Events.count) events ! Here are the $NumberOfLastEventsToGet last ones :"
+                Write-host "Found at least $($Events.count) events ! Here are the $NumberOfLastEventsToGet last ones :"
                 Write-Host ($Events | Select -first $NumberOfLastEventsToGet | ft -a | out-string)
                 $Events4All += $Events
             }
