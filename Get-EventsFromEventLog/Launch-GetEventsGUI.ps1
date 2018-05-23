@@ -5,10 +5,8 @@ How-To GUI From Jim Moyle   :   https://github.com/JimMoyle/GUIDemo
 
 #>
 
-
-
 #========================================================
-#region Functions definitions (note the WPF form events)
+#region Functions definitions (NOT the WPF form events)
 #========================================================
 
 Function Get-EventsFromEventLogs {
@@ -210,7 +208,7 @@ Function Get-EventsFromEventLogs {
     replaced "None" with "All" when we don't specify a filter parameter (because when $EventSouce = nothing, we basically
     search for all event sources)
     #>
-    If ($CheckVersion) {Write-Host "Script Version v$ScriptVersion";exit}
+    If ($CheckVersion) {Return $ScriptVersion}
     # Log or report file definition
     # $EventsReport = "$PSScriptRoot\GetEventsFromEventLogs_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
     # Other Option for Log or report file definition (use one of these)
@@ -492,8 +490,8 @@ Function Update-cmd{
         $command += (" -Computers ") + ($TextBoxList)
     }
 
-    [string[]]$LogsToSearch = @()
     If ($($wpf.chkAppLog.IsChecked) -or $($wpf.chkSystemLog.IsChecked) -or $($wpf.chkSecurityLog.IsChecked)){
+        [string[]]$LogsToSearch = @()
         If($wpf.chkAppLog.IsChecked){$LogsToSearch += "Application"}
         If($wpf.chkSystemLog.IsChecked) {$LogsToSearch += "System"}
         If($wpf.chkSecurityLog.IsChecked) {$LogsToSearch += "Security"}
@@ -501,14 +499,18 @@ Function Update-cmd{
         $Command += (" -EventLogName ") + $LogsToSearch
     }
 
-    [string[]]$EventLevelToSearch = @()
     If ($($wpf.chkLevelInformation.IsChecked) -or $($wpf.chkLevelWarning.IsChecked) -or $($wpf.chkLevelError.IsChecked) -or $($wpf.chkLevelCritical.IsChecked)){
+        [string[]]$EventLevelToSearch = @()
         If ($wpf.chkLevelInformation.IsChecked){$EventLevelToSearch += "Information"}
         If ($wpf.chkLevelWarning.IsChecked){$EventLevelToSearch += "Warning"}
         If ($wpf.chkLevelError.IsChecked){$EventLevelToSearch += "Error"}
         If ($wpf.chkLevelCritical.IsChecked){$EventLevelToSearch += "Critical"}
         $EventLevelToSearch = $EventLevelToSearch -join ", "
         $command += (" -EventLevel ") + $EventLevelToSearch
+    }
+
+    If ($($wpf.chkSaveToFile.IsChecked)){
+        $command += " -ExportToFile"
     }
 
     If ($($wpf.txtEventIDs.Text) -ne ""){
@@ -565,20 +567,23 @@ $inputXML = @"
         <CheckBox x:Name="chkLevelCritical" Content="Critical" HorizontalAlignment="Left" Margin="498,88,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtNumberOfEvents" HorizontalAlignment="Left" Height="35" Margin="332,180,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="104"/>
         <TextBlock HorizontalAlignment="Left" Margin="332,143,0,0" TextWrapping="Wrap" Text="Events to collect per computer" VerticalAlignment="Top" Width="104"/>
-        <TextBox x:Name="txtCommand" HorizontalAlignment="Left" Height="91" Margin="10,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="754" IsReadOnly="True"/>
-        <Label Content="Function Command Line we'll launch" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top" Width="240"/>
-        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Height="30" Margin="166,407,0,0" VerticalAlignment="Top" Width="161"/>
-        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="472,407,0,0" VerticalAlignment="Top" Width="160" Height="30"/>
+        <TextBox x:Name="txtCommand" HorizontalAlignment="Left" Height="91" Margin="10,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="775" IsReadOnly="True"/>
+        <Label Content="Function Command Line we'll launch" HorizontalAlignment="Left" Margin="10,307,0,0" VerticalAlignment="Top" Width="240"/>
+        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Height="30" Margin="149,434,0,0" VerticalAlignment="Top" Width="161"/>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="471,434,0,0" VerticalAlignment="Top" Width="160" Height="30"/>
         <CheckBox x:Name="chkSpeech" Content="Speech" HorizontalAlignment="Left" Margin="681,28,0,0" VerticalAlignment="Top"/>
         <ListBox x:Name="lstBoxLanguage" HorizontalAlignment="Left" Height="47" Margin="681,48,0,0" VerticalAlignment="Top" Width="70" IsSynchronizedWithCurrentItem="False" IsEnabled="False" SelectedIndex="1">
             <ListBoxItem Content="Francais"/>
             <ListBoxItem Content="English"/>
         </ListBox>
         <CheckBox x:Name="chkSecurityLog" Content="Security Log" HorizontalAlignment="Left" Margin="371,68,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtEventIDs" HorizontalAlignment="Left" Height="32" Margin="483,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281"/>
-        <TextBox x:Name="txtEventSources" HorizontalAlignment="Left" Height="62" Margin="483,206,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281"/>
+        <TextBox x:Name="txtEventIDs" HorizontalAlignment="Left" Height="32" Margin="483,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302"/>
+        <TextBox x:Name="txtEventSources" HorizontalAlignment="Left" Height="62" Margin="483,206,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302"/>
         <Label Content="Event IDs to look for:" HorizontalAlignment="Left" Margin="483,117,0,0" VerticalAlignment="Top" Width="202"/>
         <Label Content="Event Sources to look for:" HorizontalAlignment="Left" Margin="483,180,0,0" VerticalAlignment="Top" Width="202"/>
+        <CheckBox x:Name="chkSaveToFile" Content="Save events to file" HorizontalAlignment="Left" Margin="483,295,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblGUIVer" Content="GUI version" HorizontalAlignment="Left" Margin="10,242,0,0" VerticalAlignment="Top" Background="#FFC1B621"/>
+        <Label x:Name="lblFUNCVer" Content="Event collector function version" HorizontalAlignment="Left" Margin="10,268,0,0" VerticalAlignment="Top" Background="#FF66D71F"/>
 
     </Grid>
 </Window>
@@ -592,19 +597,19 @@ $namedNodes = $xaml.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Nam
 $namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
 
 #========================================================
-# WPF form definition and load controls
+# END of WPF form definition and load controls
 #endregion
 #========================================================
 
 #========================================================
-#region Events from the WPF form
+#region WPF EVENTS definition
 #========================================================
 
 #region Buttons
 $wpf.btnRun.add_Click({
     $msg = "Running the command"
     WritNSay $msg
-    WritNsay $wpf.txtCommand.text
+    Invoke-expression $wpf.txtCommand.text
 })
 
 $wpf.btnCancel.add_Click({
@@ -645,8 +650,9 @@ $wpf.lstBoxLanguage.add_SelectionChanged({
 #region Load, Draw (render) and closing form events
 #Things to load when the WPF form is loaded aka in memory
 $wpf.EventCollectWindow.Add_Loaded({
+    $wpf.lblGUIVer.content += " v1.0"
+    $wpf.lblFUNCVer.content += (" ") + (Get-EventsFromEventLogs -CheckVersion)
 })
-
 #Things to load when the WPF form is rendered aka drawn on screen
 $wpf.EventCollectWindow.Add_ContentRendered({
     Update-cmd
@@ -678,24 +684,35 @@ $wpf.txtEventSources.add_TextChanged({
 
 #region Clicked on Checkboxes events
 $wpf.chkAppLog.add_Click({
+    Say "Application Log"
     Update-cmd
 })
 $wpf.chkSystemLog.add_Click({
+    Say "System Log"
     Update-cmd
 })
 $wpf.chkSecurityLog.add_Click({
+    Say "Security Log"    
     Update-cmd
 })
 $wpf.chkLevelInformation.add_Click({
+    Say "Information events"
     Update-cmd
 })
 $wpf.chkLevelWarning.add_Click({
+    Say "Warning events"
     Update-cmd
 })
 $wpf.chkLevelError.add_Click({
+    Say "Error events"
     Update-cmd
 })
 $wpf.chkLevelCritical.add_Click({
+    Say "Critical events"
+    Update-cmd
+})
+$wpf.chkSaveToFile.add_Click({
+    Say "Save to file"
     Update-cmd
 })
 # End of Clicked on Checkboxes events
