@@ -1,5 +1,25 @@
 
 #region FUNCTIONS other than Form events
+Function IsPSV3 {
+    <#
+    .DESCRIPTION
+    Just printing Powershell version and returning "true" if powershell version
+    is Powershell v3 or more recent, and "false" if it's version 2.
+    .OUTPUTS
+    Returns $true or $false
+    .EXAMPLE
+    IsPSVersionV3
+    #>
+    $PowerShellMajorVersion = $PSVersionTable.PSVersion.Major
+    $msgPowershellMajorVersion = "You're running Powershell v$PowerShellMajorVersion"
+    Write-Host $msgPowershellMajorVersion -BackgroundColor blue -ForegroundColor yellow
+    If($PowerShellMajorVersion -le 2){
+        Return $false
+    } Else {
+        Return $true
+        }
+}
+
 
 Function Run-Action{
     $SelectedAction = $wpf.comboSelectAction.SelectedItem.Content
@@ -8,15 +28,29 @@ Function Run-Action{
             Write-host "Displaying Info"
             Write-Host "Listing selected mailbox names:"
             $SelectedITems = $wpf.GridView.SelectedItems
+            $List = @()
             $SelectedItems | Foreach{
-                Write-Host $_.Name
+                $List += ("""") + $($_.Alias) + ("""")
             }
+            $List = $List -join ","
+            $Command = "$List | Disable-Mailbox"
+            WRite-Host "About to execute action on $($SelectedItems.Count) mailboxes..."
+            Write-Host "About to run $Command"
         }
-        "Kill process"  {
-            Write-Host "Kill process not implemented yet..."
+        "List Mailbox Features"  {
+            Write-host "Displaying Mailbox Features"
+            $SelectedITems = $wpf.GridView.SelectedItems
+            $List = @()
+            $SelectedItems | Foreach {
+                $List += $_.primarySMTPAddress.tostring()
+            }
+            #$List = $List -join ","
+            $QueryMailboxFeatures = $List | Get-CASMAilbox | Select *enabled
+            [System.Collections.IENumerable]$MailboxFeatures = @($QueryMailboxFeatures)
+            Write-host $($MailboxFeatures | ft ActiveSyncEnabled, OWAenabled, MapiHttpEnabled ,MAPIEnabled -a | out-string)
         }
     }
-
+    Update-Label "Action done."
 }
 
 Function Update-Label ($msg) {
@@ -27,16 +61,15 @@ Function Working-Label {
         # Trick to enable a Label to update during work :
     # Follow with "Dispatcher.Invoke("Render",[action][scriptblobk]{})" or [action][scriptblock]::create({})
     $wpf.lblStatus.Content = "Working ..."
-    # $wpf.WForm.Dispatcher.Invoke("Render",[action][scriptblock]::create({}))
     $wpf.WForm.Dispatcher.Invoke("Render",[action][scriptblock]{})
 }
 Function Get-Mailboxes {
     $SearchSubstring = ("*") + ($wpf.txtMailboxString.text) + ("*")
     Try {
-        #$Mailboxes = Get-Mailbox -ResultSize Unlimited $SearchSubstring -ErrorAction Stop | Select Name,DisplayName,primarySMTPAddress
-        $Processes = Get-process -Name $SearchSubstring -ErrorAction Stop 
-        #[System.Collections.IENumerable]$Results = @($Mailboxes)
-        [System.Collections.IENumerable]$Results = @($Processes)
+        $Mailboxes = Get-Mailbox -ResultSize $($wpf.txtResultSize.Text) $SearchSubstring -ErrorAction Stop | Select Name,Alias,DisplayName,primarySMTPAddress
+        #$Processes = Get-process -Name $SearchSubstring -ErrorAction Stop 
+        [System.Collections.IENumerable]$Results = @($Mailboxes)
+        #[System.Collections.IENumerable]$Results = @($Processes)
         $wpf.GridView.ItemsSource = $Results
         $wpf.GridView.Columns | Foreach {
             $_.CanUserSort = $true
@@ -48,6 +81,7 @@ Function Get-Mailboxes {
     Catch {
         $Mailboxes = $null
         $wpf.lblStatus.Content = "No mailboxes found... try again !"
+        $wpf.lblNbItemsInGrid.Content = 0
     }
 }
 
@@ -81,16 +115,17 @@ $inputXML = @"
         <Button x:Name="btnAction" Content="Action" Margin="273,302,446,89.5" IsEnabled="False"/>
         <ComboBox x:Name="comboSelectAction" HorizontalAlignment="Left" Margin="228,337,0,0" VerticalAlignment="Top" Width="120" Height="24" SelectedIndex="0" IsEnabled="False">
             <ComboBoxItem Content="Display Info"/>
-            <ComboBoxItem Content="Kill process"/>
+            <ComboBoxItem Content="List Mailbox Features"/>
         </ComboBox>
         <Label x:Name="lblNbItemsInGrid" Content="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="506,385,0,0" Width="55"/>
         <Label Content="Number of Items in Grid:" HorizontalAlignment="Left" Margin="353,385,0,0" VerticalAlignment="Top" Width="148"/>
         <Label Content="Selected:" HorizontalAlignment="Left" Margin="621,385,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblNumberItemsSelected" Content="0" HorizontalAlignment="Left" Margin="684,385,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtResultSize" HorizontalAlignment="Left" Height="23" Margin="21,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="124" Text="100"/>
+        <TextBlock HorizontalAlignment="Left" Margin="21,238,0,0" TextWrapping="Wrap" Text="ResultSize (aka Nb of mailboxes to display):" VerticalAlignment="Top" Width="124"/>
 
     </Grid>
 </Window>
-
 
 "@
 $inputXMLClean = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace 'x:Class=".*?"','' -replace 'd:DesignHeight="\d*?"','' -replace 'd:DesignWidth="\d*?"',''
@@ -118,7 +153,6 @@ $wpf.btnRun.add_Click({
 $wpf.btnAction.add_Click({
     Working-Label
     Run-Action
-    Update-Label "Action done."
 })
 # End of Buttons region
 #endregion
@@ -163,6 +197,6 @@ $wpf.GridView.add_SelectionChanged({
 #endregion
 #=======================================================
 
-
+IsPSV3 | out-null
 # Load the form:
 $wpf.WForm.ShowDialog() | Out-Null
