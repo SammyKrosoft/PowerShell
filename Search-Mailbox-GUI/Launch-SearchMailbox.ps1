@@ -16,7 +16,7 @@ Function Run-Action{
             Write-Host "Kill process not implemented yet..."
         }
     }
-
+    Update-Label "Action done."
 }
 
 Function Update-Label ($msg) {
@@ -118,7 +118,6 @@ $wpf.btnRun.add_Click({
 $wpf.btnAction.add_Click({
     Working-Label
     Run-Action
-    Update-Label "Action done."
 })
 # End of Buttons region
 #endregion
