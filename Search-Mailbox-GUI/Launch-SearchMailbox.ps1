@@ -1,6 +1,28 @@
 
 #region FUNCTIONS other than Form events
 
+Function Run-Action{
+    $SelectedAction = $wpf.comboSelectAction.SelectedItem.Content
+    Switch ($SelectedAction) {
+        "Display Info"  {
+            Write-host "Displaying Info"
+            Write-Host "Listing selected mailbox names:"
+            $SelectedITems = $wpf.GridView.SelectedItems
+            $SelectedItems | Foreach{
+                Write-Host $_.Name
+            }
+        }
+        "Kill process"  {
+            Write-Host "Kill process not implemented yet..."
+        }
+    }
+
+}
+
+Function Update-Label ($msg) {
+    $wpf.lblStatus.Content = $msg
+}
+
 Function Working-Label {
         # Trick to enable a Label to update during work :
     # Follow with "Dispatcher.Invoke("Render",[action][scriptblobk]{})" or [action][scriptblock]::create({})
@@ -20,6 +42,7 @@ Function Get-Mailboxes {
             $_.CanUserSort = $true
         }
         $wpf.lblStatus.Content = "Found $($Results.Count) Mailbox(es)"
+        $wpf.lblNbItemsInGrid.Content = $($Results.Count)
     }
 
     Catch {
@@ -55,9 +78,19 @@ $inputXML = @"
         <Label Content="Search for mailbox (substring of alias, e-mail address, &#xD;&#xA;display name, ...)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,31,0,0" Height="51" Width="302"/>
         <Button x:Name="btnRun" Content="Search" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top" Width="75"/>
         <Label x:Name="lblStatus" Content="Please start a search..." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,189,0,0" Width="255" FontStyle="Italic"/>
+        <Button x:Name="btnAction" Content="Action" Margin="273,302,446,89.5" IsEnabled="False"/>
+        <ComboBox x:Name="comboSelectAction" HorizontalAlignment="Left" Margin="228,337,0,0" VerticalAlignment="Top" Width="120" Height="24" SelectedIndex="0" IsEnabled="False">
+            <ComboBoxItem Content="Display Info"/>
+            <ComboBoxItem Content="Kill process"/>
+        </ComboBox>
+        <Label x:Name="lblNbItemsInGrid" Content="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="506,385,0,0" Width="55"/>
+        <Label Content="Number of Items in Grid:" HorizontalAlignment="Left" Margin="353,385,0,0" VerticalAlignment="Top" Width="148"/>
+        <Label Content="Selected:" HorizontalAlignment="Left" Margin="621,385,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblNumberItemsSelected" Content="0" HorizontalAlignment="Left" Margin="684,385,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
+
 
 "@
 $inputXMLClean = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace 'x:Class=".*?"','' -replace 'd:DesignHeight="\d*?"','' -replace 'd:DesignWidth="\d*?"',''
@@ -77,10 +110,15 @@ $namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
 #========================================================
 
 #region Buttons
-
 $wpf.btnRun.add_Click({
     Working-Label
     Get-Mailboxes
+})
+
+$wpf.btnAction.add_Click({
+    Working-Label
+    Run-Action
+    Update-Label "Action done."
 })
 # End of Buttons region
 #endregion
@@ -103,9 +141,17 @@ $wpf.WForm.add_Closing({
 
 #region Text Changed events
 
-#$wpf.txtEventSources.add_TextChanged({
-
-
+$wpf.GridView.add_SelectionChanged({
+    $Selected = $wpf.GridView.SelectedItems.count
+    If ($Selected -eq 0) {
+        $wpf.btnAction.IsEnabled = $false
+        $wpf.comboSelectAction.IsEnabled = $false
+    } ElseIf ($Selected -gt 0) {
+        $wpf.btnAction.IsEnabled = $true
+        $wpf.comboSelectAction.IsEnabled = $true
+    }
+    $wpf.lblNumberItemsSelected.Content = $Selected
+})
 #End of Text Changed events
 #endregion
 
