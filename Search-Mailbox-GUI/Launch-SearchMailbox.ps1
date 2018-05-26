@@ -1,6 +1,13 @@
 
 #region FUNCTIONS other than Form events
 
+Function Working-Label {
+        # Trick to enable a Label to update during work :
+    # Follow with "Dispatcher.Invoke("Render",[action][scriptblobk]{})" or [action][scriptblock]::create({})
+    $wpf.lblStatus.Content = "Working ..."
+    # $wpf.WForm.Dispatcher.Invoke("Render",[action][scriptblock]::create({}))
+    $wpf.WForm.Dispatcher.Invoke("Render",[action][scriptblock]{})
+}
 Function Get-Mailboxes {
     $SearchSubstring = ("*") + ($wpf.txtMailboxString.text) + ("*")
     Try {
@@ -9,14 +16,15 @@ Function Get-Mailboxes {
         #[System.Collections.IENumerable]$Results = @($Mailboxes)
         [System.Collections.IENumerable]$Results = @($Processes)
         $wpf.GridView.ItemsSource = $Results
+        $wpf.GridView.Columns | Foreach {
+            $_.CanUserSort = $true
+        }
         $wpf.lblStatus.Content = "Found $($Results.Count) Mailbox(es)"
-        $wpf.lblStatus.InvalidateVisual()
     }
 
     Catch {
         $Mailboxes = $null
         $wpf.lblStatus.Content = "No mailboxes found... try again !"
-        $wpf.lblStatus.InvalidateVisual()
     }
 }
 
@@ -71,11 +79,7 @@ $namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
 #region Buttons
 
 $wpf.btnRun.add_Click({
-    # Trick to enable a Label to update during work :
-    # Follow with "Dispatcher.Invoke("Render",[action][scriptblobk]{})" or [action][scriptblock]::create({})
-    $wpf.lblStatus.Content = "Working ..."
-    # $wpf.WForm.Dispatcher.Invoke("Render",[action][scriptblock]::create({}))
-    $wpf.WForm.Dispatcher.Invoke("Render",[action][scriptblock]{})
+    Working-Label
     Get-Mailboxes
 })
 # End of Buttons region
