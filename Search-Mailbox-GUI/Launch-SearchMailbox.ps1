@@ -1,44 +1,26 @@
-#========================================================
-#region Functions definitions (NOT the WPF form events)
-#========================================================
 
-function IsEmpty($Param){
-    If ($Param -eq "All" -or $Param -eq "" -or $Param -eq $Null -or $Param -eq 0) {
-        Return $True
-    } Else {
-        Return $False
-    }
-}
-
-Function Split-ListColon {
-    param(
-        [string]$StringToSplit,
-        [switch]$Noquotes
-    )
-    $TargetSplit = $StringToSplit.Split(',')
-    $ListItems = ""
-    If ($NoQuotes){
-        For ($i = 0; $i -lt $TargetSplit.Count - 1; $i++) {$ListItems += $TargetSplit[$i].trim() + (", ")}
-        $ListItems += $TargetSplit[$TargetSplit.Count - 1].trim()
-    } Else {
-        For ($i = 0; $i -lt $TargetSplit.Count - 1; $i++) {$ListItems += ("""") + $TargetSplit[$i].trim() + (""", ")}
-        $ListItems += ("""") + $TargetSplit[$TargetSplit.Count - 1].trim() + ("""")
-    }
-    Return $ListItems
-}
-
-
-#========================================================
-#endregion Functions definitions (NOT the WPF form events)
-#========================================================
+#region FUNCTIONS other than Form events
 
 Function Get-Mailboxes {
-    $wpf.listBoxMailboxes.items.Clear()
-    $Mailboxes = Get-Mailbox "*$($wpf.txtMailboxString.text)*"| Select Name,DisplayName,alias,primarySMTPADdress, emailaddresses
-    $Mailboxes | % {
-        $wpf.listBoxMailboxes.Items.Add($_.DisplayName)
+    $SearchSubstring = ("*") + ($wpf.txtMailboxString.text) + ("*")
+    Try {
+        #$Mailboxes = Get-Mailbox -ResultSize Unlimited $SearchSubstring -ErrorAction Stop | Select Name,DisplayName,primarySMTPAddress
+        $Processes = Get-process -Name $SearchSubstring -ErrorAction Stop 
+        #[System.Collections.IENumerable]$Results = @($Mailboxes)
+        [System.Collections.IENumerable]$Results = @($Processes)
+        $wpf.GridView.ItemsSource = $Results
+        $wpf.lblStatus.Content = "Found $($Results.Count) Mailbox(es)"
+        $wpf.lblStatus.InvalidateVisual()
+    }
+
+    Catch {
+        $Mailboxes = $null
+        $wpf.lblStatus.Content = "No mailboxes found... try again !"
+        $wpf.lblStatus.InvalidateVisual()
     }
 }
+
+#endregion
 
 #========================================================
 #region WPF form definition and load controls
@@ -51,22 +33,20 @@ $wpf = @{}
 # $inputXML = Get-Content -Path "C:\Users\Kamehameha\Documents\GitHub\PowerShell\Get-EventsFromEventLog\VisualStudio2017WPFDesign\Launch-EventsCollector-WPF\Launch-EventsCollector-WPF\MainWindow.xaml"
 $inputXML = @"
 
-<Window x:Name="GetMailboxForm" x:Class="WpfApp4.MainWindow"
+<Window x:Name="WForm" x:Class="GridView_WPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp4"
+        xmlns:local="clr-namespace:GridView_WPF"
         mc:Ignorable="d"
-        Title="Get and Set Mailbox Basic Properties" Height="450" Width="800" ResizeMode="NoResize">
+        Title="Search Mailboxes" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
-        <TextBox x:Name="txtMailboxString" HorizontalAlignment="Left" Height="33" Margin="10,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272"/>
-        <Label Content="Mailbox(es) to look for" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Width="134"/>
-        <ListBox x:Name="listBoxMailboxes" HorizontalAlignment="Left" Height="301" Margin="10,111,0,0" VerticalAlignment="Top" Width="775"/>
-        <Button x:Name="btnSearch" Content="Search" Margin="311,54,420,335.5"/>
-        <Label Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Label Content="ResultSize" HorizontalAlignment="Left" Margin="500,31,0,0" VerticalAlignment="Top" Width="239"/>
-        <TextBox x:Name="txtResultSize" HorizontalAlignment="Left" Height="23" Margin="500,62,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="184"/>
+        <DataGrid x:Name="GridView" HorizontalAlignment="Left" Height="349" Margin="353,31,0,0" VerticalAlignment="Top" Width="410" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtMailboxString" HorizontalAlignment="Left" Height="23" Margin="10,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302"/>
+        <Label Content="Search for mailbox (substring of alias, e-mail address, &#xD;&#xA;display name, ...)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,31,0,0" Height="51" Width="302"/>
+        <Button x:Name="btnRun" Content="Search" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="lblStatus" Content="Please start a search..." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,189,0,0" Width="255" FontStyle="Italic"/>
 
     </Grid>
 </Window>
@@ -88,34 +68,51 @@ $namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
 #region WPF EVENTS definition
 #========================================================
 
+#region Buttons
+
+$wpf.btnRun.add_Click({
+    # Trick to enable a Label to update during work :
+    # Follow with "Dispatcher.Invoke("Render",[action][scriptblobk]{})" or [action][scriptblock]::create({})
+    $wpf.lblStatus.Content = "Working ..."
+    # $wpf.WForm.Dispatcher.Invoke("Render",[action][scriptblock]::create({}))
+    $wpf.WForm.Dispatcher.Invoke("Render",[action][scriptblock]{})
+    Get-Mailboxes
+})
+# End of Buttons region
+#endregion
+
 #region Load, Draw (render) and closing form events
 #Things to load when the WPF form is loaded aka in memory
-$wpf.GetMailboxForm.Add_Loaded({
+$wpf.WForm.Add_Loaded({
+
 })
 #Things to load when the WPF form is rendered aka drawn on screen
-$wpf.GetMailboxForm.Add_ContentRendered({
-    Write-Host "Windows WPF Form Loaded."
+$wpf.WForm.Add_ContentRendered({
+
 })
-$wpf.GetMailboxForm.add_Closing({
-    Write-Host "Bye !"
+$wpf.WForm.add_Closing({
+    $msg = "bye bye !"
+    write-host $msg
 })
 # End of load, draw and closing form events
 #endregion
 
-#region Clicked on Checkboxes events
-$wpf.btnSearch.add_Click({
-    Write-Host "Clicked on the [Search] button..."
-    Get-mailboxes
-})
+#region Text Changed events
 
-# End of Clicked on Checkboxes events
+#$wpf.txtEventSources.add_TextChanged({
+
+
+#End of Text Changed events
 #endregion
 
 
-#========================================================
-#endregion WPF EVENTS definition
-#========================================================
+#endregion
+
+#=======================================================
+#End of Events from the WPF form
+#endregion
+#=======================================================
 
 
 # Load the form:
-$wpf.GetMailboxForm.ShowDialog() | Out-Null
+$wpf.WForm.ShowDialog() | Out-Null
