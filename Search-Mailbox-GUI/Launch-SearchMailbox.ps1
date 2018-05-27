@@ -24,7 +24,7 @@ Function IsPSV3 {
 Function Run-Action{
     $SelectedAction = $wpf.comboSelectAction.SelectedItem.Content
     Switch ($SelectedAction) {
-        "Display Info"  {
+        "Disable Mailbox"  {
             Write-host "Displaying Info"
             Write-Host "Listing selected mailbox names:"
             $SelectedITems = $wpf.GridView.SelectedItems
@@ -45,9 +45,9 @@ Function Run-Action{
                 $List += $_.primarySMTPAddress.tostring()
             }
             #$List = $List -join ","
-            $QueryMailboxFeatures = $List | Get-CASMAilbox | Select *enabled
+            $QueryMailboxFeatures = $List | Get-CASMAilbox | Select DisplayName, *enabled
             [System.Collections.IENumerable]$MailboxFeatures = @($QueryMailboxFeatures)
-            Write-host $($MailboxFeatures | ft ActiveSyncEnabled, OWAenabled, MapiHttpEnabled ,MAPIEnabled -a | out-string)
+            Write-host $($MailboxFeatures | ft DisplayName, ActiveSyncEnabled,OWAEnabled,ECPEnabled,MAPIEnabled,MAPIBlockOutlookRpcHttp,MapiHttpEnabled  -a | out-string)
         }
     }
     Update-Label "Action done."
@@ -64,6 +64,16 @@ Function Working-Label {
     $wpf.WForm.Dispatcher.Invoke("Render",[action][scriptblock]{})
 }
 Function Get-Mailboxes {
+    If (($($wpf.txtResultSize.Text) -gt 1000) -or ($($wpf.txtResultSize.Text) -Like "Unlimited")){
+        $Msg = "WARNING: You specified more than 1000 or Unlimited, mailbox collection can take a LOT of time, Continue ? (Y/N)"
+        $Answer = ""
+        while ($Answer -ne "Y" -AND $Answer -ne "N") {
+            cls
+            Write-Host $Msg -BackgroundColor Yellow -ForegroundColor Red
+            $Answer = Read-host
+            If($Answer -eq "N"){Return}
+        }
+    }
     $SearchSubstring = ("*") + ($wpf.txtMailboxString.text) + ("*")
     Try {
         $Mailboxes = Get-Mailbox -ResultSize $($wpf.txtResultSize.Text) $SearchSubstring -ErrorAction Stop | Select Name,Alias,DisplayName,primarySMTPAddress
@@ -114,7 +124,7 @@ $inputXML = @"
         <Label x:Name="lblStatus" Content="Please start a search..." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,189,0,0" Width="255" FontStyle="Italic"/>
         <Button x:Name="btnAction" Content="Action" Margin="273,302,446,89.5" IsEnabled="False"/>
         <ComboBox x:Name="comboSelectAction" HorizontalAlignment="Left" Margin="228,337,0,0" VerticalAlignment="Top" Width="120" Height="24" SelectedIndex="0" IsEnabled="False">
-            <ComboBoxItem Content="Display Info"/>
+            <ComboBoxItem Content="Disable Mailbox"/>
             <ComboBoxItem Content="List Mailbox Features"/>
         </ComboBox>
         <Label x:Name="lblNbItemsInGrid" Content="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="506,385,0,0" Width="55"/>
