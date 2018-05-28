@@ -17,6 +17,7 @@ Function Say {
         "" {$language = 'en'}
         $null {$Language = 'en'}
     }
+    $Speak.rate = $wpf.txtSpeed.Text
     $Speak.SelectVoiceByHints(0,0,0,$language)
     $Speak.Speak($Msg)
     
@@ -46,6 +47,12 @@ $inputXML = @"
         <Label Content="Text to speech:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,83,0,0"/>
         <Button x:Name="btnRun" Content="Run !" HorizontalAlignment="Left" VerticalAlignment="Top" Width="244" Margin="133,322,0,0" Height="66" FontSize="36"/>
         <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="244" Margin="454,322,0,0" Height="66" FontSize="20"/>
+        <Label HorizontalAlignment="Left" Margin="240,32,0,0" VerticalAlignment="Top">
+            <Label Content="Speed / Vitesse:" Width="164" FontSize="20"/>
+        </Label>
+        <TextBox x:Name="txtSpeed" HorizontalAlignment="Left" Height="42" Margin="444,36,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="36" FontSize="20" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Button Content="&lt;" HorizontalAlignment="Center" VerticalAlignment="Top" Width="34" Margin="405,36,354.6,0" Height="42" FontSize="24" FontWeight="Bold" Cursor="Hand"/>
+        <Button Content="&gt;" HorizontalAlignment="Center" VerticalAlignment="Top" Width="34" Margin="485,36,274.6,0" Height="42" FontSize="24" FontWeight="Bold" Cursor="Hand"/>
 
     </Grid>
 </Window>
@@ -73,6 +80,8 @@ $wpf.btnCancel.add_Click({
     Say $msg
     $wpf.frmSpeechGUI.Close()
 })
+
+$wpf.btn
 # End of Buttons region
 #endregion
 
