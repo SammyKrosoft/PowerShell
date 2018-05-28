@@ -11,6 +11,16 @@ Function Working-Label ($msg,$BG = 1) {
     # $wpf.WForm.Dispatcher.Invoke("Render",[action][scriptblock]::create({}))
     $wpf.frmSpeechGUI.Dispatcher.Invoke("Render",[action][scriptblock]{})
 }
+
+Function Init-Speech {
+    [CmdletBinding(DefaultParameterSetName = "NormalRun")]
+    $InstalledVoices = @()
+    Add-Type -AssemblyName System.Speech
+    $Speak = New-Object system.Speech.Synthesis.SpeechSynthesizer
+    $InstalledVoices = $Speak.GetInstalledVoices().VoiceInfo
+     write-host $InstalledVoices
+}
+
 Function Say {
     [CmdletBinding(DefaultParameterSetName = "NormalRun")]
     Param(
@@ -155,4 +165,6 @@ $wpf.frmSpeechGUI.add_Closing({
 #END OF EVENTS HANDLING
 #endregion
 
-$wpf.frmSpeechGUI.ShowDialog() | Out-null
+Init-Speech
+
+#$wpf.frmSpeechGUI.ShowDialog() | Out-null
