@@ -4,7 +4,7 @@ With the help of            :   Jim Moyle @jimmoyle
 How-To GUI From Jim Moyle   :   https://github.com/JimMoyle/GUIDemo
 
 #>
-
+$global:GUIversion = "1.1"
 #========================================================
 #region Functions definitions (NOT the WPF form events)
 #========================================================
@@ -657,7 +657,7 @@ $wpf.lstBoxLanguage.add_SelectionChanged({
 #region Load, Draw (render) and closing form events
 #Things to load when the WPF form is loaded aka in memory
 $wpf.EventCollectWindow.Add_Loaded({
-    $wpf.lblGUIVer.content += " v1.0"
+    $wpf.lblGUIVer.content += $global:GUIversion
     $wpf.lblFUNCVer.content += (" ") + (Get-EventsFromEventLogs -CheckVersion)
 })
 #Things to load when the WPF form is rendered aka drawn on screen
@@ -730,6 +730,6 @@ $wpf.chkSaveToFile.add_Click({
 #endregion
 #=======================================================
 
-
+IsPSV3 | out-null
 # Load the form:
 $wpf.EventCollectWindow.ShowDialog() | Out-Null

@@ -12,12 +12,14 @@ Function IsPSV3 {
     $msgPowershellMajorVersion = "You're running Powershell v$PowerShellMajorVersion"
     Write-Host $msgPowershellMajorVersion -BackgroundColor blue -ForegroundColor yellow
     If($PowerShellMajorVersion -le 2){
+        Write-Host "Sorry, PowerShell v3 or more is required. Exiting."
         Return $false
+        Exit
     } Else {
         Return $true
         }
 }
-    
+
 
 
 
