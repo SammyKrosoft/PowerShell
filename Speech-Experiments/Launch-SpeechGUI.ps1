@@ -18,7 +18,7 @@ Function Init-Speech {
     Add-Type -AssemblyName System.Speech
     $Speak = New-Object system.Speech.Synthesis.SpeechSynthesizer
     $InstalledVoices = $Speak.GetInstalledVoices().VoiceInfo
-     write-host $InstalledVoices
+     Return @($InstalledVoices | Select Name,Culture)
 }
 
 Function Say {
@@ -27,18 +27,10 @@ Function Say {
         [Parameter(Mandatory = $false, Position = 0, ParameterSetName = "NormalRun")]
         [String]$Msg
     )
-    $InstalledVoices = @()
-    Add-Type -AssemblyName System.Speech
+
+#   Add-Type -AssemblyName System.Speech
     $Speak = New-Object system.Speech.Synthesis.SpeechSynthesizer
-     #$InstalledVoices = $Speak.GetInstalledVoices().VoiceInfo
-     #write-host $InstalledVoices
-     # Select by hint like this ('Male/Female', 'NotSet/Child/Teen/Adult/Senior',[int32]'Position which voices are ordered','fr/en')
-    switch ($wpf.lstBoxLanguage.SelectedItem.Content) {
-        "Francais" {$Language = 'fr'}
-        "English" {$Language = 'en'}
-        "" {$language = 'en'}
-        $null {$Language = 'en'}
-    }
+    $language = $wpf.comboVoiceSelect.SelectedItem.Culture
     $Speak.rate = $wpf.txtSpeed.Text
     $Speak.SelectVoiceByHints(0,0,0,$language)
     $Speak.Speak($Msg)
@@ -60,26 +52,25 @@ $inputXML = @"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpeechGUI"
         mc:Ignorable="d"
-        Title="SpeechGUI" Height="450" Width="800">
+        Title="SpeechGUI" Height="450" Width="1104.8">
     <Grid Background="#FF8081FF">
-        <ListBox x:Name="lstBoxLanguage" HorizontalAlignment="Left" Height="52" Margin="10,10,0,0" VerticalAlignment="Top" Width="94" SelectedIndex="1">
-            <ListBoxItem Content="Francais"/>
-            <ListBoxItem Content="English"/>
-        </ListBox>
-        <TextBox x:Name="txtInputBox" HorizontalAlignment="Left" Height="184" Margin="10,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="775" FontSize="20"/>
-        <Label Content="Text to speech:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,83,0,0"/>
-        <Button x:Name="btnRun" Content="Run !" HorizontalAlignment="Left" VerticalAlignment="Top" Width="244" Margin="133,322,0,0" Height="66" FontSize="36"/>
-        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="244" Margin="454,322,0,0" Height="66" FontSize="20"/>
+        <TextBox x:Name="txtInputBox" HorizontalAlignment="Left" Height="231" Margin="381,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="680" FontSize="20"/>
+        <Button x:Name="btnRun" Content="Run !" HorizontalAlignment="Left" VerticalAlignment="Top" Width="244" Margin="500,23,0,0" Height="66" FontSize="36"/>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="244" Margin="817,23,0,0" Height="66" FontSize="20"/>
         <Label HorizontalAlignment="Left" Margin="240,32,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtSpeed" HorizontalAlignment="Left" Height="42" Margin="172,47,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="36" FontSize="20" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Button x:Name="btnSlower" Content="&lt;" HorizontalAlignment="Center" VerticalAlignment="Top" Width="34" Margin="133,47,625,0" Height="42" FontSize="24" FontWeight="Bold" Cursor="Hand" UseLayoutRounding="False"/>
-        <Button x:Name="btnFaster" Content="&gt;" HorizontalAlignment="Center" VerticalAlignment="Top" Width="34" Margin="213,47,545,0" Height="42" FontSize="24" FontWeight="Bold" Cursor="Hand"/>
-        <Label Content="Speed / Vitesse:" FontSize="20" Margin="125,5,503,377"/>
-        <TextBlock x:Name="lblStatus" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Ready. Make me speak !" VerticalAlignment="Top" Margin="328,26,0,0" Height="63" Width="327" FontSize="24" FontWeight="Bold" TextAlignment="Center" Background="Lime" TextOptions.TextHintingMode="Fixed"/>
+        <TextBox x:Name="txtSpeed" HorizontalAlignment="Left" Height="42" Margin="349,47,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="36" FontSize="20" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Button x:Name="btnSlower" Content="&lt;" HorizontalAlignment="Center" VerticalAlignment="Top" Width="34" Margin="310.2,47,754.2,0" Height="42" FontSize="24" FontWeight="Bold" Cursor="Hand" UseLayoutRounding="False"/>
+        <Button x:Name="btnFaster" Content="&gt;" HorizontalAlignment="Center" VerticalAlignment="Top" Width="34" Margin="390,47,674.4,0" Height="42" FontSize="24" FontWeight="Bold" Cursor="Hand"/>
+        <Label Content="Speed / Vitesse:" FontSize="20" Margin="286,11,648.4,371"/>
+        <TextBlock x:Name="lblStatus" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Ready. Make me speak !" VerticalAlignment="Top" Margin="381,347,0,0" Height="63" Width="680" FontSize="24" FontWeight="Bold" TextAlignment="Center" Background="Lime" TextOptions.TextHintingMode="Fixed"/>
+        <TextBlock HorizontalAlignment="Left" Margin="286,143,0,0" TextWrapping="Wrap" Text="Text to Speech :" VerticalAlignment="Top" Height="137" Width="90" FontSize="24"/>
+        <DataGrid x:Name="comboVoiceSelect" HorizontalAlignment="Left" Height="398" Margin="0,11,0,0" VerticalAlignment="Top" Width="268"/>
 
     </Grid>
 </Window>
 
+
+         
 "@
 
 $inputXMLClean = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace 'x:Class=".*?"','' -replace 'd:DesignHeight="\d*?"','' -replace 'd:DesignWidth="\d*?"',''
@@ -128,13 +119,8 @@ $wpf.btnFaster.add_click({
 #endregion
 
 #region Language Selection box
-$wpf.lstBoxLanguage.add_SelectionChanged({
-    $msg = "Language = $($wpf.lstBoxLanguage.SelectedItem.content)"
-    If ($($wpf.lstBoxLanguage.SelectedItem.content) -eq "Francais") {
-        $msg = "Langue Francaise sélectionnée !"
-    } Else {
-        $msg = "English Language selected !"
-    }
+$wpf.comboVoiceSelect.add_SelectionChanged({
+    $msg = "Language = $($wpf.combovoiceselect.SelectedItem.content)"
     Working-Label "Busy. I'm speaking, wait..."
     Say $msg
     Working-Label "Ready. Make me speak !" 0
@@ -165,6 +151,11 @@ $wpf.frmSpeechGUI.add_Closing({
 #END OF EVENTS HANDLING
 #endregion
 
-Init-Speech
+# $colec = Init-Speech
+# $colec | gm
+# $colec | ft
 
-#$wpf.frmSpeechGUI.ShowDialog() | Out-null
+$wpf.comboVoiceSelect.ItemsSource = Init-Speech
+$wpf.comboVoiceSelect.SelectedItem = 0
+
+$wpf.frmSpeechGUI.ShowDialog() | Out-null
