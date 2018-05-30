@@ -63,13 +63,12 @@ $inputXML = @"
         <Button x:Name="btnFaster" Content="&gt;" HorizontalAlignment="Center" VerticalAlignment="Top" Width="34" Margin="390,47,674.4,0" Height="42" FontSize="24" FontWeight="Bold" Cursor="Hand"/>
         <Label Content="Speed / Vitesse:" FontSize="20" Margin="286,11,648.4,371"/>
         <TextBlock x:Name="lblStatus" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Ready. Make me speak !" VerticalAlignment="Top" Margin="381,347,0,0" Height="63" Width="680" FontSize="24" FontWeight="Bold" TextAlignment="Center" Background="Lime" TextOptions.TextHintingMode="Fixed"/>
-        <ComboBox x:Name="comboVoiceSelect" HorizontalAlignment="Left" VerticalAlignment="Top" Width="263" Height="410">
-            <TextBlock TextWrapping="Wrap" Text="TextBlock"/>
-        </ComboBox>
         <TextBlock HorizontalAlignment="Left" Margin="286,143,0,0" TextWrapping="Wrap" Text="Text to Speech :" VerticalAlignment="Top" Height="137" Width="90" FontSize="24"/>
+        <DataGrid x:Name="comboVoiceSelect" HorizontalAlignment="Left" Height="398" Margin="0,11,0,0" VerticalAlignment="Top" Width="268"/>
 
     </Grid>
 </Window>
+
 
          
 "@
