@@ -34,7 +34,7 @@ function AllUrls ($Server,$Internal,[switch]$Test) {
     $Command4 = "Set-OabVirtualDirectory -Identity ""$server\OAB (Default Web Site)"" -InternalURL https://$Internal/oab -ExternalURL `$null"
 
     if ($Test) {
-        Write-Host "Would execute the following commands :" -BackgroundColor Blue -ForegroundColor Yellow
+        Write-Host "#Would execute the following commands :" -BackgroundColor Blue -ForegroundColor Yellow
         Write-Host $Command1
         Write-Host $Command2
         Write-Host $Command3
@@ -51,7 +51,7 @@ function URI ($Server, $Autodiscover,[switch]$Test){
     if ($AutoDiscover -ne "null") {
         $command = "set-clientaccessserver $server -AutoDiscoverServiceInternalUri https://$AutoDiscover/autodiscover/autodiscover.xml"
         if ($test){
-            Write-Host "Would execute the following command :"  -BackgroundColor Blue -ForegroundColor Yellow
+            Write-Host "#Would execute the following command :"  -BackgroundColor Blue -ForegroundColor Yellow
             Write-Host $command
         } Else {
             Write-Host "Executing the Autodiscover setting command..."  -BackgroundColor Blue -ForegroundColor Yellow
@@ -62,7 +62,7 @@ function URI ($Server, $Autodiscover,[switch]$Test){
     } else {
         $Command = set-clientaccessserver $server -AutoDiscoverServiceInternalUri $null
         if ($test){
-            Write-Host "Would have executed :"
+            Write-Host "#Would have executed :"
             Write-host $command
         } ELse {
             Write-Host "Executing ..."
@@ -96,19 +96,22 @@ NJES1S1105
 $NATIONALServers = Convert-HString $NATIONALServers
 $NCRServers = Convert-HString $NCRServers
 
-$NCRInternalURL = "webmail.ci.gc.ca"
-$NATIONALIntenralURL = "ActiveSync1.ci.gc.ca"
 
-Write-Host "SERVERS IN NCR : $($NCRServers -join ",")" -BackgroundColor Yellow -ForegroundColor Red
+$NCRInternalURL = "webmail.ci.gc.ca"
+$NAtionalInternalURL = "ActiveSync1.ci.gc.ca"
+$AutodiscoverURIForNCRSite = "Autodiscover.ci.gc.ca"
+$AutoDiscoverURIForNATIONALSite = $NAtionalInternalURL
+
+Write-Host "#SERVERS IN NCR : $($NCRServers -join ",")" -BackgroundColor Yellow -ForegroundColor Red
 Foreach ($Server in $NCRServers) {
     AllUrls -Server $Server -Internal $NCRInternalURL -Test
-    URI -Server $Server -Autodiscover $NCRInternalURL -Test
+    URI -Server $Server -Autodiscover $AutodiscoverURIForNCRSite -Test
 }
 
-Write-Host "SERVERS IN NATIONAL : $($NATIONALServers -join ",")" -BackgroundColor Yellow -ForegroundColor Red
+Write-Host "#SERVERS IN NATIONAL : $($NATIONALServers -join ",")" -BackgroundColor Yellow -ForegroundColor Red
 
 Foreach ($Server in $NATIONALServers) {
-    AllURLs -Server $Server -Internal $NATIONALIntenralURL -Test
-    URI -Server $Server -Autodiscover $NATIONALIntenralURL -Test
+    AllURLs -Server $Server -Internal $NAtionalInternalURL -Test
+    URI -Server $Server -Autodiscover $AutoDiscoverURIForNATIONALSite -Test
 }
 
