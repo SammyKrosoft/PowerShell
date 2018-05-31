@@ -100,7 +100,7 @@ $NCRServers = Convert-HString $NCRServers
 $NCRInternalURL = "webmail.ci.gc.ca"
 $NAtionalInternalURL = "ActiveSync1.ci.gc.ca"
 $AutodiscoverURIForNCRSite = "Autodiscover.ci.gc.ca"
-$AutoDiscoverURIForNATIONALSite = $NAtionalInternalURL
+$AutoDiscoverURIForNATIONALSite = $AutodiscoverURIForNCRSite
 
 Write-Host "#SERVERS IN NCR : $($NCRServers -join ",")" -BackgroundColor Yellow -ForegroundColor Red
 Foreach ($Server in $NCRServers) {
