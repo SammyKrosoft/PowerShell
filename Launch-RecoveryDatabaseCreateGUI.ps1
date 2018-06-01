@@ -1,4 +1,4 @@
-<#
+﻿<#
 .NOTES
 With the help of            :   Jim Moyle @jimmoyle
 How-To GUI From Jim Moyle   :   https://github.com/JimMoyle/GUIDemo
@@ -8,7 +8,7 @@ How-To GUI From Jim Moyle   :   https://github.com/JimMoyle/GUIDemo
 $global:GUIversion = "1.0"
 #Storing paths, values, server names, into variables for more flexible manipulation
 #EDB and LOG Folder paths:
-$global:dafaultOriginalEDBFilePath = "H:\RDB-DB17FullMay25\RDB-DB17FullMay25.edb"
+$global:defaultOriginalEDBFilePath = "H:\RDB-DB17FullMay25\RDB-DB17FullMay25.edb"
 $global:defaultOriginalLOGFolderPath = "H:\RDB-DB17FullMay25\Logs"
 #Database name:
 $global:defaultRDBName = "RDB-DB17FullMay25-New"
@@ -119,6 +119,7 @@ $wpf = @{}
 # NOTE: Either load from a XAML file or paste the XAML file content in a "Here String"
 # $inputXML = Get-Content -Path "C:\Users\Kamehameha\Documents\GitHub\PowerShell\Get-EventsFromEventLog\VisualStudio2017WPFDesign\Launch-EventsCollector-WPF\Launch-EventsCollector-WPF\MainWindow.xaml"
 $inputXML = @"
+
 <Window x:Name="NewRestoreDB" x:Class="E201020162013_CreateNewRDBUseExistingFiles.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -134,22 +135,22 @@ $inputXML = @"
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
-        <TextBox x:Name="txtOriginalEDBFilePath" HorizontalAlignment="Left" Height="23" Margin="53,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="False" Text="E:\Databases\DB01\EDB\DB01.edb"/>
+        <TextBox x:Name="txtOriginalEDBFilePath" HorizontalAlignment="Left" Height="23" Margin="53,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="False"/>
         <Label Content="Original EDB File Path" HorizontalAlignment="Left" Margin="28,10,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="chkOriginalEDBFilePath" Content="" HorizontalAlignment="Left" Margin="28,36,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtOriginalLOGFolderPath" HorizontalAlignment="Left" Height="23" Margin="53,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="False" Text="E:\Databases\DB01\LOGS\"/>
+        <TextBox x:Name="txtOriginalLOGFolderPath" HorizontalAlignment="Left" Height="23" Margin="53,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="False"/>
         <Label Content="Original LOG Folder Path" HorizontalAlignment="Left" Margin="28,72,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="chkOriginalLOGFolderPath" Content="" HorizontalAlignment="Left" Margin="28,98,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtTempEDBFilePath" HorizontalAlignment="Left" Height="22" Margin="53,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="False" Text="c:\temp\tempDB.edb"/>
+        <TextBox x:Name="txtTempEDBFilePath" HorizontalAlignment="Left" Height="22" Margin="53,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="False"/>
         <Label Content="Temporary EDB file path" HorizontalAlignment="Left" Margin="28,144,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="chkTempEDBFilePath" Content="" HorizontalAlignment="Left" Margin="28,170,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtTempLOGFolderPath" HorizontalAlignment="Left" Height="22" Margin="53,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="False" Text="c:\temp\"/>
+        <TextBox x:Name="txtTempLOGFolderPath" HorizontalAlignment="Left" Height="22" Margin="53,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="False"/>
         <Label Content="Temporary LOG folder Path" HorizontalAlignment="Left" Margin="28,224,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="chkTempLOGFolderPath" Content="" HorizontalAlignment="Left" Margin="28,250,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtRDBName" HorizontalAlignment="Left" Height="22" Margin="53,328,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="False" Text="RecoveryDB01"/>
+        <TextBox x:Name="txtRDBName" HorizontalAlignment="Left" Height="22" Margin="53,328,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="False"/>
         <Label Content="Recovery Database Name" HorizontalAlignment="Left" Margin="28,302,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="chkRDBName" Content="" HorizontalAlignment="Left" Margin="28,328,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtServer" HorizontalAlignment="Left" Height="22" Margin="53,396,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="False" Text="Server001"/>
+        <TextBox x:Name="txtServer" HorizontalAlignment="Left" Height="22" Margin="53,396,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="False"/>
         <Label Content="Server where to store the Recovery Database on" HorizontalAlignment="Left" Margin="28,370,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="chkServer" Content="" HorizontalAlignment="Left" Margin="28,396,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtCommandLine" HorizontalAlignment="Left" Height="382" Margin="408,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="618"/>
