@@ -84,13 +84,11 @@ NJES1S6252-NEW
 "@
 
 $NATIONALServers = @"
-NJES1S1105
 NJES1S1103
 NJES1S1109
 NJES1S1111
 NJES1S1112
 NJES1S1503
-NJES1S1105
 "@
 
 $NATIONALServers = Convert-HString $NATIONALServers
@@ -105,13 +103,13 @@ $AutoDiscoverURIForNATIONALSite = $AutodiscoverURIForNCRSite
 Write-Host "#SERVERS IN NCR : $($NCRServers -join ",")" -BackgroundColor Yellow -ForegroundColor Red
 Foreach ($Server in $NCRServers) {
     AllUrls -Server $Server -Internal $NCRInternalURL -Test
-    URI -Server $Server -Autodiscover $AutodiscoverURIForNCRSite -Test
+#    URI -Server $Server -Autodiscover $AutodiscoverURIForNCRSite -Test
 }
 
 Write-Host "#SERVERS IN NATIONAL : $($NATIONALServers -join ",")" -BackgroundColor Yellow -ForegroundColor Red
 
 Foreach ($Server in $NATIONALServers) {
     AllURLs -Server $Server -Internal $NAtionalInternalURL -Test
-    URI -Server $Server -Autodiscover $AutoDiscoverURIForNATIONALSite -Test
+#    URI -Server $Server -Autodiscover $AutoDiscoverURIForNATIONALSite -Test
 }
 
