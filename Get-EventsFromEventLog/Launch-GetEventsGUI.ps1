@@ -4,7 +4,10 @@ With the help of            :   Jim Moyle @jimmoyle
 How-To GUI From Jim Moyle   :   https://github.com/JimMoyle/GUIDemo
 
 #>
-$global:GUIversion = "1.1"
+$global:GUIversion = "1.1.1"
+<# Release notes
+v1.1.1 -> fixed lack of IsPSV3 function ...
+#>
 #========================================================
 #region Functions definitions (NOT the WPF form events)
 #========================================================
