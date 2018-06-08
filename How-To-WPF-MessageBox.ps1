@@ -55,7 +55,7 @@ $Icon = "Question"
 # Option #5 - a message, a title, buttons, an icon, and a default result
 $msg = "Do you want to continue ?"
 $Title = "Question..."
-$Button = "OkCancel"
+$Button = "YesNo"
 $Icon = "Question"
 $DefaultResult = "Ok"
 [System.Windows.MessageBox]::Show($msg,$Title, $Button, $icon, $defaultResult)
