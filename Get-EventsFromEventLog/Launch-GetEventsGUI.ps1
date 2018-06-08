@@ -4,8 +4,9 @@ With the help of            :   Jim Moyle @jimmoyle
 How-To GUI From Jim Moyle   :   https://github.com/JimMoyle/GUIDemo
 
 #>
-$global:GUIversion = "1.1.1"
+$global:GUIversion = "1.2"
 <# Release notes
+v1.2 -> changed way to call ShowDialog() to avoid crashes
 v1.1.1 -> fixed lack of IsPSV3 function ...
 #>
 #========================================================
@@ -756,5 +757,11 @@ $wpf.chkSaveToFile.add_Click({
 #=======================================================
 
 IsPSV3 | out-null
+
 # Load the form:
-$wpf.EventCollectWindow.ShowDialog() | Out-Null
+# Older way >>>>> $wpf.EventCollectWindow.ShowDialog() | Out-Null >>>> generates crash if run multiple times
+# USing method from https://gist.github.com/altrive/6227237 to avoid crashing Powershell after we re-run the script after some inactivity time or if we run it several times consecutively...
+$async = $wpf.EventCollectWindow.Dispatcher.InvokeAsync({
+    $wpf.EventCollectWindow.ShowDialog() | Out-Null
+})
+$async.Wait() | Out-Null

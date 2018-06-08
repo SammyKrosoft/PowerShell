@@ -1,0 +1,115 @@
+"MachineName","LogName","TimeCreated","LevelDisplayName","ProviderName","Id","Message"
+"SFBKAMEHAMEHA","System","6/8/2018 8:17:02 AM","Error","Microsoft-Windows-DistributedCOM","10016","The machine-default permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{C2F03A33-21F5-47FA-B4BB-156362A2F239}#
+ and APPID #
+{316CDED5-E4AE-4B15-9113-7055D84DCC97}#
+ to the user SFBKAMEHAMEHA\SammyKrosoft SID (S-1-5-21-2853432683-2519596650-3897817174-1001) from address LocalHost (Using LRPC) running in the application container 3b02ca83-a6d6-4191-8478-bbd638022ff0_8.13.0.0_x64__g4ype1skzj3jy SID (S-1-15-2-3455201134-2478600812-588880419-1220904420-3208309226-3210518155-2079686246). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","System","6/8/2018 8:17:02 AM","Error","Microsoft-Windows-DistributedCOM","10016","The machine-default permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{C2F03A33-21F5-47FA-B4BB-156362A2F239}#
+ and APPID #
+{316CDED5-E4AE-4B15-9113-7055D84DCC97}#
+ to the user SFBKAMEHAMEHA\SammyKrosoft SID (S-1-5-21-2853432683-2519596650-3897817174-1001) from address LocalHost (Using LRPC) running in the application container 3b02ca83-a6d6-4191-8478-bbd638022ff0_8.13.0.0_x64__g4ype1skzj3jy SID (S-1-15-2-3455201134-2478600812-588880419-1220904420-3208309226-3210518155-2079686246). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","System","6/8/2018 8:17:02 AM","Error","Microsoft-Windows-DistributedCOM","10016","The machine-default permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{C2F03A33-21F5-47FA-B4BB-156362A2F239}#
+ and APPID #
+{316CDED5-E4AE-4B15-9113-7055D84DCC97}#
+ to the user SFBKAMEHAMEHA\SammyKrosoft SID (S-1-5-21-2853432683-2519596650-3897817174-1001) from address LocalHost (Using LRPC) running in the application container 3b02ca83-a6d6-4191-8478-bbd638022ff0_8.13.0.0_x64__g4ype1skzj3jy SID (S-1-15-2-3455201134-2478600812-588880419-1220904420-3208309226-3210518155-2079686246). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","System","6/8/2018 8:17:02 AM","Error","Microsoft-Windows-DistributedCOM","10016","The machine-default permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{C2F03A33-21F5-47FA-B4BB-156362A2F239}#
+ and APPID #
+{316CDED5-E4AE-4B15-9113-7055D84DCC97}#
+ to the user SFBKAMEHAMEHA\SammyKrosoft SID (S-1-5-21-2853432683-2519596650-3897817174-1001) from address LocalHost (Using LRPC) running in the application container 3b02ca83-a6d6-4191-8478-bbd638022ff0_8.13.0.0_x64__g4ype1skzj3jy SID (S-1-15-2-3455201134-2478600812-588880419-1220904420-3208309226-3210518155-2079686246). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","System","6/8/2018 8:15:30 AM","Error","Microsoft-Windows-DistributedCOM","10016","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{D63B10C5-BB46-4990-A94F-E40B9D520160}#
+ and APPID #
+{9CA88EE3-ACB7-47C8-AFC4-AB702511C276}#
+ to the user NT AUTHORITY\LOCAL SERVICE SID (S-1-5-19) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","Application","6/8/2018 8:07:58 AM","Error","Outlook","62","Unable to create a Microsoft Classification Engine session for user: Samuel.Drey@microsoft.com - error code 0x80040206."
+"SFBKAMEHAMEHA","System","6/8/2018 8:07:50 AM","Error","Microsoft-Windows-DistributedCOM","10016","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{D63B10C5-BB46-4990-A94F-E40B9D520160}#
+ and APPID #
+{9CA88EE3-ACB7-47C8-AFC4-AB702511C276}#
+ to the user SFBKAMEHAMEHA\SammyKrosoft SID (S-1-5-21-2853432683-2519596650-3897817174-1001) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","System","6/8/2018 8:02:08 AM","Error","Microsoft-Windows-DistributedCOM","10016","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{D63B10C5-BB46-4990-A94F-E40B9D520160}#
+ and APPID #
+{9CA88EE3-ACB7-47C8-AFC4-AB702511C276}#
+ to the user NT AUTHORITY\LOCAL SERVICE SID (S-1-5-19) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","System","6/8/2018 8:01:49 AM","Error","Microsoft-Windows-DistributedCOM","10016","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{D63B10C5-BB46-4990-A94F-E40B9D520160}#
+ and APPID #
+{9CA88EE3-ACB7-47C8-AFC4-AB702511C276}#
+ to the user SFBKAMEHAMEHA\SammyKrosoft SID (S-1-5-21-2853432683-2519596650-3897817174-1001) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","Application","6/8/2018 8:01:20 AM","Error","Outlook","62","Unable to create a Microsoft Classification Engine session for user: Samuel.Drey@microsoft.com - error code 0x80040206."
+"SFBKAMEHAMEHA","System","6/8/2018 8:01:11 AM","Error","Microsoft-Windows-DistributedCOM","10016","The machine-default permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{9BA05972-F6A8-11CF-A442-00A0C90A8F39}#
+ and APPID #
+{9BA05972-F6A8-11CF-A442-00A0C90A8F39}#
+ to the user SFBKAMEHAMEHA\SammyKrosoft SID (S-1-5-21-2853432683-2519596650-3897817174-1001) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","Application","6/8/2018 7:59:41 AM","Error","SideBySide","35","Activation context generation failed for ""C:\Program Files (x86)\Microsoft Office\root\Office16\lync.exe.Manifest"".Error in manifest or policy file ""C:\Program Files (x86)\Microsoft Office\root\Office16\UccApi.DLL"" on line 1. Component identity found in manifest does not match the identity of the component requested. Reference is UccApi,processorArchitecture=""AMD64"",type=""win32"",version=""16.0.0.0"". Definition is UccApi,processorArchitecture=""x86"",type=""win32"",version=""16.0.0.0"". Please use sxstrace.exe for detailed diagnosis."
+"SFBKAMEHAMEHA","System","6/8/2018 7:59:29 AM","Error","Microsoft-Windows-DistributedCOM","10016","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{6B3B8D23-FA8D-40B9-8DBD-B950333E2C52}#
+ and APPID #
+{4839DDB7-58C2-48F5-8283-E1D1807D0D7D}#
+ to the user NT AUTHORITY\LOCAL SERVICE SID (S-1-5-19) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","System","6/8/2018 7:59:29 AM","Error","Microsoft-Windows-DistributedCOM","10016","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{6B3B8D23-FA8D-40B9-8DBD-B950333E2C52}#
+ and APPID #
+{4839DDB7-58C2-48F5-8283-E1D1807D0D7D}#
+ to the user NT AUTHORITY\LOCAL SERVICE SID (S-1-5-19) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","System","6/8/2018 7:59:10 AM","Warning","BTHUSB","34","The local adapter does not support an important Low Energy controller state to support peripheral mode.  The minimum required supported state mask is 0x491f7fffff, got 0x1fffffff.  Low Energy peripheral role functionality will not be available."
+"SFBKAMEHAMEHA","System","6/7/2018 11:52:40 PM","Error","Microsoft-Windows-DistributedCOM","10010","The server Microsoft.Windows.ContentDeliveryManager_10.0.16299.15_neutral_neutral_cw5n1h2txyewy!App.AppXwdz8g2fxr36xz0tdtagygnvemf85s7gg.mca did not register with DCOM within the required timeout."
+"SFBKAMEHAMEHA","System","6/7/2018 11:44:31 PM","Error","Microsoft-Windows-DistributedCOM","10016","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{D63B10C5-BB46-4990-A94F-E40B9D520160}#
+ and APPID #
+{9CA88EE3-ACB7-47C8-AFC4-AB702511C276}#
+ to the user NT AUTHORITY\LOCAL SERVICE SID (S-1-5-19) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","Application","6/7/2018 11:30:35 PM",,"Office 2016 Licensing Service","0",
+"SFBKAMEHAMEHA","System","6/7/2018 11:29:22 PM","Error","Microsoft-Windows-DistributedCOM","10016","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{D63B10C5-BB46-4990-A94F-E40B9D520160}#
+ and APPID #
+{9CA88EE3-ACB7-47C8-AFC4-AB702511C276}#
+ to the user NT AUTHORITY\LOCAL SERVICE SID (S-1-5-19) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","System","6/7/2018 11:21:54 PM","Error","Microsoft-Windows-DistributedCOM","10016","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{D63B10C5-BB46-4990-A94F-E40B9D520160}#
+ and APPID #
+{9CA88EE3-ACB7-47C8-AFC4-AB702511C276}#
+ to the user NT AUTHORITY\LOCAL SERVICE SID (S-1-5-19) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","System","6/7/2018 10:53:49 PM","Error","Microsoft-Windows-DistributedCOM","10016","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{D63B10C5-BB46-4990-A94F-E40B9D520160}#
+ and APPID #
+{9CA88EE3-ACB7-47C8-AFC4-AB702511C276}#
+ to the user NT AUTHORITY\LOCAL SERVICE SID (S-1-5-19) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","Application","6/7/2018 10:29:23 PM","Error","Outlook","62","Unable to create a Microsoft Classification Engine session for user: Samuel.Drey@microsoft.com - error code 0x80040206."
+"SFBKAMEHAMEHA","System","6/7/2018 9:58:43 PM","Error","Microsoft-Windows-DistributedCOM","10016","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{D63B10C5-BB46-4990-A94F-E40B9D520160}#
+ and APPID #
+{9CA88EE3-ACB7-47C8-AFC4-AB702511C276}#
+ to the user NT AUTHORITY\LOCAL SERVICE SID (S-1-5-19) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","Application","6/7/2018 9:46:55 PM","Error","Outlook","62","Unable to create a Microsoft Classification Engine session for user: Samuel.Drey@microsoft.com - error code 0x80040206."
+"SFBKAMEHAMEHA","System","6/7/2018 9:36:08 PM","Error","Microsoft-Windows-DistributedCOM","10016","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{D63B10C5-BB46-4990-A94F-E40B9D520160}#
+ and APPID #
+{9CA88EE3-ACB7-47C8-AFC4-AB702511C276}#
+ to the user NT AUTHORITY\LOCAL SERVICE SID (S-1-5-19) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","System","6/7/2018 9:24:36 PM","Error","Microsoft-Windows-DistributedCOM","10016","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{D63B10C5-BB46-4990-A94F-E40B9D520160}#
+ and APPID #
+{9CA88EE3-ACB7-47C8-AFC4-AB702511C276}#
+ to the user NT AUTHORITY\LOCAL SERVICE SID (S-1-5-19) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","Application","6/7/2018 8:58:56 PM","Error","Outlook","62","Unable to create a Microsoft Classification Engine session for user: Samuel.Drey@microsoft.com - error code 0x80040206."
+"SFBKAMEHAMEHA","System","6/7/2018 8:54:28 PM","Error","Microsoft-Windows-DistributedCOM","10016","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{D63B10C5-BB46-4990-A94F-E40B9D520160}#
+ and APPID #
+{9CA88EE3-ACB7-47C8-AFC4-AB702511C276}#
+ to the user NT AUTHORITY\LOCAL SERVICE SID (S-1-5-19) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","System","6/7/2018 8:39:26 PM","Error","Microsoft-Windows-DistributedCOM","10016","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{D63B10C5-BB46-4990-A94F-E40B9D520160}#
+ and APPID #
+{9CA88EE3-ACB7-47C8-AFC4-AB702511C276}#
+ to the user NT AUTHORITY\LOCAL SERVICE SID (S-1-5-19) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
+"SFBKAMEHAMEHA","System","6/7/2018 8:24:24 PM","Error","Microsoft-Windows-DistributedCOM","10016","The application-specific permission settings do not grant Local Activation permission for the COM Server application with CLSID #
+{D63B10C5-BB46-4990-A94F-E40B9D520160}#
+ and APPID #
+{9CA88EE3-ACB7-47C8-AFC4-AB702511C276}#
+ to the user NT AUTHORITY\LOCAL SERVICE SID (S-1-5-19) from address LocalHost (Using LRPC) running in the application container Unavailable SID (Unavailable). This security permission can be modified using the Component Services administrative tool."
