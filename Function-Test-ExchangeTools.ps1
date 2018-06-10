@@ -1,35 +1,16 @@
 ﻿Function Test-ExchTools(){
-    <#
+<#
 .SYNOPSIS
 This small function will just check if you have Exchange tools installed or available on the
 current PowerShell session 
 
 .DESCRIPTION
-
-Just a dummy script that prints your first name and last name.
-Takes any strings for first name and last name.
-
-.PARAMETER FirstName
-Specifies the First Name. "Merlin" is the default.
-
-.PARAMETER LastName
-Specifies the last name. "the Wizard" is the default.
-
-.INPUTS
-
-None. You cannot pipe objects to that script.
-
-.OUTPUTS
-
-System.String. The script (Full-Name.ps1 or whatever you name it) returns a string with the full
-name.
+Just use Test-ExchTools in your script to make the script exit if not launched from an Exchange
+tools PowerShell session...
 
 .EXAMPLE
 Test-ExchTools
 => will exit the script/program si Exchange tools are not installed
-
-}
-
 #>
     Try
     {
