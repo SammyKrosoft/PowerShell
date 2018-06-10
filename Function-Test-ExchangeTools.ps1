@@ -2,9 +2,12 @@
 <#
 .SYNOPSIS
 This small function will just check if you have Exchange tools installed or available on the
-current PowerShell session 
+current PowerShell session.
 
 .DESCRIPTION
+The presence of Exchange tools are checked by trying to execute "Get-ExBanner", one of the basic Exchange
+cmdlets that runs when the Exchange Management Shell is called.
+
 Just use Test-ExchTools in your script to make the script exit if not launched from an Exchange
 tools PowerShell session...
 
@@ -14,7 +17,7 @@ Test-ExchTools
 #>
     Try
     {
-        Get-command Get-mailbox -ErrorAction Stop
+        Get-command Get-ExBanner -ErrorAction Stop
         $ExchInstalledStatus = $true
         $Message = "Exchange tools are present !"
         Write-Host $Message -ForegroundColor Blue -BackgroundColor Red
