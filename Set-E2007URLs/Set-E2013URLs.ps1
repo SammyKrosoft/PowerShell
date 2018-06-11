@@ -1,4 +1,4 @@
-
+﻿
 #region Functions definition #
 
 function Global:Convert-HString {
@@ -30,20 +30,26 @@ function Global:Convert-HString {
 function AllUrls ($Server,$Internal,[switch]$Test) {
     $Command1 = "Set-WebServicesVirtualDirectory -Identity ""$server\EWS (Default Web Site)"" -InternalURL https://$Internal/ews/exchange.asmx -ExternalURL `$null"
     $Command2 = "set-OWAVirtualDirectory -Identity ""$server\owa (Default Web Site)"" -InternalURL https://$Internal/owa -ExternalURL `$null"
+    $Command2bis = "set-ECPVirtualDirectory -Identity ""$server\ecp (Default Web Site)"" -InternalURL https://$Internal/ecp -ExternalURL `$null"
     $Command3 = "Set-ActiveSyncVirtualDirectory -Identity ""$server\Microsoft-Server-ActiveSync (Default Web Site)"" -InternalURL https://$Internal/Microsoft-Server-ActiveSync -ExternalURL `$null"
     $Command4 = "Set-OabVirtualDirectory -Identity ""$server\OAB (Default Web Site)"" -InternalURL https://$Internal/oab -ExternalURL `$null"
+    $Command5 = "Get-OutlookAnywhere | Set-OutlookAnywhere -InternalHostname $Internal -InternalClientsRequireSsl `$true"
 
     if ($Test) {
         Write-Host "#Would execute the following commands :" -BackgroundColor Blue -ForegroundColor Yellow
         Write-Host $Command1
         Write-Host $Command2
+        Write-Host $Command2bis
         Write-Host $Command3
         Write-Host $Command4
+        Write-Host $Command5
     } Else {
-        Invoke-Command $Command1
-        Invoke-Command $Command2
-        Invoke-Command $Command3
-        Invoke-Command $Command4
+        Invoke-Expression $Command1
+        Invoke-Expression$Command2
+        Invoke-Expression $Command2bis
+        Invoke-Expression $Command3
+        Invoke-Expression $Command4
+        Invoke-Expression $Command5
     }
 }
 
@@ -74,42 +80,21 @@ function URI ($Server, $Autodiscover,[switch]$Test){
 # Enf of Functions definition
 #endregion
 
-$NCRServers = @"
-NJES1S5101
-NJES1S5102
-NJES1S5104
-NJES1S5151
-NJES1S6252
-NJES1S6252-NEW
+$NCRE2013Servers = @"
+NJES1S6503
+NJES1S6504
+NJES1S6505
+NJES1S6506
 "@
 
-$NATIONALServers = @"
-NJES1S1103
-NJES1S1109
-NJES1S1111
-NJES1S1112
-NJES1S1503
-"@
-
-$NATIONALServers = Convert-HString $NATIONALServers
-$NCRServers = Convert-HString $NCRServers
+$NCRE2013Servers = Convert-HString $NCRE2013Servers
 
 
-$NCRInternalURL = "legacy.ci.gc.ca"
-$NAtionalInternalURL = "ActiveSync1.ci.gc.ca"
+$NCRInternalURL = "webmail.ci.gc.ca"
 $AutodiscoverURIForNCRSite = "Autodiscover.ci.gc.ca"
-$AutoDiscoverURIForNATIONALSite = $AutodiscoverURIForNCRSite
 
-Write-Host "#SERVERS IN NCR : $($NCRServers -join ",")" -BackgroundColor Yellow -ForegroundColor Red
-Foreach ($Server in $NCRServers) {
-    AllUrls -Server $Server -Internal $NCRInternalURL -Test
-#    URI -Server $Server -Autodiscover $AutodiscoverURIForNCRSite -Test
+Write-Host "#SERVERS IN NCR : $($NCRE2013Servers -join ",")" -BackgroundColor Yellow -ForegroundColor Red
+Foreach ($Server in $NCRE2013Servers) {
+#    AllUrls -Server $Server -Internal $NCRInternalURL -Test
+    URI -Server $Server -Autodiscover $AutodiscoverURIForNCRSite -Test
 }
-
-Write-Host "#SERVERS IN NATIONAL : $($NATIONALServers -join ",")" -BackgroundColor Yellow -ForegroundColor Red
-
-Foreach ($Server in $NATIONALServers) {
-    AllURLs -Server $Server -Internal $NAtionalInternalURL -Test
-#    URI -Server $Server -Autodiscover $AutoDiscoverURIForNATIONALSite -Test
-}
-
