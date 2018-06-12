@@ -95,7 +95,7 @@ $NATIONALServers = Convert-HString $NATIONALServers
 $NCRServers = Convert-HString $NCRServers
 
 
-$NCRInternalURL = "legacy.ci.gc.ca"
+$NCRInternalURL = "webmail.ci.gc.ca"
 $NAtionalInternalURL = "ActiveSync1.ci.gc.ca"
 $AutodiscoverURIForNCRSite = "Autodiscover.ci.gc.ca"
 $AutoDiscoverURIForNATIONALSite = $AutodiscoverURIForNCRSite
@@ -103,13 +103,13 @@ $AutoDiscoverURIForNATIONALSite = $AutodiscoverURIForNCRSite
 Write-Host "#SERVERS IN NCR : $($NCRServers -join ",")" -BackgroundColor Yellow -ForegroundColor Red
 Foreach ($Server in $NCRServers) {
     AllUrls -Server $Server -Internal $NCRInternalURL -Test
-#    URI -Server $Server -Autodiscover $AutodiscoverURIForNCRSite -Test
+    # URI -Server $Server -Autodiscover $AutodiscoverURIForNCRSite -Test
 }
 
-Write-Host "#SERVERS IN NATIONAL : $($NATIONALServers -join ",")" -BackgroundColor Yellow -ForegroundColor Red
+# Write-Host "#SERVERS IN NATIONAL : $($NATIONALServers -join ",")" -BackgroundColor Yellow -ForegroundColor Red
 
-Foreach ($Server in $NATIONALServers) {
-    AllURLs -Server $Server -Internal $NAtionalInternalURL -Test
-#    URI -Server $Server -Autodiscover $AutoDiscoverURIForNATIONALSite -Test
-}
+# Foreach ($Server in $NATIONALServers) {
+#     AllURLs -Server $Server -Internal $NAtionalInternalURL -Test
+# #    URI -Server $Server -Autodiscover $AutoDiscoverURIForNATIONALSite -Test
+# }
 
