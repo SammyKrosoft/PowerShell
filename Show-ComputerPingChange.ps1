@@ -2,46 +2,44 @@
 .SYNOPSIS
 This script loops through a computer status, and display reachability status change.
 
-.PARAMETER FirstName
-Specifies the First Name. "Merlin" is the default.
+.PARAMETER Computer
+The Computer to monitor reachability
 
-.PARAMETER LastName
-Specifies the last name. "the Wizard" is the default.
+.PARAMETER FileName
+If specified, logs the ping change into a file
 
 .INPUTS
-
 None. You cannot pipe objects to that script.
 
 .OUTPUTS
 
-System.String. The script (Full-Name.ps1 or whatever you name it) returns a string with the full
-name.
 
 .EXAMPLE
-
 C:\PS> .\Full-Name.ps1
 Your full name is Merlin the Wizard
 
 .EXAMPLE
-
 C:\PS> .\Full-Name.ps1 -FirstName "Jane" -LastName "Doe"
 Your full name is Jane Doe
 
 .EXAMPLE
-
 C:\PS> .\Full-Name.ps1 "Jane" "Doe"
 Your full name is Jane Doe
 
 .LINK
-
 https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6
 
 .LINK
-
 https://github.com/SammyKrosoft
 #>
 
-Function IsComputerReachable ($ComputerName) {
+Function IsComputerReachable {
+    [CmdLetBinding(DefaultParameterSetName = "NormalRun")]
+    Param(
+        [Parameter(Mandatory = $False, Position = 0, ParameterSetName = "NormalRun")][string]$ComputerName = $($ENV:ComputerName),
+        [Parameter(Mandatory = $false, Position = 1, ParameterSetName = "CheckOnly")][switch]$CheckVersion
+    )
+
     If (Test-Connection $ComputerName -Count 1 -ErrorAction SilentlyContinue) {
         Return $True
     } Else {
