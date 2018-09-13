@@ -12,6 +12,7 @@
     }
     
     $Title = $StarsBeforeAndAfter + $Title + $StarsBeforeAndAfter
+    Write-host
     Write-Host $Title -BackgroundColor $Back -foregroundcolor $Fore
     Write-Host
     
@@ -30,4 +31,19 @@ Function LogYellow ($message){
 
 Function LogBlue ($message){
     Write-Host $message -ForegroundColor Blue
+}
+
+#Examples
+cls
+
+Title1 "Part 1 - Checking mailboxes"
+
+For ($i=0;$i -le 10;$i++){
+    LogGreen "Mailbox $i - ok"
+}
+
+Title1 "Part 2 - Checking databases"
+
+For ($i=0;$i -le 5;$i++){
+    LogGreen "Database $i - ok"
 }
