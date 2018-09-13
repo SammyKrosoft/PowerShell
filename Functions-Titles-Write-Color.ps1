@@ -16,8 +16,8 @@
     Write-Host
     
 }
-Function LogRed ($Message){
-    Write-Host $message -ForegroundColor Red
+Function LogMag ($Message){
+    Write-Host $message -ForegroundColor Magenta
 }
 
 Function LogGreen ($message){
