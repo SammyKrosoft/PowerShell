@@ -1,5 +1,5 @@
 ﻿#region Functions definition
-#Below functions from the following link:
+#region Below functions from the following link:
 #https://blog.pythian.com/automation-powershell-and-word-templates-let-the-technician-do-tech/
 
 #Function to open a word document:
@@ -44,10 +44,14 @@ Function AddImage($Document, $BookmarkName, $ReplaceWithImage){
     $FindReplace.Selection.InlineShapes.AddPicture(“$replacewithImage”)
 }
 
+#endregion End of Functions from link indicated.
+#region Generic functions (c) Sam
 Function HereStringToArray ($HereString) {
     Return $HereString -split "`n" | %{$_.trim()}
 }
+#endregion
 
+#region Function from Sam to get values from Exchange 2016
 Function Get-E2016ReportValues {
     <#
     .SYNOPSIS
@@ -378,7 +382,7 @@ If ($AtLeastOneMissing){
     Write-Host "All fields there !"
 }
 
-$Department = "RCMP"
+$Department = "JUSTICE"
 $FormFieldsFromExcel = Get-E2016ReportValues -Department $Department
 
 # $FormFieldsFromExcel
@@ -391,24 +395,21 @@ $FormFieldsFromExcel = Get-E2016ReportValues -Department $Department
 # Remove-Variable MSword
 # exit
 
+$TotalElementsInFormFields = $FormFields.count
+$TotalElementsInFormFields | Out-Host
+
+
 Foreach ($FF in $FormFieldsFromExcel){
-    $Doc.FormFields.Item($($FF.Bookmark)).Result = $($FF.Value)
+    #$Doc.FormFields.Item($($FF.Bookmark)).TextInput.Default = $($FF.Value)
+    $Doc.FormFields($($FF.Bookmark)).TextInput.Default = $($FF.Value)
+    $FF.Bookmark | out-host
 }
 
-$outputFile = "c:\temp\" + $Department + " - E2016BuildTest - " + (Get-Date -Format "dd-mm-yyyy-HH-MM-ss") + ".docx"
-
-$Doc.SaveAs([REF]$outputFile)
-
 #To update all fields :
-#$Doc.ActiveDocument.Fields.Update()
+$MSWord.ActiveDocument.Fields.Update()
 
-
-$Doc.Close()
-$MSWord.Quit()
-$null = [System.Runtime.InteropServices.Marshal]::ReleaseComObject([System.__ComObject]$MSword)
-[gc]::Collect()
-[gc]::WaitForPendingFinalizers()
-Remove-Variable MSword
+$outputFile = "c:\temp\" + $Department + " - E2016BuildTest - " + (Get-Date -Format "dd-mm-yyyy-HH-MM-ss") + ".docx"
+$Doc.SaveAs([REF]$outputFile)
 
 
 $Action = [System.Windows.MessageBox]::Show("Do you want to close the $($Doc.Name) Word doc ?","$($Doc.Name)",'YesNo','Warning')
