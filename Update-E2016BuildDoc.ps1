@@ -1,122 +1,4 @@
-﻿#region Function from Sam to get values from Exchange 2016
-Function Get-E2016ReportValues {
-    <#
-    .SYNOPSIS
-        Get Excel table data to be updated in the Word document
-
-    .DESCRIPTION
-        Get Excel table data to be updated in the Word document
-    #>
-    [CmdLetBinding(DefaultParameterSetName = "NormalRun")]
-    Param(
-        [Parameter(Mandatory = $false, Position = 1, ParameterSetName = "NormalRun")][string]$ExcelInput,
-        [Parameter(Mandatory = $true, Position = 2, ParameterSetName = "NormalRun")][string]$Department,
-        [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "CheckOnly")][switch]$CheckVersion
-    )
-
-    <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
-    #Initializing a $Stopwatch variable to use to measure script execution
-    $stopwatch2 = [system.diagnostics.stopwatch]::StartNew()
-    #Using Write-Debug and playing with $DebugPreference -> "Continue" will output whatever you put on Write-Debug "Your text/values"
-    # and "SilentlyContinue" will output nothing on Write-Debug "Your text/values"
-    $DebugPreference = "Continue"
-    # Set Error Action to your needs
-    $ErrorActionPreference = "SilentlyContinue"
-    #Script Version
-    $ScriptVersion = "0.1"
-    <# Version changes
-    v0.1 : first script version
-    v0.1 -> v0.5 : 
-    #>
-    $ScriptName = $MyInvocation.MyCommand.Name
-    If ($CheckVersion) {Write-Host "SCRIPT NAME     : $ScriptName `nSCRIPT VERSION  : $ScriptVersion";exit}
-    # Log or report file definition
-    # NOTE: use $PSScriptRoot in Powershell 3.0 and later or use $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition in Powershell 2.0
-    <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
-
-    
-    If (-Not $ExcelInput){
-        $ExcelInput = "C:\Users\SammyKrosoft\OneDrive\_Boulot\How-To Procedures\Exchange 2016 docs\E2016Test.xlsx"
-        Write-Host "No Excel input file specified ... using default:" -BackgroundColor Yellow
-        Write-Host $ExcelInput
-    } Else {
-        "Excel file $ExcelInput found ! Continuing ..." | Out-Host
-    }
-
-    $FileExists = Test-Path $ExcelInput
-
-    If ($FileExists) {
-        Write-Host "Excel file exists, continuing..."
-    } Else {
-        Write-Host "Excel file does not exist, exiting..."
-        Exit
-    }
-
-    $Excel = New-Object -ComObject Excel.Application
-    $Excel.Visible = $false
-    $Excel.DisplayAlerts = $false
-
-    $Workbook = $Excel.Workbooks.Open($ExcelInput)
-    $WorkSheet = $Workbook.Worksheets.item($Department)
-    $Worksheet.Activate()
-    $WSTable = $Worksheet.ListObjects.Item(1)
-
-    $WSTableRows = $WSTable.ListRows
-
-    $WSTableRows.Count
-    #$Row = $WSTableRows[1]
-    #$RowVals = $Row.Range
-    write-host "IN THE EXCEL Function !"
-    $WholeInputCollection = @()
-    ForEach ($Row in $WSTableRows){
-        $ValTrio = @() #Init & Re-init variable as we just want to store the values from each Row
-        # there will be 3 columns that is 3 values for each Row
-        Foreach ($Val in $($Row.Range)){
-            Write-Host $($Val.Text)
-            $ValTrio += $Val.Text
-        }
-        #Write-Host "Trio is : $($ValTrio[0]),$($ValTrio[1]),$($ValTrio[2]) "
-        $CustomObj = [PSCustomObject]@{
-            Description = $($ValTrio[0])
-            Value = $($ValTrio[1])
-            BookMark = $($ValTrio[2])
-        }
-        $WholeInputCollection += $CustomObj
-    }
-
-    $WholeInputCollection | Out-Host
-
-    Write-Host "Closing workbook..." -ForegroundColor Green
-    $Workbook.Close()
-    Write-Host "Releasing Workbook Com Object..." -ForegroundColor Green
-    [System.Runtime.Interopservices.Marshal]::ReleaseComObject($workbook)
-    Write-Host "Closing Excel..." -ForegroundColor Green
-    $Excel.Quit()
-    Write-Host "Releasing Excel Com Object..." -ForegroundColor Green
-    [System.Runtime.Interopservices.Marshal]::ReleaseComObject($excel)
-    Write-Host "Cleaning Excel variable..." -ForegroundColor Green
-    Remove-Variable excel
-    Write-Host "Garbage Collection..." -ForegroundColor Green
-    [System.GC]::Collect()
-    Write-Host "WaitForPendingFinalizers..." -ForegroundColor Green
-    [System.GC]::WaitForPendingFinalizers()
-
-    <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
-    #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...
-    $stopwatch2.Stop()
-    $msg = "`n`nThe script took $([math]::round($($StopWatch2.Elapsed.TotalSeconds),2)) seconds to execute..."
-    Write-Host $msg
-    $msg = $null
-    $StopWatch2 = $null
-    <# ---------------- /SCRIPT_FOOTER (NOTHING BEYOND THIS POINT) ----------- #>
-
-    Return $WholeInputCollection
-}
-
-#endregion
-
-
-Function Update-E2016BuildDoc {
+﻿Function Update-E2016BuildDoc {
     <#
     .SYNOPSIS
         Special script to read parameters in Excel to update Exchange 2016 Build document
@@ -243,6 +125,123 @@ Function Update-E2016BuildDoc {
     Function HereStringToArray ($HereString) {
         Return $HereString -split "`n" | %{$_.trim()}
     }
+    #endregion
+
+    #region Function from Sam to get values from Exchange 2016
+    Function Get-E2016ReportValues {
+        <#
+        .SYNOPSIS
+            Get Excel table data to be updated in the Word document
+
+        .DESCRIPTION
+            Get Excel table data to be updated in the Word document
+        #>
+        [CmdLetBinding(DefaultParameterSetName = "NormalRun1")]
+        Param(
+            [Parameter(Mandatory = $false, Position = 1, ParameterSetName = "NormalRun1")][string]$ExcelInput,
+            [Parameter(Mandatory = $true, Position = 2, ParameterSetName = "NormalRun1")][string]$Department,
+            [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "CheckOnly1")][switch]$CheckVersion
+        )
+
+        <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
+        #Initializing a $Stopwatch variable to use to measure script execution
+        $stopwatch2 = [system.diagnostics.stopwatch]::StartNew()
+        #Using Write-Debug and playing with $DebugPreference -> "Continue" will output whatever you put on Write-Debug "Your text/values"
+        # and "SilentlyContinue" will output nothing on Write-Debug "Your text/values"
+        $DebugPreference = "Continue"
+        # Set Error Action to your needs
+        $ErrorActionPreference = "SilentlyContinue"
+        #Script Version
+        $ScriptVersion = "0.1"
+        <# Version changes
+        v0.1 : first script version
+        v0.1 -> v0.5 : 
+        #>
+        $ScriptName = $MyInvocation.MyCommand.Name
+        If ($CheckVersion) {Write-Host "SCRIPT NAME     : $ScriptName `nSCRIPT VERSION  : $ScriptVersion";exit}
+        # Log or report file definition
+        # NOTE: use $PSScriptRoot in Powershell 3.0 and later or use $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition in Powershell 2.0
+        <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
+
+        
+        If (-Not $ExcelInput){
+            $ExcelInput = "C:\Users\SammyKrosoft\OneDrive\_Boulot\How-To Procedures\Exchange 2016 docs\E2016Test.xlsx"
+            Write-Host "No Excel input file specified ... using default:" -BackgroundColor Yellow
+            Write-Host $ExcelInput
+        } Else {
+            "Excel file $ExcelInput found ! Continuing ..." | Out-Host
+        }
+
+        $FileExists = Test-Path $ExcelInput
+
+        If ($FileExists) {
+            Write-Host "Excel file exists, continuing..."
+        } Else {
+            Write-Host "Excel file does not exist, exiting..."
+            Exit
+        }
+
+        $Excel = New-Object -ComObject Excel.Application
+        $Excel.Visible = $false
+        $Excel.DisplayAlerts = $false
+
+        $Workbook = $Excel.Workbooks.Open($ExcelInput)
+        $WorkSheet = $Workbook.Worksheets.item($Department)
+        $Worksheet.Activate()
+        $WSTable = $Worksheet.ListObjects.Item(1)
+
+        $WSTableRows = $WSTable.ListRows
+
+        $WSTableRows.Count
+        #$Row = $WSTableRows[1]
+        #$RowVals = $Row.Range
+        write-host "IN THE EXCEL Function !"
+        $WholeInputCollection = @()
+        ForEach ($Row in $WSTableRows){
+            $ValTrio = @() #Init & Re-init variable as we just want to store the values from each Row
+            # there will be 3 columns that is 3 values for each Row
+            Foreach ($Val in $($Row.Range)){
+                Write-Host $($Val.Text)
+                $ValTrio += $Val.Text
+            }
+            #Write-Host "Trio is : $($ValTrio[0]),$($ValTrio[1]),$($ValTrio[2]) "
+            $CustomObj = [PSCustomObject]@{
+                Description = $($ValTrio[0])
+                Value = $($ValTrio[1])
+                BookMark = $($ValTrio[2])
+            }
+            $WholeInputCollection += $CustomObj
+        }
+
+        $WholeInputCollection | Out-Host
+
+        Write-Host "Closing workbook..." -ForegroundColor Green
+        $Workbook.Close()
+        Write-Host "Releasing Workbook Com Object..." -ForegroundColor Green
+        [System.Runtime.Interopservices.Marshal]::ReleaseComObject($workbook)
+        Write-Host "Closing Excel..." -ForegroundColor Green
+        $Excel.Quit()
+        Write-Host "Releasing Excel Com Object..." -ForegroundColor Green
+        [System.Runtime.Interopservices.Marshal]::ReleaseComObject($excel)
+        Write-Host "Cleaning Excel variable..." -ForegroundColor Green
+        Remove-Variable excel
+        Write-Host "Garbage Collection..." -ForegroundColor Green
+        [System.GC]::Collect()
+        Write-Host "WaitForPendingFinalizers..." -ForegroundColor Green
+        [System.GC]::WaitForPendingFinalizers()
+
+        <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
+        #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...
+        $stopwatch2.Stop()
+        $msg = "`n`nThe script took $([math]::round($($StopWatch2.Elapsed.TotalSeconds),2)) seconds to execute..."
+        Write-Host $msg
+        $msg = $null
+        $StopWatch2 = $null
+        <# ---------------- /SCRIPT_FOOTER (NOTHING BEYOND THIS POINT) ----------- #>
+
+        Return $WholeInputCollection
+    }
+
     #endregion
 
     #region Execution
@@ -428,6 +427,7 @@ DB_Prefix
 
     #$Department = "JUSTICE"
     Write-host "Launching Excel function for department $Department ..."
+    Write-host "Excel file path : $ExcelInputfile"
     Get-E2016ReportValues -Department $Department -ExcelInput $ExcelInputFile -Department $Department
     $FormFieldsFromExcel = Get-E2016ReportValues -Department $Department -ExcelInput $ExcelInputFile -Department $Department
 
