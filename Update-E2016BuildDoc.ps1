@@ -425,14 +425,14 @@ DB_Prefix
         Write-Host "All fields there !"
     }
 
-    #$Department = "JUSTICE"
     Write-host "Launching Excel function for department $Department ..."
     Write-host "Excel file path : $ExcelInputfile"
-    Get-E2016ReportValues -Department $Department -ExcelInput $ExcelInputFile -Department $Department
-    $FormFieldsFromExcel = Get-E2016ReportValues -Department $Department -ExcelInput $ExcelInputFile -Department $Department
+    
+    $FormFieldsFromExcel = $null
+    $FormFieldsFromExcel = Get-E2016ReportValues -Department $Department -ExcelInput $ExcelInputFile
 
    
-
+    #Uncomment the below to check the Excel headers if needed to debug
     # $FormFieldsFromExcel
 
     # $Doc.Close()
@@ -495,31 +495,7 @@ DB_Prefix
                 Remove-Variable MSword
             }
     }
-
-    <# 
-
-    To update a bookmark:
-
-    If ($Doc.Bookmarks.Exists){
-        $doc.FormFields.Item($bookmark).Result = "Something"
-    }
-
-
-    #>
-
-    <# CHANGES TO DO ON E2016 BUILD DOC
-
-    1- Update Header with <Partner Full Name> cross reference => done
-    2- On Base Server Configuration table, E2016Extras -> put text on asterix to leave value only => Done
-    3- On TITLE page, add SSC/<Partner Acronym field> => Done
-    4- P.50 - remove  > sign after SetSpn cmd line => done
-    4bis - p.50 - BOLD for whole mail.canada.ca => done (no change)
-    4 ter - p.50 - Change mail.canada.ca with cross reference (Output sample) => Done
-    5- p.64 - Set-VirtualDirectories mail.canada.ca
-    5bis - Page Break for table Set-Vdirs
-    #>
-
-}
+ }
 
 cls
 Update-E2016BuildDoc -DocFile "C:\Users\SammyKrosoft\OneDrive\_Boulot\How-To Procedures\Exchange 2016 docs\E2016BuildTest.docx" -ExcelInputFile "C:\Users\SammyKrosoft\OneDrive\_Boulot\How-To Procedures\Exchange 2016 docs\E2016Test.xlsx" -Department DND
