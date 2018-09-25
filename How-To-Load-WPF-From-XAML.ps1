@@ -17,6 +17,9 @@ $tempform = [Windows.Markup.XamlReader]::Load($reader)
 $namedNodes = $xaml.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Name')]]")
 $namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
 
+#Get the form name to be used as parameter in functions external to form...
+$FormName = $NamedNodes[0].Name
+
 # Load the form:
 # Older way >>>>> $wpf.MyFormName.ShowDialog() | Out-Null >>>>> generates crash if run multiple times
 # Newer way >>>>> avoiding crashes after a couple of launches in PowerShell...
