@@ -40,7 +40,7 @@ $wpf.$FormName.add_Closing({
 
 #HINT: to update progress bar and/or label during WPF Form treatment, add the following:
 # ... to re-draw the form and then show updated controls in realtime ...
-#$wpf.$FormName.Dispatcher.Invoke("Render",[action][scriptblock]{})
+$wpf.$FormName.Dispatcher.Invoke("Render",[action][scriptblock]{})
 
 
 # Load the form:
