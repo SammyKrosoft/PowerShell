@@ -7,6 +7,31 @@
 	or dumps the info to the screen (you can then redirect to a file if you wish) if you
 	use the -DoNotExport switch with the script.
 
+.PARAMETER E2007
+	When specified, will export E2007 only, or if specified with E2013 / E2016, will export
+	the specified versions.
+	
+	When none of E2007, E2013, E2016 are specified, all versions are scanned.
+
+.PARAMETER E2010
+	When specified, will export E2010 only, or if specified with E2007 / E2013 / 2016, will export
+	the specified versions.
+	
+	When none of E2007, E2013, E2016 are specified, all versions are scanned.
+
+
+.PARAMETER E2013Only
+	When specified, will export E2013 only, or if specified with E2007 / E2016, will export
+	the specified versions.
+
+	When none of E2007, E2013, E2016 are specified, all versions are scanned.
+
+.PARAMETER E2016Only
+	When specified, will export E2016 only, or if specified with E2007 / E2013, will export
+	the specified versions.
+
+	When none of E2007, E2013, E2016 are specified, all versions are scanned.
+
 .PARAMETER DoNotExport
 	This parameter tells the script not to export to a file. The results will just be
 	dumped to the screen.
@@ -38,7 +63,11 @@ None
 [CmdletBinding(DefaultParameterSetName="NormalRun")]
 Param(
 	[Parameter(Mandatory = $False, Position = 1, ParameterSetName = "NormalRun")] [switch]$DoNotExport,
-	[Parameter(Mandatory = $False, Position = 2, ParameterSetName = "checkversion")] [Switch] $CheckVersion
+	[Parameter(Mandatory = $False, Position = 2, ParameterSetName = "NormalRun")] [switch]$E2007,
+	[Parameter(Mandatory = $False, Position = 3, ParameterSetName = "NormalRun")] [switch]$E2010,
+	[Parameter(Mandatory = $False, Position = 4, ParameterSetName = "NormalRun")] [switch]$E2013,
+	[Parameter(Mandatory = $False, Position = 5, ParameterSetName = "NormalRun")] [switch]$E2016,
+	[Parameter(Mandatory = $False, Position = 6, ParameterSetName = "checkversion")] [Switch] $CheckVersion
 )
 
 <# ------- SCRIPT_HEADER (Only Get-Help comments and Param() above this point) ------- #>
