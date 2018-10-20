@@ -17,7 +17,8 @@ Test-ExchTools
 #>
     Try
     {
-        Get-command Get-ExBanner -ErrorAction Stop
+        #Get-command Get-ExBanner -ErrorAction Stop
+        Get-command Get-Mailbox -ErrorAction Stop
         $ExchInstalledStatus = $true
         $Message = "Exchange tools are present !"
         Write-Host $Message -ForegroundColor Blue -BackgroundColor Red
