@@ -41,8 +41,7 @@ Function Test-ExchTools(){
     #>
         Try
         {
-            #Get-command Get-ExBanner -ErrorAction Stop
-            Get-command Get-Mailbox -ErrorAction Stop
+            Get-command Get-MAilbox -ErrorAction Stop
             $ExchInstalledStatus = $true
             $Message = "Exchange tools are present !"
             Write-Host $Message -ForegroundColor Blue -BackgroundColor Red
@@ -79,7 +78,7 @@ Function Test-ExchTools(){
     Write-progress -id 2 -ParentId 1 -Activity "Setting component states" -Status "All 3 components set !" -PercentComplete 100
     
     #Get the status of component 
-    $ComponentStateStatus = Get-ServerComponentState $Server 
+    $ComponentStateStatus = Get-ServerComponentState ($Server.Name) 
     $ComponentStateStatus | ft Component,State -Autosize
     
     
