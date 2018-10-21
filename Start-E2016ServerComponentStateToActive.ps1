@@ -22,6 +22,25 @@ PS> .\SetExchangeComponentToActive.ps1 -Server Server1
 #    [string]$Server
 #)
 
+Function Title1 ([string]$title, $TotalLength = 100, $Back = "Yellow", $Fore = "Black") {
+    $TitleLength = $Title.Length
+    [string]$StarsBeforeAndAfter = ""
+    $RemainingLength = $TotalLength - $TitleLength
+    If ($($RemainingLength % 2) -ne 0) {
+        $Title = $Title + " "
+    }
+    $Counter = 0
+    For ($i=1;$i -le $(($RemainingLength)/2);$i++) {
+        $StarsBeforeAndAfter += "*"
+        $counter++
+    }
+    
+    $Title = $StarsBeforeAndAfter + $Title + $StarsBeforeAndAfter
+    Write-host
+    Write-Host $Title -BackgroundColor $Back -foregroundcolor $Fore
+    Write-Host    
+}
+
 Function Test-ExchTools(){
     <#
     .SYNOPSIS
@@ -65,24 +84,25 @@ Foreach ($item in $E2016){$E2016NamesList += $($item.Name)}
 
 $counter = 0
 Foreach ($Server in $E2016){
+    Title1 $Server
     write-progress -id 1 -Activity "Activating all components" -Status "Server $Server" -PercentComplete $($Counter/$($E2016.Count)*100)
     $Counter++
 
     #Get the status of component 
     $ComponentStateStatus = Get-ServerComponentState ($Server.Name) 
     #$ComponentStateStatus | ft Component,State -Autosize
-    $ACtiveComponents = ($ComponentStateStatus | ? {$_.State -eq "Active"}).count
-    $InactiveComponents = ($ComponentStateStatus | ? {$_.State -eq "Inactive"}).count
+    $ACtiveComponents = $ComponentStateStatus | ? {$_.State -eq "Active"}
+    $InactiveComponents = $ComponentStateStatus | ? {$_.State -eq "Inactive"}
 
-    Write-Host "There are $ACtiveComponents active compponents, and $InactiveComponents inactive components"
+    Write-Host "There are $($ACtiveComponents.count) active components, and $($InactiveComponents.count) inactive components on server $($Server.Name)"
 
-    If ($InactiveComponents -le 2){
-        Write-Host "There are only $InactiveComponents, everything looks good ... here are the list of components:"
-        $ComponentStateStatus | ft Component,State -Autosize
+    If ($($InactiveComponents.count) -le 2){
+        Write-Host "There are only $InactiveComponents, everything looks good ... here are the list of inactive components:"
+        $InactiveComponents | ft Component,State -Autosize
         Continue
     } Else {
         Write-host "More than 2 components are not active :"
-        $ComponentStateStatus | ? {$_.State -eq "Active"}
+        $InactiveComponents
         Write-host "... trying to re-activate all components..." 
         #Designates that the server is out of maintenance mode
         Write-progress -id 2 -ParentId 1 -Activity "Setting component states" -Status "setting ServerWideOffline..." -PercentComplete 0
@@ -96,11 +116,11 @@ Foreach ($Server in $E2016){
     #Get the status of components
     $ComponentStateStatus = Get-ServerComponentState ($Server.Name) 
     $ComponentStateStatus | ft Component,State -Autosize
-    $ACtiveComponents = ($ComponentStateStatus | ? {$_.State -eq "Active"}).count
-    $InactiveComponents = ($ComponentStateStatus | ? {$_.State -eq "Inactive"}).count
+    $ACtiveComponents = $ComponentStateStatus | ? {$_.State -eq "Active"}
+    $InactiveComponents = $ComponentStateStatus | ? {$_.State -eq "Inactive"}
 
-    Write-Host "There are now $ACtiveComponents active compponents, and $InactiveComponents inactive components"
-    If ($InactiveComponents -lt 2) {Write-host "There are still some inactive components ... please troubleshoot !" -BackgroundColor Red -ForegroundColor Yellow} Else {Write-Host "$Server is now completely out of maintenance mode and component are active and functional." -ForegroundColor Yellow}
+    Write-Host "There are now $($ACtiveComponents.count) active compponents, and $($InactiveComponents.count) inactive components"
+    If ($($InactiveComponents.count) -lt 2) {Write-host "There are still some inactive components ... please troubleshoot !" -BackgroundColor Red -ForegroundColor Yellow} Else {Write-Host "$Server is now completely out of maintenance mode and component are active and functional." -ForegroundColor Yellow}
 }
 
 write-progress -id 1 -Activity "Activating all components" -Status "All done !" -PercentComplete $($Counter/$($E2016.Count)*100)
