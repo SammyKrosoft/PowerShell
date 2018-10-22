@@ -152,20 +152,23 @@ Foreach ($Server in $E2016){
                 $Counter1++
             }
             #Get the new status of components
-            $ComponentStateStatus = Get-ServerComponentState ($Server.Name) 
             If (!($HybridServer)){
-                Write-Host "This is an On-Premises only environment (aka not Hybrid, not synchronizing with the cloud). We don't need ForwardSyncDaemon and ProvisioningRPS Components - leaving these as-is"
-                $InactiveComponents = $ComponentStateStatus | ? {$_.State -eq "Inactive" -and $_.Component -ne "ForwardSyncDaemon" -and $_.Component -ne "ProvisioningRps"}
-                $ACtiveComponents = $ComponentStateStatus | ? {$_.State -eq "Active" -and $_.Component -ne "ForwardSyncDaemon" -and $_.Component -ne "ProvisioningRps"}
+                Write-Host "You didn't specify the -HybridServer switch, meaning that this is an On-Premises only environment (aka not Hybrid, not synchronizing with the cloud). We don't need ForwardSyncDaemon and ProvisioningRPS Components - leaving these as-is"
+                $ComponentStateStatus = Get-ServerComponentState ($Server.Name) | ? {$_.Component -ne "ForwardSyncDaemon" -and $_.Component -ne "ProvisioningRps"}
             } Else {
                 Write-Host "You specified the -HybridServer parameter, indicating that this is an On-Premises environment syncinc with O365. All Server Components need to be active..."
-                $InactiveComponents = $ComponentStateStatus | ? {$_.State -eq "Inactive"}
-                $ACtiveComponents = $ComponentStateStatus | ? {$_.State -eq "Active"}
+                $ComponentStateStatus = Get-ServerComponentState ($Server.Name) 
             }
+        
+            #$ComponentStateStatus | ft Component,State -Autosize
+            $InactiveComponents = $ComponentStateStatus | ? {$_.State -eq "Inactive"}
+            $ACtiveComponents = $ComponentStateStatus | ? {$_.State -eq "Active"}
+            
             $NbActiveComponents = $ACtiveComponents.Count
             If ($NbActiveComponents -eq $null){$NbActiveComponents = 0}
             $NbInactiveComponents = $InactiveComponents.Count
             If ($NbInactiveComponents -eq $null){$NbInactiveComponents = 0}
+            
             Write-Host "There are now $NbActiveComponents active components, and $NbInactiveComponents inactive components"
             If ($NbInactiveComponents -eq 0) {Write-Host "$Server is now completely out of maintenance mode and component are active and functional." -ForegroundColor Yellow} Else {Write-host "There are still some inactive components ... please troubleshoot !" -BackgroundColor Red -ForegroundColor Yellow}
         
