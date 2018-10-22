@@ -7,12 +7,29 @@ V1.1 08.06.2014
 Bring componet to active state.
 .DESCRIPTION
 Bring component state to active state.
-.PARAMETER Server
-Specifies the DAG node Server name to be bring the component to active state.
+.PARAMETER HybridServer
+Indicates to check 2 additional Server Components that are important for
+Office 365 synchronization between the On-premises environment and the
+Exchange Online environment : "ForwardSyncDaemon" and "ProvisioningRps".
+.PARAMETER CheckOnly
+Indicated the script to only check which Components are inactive before
+attempting anything.
 .EXAMPLE
-PS> .\Start-E2016ServerComponentStateToActive.ps1 -CheckOnly
-
-Will check
+.\Start-E2016ServerComponentStateToActive.ps1 -HybridServer -CheckOnly
+Will check all Server Components, including ForwardSyncDaemon and ProvisioningRps
+components, but won't attempt to start these.
+.EXAMPLE
+.\Start-E2016ServerComponentStateToActive.ps1
+Will check all Server Components, excluding the ForwardSyncDaemon and ProvisioningRps,
+and attempt to start these.
+The script will tell you if the operation was successful or not.
+.EXAMPLE
+.\Start-E2016ServerComponentStateToActive.ps1 -HybridServer
+Will check and try to start all Server Components, including ForwardSyncDaemon and ProvisioningRps
+.EXAMPLE
+.\Start-E2016ServerComponentStateToActive.ps1 -CheckOnly
+Will check all Server Components, excluding ForwardSyncDaemon and ProvisioningRps
+components, but won't attept to start these.
 #>
 
 #Requires -version 3.0
@@ -96,59 +113,66 @@ Foreach ($Server in $E2016){
     write-progress -id 1 -Activity "Activating all components" -Status "Server $Server" -PercentComplete $($Counter/$($E2016.Count)*100)
     $Counter++
 
-    #Get the status of component 
-    $ComponentStateStatus = Get-ServerComponentState ($Server.Name) 
-    #$ComponentStateStatus | ft Component,State -Autosize
+    #Get the status of components
     If (!($HybridServer)){
-        Write-Host "This is an On-Premises only environment (aka not Hybrid, not synchronizing with the cloud). We don't need ForwardSyncDaemon and ProvisioningRPS Components - leaving these as-is"
-        $InactiveComponents = $ComponentStateStatus | ? {$_.State -eq "Inactive" -and $_.Component -ne "ForwardSyncDaemon" -and $_.Component -ne "ProvisioningRps"}
-        $ACtiveComponents = $ComponentStateStatus | ? {$_.State -eq "Active" -and $_.Component -ne "ForwardSyncDaemon" -and $_.Component -ne "ProvisioningRps"}
+        Write-Host "You didn't specify the -HybridServer switch, meaning that this is an On-Premises only environment (aka not Hybrid, not synchronizing with the cloud). We don't need ForwardSyncDaemon and ProvisioningRPS Components - leaving these as-is"
+        $ComponentStateStatus = Get-ServerComponentState ($Server.Name) | ? {$_.Component -ne "ForwardSyncDaemon" -and $_.Component -ne "ProvisioningRps"}
     } Else {
         Write-Host "You specified the -HybridServer parameter, indicating that this is an On-Premises environment syncinc with O365. All Server Components need to be active..."
-        $InactiveComponents = $ComponentStateStatus | ? {$_.State -eq "Inactive"}
-        $ACtiveComponents = $ComponentStateStatus | ? {$_.State -eq "Active"}
+        $ComponentStateStatus = Get-ServerComponentState ($Server.Name) 
     }
+
+    #$ComponentStateStatus | ft Component,State -Autosize
+    $InactiveComponents = $ComponentStateStatus | ? {$_.State -eq "Inactive"}
+    $ACtiveComponents = $ComponentStateStatus | ? {$_.State -eq "Active"}
     
     $NbActiveComponents = $ACtiveComponents.Count
+    If ($NbActiveComponents -eq $null){$NbActiveComponents = 0}
     $NbInactiveComponents = $InactiveComponents.Count
+    If ($NbInactiveComponents -eq $null){$NbInactiveComponents = 0}
 
-    Write-Host "There are $NbActiveComponents active components, and $InactiveComponents inactive components on server $($Server.Name)"
+    Write-Host "There are $NbActiveComponents active components, and $NbInactiveComponents inactive components on server $($Server.Name)" -BackgroundColor yellow -ForegroundColor red
 
-    If ($NbInactiveComponents -gt 0){
-        Write-Host "There are only $NbInactiveComponents, everything looks good ... here are the list of inactive components:"
-        $InactiveComponents | ft Component,State -Autosize
+    If ($NbInactiveComponents -eq 0){
+        Write-Host "There are no inactive components, everything looks good ... "
         Continue
     } Else {
-        Write-host "More than 2 components are not active - we have $NbInactiveComponents ..."
+        Write-host "Some components are not active - we have $NbInactiveComponents inactive components..."
         $InactiveComponents | ft Component
         If (!($CheckOnly)){
             Write-host "... trying to re-activate all inactive components..." 
-                $Counter1 = 0
-                Foreach ($Component in $InactiveComponents) {
+            $Counter1 = 0
+            Foreach ($Component in $InactiveComponents) {
                 Write-progress -id 2 -ParentId 1 -Activity "Setting component states" -Status "setting $($Component.Component)..." -PercentComplete ($Counter1/$NbInactiveComponents*100)
                 $Command = "Set-ServerComponentState $($Server.Name) -Component $($Component.Component) -State Active -Requester Functional" 
                 Write-host "Running the following command: `n$Command" -BackgroundColor Blue -ForegroundColor White
                 Invoke-Expression $Command
                 $Counter1++
-              }
+            }
+            #Get the new status of components
+            $ComponentStateStatus = Get-ServerComponentState ($Server.Name) 
+            If (!($HybridServer)){
+                Write-Host "This is an On-Premises only environment (aka not Hybrid, not synchronizing with the cloud). We don't need ForwardSyncDaemon and ProvisioningRPS Components - leaving these as-is"
+                $InactiveComponents = $ComponentStateStatus | ? {$_.State -eq "Inactive" -and $_.Component -ne "ForwardSyncDaemon" -and $_.Component -ne "ProvisioningRps"}
+                $ACtiveComponents = $ComponentStateStatus | ? {$_.State -eq "Active" -and $_.Component -ne "ForwardSyncDaemon" -and $_.Component -ne "ProvisioningRps"}
+            } Else {
+                Write-Host "You specified the -HybridServer parameter, indicating that this is an On-Premises environment syncinc with O365. All Server Components need to be active..."
+                $InactiveComponents = $ComponentStateStatus | ? {$_.State -eq "Inactive"}
+                $ACtiveComponents = $ComponentStateStatus | ? {$_.State -eq "Active"}
+            }
+            $NbActiveComponents = $ACtiveComponents.Count
+            If ($NbActiveComponents -eq $null){$NbActiveComponents = 0}
+            $NbInactiveComponents = $InactiveComponents.Count
+            If ($NbInactiveComponents -eq $null){$NbInactiveComponents = 0}
+            Write-Host "There are now $NbActiveComponents active components, and $NbInactiveComponents inactive components"
+            If ($NbInactiveComponents -eq 0) {Write-Host "$Server is now completely out of maintenance mode and component are active and functional." -ForegroundColor Yellow} Else {Write-host "There are still some inactive components ... please troubleshoot !" -BackgroundColor Red -ForegroundColor Yellow}
+        
         } Else {
-            Write-Host "Checking only..."
+            Write-Host "Checking only... here's your list of inactive components:"
+            $InactiveComponents | ft Component
         }
     }
-    #Get the new status of components
-    $ComponentStateStatus = Get-ServerComponentState ($Server.Name) 
-    If (!($HybridServer)){
-        Write-Host "This is an On-Premises only environment (aka not Hybrid, not synchronizing with the cloud). We don't need ForwardSyncDaemon and ProvisioningRPS Components - leaving these as-is"
-        $InactiveComponents = $ComponentStateStatus | ? {$_.State -eq "Inactive" -and $_.Component -ne "ForwardSyncDaemon" -and $_.Component -ne "ProvisioningRps"}
-        $ACtiveComponents = $ComponentStateStatus | ? {$_.State -eq "Active" -and $_.Component -ne "ForwardSyncDaemon" -and $_.Component -ne "ProvisioningRps"}
-    } Else {
-        Write-Host "You specified the -HybridServer parameter, indicating that this is an On-Premises environment syncinc with O365. All Server Components need to be active..."
-        $InactiveComponents = $ComponentStateStatus | ? {$_.State -eq "Inactive"}
-        $ACtiveComponents = $ComponentStateStatus | ? {$_.State -eq "Active"}
-    }
 
-    Write-Host "There are now $($ACtiveComponents.count) active components, and $($InactiveComponents.count) inactive components"
-    If ($($InactiveComponents.count) -gt 2) {Write-host "There are still some inactive components ... please troubleshoot !" -BackgroundColor Red -ForegroundColor Yellow} Else {Write-Host "$Server is now completely out of maintenance mode and component are active and functional." -ForegroundColor Yellow}
 }
 
 write-progress -id 1 -Activity "Activating all components" -Status "All done !" -PercentComplete $($Counter/$($E2016.Count)*100)
