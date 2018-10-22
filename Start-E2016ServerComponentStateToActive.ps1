@@ -30,6 +30,8 @@ Will check and try to start all Server Components, including ForwardSyncDaemon a
 .\Start-E2016ServerComponentStateToActive.ps1 -CheckOnly
 Will check all Server Components, excluding ForwardSyncDaemon and ProvisioningRps
 components, but won't attept to start these.
+.LINK
+https://blogs.technet.microsoft.com/exchange/2012/09/21/lessons-from-the-datacenter-managed-availability/
 #>
 
 #Requires -version 3.0
