@@ -1,8 +1,8 @@
 ﻿<#
 .NOTES
-Written by Adnan Rafique @ExchangeITPro
+Based on V1.1 08.06.2014  by Adnan Rafique @ExchangeITPro
 Modified by Samuel Drey @Microsoft
-V1.1 08.06.2014
+V1 10.OCT.2018
 .SYNOPSIS
 Bring Exchange components to active state.
 .DESCRIPTION
