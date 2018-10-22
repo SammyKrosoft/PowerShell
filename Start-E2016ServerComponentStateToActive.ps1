@@ -4,9 +4,9 @@ Written by Adnan Rafique @ExchangeITPro
 Modified by Samuel Drey @Microsoft
 V1.1 08.06.2014
 .SYNOPSIS
-Bring componet to active state.
+Bring Exchange components to active state.
 .DESCRIPTION
-Bring component state to active state.
+Bring Exchange components to active state.
 .PARAMETER HybridServer
 Indicates to check 2 additional Server Components that are important for
 Office 365 synchronization between the On-premises environment and the
@@ -168,7 +168,7 @@ Foreach ($Server in $E2016){
             If ($NbActiveComponents -eq $null){$NbActiveComponents = 0}
             $NbInactiveComponents = $InactiveComponents.Count
             If ($NbInactiveComponents -eq $null){$NbInactiveComponents = 0}
-            
+
             Write-Host "There are now $NbActiveComponents active components, and $NbInactiveComponents inactive components"
             If ($NbInactiveComponents -eq 0) {Write-Host "$Server is now completely out of maintenance mode and component are active and functional." -ForegroundColor Yellow} Else {Write-host "There are still some inactive components ... please troubleshoot !" -BackgroundColor Red -ForegroundColor Yellow}
         
