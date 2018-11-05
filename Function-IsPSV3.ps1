@@ -16,6 +16,7 @@ Function IsPSV3 {
         Return $false
         Exit
     } Else {
+        Write-Host "You have PowerShell v3 or later, great !" -BackgroundColor blue -ForegroundColor yellow
         Return $true
         }
 }

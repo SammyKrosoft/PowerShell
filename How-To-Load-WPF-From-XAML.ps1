@@ -35,8 +35,9 @@ $wpf.$FormName.add_Closing({
     $msg = "bye bye !"
     write-host $msg
 })
-# End of load, draw and closing form events
+
 #endregion Load, Draw and closing form events
+#End of load, draw and closing form events
 
 #HINT: to update progress bar and/or label during WPF Form treatment, add the following:
 # ... to re-draw the form and then show updated controls in realtime ...
