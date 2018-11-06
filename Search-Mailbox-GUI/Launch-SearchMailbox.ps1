@@ -1,4 +1,4 @@
-
+$Version = "1"
 #region FUNCTIONS other than Form events
 Function IsPSV3 {
     <#
@@ -23,6 +23,47 @@ Function IsPSV3 {
         }
 }
 
+Function Test-ExchTools(){
+    <#
+    .SYNOPSIS
+    This small function will just check if you have Exchange tools installed or available on the
+    current PowerShell session.
+
+    .DESCRIPTION
+    The presence of Exchange tools are checked by trying to execute "Get-ExBanner", one of the basic Exchange
+    cmdlets that runs when the Exchange Management Shell is called.
+
+    Just use Test-ExchTools in your script to make the script exit if not launched from an Exchange
+    tools PowerShell session...
+
+    .EXAMPLE
+    Test-ExchTools
+    => will exit the script/program si Exchange tools are not installed
+    #>
+    Try
+    {
+        Get-command Get-MAilbox -ErrorAction Stop
+        $ExchInstalledStatus = $true
+        $Message = "Exchange tools are present !"
+        Write-Host $Message -ForegroundColor Blue -BackgroundColor Red
+    }
+    Catch [System.SystemException]
+    {
+        $ExchInstalledStatus = $false
+        $Message = "Exchange Tools are not present ! This script/tool need these. Exiting..."
+        Write-Host $Message -ForegroundColor red -BackgroundColor Blue
+        # Add-Type -AssemblyName presentationframework, presentationcore
+        # Option #4 - a message, a title, buttons, and an icon
+        # More info : https://msdn.microsoft.com/en-us/library/system.windows.messageboximage.aspx
+        $msg = "You must run this tool from an Exchange-enabled PowerShell console like Exchange Management Console or a PowerShell session where you imported an Exchange session."
+        $Title = "Error - No Exchange Tools available !"
+        $Button = "Ok"
+        $Icon = "Error"
+        [System.Windows.MessageBox]::Show($msg,$Title, $Button, $icon)
+        Exit
+    }
+    Return $ExchInstalledStatus
+}
 
 Function Run-Action{
     $SelectedAction = $wpf.comboSelectAction.SelectedItem.Content
@@ -53,33 +94,60 @@ Function Run-Action{
             Write-host $($MailboxFeatures | ft DisplayName, ActiveSyncEnabled,OWAEnabled,ECPEnabled,MAPIEnabled,MAPIBlockOutlookRpcHttp,MapiHttpEnabled  -a | out-string)
         }
     }
-    Update-Label "Action done."
 }
 
 Function Update-Label ($msg) {
     $wpf.lblStatus.Content = $msg
+    $Wpf.$FormName.Dispatcher.Invoke("Render",[action][scriptblock]{})
 }
 
 Function Working-Label {
         # Trick to enable a Label to update during work :
     # Follow with "Dispatcher.Invoke("Render",[action][scriptblobk]{})" or [action][scriptblock]::create({})
+    $wpf.$FormName.IsEnabled = $False
     $wpf.lblStatus.Content = "Working ..."
-    $wpf.WForm.Dispatcher.Invoke("Render",[action][scriptblock]{})
+    $wpf.lblStatus.ForeGround = [System.Windows.Media.Brushes]::Red
+    $wpf.lblStatus.BackGround = [System.Windows.Media.Brushes]::Blue
+    $Wpf.$FormName.Dispatcher.Invoke("Render",[action][scriptblock]{})
 }
+
+Function Ready-Label{
+    $wpf.$FormName.IsEnabled = $True
+    $wpf.lblStatus.Content = "Ready !"
+    $wpf.lblStatus.ForeGround = [System.Windows.Media.Brushes]::Green
+    $wpf.lblStatus.BackGround = [System.Windows.Media.Brushes]::Yellow
+    $Wpf.$FormName.Dispatcher.Invoke("Render",[action][scriptblock]{})
+}
+
 Function Get-Mailboxes {
     If (($($wpf.txtResultSize.Text) -gt 1000) -or ($($wpf.txtResultSize.Text) -Like "Unlimited")){
-        $Msg = "WARNING: You specified more than 1000 or Unlimited, mailbox collection can take a LOT of time, Continue ? (Y/N)"
-        $Answer = ""
-        while ($Answer -ne "Y" -AND $Answer -ne "N") {
-            cls
-            Write-Host $Msg -BackgroundColor Yellow -ForegroundColor Red
-            $Answer = Read-host
-            If($Answer -eq "N"){Return}
-        }
+        # $Msg = "WARNING: You specified more than 1000 or Unlimited, mailbox collection can take a LOT of time, Continue ? (Y/N)"
+        # $Answer = ""
+        # while ($Answer -ne "Y" -AND $Answer -ne "N") {
+        #     cls
+        #     Write-Host $Msg -BackgroundColor Yellow -ForegroundColor Red
+        #     $Answer = Read-host
+        #     If($Answer -eq "N"){Return}
+        # }
+
+        # Option #4 - a message, a title, buttons, and an icon
+        # More info : https://msdn.microsoft.com/en-us/library/system.windows.messageboximage.aspx
+        $msg = "WARNING: You specified more than 1000 or Unlimited, mailbox collection can take a LOT of time, Continue ? (Y/N)"
+        $Title = "Question..."
+        $Button = "YesNo"
+        $Icon = "Question"
+        $Answer = [System.Windows.MessageBox]::Show($msg,$Title, $Button, $icon)
+        If($Answer -eq "No"){Return}
     }
     $SearchSubstring = ("*") + ($wpf.txtMailboxString.text) + ("*")
     Try {
-        $Mailboxes = Get-Mailbox -ResultSize $($wpf.txtResultSize.Text) $SearchSubstring -ErrorAction Stop | Select Name,Alias,DisplayName,primarySMTPAddress
+        $chkIncludeDiscovery = $false
+        If ($chkIncludeDiscovery){
+            $Mailboxes = Get-Mailbox -ResultSize $($wpf.txtResultSize.Text) $SearchSubstring -ErrorAction Stop | Select Name,Alias,DisplayName,primarySMTPAddress
+        } Else {
+            $Mailboxes = Get-Mailbox -ResultSize $($wpf.txtResultSize.Text) $SearchSubstring -Filter {RecipientTypeDetails -ne "DiscoveryMailbox"} -ErrorAction Stop | Select Name,Alias,DisplayName,primarySMTPAddress
+        }
+
         #$Processes = Get-process -Name $SearchSubstring -ErrorAction Stop 
         [System.Collections.IENumerable]$Results = @($Mailboxes)
         #[System.Collections.IENumerable]$Results = @($Processes)
@@ -87,13 +155,12 @@ Function Get-Mailboxes {
         $wpf.GridView.Columns | Foreach {
             $_.CanUserSort = $true
         }
-        $wpf.lblStatus.Content = "Found $($Results.Count) Mailbox(es)"
+        #$wpf.lblStatus.Content = "Found $($Results.Count) Mailbox(es)"
         $wpf.lblNbItemsInGrid.Content = $($Results.Count)
     }
-
     Catch {
         $Mailboxes = $null
-        $wpf.lblStatus.Content = "No mailboxes found... try again !"
+        #$wpf.lblStatus.Content = "No mailboxes found... try again !"
         $wpf.lblNbItemsInGrid.Content = 0
     }
 }
@@ -148,6 +215,9 @@ $tempform = [Windows.Markup.XamlReader]::Load($reader)
 $namedNodes = $xaml.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Name')]]")
 $namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
 
+#Get the form name to be used as parameter in functions external to form...
+$FormName = $NamedNodes[0].Name
+
 #========================================================
 # END of WPF form definition and load controls
 #endregion
@@ -161,25 +231,27 @@ $namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
 $wpf.btnRun.add_Click({
     Working-Label
     Get-Mailboxes
+    Ready-Label
 })
 
 $wpf.btnAction.add_Click({
     Working-Label
     Run-Action
+    Ready-Label
 })
 # End of Buttons region
 #endregion
 
 #region Load, Draw (render) and closing form events
 #Things to load when the WPF form is loaded aka in memory
-$wpf.WForm.Add_Loaded({
-
+$Wpf.$FormName.Add_Loaded({
+    Ready-Label
 })
 #Things to load when the WPF form is rendered aka drawn on screen
-$wpf.WForm.Add_ContentRendered({
+$Wpf.$FormName.Add_ContentRendered({
 
 })
-$wpf.WForm.add_Closing({
+$Wpf.$FormName.add_Closing({
     $msg = "bye bye !"
     write-host $msg
 })
@@ -211,5 +283,14 @@ $wpf.GridView.add_SelectionChanged({
 #=======================================================
 
 IsPSV3 | out-null
+
+Test-ExchTools | out-null
+
 # Load the form:
-$wpf.WForm.ShowDialog() | Out-Null
+# Older way >>>>> $wpf.MyFormName.ShowDialog() | Out-Null >>>>> generates crash if run multiple times
+# Newer way >>>>> avoiding crashes after a couple of launches in PowerShell...
+# USing method from https://gist.github.com/altrive/6227237 to avoid crashing Powershell after we re-run the script after some inactivity time or if we run it several times consecutively...
+$async = $wpf.$FormName.Dispatcher.InvokeAsync({
+    $wpf.$FormName.ShowDialog() | Out-Null
+})
+$async.Wait() | Out-Null
