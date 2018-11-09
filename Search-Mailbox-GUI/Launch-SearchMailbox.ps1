@@ -120,7 +120,8 @@ Function Ready-Label{
 }
 
 Function Get-Mailboxes {
-    If (($($wpf.txtResultSize.Text) -gt 1000) -or ($($wpf.txtResultSize.Text) -Like "Unlimited")){
+    If ($([int]$wpf.txtResultSize.Text) -gt 1000) {Write-Host "$($wpf.txtResultSize.Text) is greater than 1000 ..."} Else {write-host "$($wpf.txtResultSize.Text) is less than 1000"}
+    If ($([int]$wpf.txtResultSize.Text) -gt 1000){
         # $Msg = "WARNING: You specified more than 1000 or Unlimited, mailbox collection can take a LOT of time, Continue ? (Y/N)"
         # $Answer = ""
         # while ($Answer -ne "Y" -AND $Answer -ne "N") {
@@ -132,7 +133,7 @@ Function Get-Mailboxes {
 
         # Option #4 - a message, a title, buttons, and an icon
         # More info : https://msdn.microsoft.com/en-us/library/system.windows.messageboximage.aspx
-        $msg = "WARNING: You specified more than 1000 or Unlimited, mailbox collection can take a LOT of time, Continue ? (Y/N)"
+        $msg = "WARNING: You specified : $($wpf.txtResultSize.Text), which is more than 1000 or Unlimited, mailbox collection can take a LOT of time, Continue ? (Y/N)"
         $Title = "Question..."
         $Button = "YesNo"
         $Icon = "Question"
@@ -145,7 +146,16 @@ Function Get-Mailboxes {
         If ($chkIncludeDiscovery){
             $Mailboxes = Get-Mailbox -ResultSize $($wpf.txtResultSize.Text) $SearchSubstring -ErrorAction Stop | Select Name,Alias,DisplayName,primarySMTPAddress
         } Else {
+            #$Mailboxes = Get-Mailbox -ResultSize $($wpf.txtResultSize.Text) $SearchSubstring -Filter {RecipientTypeDetails -ne "DiscoveryMailbox"} -ErrorAction Stop | Select Name,Alias,DisplayName,primarySMTPAddress
+            $stopwatch = [system.diagnostics.stopwatch]::StartNew()
+            #$Mailboxes = Get-Mailbox $SearchSubstring -Filter {RecipientTypeDetails -ne "DiscoveryMailbox"} -ErrorAction Stop | Select -First $($wpf.txtResultSize.Text) | Select Name,Alias,DisplayName,primarySMTPAddress
             $Mailboxes = Get-Mailbox -ResultSize $($wpf.txtResultSize.Text) $SearchSubstring -Filter {RecipientTypeDetails -ne "DiscoveryMailbox"} -ErrorAction Stop | Select Name,Alias,DisplayName,primarySMTPAddress
+            $stopwatch.Stop()
+            $msg = "`n`nInstruction took $([math]::round($($StopWatch.Elapsed.TotalSeconds),2)) seconds to retrieve $($wpf.txtResultSize.Text) mailboxes..."
+            Write-Host $msg
+            $msg = $null
+            $StopWatch = $null
+
         }
 
         #$Processes = Get-process -Name $SearchSubstring -ErrorAction Stop 
