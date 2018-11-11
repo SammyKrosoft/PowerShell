@@ -188,7 +188,7 @@ Function Run-Action{
             Function Get-MailboxFeaturesView {
                 [CmdLetBinding()]
                 Param(
-                    [Parameter(Mandatory = $False, Position = 1)][string[]]$List = 1
+                    [Parameter(Mandatory = $False, Position = 1)][string[]]$List
                 )
                 $QueryMailboxFeatures = $List | Get-CASMAilbox | Select DisplayName, *enabled, *MAPIblock*
                 [System.Collections.IENumerable]$MailboxFeatures = @($QueryMailboxFeatures)
