@@ -227,7 +227,6 @@ Function Run-Action{
                 #Get the form name to be used as parameter in functions external to form...
                 $FormName = $NamedNodes[0].Name
 
-
                 #Define events functions
                 #region Load, Draw (render) and closing form events
                 #Things to load when the WPF form is loaded aka in memory
