@@ -97,7 +97,7 @@ Function Run-Action{
                 )
                 $QueryMailboxFeatures = $List | Get-Mailbox | Select DisplayName, *item*
                 [System.Collections.IENumerable]$MailboxFeatures = @($QueryMailboxFeatures)
-                Write-host $($MailboxFeatures | out-string)
+                Write-host $($MailboxFeatures | ft | out-string)
 
                 #region Get-MailboxFeaturesView Form definition
                 # Load a WPF GUI from a XAML file build with Visual Studio
@@ -107,19 +107,20 @@ Function Run-Action{
                 #$inputXML = Get-Content -Path ".\WPFGUIinTenLines\MainWindow.xaml"
                 $inputXML = @"
                 <Window x:Name="frmMbxSIRStatus" x:Class="Get_CASMAilboxFeaturesWPF.MainWindow"
-                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                        xmlns:local="clr-namespace:Get_CASMAilboxFeaturesWPF"
-                        mc:Ignorable="d"
-                        Title="Mailboxes Single Item Recovery and Retention settings status" Height="437.024" Width="872.145" ResizeMode="NoResize">
+                                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                        xmlns:local="clr-namespace:Get_CASMAilboxFeaturesWPF"
+                                        mc:Ignorable="d"
+                                        Title="Mailboxes Single Item Recovery and Retention settings status" Height="437.024" Width="872.145" ResizeMode="NoResize">
                     <Grid>
                         <DataGrid x:Name="DataGridCASMbx" HorizontalAlignment="Left" Height="326" Margin="10,10,-59,0" VerticalAlignment="Top" Width="844" IsReadOnly="True"/>
-                        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="667,359,0,0" VerticalAlignment="Top" Width="98" Height="34"/>
-                
+                        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="748,352,0,0" VerticalAlignment="Top" Width="106" Height="46"/>
+                        <Button x:Name="btnClipboard" Content="Copy to clipboard" HorizontalAlignment="Left" Margin="10,352,0,0" VerticalAlignment="Top" Width="174" Height="46"/>
+
                     </Grid>
-                </Window>        
+                </Window>   
 "@
 
                 $inputXMLClean = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace 'x:Class=".*?"','' -replace 'd:DesignHeight="\d*?"','' -replace 'd:DesignWidth="\d*?"',''
@@ -147,6 +148,13 @@ Function Run-Action{
                 $wpf.$FormName.add_Closing({
                     $msg = "Closed the MBX SIR and retention settings status list window"
                     write-host $msg
+                })
+                $wpf.btnClipboard.add_Click({
+                    $CSVClip = $mailboxFeatures | ConvertTo-CSV -NoTypeInformation
+                    $CSVClip | clip.exe
+                    $title = "Copied !"
+                    $msg = "Data copied to the clipboard ! `n`rUse CTRL+V on Notepad or on an Exchange Management Shell"
+                    [System.Windows.MessageBox]::Show($msg,$title, "OK","Asterisk")
                 })
                 $wpf.btnClose.add_Click({
                     $wpf.$FormName.Close()
@@ -202,19 +210,20 @@ Function Run-Action{
                 #$inputXML = Get-Content -Path ".\WPFGUIinTenLines\MainWindow.xaml"
                 $inputXML = @"
                 <Window x:Name="frmCASMBOXProps" x:Class="Get_CASMAilboxFeaturesWPF.MainWindow"
-                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                        xmlns:local="clr-namespace:Get_CASMAilboxFeaturesWPF"
-                        mc:Ignorable="d"
-                        Title="Mailbox features enabled and blocked status" Height="437.024" Width="872.145" ResizeMode="NoResize">
+                                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                        xmlns:local="clr-namespace:Get_CASMAilboxFeaturesWPF"
+                                        mc:Ignorable="d"
+                                        Title="Mailbox features enabled and blocked status" Height="437.024" Width="872.145" ResizeMode="NoResize">
                     <Grid>
                         <DataGrid x:Name="DataGridCASMbx" HorizontalAlignment="Left" Height="326" Margin="10,10,-59,0" VerticalAlignment="Top" Width="844" IsReadOnly="True"/>
-                        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="667,359,0,0" VerticalAlignment="Top" Width="98" Height="34"/>
-                
+                        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="748,352,0,0" VerticalAlignment="Top" Width="106" Height="46"/>
+                        <Button x:Name="btnClipboard" Content="Copy to clipboard" HorizontalAlignment="Left" Margin="10,352,0,0" VerticalAlignment="Top" Width="174" Height="46"/>
+
                     </Grid>
-                </Window>        
+                </Window>         
 "@
 
                 $inputXMLClean = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace 'x:Class=".*?"','' -replace 'd:DesignHeight="\d*?"','' -replace 'd:DesignWidth="\d*?"',''
@@ -241,6 +250,13 @@ Function Run-Action{
                 $wpf.$FormName.add_Closing({
                     $msg = "Closed the MBX features list window"
                     write-host $msg
+                })
+                $wpf.btnClipboard.add_Click({
+                    $CSVClip = $mailboxFeatures | ConvertTo-CSV -NoTypeInformation
+                    $CSVClip | clip.exe
+                    $title = "Copied !"
+                    $msg = "Data copied to the clipboard ! `n`rUse CTRL+V on Notepad or on an Exchange Management Shell"
+                    [System.Windows.MessageBox]::Show($msg,$title, "OK","Asterisk")
                 })
                 $wpf.btnClose.add_Click({
                     $wpf.$FormName.Close()
