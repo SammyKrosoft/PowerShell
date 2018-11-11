@@ -81,17 +81,195 @@ Function Run-Action{
             WRite-Host "About to execute action on $($SelectedItems.Count) mailboxes..."
             Write-Host "About to run $Command"
         }
-        "List Mailbox Features"  {
-            Write-host "Displaying Mailbox Features"
+        "List Single Item Recovery status" {
+            Write-host "Displaying Mailbox SIR and retention settings status"
             $SelectedITems = $wpf.GridView.SelectedItems
+            Write-host "Displaying Mailbox Single Item Recovery and retention settings status for $($SelectedItems.count) items..."
             $List = @()
             $SelectedItems | Foreach {
                 $List += $_.primarySMTPAddress.tostring()
             }
             #$List = $List -join ","
-            $QueryMailboxFeatures = $List | Get-CASMAilbox | Select DisplayName, *enabled
-            [System.Collections.IENumerable]$MailboxFeatures = @($QueryMailboxFeatures)
-            Write-host $($MailboxFeatures | ft DisplayName, ActiveSyncEnabled,OWAEnabled,ECPEnabled,MAPIEnabled,MAPIBlockOutlookRpcHttp,MapiHttpEnabled  -a | out-string)
+            Function Get-MailboxSIRView {
+                [CmdLetBinding()]
+                Param(
+                    [Parameter(Mandatory = $False, Position = 1)][string[]]$List
+                )
+                $QueryMailboxFeatures = $List | Get-Mailbox | Select DisplayName, *item*
+                [System.Collections.IENumerable]$MailboxFeatures = @($QueryMailboxFeatures)
+                Write-host $($MailboxFeatures | out-string)
+
+                #region Get-MailboxFeaturesView Form definition
+                # Load a WPF GUI from a XAML file build with Visual Studio
+                Add-Type -AssemblyName presentationframework, presentationcore
+                $wpf = @{ }
+                # NOTE: Either load from a XAML file or paste the XAML file content in a "Here String"
+                #$inputXML = Get-Content -Path ".\WPFGUIinTenLines\MainWindow.xaml"
+                $inputXML = @"
+                <Window x:Name="frmMbxSIRStatus" x:Class="Get_CASMAilboxFeaturesWPF.MainWindow"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:local="clr-namespace:Get_CASMAilboxFeaturesWPF"
+                        mc:Ignorable="d"
+                        Title="Mailboxes Single Item Recovery and Retention settings status" Height="437.024" Width="872.145" ResizeMode="NoResize">
+                    <Grid>
+                        <DataGrid x:Name="DataGridCASMbx" HorizontalAlignment="Left" Height="326" Margin="10,10,-59,0" VerticalAlignment="Top" Width="844" IsReadOnly="True"/>
+                        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="667,359,0,0" VerticalAlignment="Top" Width="98" Height="34"/>
+                
+                    </Grid>
+                </Window>        
+"@
+
+                $inputXMLClean = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace 'x:Class=".*?"','' -replace 'd:DesignHeight="\d*?"','' -replace 'd:DesignWidth="\d*?"',''
+                [xml]$xaml = $inputXMLClean
+                $reader = New-Object System.Xml.XmlNodeReader $xaml
+                $tempform = [Windows.Markup.XamlReader]::Load($reader)
+                $namedNodes = $xaml.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Name')]]")
+                $namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
+
+                #Get the form name to be used as parameter in functions external to form...
+                $FormName = $NamedNodes[0].Name
+
+
+                #Define events functions
+                #region Load, Draw (render) and closing form events
+                #Things to load when the WPF form is loaded aka in memory
+                $wpf.$FormName.Add_Loaded({
+                    #Update-Cmd
+                    $wpf.DataGridCASMbx.ItemsSource = $MailboxFeatures
+                })
+                #Things to load when the WPF form is rendered aka drawn on screen
+                $wpf.$FormName.Add_ContentRendered({
+                    #Update-Cmd
+                })
+                $wpf.$FormName.add_Closing({
+                    $msg = "Closed the MBX SIR and retention settings status list window"
+                    write-host $msg
+                })
+                $wpf.btnClose.add_Click({
+                    $wpf.$FormName.Close()
+                })
+
+                #endregion Load, Draw and closing form events
+                #End of load, draw and closing form events
+
+                #HINT: to update progress bar and/or label during WPF Form treatment, add the following:
+                # ... to re-draw the form and then show updated controls in realtime ...
+                $wpf.$FormName.Dispatcher.Invoke("Render",[action][scriptblock]{})
+
+
+                # Load the form:
+                # Older way >>>>> $wpf.MyFormName.ShowDialog() | Out-Null >>>>> generates crash if run multiple times
+                # Newer way >>>>> avoiding crashes after a couple of launches in PowerShell...
+                # USing method from https://gist.github.com/altrive/6227237 to avoid crashing Powershell after we re-run the script after some inactivity time or if we run it several times consecutively...
+                $async = $wpf.$FormName.Dispatcher.InvokeAsync({
+                    $wpf.$FormName.ShowDialog() | Out-Null
+                })
+                $async.Wait() | Out-Null
+
+                #endregion
+                # end of Form definition for Get-MailboxFeaturesView
+                
+            }
+
+            Get-MailboxSIRView $List            
+        }
+        "List Mailbox Features"  {
+            Write-host "Displaying Mailbox Features"
+            $SelectedITems = $wpf.GridView.SelectedItems
+            Write-host "Displaying Mailbox Features for $($SelectedItems.count) items..."
+            $List = @()
+            $SelectedItems | Foreach {
+                $List += $_.primarySMTPAddress.tostring()
+            }
+            #$List = $List -join ","
+            Function Get-MailboxFeaturesView {
+                [CmdLetBinding()]
+                Param(
+                    [Parameter(Mandatory = $False, Position = 1)][string[]]$List = 1
+                )
+                $QueryMailboxFeatures = $List | Get-CASMAilbox | Select DisplayName, *enabled, *MAPIblock*
+                [System.Collections.IENumerable]$MailboxFeatures = @($QueryMailboxFeatures)
+                Write-host $($MailboxFeatures | ft DisplayName, ActiveSyncEnabled,OWAEnabled,ECPEnabled,MAPIEnabled,MAPIBlockOutlookRpcHttp,MapiHttpEnabled  -a | out-string)
+
+                #region Get-MailboxFeaturesView Form definition
+                # Load a WPF GUI from a XAML file build with Visual Studio
+                Add-Type -AssemblyName presentationframework, presentationcore
+                $wpf = @{ }
+                # NOTE: Either load from a XAML file or paste the XAML file content in a "Here String"
+                #$inputXML = Get-Content -Path ".\WPFGUIinTenLines\MainWindow.xaml"
+                $inputXML = @"
+                <Window x:Name="frmCASMBOXProps" x:Class="Get_CASMAilboxFeaturesWPF.MainWindow"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:local="clr-namespace:Get_CASMAilboxFeaturesWPF"
+                        mc:Ignorable="d"
+                        Title="Mailbox features enabled and blocked status" Height="437.024" Width="872.145" ResizeMode="NoResize">
+                    <Grid>
+                        <DataGrid x:Name="DataGridCASMbx" HorizontalAlignment="Left" Height="326" Margin="10,10,-59,0" VerticalAlignment="Top" Width="844" IsReadOnly="True"/>
+                        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="667,359,0,0" VerticalAlignment="Top" Width="98" Height="34"/>
+                
+                    </Grid>
+                </Window>        
+"@
+
+                $inputXMLClean = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace 'x:Class=".*?"','' -replace 'd:DesignHeight="\d*?"','' -replace 'd:DesignWidth="\d*?"',''
+                [xml]$xaml = $inputXMLClean
+                $reader = New-Object System.Xml.XmlNodeReader $xaml
+                $tempform = [Windows.Markup.XamlReader]::Load($reader)
+                $namedNodes = $xaml.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Name')]]")
+                $namedNodes | ForEach-Object {$wpf.Add($_.Name, $tempform.FindName($_.Name))}
+
+                #Get the form name to be used as parameter in functions external to form...
+                $FormName = $NamedNodes[0].Name
+
+
+                #Define events functions
+                #region Load, Draw (render) and closing form events
+                #Things to load when the WPF form is loaded aka in memory
+                $wpf.$FormName.Add_Loaded({
+                    #Update-Cmd
+                    $wpf.DataGridCASMbx.ItemsSource = $MailboxFeatures
+                })
+                #Things to load when the WPF form is rendered aka drawn on screen
+                $wpf.$FormName.Add_ContentRendered({
+                    #Update-Cmd
+                })
+                $wpf.$FormName.add_Closing({
+                    $msg = "Closed the MBX features list window"
+                    write-host $msg
+                })
+                $wpf.btnClose.add_Click({
+                    $wpf.$FormName.Close()
+                })
+
+                #endregion Load, Draw and closing form events
+                #End of load, draw and closing form events
+
+                #HINT: to update progress bar and/or label during WPF Form treatment, add the following:
+                # ... to re-draw the form and then show updated controls in realtime ...
+                $wpf.$FormName.Dispatcher.Invoke("Render",[action][scriptblock]{})
+
+
+                # Load the form:
+                # Older way >>>>> $wpf.MyFormName.ShowDialog() | Out-Null >>>>> generates crash if run multiple times
+                # Newer way >>>>> avoiding crashes after a couple of launches in PowerShell...
+                # USing method from https://gist.github.com/altrive/6227237 to avoid crashing Powershell after we re-run the script after some inactivity time or if we run it several times consecutively...
+                $async = $wpf.$FormName.Dispatcher.InvokeAsync({
+                    $wpf.$FormName.ShowDialog() | Out-Null
+                })
+                $async.Wait() | Out-Null
+
+                #endregion
+                # end of Form definition for Get-MailboxFeaturesView
+                
+            }
+
+            Get-MailboxFeaturesView $List
         }
     }
 }
@@ -151,7 +329,7 @@ Function Get-Mailboxes {
             #$Mailboxes = Get-Mailbox $SearchSubstring -Filter {RecipientTypeDetails -ne "DiscoveryMailbox"} -ErrorAction Stop | Select -First $($wpf.txtResultSize.Text) | Select Name,Alias,DisplayName,primarySMTPAddress
             $Mailboxes = Get-Mailbox -ResultSize $($wpf.txtResultSize.Text) $SearchSubstring -Filter {RecipientTypeDetails -ne "DiscoveryMailbox"} -ErrorAction Stop | Select Name,Alias,DisplayName,primarySMTPAddress
             $stopwatch.Stop()
-            $msg = "`n`nInstruction took $([math]::round($($StopWatch.Elapsed.TotalSeconds),2)) seconds to retrieve $($wpf.txtResultSize.Text) mailboxes..."
+            $msg = "`n`nInstruction took $([math]::round($($StopWatch.Elapsed.TotalSeconds),2)) seconds to retrieve $($Mailboxes.count) mailboxes..."
             Write-Host $msg
             $msg = $null
             $StopWatch = $null
@@ -204,8 +382,9 @@ $inputXML = @"
         <Label x:Name="lblStatus" Content="Please start a search..." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,189,0,0" Width="255" FontStyle="Italic"/>
         <Button x:Name="btnAction" Content="Action" Margin="273,302,446,89.5" IsEnabled="False"/>
         <ComboBox x:Name="comboSelectAction" HorizontalAlignment="Left" Margin="228,337,0,0" VerticalAlignment="Top" Width="120" Height="24" SelectedIndex="0" IsEnabled="False">
-            <ComboBoxItem Content="Disable Mailbox"/>
             <ComboBoxItem Content="List Mailbox Features"/>
+            <ComboBoxItem Content="List Single Item Recovery status"/>
+            <ComboBoxItem Content="Disable Mailbox"/>
         </ComboBox>
         <Label x:Name="lblNbItemsInGrid" Content="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="506,385,0,0" Width="55"/>
         <Label Content="Number of Items in Grid:" HorizontalAlignment="Left" Margin="353,385,0,0" VerticalAlignment="Top" Width="148"/>
