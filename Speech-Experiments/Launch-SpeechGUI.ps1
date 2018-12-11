@@ -31,6 +31,7 @@ Function Say {
 #   Add-Type -AssemblyName System.Speech
     $Speak = New-Object system.Speech.Synthesis.SpeechSynthesizer
     $language = $wpf.comboVoiceSelect.SelectedItem.Culture
+    If ($language -eq $null){$language = "FR"}
     $Speak.rate = $wpf.txtSpeed.Text
     $Speak.SelectVoiceByHints(0,0,0,$language)
     $Speak.Speak($Msg)
@@ -120,7 +121,7 @@ $wpf.btnFaster.add_click({
 
 #region Language Selection box
 $wpf.comboVoiceSelect.add_SelectionChanged({
-    $msg = "Language = $($wpf.combovoiceselect.SelectedItem.content)"
+    $msg = "Language = $(($wpf.combovoiceselect.SelectedItem.content).Name)"
     Working-Label "Busy. I'm speaking, wait..."
     Say $msg
     Working-Label "Ready. Make me speak !" 0
@@ -158,4 +159,12 @@ $wpf.frmSpeechGUI.add_Closing({
 $wpf.comboVoiceSelect.ItemsSource = Init-Speech
 $wpf.comboVoiceSelect.SelectedItem = 0
 
-$wpf.frmSpeechGUI.ShowDialog() | Out-null
+# $wpf.frmSpeechGUI.ShowDialog() | Out-null
+
+# Load the form:
+# Older way >>>>> $wpf.EventCollectWindow.ShowDialog() | Out-Null >>>>> generates crash if run multiple times
+# USing method from https://gist.github.com/altrive/6227237 to avoid crashing Powershell after we re-run the script after some inactivity time or if we run it several times consecutively...
+$async = $wpf.frmSpeechGUI.Dispatcher.InvokeAsync({
+    $wpf.frmSpeechGUI.ShowDialog() | Out-Null
+})
+$async.Wait() | Out-Null
