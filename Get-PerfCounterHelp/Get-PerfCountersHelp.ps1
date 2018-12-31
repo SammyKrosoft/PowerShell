@@ -72,14 +72,15 @@ $ScriptLog = "$ScriptPath\$($ScriptName)-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-
 
 <# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
-$SingleInstanceCategories = [System.Diagnostics.PerformanceCounterCategory]::GetCategories() | Where-Object {$_.CategoryType -eq "SingleInstance"} 
-$MultiInstanceCategories = [System.Diagnostics.PerformanceCounterCategory]::GetCategories() | Where-Object {$_.CategoryType -eq "MultiInstance"} 
+$AllCategories = [System.Diagnostics.PerformanceCounterCategory]::GetCategories()
+$SingleInstanceCategories = $AllCategories | Where-Object {$_.CategoryType -eq "SingleInstance"} 
+$MultiInstanceCategories = $AllCategories | Where-Object {$_.CategoryType -eq "MultiInstance"} 
  
-$SingleInstanceCounters = $SingleInstanceCategories | ForEach-Object {(new-object System.Diagnostics.PerformanceCounterCategory($_.CategoryName)).GetCounters() | Select-Object Categoryname,Countername,Counterhelp} 
+$SingleInstanceCounters = $SingleInstanceCategories | ForEach-Object {(new-object System.Diagnostics.PerformanceCounterCategory($_.CategoryName)).GetCounters() | Select-Object Categoryname,CategoryType,Countername,Counterhelp} 
  
 Foreach ($Category in $MultiInstanceCategories)  
 { 
-    $MultiInstanceCounters += $Category.GetInstanceNames() | Foreach-Object {$Category.GetCounters($_) | Select-Object Categoryname,Countername,Counterhelp} 
+    $MultiInstanceCounters += $Category.GetInstanceNames() | Foreach-Object {$Category.GetCounters($_) | Select-Object Categoryname,CategoryType,Countername,Counterhelp} 
 } 
  
 $MultiInstanceCounters = $MultiInstanceCounters | Sort-Object Countername -Unique 

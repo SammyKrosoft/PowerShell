@@ -73,9 +73,9 @@ $ScriptLog = "$ScriptPath\$($ScriptName)-$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
 Function Lines {
-    [CmdLetBinding(DefaultParameterSetName = "NormalRun")]
+    [CmdLetBinding()]
     Param(
-        [Parameter(Mandatory = $False, Position = 0, ParameterSetName = "NormalRun")][int32]$Iterations = 35
+        [Parameter(Mandatory = $False, Position = 0)][int32]$Iterations = 35
     )
     For ($i=0 ; $i -le $Iterations ;$i++) {Write-host "-" -NoNewline}
     Write-host
