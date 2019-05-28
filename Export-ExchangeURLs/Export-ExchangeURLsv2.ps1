@@ -30,7 +30,7 @@ Will export all URLs for all Exchange servers' virtual directories into a file n
 Will just print the results into the PowerShell console.
 
 .NOTES
-None
+Script reviewed 28th May 2019
 
 .LINK
     https://github.com/SammyKrosoft
