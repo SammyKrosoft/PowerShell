@@ -97,10 +97,6 @@
                 SamAccountName
                 User ID or user principal name (UPN)
 
-
-.LINK
-    Get-Mailbox
-
 .LINK
     https://github.com/SammyKrosoft
 #>

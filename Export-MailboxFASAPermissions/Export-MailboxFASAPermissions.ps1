@@ -442,7 +442,7 @@ If ($DistributionGroupsOnly){
         Log "Processing Database $($Database.Name)"
         _Progress ($DBProgressCount/$($Databases.count)*100)
         
-        $Mailboxescommand = "Get-Mailbox -resultsize unlimited -database $Database"
+        $Mailboxescommand = "Get-Mailbox -resultsize unlimited -database `"$Database`""
         If ($ResourceMailboxes -or $SharedMailboxes) {
             Log "Specified Resource Mailboxes parameter ? $ResourceMailboxes"
             Log "Specified SharedMailboxes parameter ? $SharedMailboxes"
