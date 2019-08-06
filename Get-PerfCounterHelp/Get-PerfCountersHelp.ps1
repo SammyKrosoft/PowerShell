@@ -89,7 +89,7 @@ $AllCounters = $MultiInstanceCounters + $SingleInstanceCounters
  
 $AllCounters | Sort-Object Categoryname,Countername | Export-Csv $env:temp\Counters.csv -NoTypeInformation 
  
-Invoke-Item $env:temp\counters.csv
+notepad $env:temp\counters.csv
 <# /EXECUTIONS #>
 <# -------------------------- CLEANUP VARIABLES -------------------------- #>
 
