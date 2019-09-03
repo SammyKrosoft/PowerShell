@@ -59,3 +59,21 @@ $Button = "YesNo"
 $Icon = "Question"
 $DefaultResult = "Ok"
 [System.Windows.MessageBox]::Show($msg,$Title, $Button, $icon, $defaultResult)
+
+# Option #6 - using a function to call the box each time we need it without retyping the same code
+Function MsgBox {
+    [CmdletBinding()]
+    Param(
+        [Parameter(Position=0)][String]$msg = "Do you want to continue ?",
+        [Parameter(Position=1)][String]$Title = "Question...",
+        [Parameter(Position=2)]
+            [ValidateSet("OK","OKCancel","YesNo","YesNoCancel")]
+                [String]$Button = "YesNo",
+        [Parameter(Position=3)]
+            [ValidateSet("Asterisk","Error","Exclamation","Hand","Information","None","Question","Stop","Warning")]
+                [String]$Icon = "Question"
+    )
+    Add-Type -AssemblyName presentationframework, presentationcore
+    [System.Windows.MessageBox]::Show($msg,$Title, $Button, $icon)
+
+}
