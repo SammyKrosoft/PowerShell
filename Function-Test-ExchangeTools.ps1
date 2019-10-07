@@ -32,3 +32,45 @@ Test-ExchTools
     }
     Return $ExchInstalledStatus
 }
+
+
+Function Test-Exchange2016Tools {
+    $Exch2016InstalledStatus = $false
+    Try {
+        # Checking if Set-OutlookAnywhere comes with parameter "ExternalClientAuthenticationMethod", it's Exchange 2013/2016 tools
+        $GetHelpTest = get-help Set-OutlookAnywhere -parameter ExternalClientAuthenticationMethod -ErrorAction Stop
+        $Exch2016InstalledStatus = $true
+        $message = "Exchange 2016 tools detected"
+        Write-Host $message -ForegroundColor Blue -BackgroundColor Green
+    } 
+    catch {
+        $Exch2016InstalledStatus = $false
+        $message = "Exchange 2016 tools not detected"
+        Write-Host $message -BackgroundColor Red -ForegroundColor Blue
+    } 
+    Finally {
+        Write-Host "Done"
+    }
+    Return $Exch2016InstalledStatus
+}
+
+
+Function Test-Exchange2010Tools {
+    $Exch2010InstalledStatus = $false
+    Try {
+        # Checking if Set-OutlookAnywhere comes with parameter "ExternalClientAuthenticationMethod", it's Exchange 2013/2016 tools
+        $GetHelpTest = get-help Set-OutlookAnywhere -parameter ClientAuthenticationMethod -ErrorAction Stop
+        $Exch2010InstalledStatus = $true
+        $message = "Exchange 2010 tools detected"
+        Write-Host $message -ForegroundColor Blue -BackgroundColor green
+    } 
+    catch {
+        $Exch2010InstalledStatus = $false
+        $message = "Exchange 2010 tools not detected"
+        Write-Host $message -BackgroundColor Red -ForegroundColor Blue
+    } 
+    Finally {
+        Write-Host "Done"
+    }
+    Return $Exch2010InstalledStatus
+}
