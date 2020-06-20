@@ -59,7 +59,7 @@ v0.1 -> v0.5 :
 $ScriptName = $MyInvocation.MyCommand.Name
 If ($CheckVersion) {Write-Host "SCRIPT NAME     : $ScriptName `nSCRIPT VERSION  : $ScriptVersion";exit}
 # Log or report file definition
-$UserDocumentsFolder = "$($env:APPDATA)\Documents"
+$UserDocumentsFolder = "$($env:Userprofile)\Documents"
 $OutputReport = "$UserDocumentsFolder\$($ScriptName)_Output_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
 $ScriptLog = "$UserDocumentsFolder\$($ScriptName)_Logging_$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
