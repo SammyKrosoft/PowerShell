@@ -68,7 +68,38 @@ $ScriptLog = "$UserDocumentsFolder\$($ScriptName)_Logging_$(Get-Date -Format 'dd
 
 <# /DECLARATIONS #>
 <# -------------------------- FUNCTIONS -------------------------- #>
-
+function Write-Log
+{
+	<#
+	.SYNOPSIS
+		This function creates or appends a line to a log file.
+	.PARAMETER  Message
+		The message parameter is the log message you'd like to record to the log file.
+	.EXAMPLE
+		PS C:\> Write-Log -Message 'Value1'
+		This example shows how to call the Write-Log function with named parameters.
+	#>
+	[CmdletBinding()]
+	param (
+        [Parameter(Mandatory=$false,position = 1)]
+        [string]$LogFileName=$ScriptLog,
+		[Parameter(Mandatory=$true,position = 0)]
+		[string]$Message,
+        [Parameter(Mandatory=$false)][switch]$Silent
+	)
+	
+	try
+	{
+		$DateTime = Get-Date -Format 'MM-dd-yy HH:mm:ss'
+		$Invocation = "$($MyInvocation.MyCommand.Source | Split-Path -Leaf):$($MyInvocation.ScriptLineNumber)"
+		Add-Content -Value "$DateTime - $Invocation - $Message" -Path $LogFileName
+		if (!($Silent)){Write-Host $Message -ForegroundColor Green}
+	}
+	catch
+	{
+		Write-Error $_.Exception.Message
+	}
+}
 <# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
 
