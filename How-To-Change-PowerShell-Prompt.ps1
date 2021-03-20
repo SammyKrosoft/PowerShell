@@ -54,7 +54,7 @@
 
 function prompt {$Host.UI.RawUI.WindowTitle = $(Get-Location);"PS>"}
 # Now switching to preferred path
-$PreferredPath = "$env:userprofile\documents\Github\Powershell"
+$PreferredPath = "$env:userprofile\documents\"
 Write-Host "Switching to \$(($PreferredPath.Split("\"))[($PreferredPath.Split("\")).Length-1]) folder... Path location is now in your Powershell window title !" -backgroundcolor yellow -foregroundcolor blue
 cd $PreferredPath
 
