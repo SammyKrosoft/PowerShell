@@ -81,11 +81,11 @@ function Write-Log
 	#>
 	[CmdletBinding()]
 	param (
-        [Parameter(Mandatory=$false,position = 1)]
-        [string]$LogFileName=$ScriptLog,
 		[Parameter(Mandatory=$true,position = 0)]
 		[string]$Message,
-        [Parameter(Mandatory=$false)][switch]$Silent
+		[Parameter(Mandatory=$false,position = 1)]
+        [string]$LogFileName=$ScriptLog,
+        [Parameter(Mandatory=$false, position = 2)][switch]$Silent
 	)
 	
 	try
@@ -102,13 +102,14 @@ function Write-Log
 }
 <# /FUNCTIONS #>
 <# -------------------------- EXECUTIONS -------------------------- #>
-
+Write-Log "************************** Script Start **************************"
 <# /EXECUTIONS #>
 <# -------------------------- CLEANUP VARIABLES -------------------------- #>
 
 <# /CLEANUP VARIABLES#>
 <# ---------------------------- SCRIPT_FOOTER ---------------------------- #>
 #Stopping StopWatch and report total elapsed time (TotalSeconds, TotalMilliseconds, TotalMinutes, etc...
+Write-Log "************************** Script End **************************"
 $stopwatch.Stop()
 $msg = "`n`nThe script took $([math]::round($($StopWatch.Elapsed.TotalSeconds),2)) seconds to execute..."
 Write-Host $msg
