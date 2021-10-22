@@ -113,7 +113,7 @@ Write-Log "************************** Script Start **************************"
 Write-Log "************************** Script End **************************"
 $stopwatch.Stop()
 $msg = "`n`nThe script took $([math]::round($($StopWatch.Elapsed.TotalSeconds),2)) seconds to execute..."
-Write-Host $msg
+Write-Log $msg
 $msg = $null
 $StopWatch = $null
 <# ---------------- /SCRIPT_FOOTER (NOTHING BEYOND THIS POINT) ----------- #>
