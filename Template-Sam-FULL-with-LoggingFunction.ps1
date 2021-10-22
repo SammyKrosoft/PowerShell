@@ -63,6 +63,7 @@ $UserDocumentsFolder = "$($env:Userprofile)\Documents"
 $OutputReport = "$UserDocumentsFolder\$($ScriptName)_Output_$(get-date -f yyyy-MM-dd-hh-mm-ss).csv"
 # Other Option for Log or report file definition (use one of these)
 $ScriptLog = "$UserDocumentsFolder\$($ScriptName)_Logging_$(Get-Date -Format 'dd-MMMM-yyyy-hh-mm-ss-tt').txt"
+Write-Host "Script log will be stored as $ScriptLog" -ForegroundColor Green
 <# ---------------------------- /SCRIPT_HEADER ---------------------------- #>
 <# -------------------------- DECLARATIONS -------------------------- #>
 
